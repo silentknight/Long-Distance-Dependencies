@@ -1,2 +1,8 @@
 dataset/data
 dataset/foma
+dataset/.amountFactor.tmp
+dataset/.amountSize.tmp
+dataset/.maxlength.tmp
+dataset/.maxLines.tmp
+dataset/.minlength.tmp
+dataset/.sed.linesToDelete.tmp
