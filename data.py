@@ -1,5 +1,4 @@
 import os
-import torch
 
 from collections import Counter
 
@@ -41,15 +40,3 @@ class Corpus(object):
                 tokens += len(words)
                 for word in words:
                     self.dictionary.add_word(word)
-
-        # Tokenize file content
-        with open(path, 'r') as f:
-            ids = torch.LongTensor(tokens)
-            token = 0
-            for line in f:
-                words = line.split() + ['<eos>']
-                for word in words:
-                    ids[token] = self.dictionary.word2idx[word]
-                    token += 1
-
-        return ids
