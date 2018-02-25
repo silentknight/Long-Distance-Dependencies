@@ -28,11 +28,11 @@ class Dictionary(object):
 class SequentialData(object):
     def __init__(self):
         self.wordArray = []
-        self.length = 0
+        self.total = 0
 
     def add_to_list(self, wordID):
         self.wordArray.append(wordID)
-        self.length += 1
+        self.total += 1
 
 class Corpus(object):
     def __init__(self, path):
