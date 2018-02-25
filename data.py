@@ -19,12 +19,25 @@ class Dictionary(object):
         self.total += 1
         return self.word2idx[word]
 
+    def get_word_from_id(self, wordID):
+        return self.idx2word[wordID]
+
     def __len__(self):
         return len(self.idx2word)
+
+class SequentialData(object):
+    def __init__(self):
+        self.wordArray = []
+        self.length = 0
+
+    def add_to_list(self, wordID):
+        self.wordArray.append(wordID)
+        self.length += 1
 
 class Corpus(object):
     def __init__(self, path):
         self.dictionary = Dictionary()
+        self.sequentialData = SequentialData()
         self.train = self.tokenize(os.path.join(path, 'train.txt'))
         self.valid = self.tokenize(os.path.join(path, 'valid.txt'))
         self.test = self.tokenize(os.path.join(path, 'test.txt'))
@@ -39,4 +52,5 @@ class Corpus(object):
                 words = line.split() + ['<eos>']
                 tokens += len(words)
                 for word in words:
-                    self.dictionary.add_word(word)
+                    wordID = self.dictionary.add_word(word)
+                    self.sequentialData.add_to_list(wordID)
