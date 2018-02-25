@@ -6,9 +6,9 @@ import time
 
 class MutualInformation(object):
 	def __init__(self, corpusData):
-		self.mutualInformation = self.calculatePMI(corpusData)
+		self.mutualInformation = self.calculateMI(corpusData)
 
-	def calculatePMI(self, corpus):
-		print(corpus.dictionary.word2idx)
+	def calculateMI(self, corpus):
+		print(corpus.sequentialData.wordArray)
 		time.sleep(10)
-		print(corpus.dictionary.counter)
+		print(corpus.sequentialData.length)
