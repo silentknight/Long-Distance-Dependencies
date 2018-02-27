@@ -15,10 +15,6 @@ import copy
 import argparse
 import time
 
-# Setup matplotlib renderer to avoid using the screen (must be done early)
-import matplotlib
-matplotlib.use('Agg')
-
 # Installed libs
 import matplotlib.pyplot as plt
 import numpy as np
@@ -48,10 +44,10 @@ def main():
 	# Plot the LDD
 	###############################################################################
 
+	plt.plot(ldd.mutualInformation)
+	plt.show()
+	
 	###############################################################################
-	# Calculate the measure of LDD
-	###############################################################################
-
 
 if __name__ == '__main__':
 	main()
