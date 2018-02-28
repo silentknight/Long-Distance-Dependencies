@@ -12,3 +12,4 @@ dataset/penn-tree-bank
 dataset/wiki
 __pycache__
 *.pyc
+*.dat
