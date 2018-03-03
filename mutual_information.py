@@ -6,6 +6,8 @@ import numpy as np
 import sys
 import threading
 import gc
+import os
+from scipy import sparse
 import time
 
 class myThread(threading.Thread):
@@ -38,9 +40,11 @@ class myThread(threading.Thread):
 		gc.collect()
 
 class MutualInformation(object):
-	def __init__(self, corpusData):
+	def __init__(self, corpusData, no_of_threads, data_file_path):
 		global corpus
 		corpus = corpusData
+		self.no_of_threads = no_of_threads
+		self.filename = data_file_path
 		self.mutualInformation = self.calculate_MI()
 
 	def calculate_MI(self):
@@ -54,32 +58,52 @@ class MutualInformation(object):
 		pxpy = px*np.transpose(px)
 
 		end = False
+		new = False
 		d = 1
-		batch_size = 4
+
+		# Check if already processing is done or new process ?
+		if(os.path.exists(self.filename)):
+			f = open(self.filename,"r")
+			lines = f.readlines()
+			f.close()
+
+			temp = lines[0].split()
+			if temp[0] == "data:" and temp[1] == corpus.datainfo:				
+				for line in lines:
+					temp = line.split(":")
+					if temp[0] == "d":
+						mi = np.append(mi,np.zeros(1))
+						mi[int(temp[1])-1] = float(temp[2])
+						d = int(temp[1])+1
 
 		try:
-			startTime=time.time()
-			print("Start Time: ", startTime)
-
-			while d<corpus.sequentialData.total and end==False:
-				mi = np.append(mi,np.zeros(batch_size))
+			max_distance = corpus.sequentialData.total
+			while d<max_distance and end==False:
+				mi = np.append(mi,np.zeros(self.no_of_threads))
 				thread = []
-				for i in range(batch_size):
+				for i in range(self.no_of_threads):
 					thread.append(myThread(d+i))
 
-				for i in range(batch_size):
+				for i in range(self.no_of_threads):
 					thread[i].start()
 
-				for i in range(batch_size):
+				for i in range(self.no_of_threads):
 					thread[i].join()
 
-				for i in range(batch_size):
+				for i in range(self.no_of_threads):
 					mi[d+i-1] = thread[i].mi
 					print(thread[i].d, thread[i].mi)
 
-				d += batch_size
-
-				print(time.time()-startTime)
-				startTime = time.time()
+				d += self.no_of_threads
 		except KeyboardInterrupt:
-			return mi
+			for i in range(self.no_of_threads):
+				if mi[len(mi)-1]==0:
+					mi = np.delete(mi,len(mi)-1)
+						
+		f = open(self.filename,"w")
+		f.write("data: "+corpus.datainfo+"\n")
+		for i in range(len(mi)):
+			f.write("d:"+str(i+1)+":"+str(mi[i])+"\n")
+		f.close()
+
+		return mi

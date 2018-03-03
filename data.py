@@ -1,4 +1,5 @@
 import os
+import time
 
 from collections import Counter
 
@@ -38,6 +39,7 @@ class Corpus(object):
     def __init__(self, path):
         self.dictionary = Dictionary()
         self.sequentialData = SequentialData()
+        self.datainfo = path
         self.train = self.tokenize(os.path.join(path, 'train.txt'))
         self.valid = self.tokenize(os.path.join(path, 'valid.txt'))
         self.test = self.tokenize(os.path.join(path, 'test.txt'))
@@ -49,7 +51,8 @@ class Corpus(object):
         with open(path, 'r') as f:
             tokens = 0
             for line in f:
-                words = line.split() + ['<eos>']
+                # words = line.split() + ['<eos>']
+                words = list(line.strip().replace("<unk>", "^"))+[" "]
                 tokens += len(words)
                 for word in words:
                     wordID = self.dictionary.add_word(word)

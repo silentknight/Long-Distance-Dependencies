@@ -25,7 +25,10 @@ import mutual_information as mi
 def main():
 	parser = argparse.ArgumentParser(description='Long Distance Dependency measurements')
 	parser.add_argument('--data', type=str, default='dataset/dl4mt/', help='location of the data corpus')
-	parser.add_argument('--model', type=str, default='LSTM', help='type of recurrent net (LSTM, QRNN, GRU)')
+	parser.add_argument('--method', type=str, default="MI", help="Type of method chosen, Choose mi=Relative Entropy, copula=Copulas")
+	parser.add_argument('--log_type', type=str, default="loge", help="Choose Log Type, loge=Log to the base e, log2=log to the base 2, log10=log to the base 10")
+	parser.add_argument('--threads', type=int, default='4', help='Number of threads to spawn')
+	parser.add_argument('--datafilepath', type=str, default='ldd_data.dat', help='File path of last known data process path')
 	args = parser.parse_args()
 
 	###############################################################################
@@ -38,13 +41,18 @@ def main():
 	# Calculate Mutual Information
 	###############################################################################
 
-	ldd = mi.MutualInformation(corpus)
+	ldd = mi.MutualInformation(corpus, args.threads, args.datafilepath)
 
 	###############################################################################
 	# Plot the LDD
 	###############################################################################
 
-	plt.plot(ldd.mutualInformation)
+	# x = ldd.mutualInformation/np.amax(ldd.mutualInformation)
+	x = ldd.mutualInformation
+	plt.subplot(121)
+	plt.semilogy(np.arange(len(x)),x)
+	plt.subplot(122)
+	plt.plot(np.arange(len(x)),x)
 	plt.show()
 	
 	###############################################################################
