@@ -20,7 +20,7 @@ class myThread(threading.Thread):
 				break
 			pair_counts[corpus.sequentialData.wordArray[index],corpus.sequentialData.wordArray[index+self.d]]+=1
 
-		# PMI is Pointwose Mutual Information calcutaed between joint probability of two Random Variables and marginal probability of the same Random Variables
+		# PMI (Pointwise Mutual Information) calculated between joint probability of two Random Variables and marginal probability of the same Random Variables
 		joint_prob = pair_counts/corpus.sequentialData.total
 		temp = joint_prob/pxpy
 		del pair_counts
