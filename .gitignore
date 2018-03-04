@@ -4,7 +4,7 @@ dataset/.maxlength.tmp
 dataset/.maxLines.tmp
 dataset/.minlength.tmp
 dataset/.sed.linesToDelete.tmp
-dataset/dl4mt/text.txt
+dataset/dl4mt/test.txt
 dataset/dl4mt/valid.txt
 dataset/dl4mt/train.txt
 dataset/foma/foma
