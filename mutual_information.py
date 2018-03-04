@@ -1,14 +1,11 @@
 #!/usr/bin/env python
 
 # System libs
-from __future__ import print_function
 import numpy as np
 import sys
 import threading
 import gc
 import os
-from scipy import sparse
-import time
 
 class myThread(threading.Thread):
 	def __init__(self, d):

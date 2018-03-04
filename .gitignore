@@ -13,3 +13,4 @@ dataset/wiki
 __pycache__
 *.pyc
 *.dat
+trash

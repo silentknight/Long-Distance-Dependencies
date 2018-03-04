@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 
 # System libs
-from __future__ import print_function
-if hasattr(__builtins__, 'raw_input'):
-    input = raw_input
-
 from collections import OrderedDict
 import os
 import sys
