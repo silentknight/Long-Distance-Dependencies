@@ -41,15 +41,24 @@ else:
 		sys.exit()
 
 mi = np.zeros([0,1])
+Hx = np.zeros([0,1])
+Hy = np.zeros([0,1])
+Hxy = np.zeros([0,1])
 temp = lines[0].split()
 if temp[0] == "data:":
 	for line in lines:
 		temp = line.strip().split(":")
-		if start<=index and end>=index:
-			if temp[0] == "d":
-				mi = np.append(mi,np.zeros(1))
-				mi[int(temp[1])-start] = float(temp[2])
-				d = int(temp[1])+1
+		if temp[0] == "d":
+			temp1 = temp[2].split(",")				
+			mi = np.append(mi,np.zeros(1))
+			mi[int(temp[1])-1] = float(temp1[0])
+			Hx = np.append(Hx,np.zeros(1))
+			Hx[int(temp[1])-1] = float(temp1[1])
+			Hy = np.append(Hy,np.zeros(1))
+			Hy[int(temp[1])-1] = float(temp1[2])
+			Hxy = np.append(Hxy,np.zeros(1))
+			Hxy[int(temp[1])-1] = float(temp1[3])
+			d = int(temp[1])+1
 		index+=1
 else:
 	print("Not a valid file")
@@ -59,8 +68,12 @@ if args.normalize == "y" or args.normalize == "Y":
 else:
 	x = mi
 
-plt.subplot(121)
+# plt.subplot(121)
 plt.semilogy(np.arange(start,end+1),x)
-plt.subplot(122)
-plt.plot(np.arange(start,end+1),x)
+# plt.subplot(122)
+# plt.plot(np.arange(start,end+1),x)
+# plt.subplot(121)
+# plt.plot(Hx[start:end]+Hy[start:end])
+# plt.subplot(122)
+# plt.plot(Hxy[start:end])
 plt.show()

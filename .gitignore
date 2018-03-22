@@ -24,3 +24,4 @@ __pycache__
 *.pyc
 *.dat
 trash
+test*
