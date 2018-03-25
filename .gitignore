@@ -24,4 +24,8 @@ __pycache__
 *.pyc
 *.dat
 trash
+build
 test*
+*.c
+*.so
+*.html
