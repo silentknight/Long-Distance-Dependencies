@@ -1,15 +1,8 @@
 #!/usr/bin/env python
 
 # System libs
-from collections import OrderedDict
 import os
-import sys
-import shutil
-import gzip
-import pickle
-import copy
 import argparse
-import time
 
 # Installed libs
 import matplotlib.pyplot as plt
@@ -19,6 +12,8 @@ import data
 import mutual_information as mi
 
 def main():
+	start_time = time.time()
+
 	parser = argparse.ArgumentParser(description='Long Distance Dependency measurements')
 	parser.add_argument('--data', type=str, default='dataset/dl4mt/', help='location of the data corpus')
 	parser.add_argument('--method', type=str, default="MI", help="Type of method chosen, Choose mi=Relative Entropy, copula=Copulas")
@@ -27,6 +22,7 @@ def main():
 	parser.add_argument('--datafilepath', type=str, default='ldd_data.dat', help='File path of last known data process path')
 	parser.add_argument('--clear', type=int, default=0, help="Clear old data file (ldd_data.dat)")
 	parser.add_argument('--overlap', type=int, default=1, help="Allow overlaps between two independent substrings. 0-No, 1-Yes")
+	parser.add_argument('--normalize', type=int, default=0, help="Normalize the scores in the range [0,1].")
 	args = parser.parse_args()
 
 	###############################################################################
@@ -55,8 +51,11 @@ def main():
 	# # Plot the LDD
 	# ###############################################################################
 
-	# x, Hx, Hy, Hxy = ldd.mutualInformation/np.amax(ldd.mutualInformation)
-	x, Hx, Hy, Hxy = ldd.mutualInformation
+	if agrs.normalize == 1:
+		x, Hx, Hy, Hxy = ldd.mutualInformation/np.amax(ldd.mutualInformation)
+	else:
+		x, Hx, Hy, Hxy = ldd.mutualInformation
+
 	plt.subplot(161)
 	plt.semilogy(np.arange(len(x)),x)
 	plt.subplot(162)
