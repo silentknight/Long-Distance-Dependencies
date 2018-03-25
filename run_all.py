@@ -12,8 +12,6 @@ import data
 import mutual_information as mi
 
 def main():
-	start_time = time.time()
-
 	parser = argparse.ArgumentParser(description='Long Distance Dependency measurements')
 	parser.add_argument('--data', type=str, default='dataset/dl4mt/', help='location of the data corpus')
 	parser.add_argument('--method', type=str, default="MI", help="Type of method chosen, Choose mi=Relative Entropy, copula=Copulas")

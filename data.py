@@ -4,6 +4,7 @@
 import os
 import sys
 from collections import Counter
+import simplejson as json
 import time
 
 class Dictionary(object):
@@ -35,6 +36,8 @@ class SequentialData(object):
 		self.__counter = 0
 		self.wordCountList = []
 		self.wordCount = 0
+		self.averageLength = 0
+		self.__numberOfStrings = 0
 
 	def add_to_list(self, wordID):
 		self.__wordLine.append(wordID)
@@ -45,6 +48,8 @@ class SequentialData(object):
 			self.wordArray = self.wordArray + self.__wordLine
 		else:
 			self.wordArray.append(self.__wordLine)
+		self.averageLength = (self.averageLength*self.__numberOfStrings+len(self.__wordLine))/(self.__numberOfStrings+1)
+		self.__numberOfStrings+=1
 		self.__wordLine = []
 		self.wordCountList.append(self.__counter)
 		self.wordCount+=self.__counter
@@ -75,8 +80,11 @@ class Corpus(object):
 			self.test = self.tokenize_file(os.path.join(path, 'test'), True)
 		elif path=="dataset/foma/":
 			print("foma dataset")
-			self.dataset = self.process_foma(os.path.join(path, 'Original_Data/SP/SP8'))
-			self.process_foma(self.dataset)
+			dataset = os.path.join(path, 'Original_Data/SP/SP8')
+			self.process_foma(dataset)
+		elif path=="dataset/music/":
+			dataset = os.path.join(path, 'tunes.json')
+			self.process_music(dataset)
 		else:
 			print("Please check the dataset path supplied. No such path found")
 			sys.exit(0)
@@ -112,10 +120,18 @@ class Corpus(object):
 					filename = os.path.join(root,name)
 					f = open(filename, "r")
 					lines = f.readlines()
+					f.close()
 					for line in lines:
 						temp = line.strip().split()
 						if temp[1] == "TRUE":
 							self.tokenize_strings(temp[0], False)
-					f.close()
 		except TypeError:
 			pass
+
+	def process_music(self, path):
+		f = open(path,"r")
+		data = f.read()
+		f.close()
+		music_data = json.loads(data)
+		for song in music_data:
+			self.tokenize_strings(music_data[song], False)
