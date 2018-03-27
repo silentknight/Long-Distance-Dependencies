@@ -37,7 +37,10 @@ def main():
 	# Load data
 	###############################################################################
 
-	corpus = data.Corpus(args.data)
+	concatenate = False
+	if args.overlap == 1:
+		concatenate = True
+	corpus = data.Corpus(args.data, concatenate)
 
 	###############################################################################
 	# Calculate Mutual Information
@@ -49,7 +52,7 @@ def main():
 	# # Plot the LDD
 	# ###############################################################################
 
-	if agrs.normalize == 1:
+	if args.normalize == 1:
 		x, Hx, Hy, Hxy = ldd.mutualInformation/np.amax(ldd.mutualInformation)
 	else:
 		x, Hx, Hy, Hxy = ldd.mutualInformation

@@ -5,7 +5,6 @@ import os
 import sys
 from collections import Counter
 import simplejson as json
-import time
 
 class Dictionary(object):
 	def __init__(self):
@@ -56,28 +55,29 @@ class SequentialData(object):
 		self.__counter = 0
 
 class Corpus(object):
-	def __init__(self, path):
+	def __init__(self, path, concatenate):
 		self.dictionary = Dictionary()
 		self.sequentialData = SequentialData()
 		self.datainfo = path
+		self.concatenate = concatenate
 		self.completion = self.choose_dataset(self.datainfo)
 
 	def choose_dataset(self, path):
 		if path=="dataset/dl4mt/":
 			print("Penn Tree Bank from LSTM code")
-			self.train = self.tokenize_file(os.path.join(path, 'train.txt'),False) 
-			self.valid = self.tokenize_file(os.path.join(path, 'valid.txt'), False)
-			self.test = self.tokenize_file(os.path.join(path, 'test.txt'), False)
+			self.train = self.tokenize_file(os.path.join(path, 'train.txt'), self.concatenate) 
+			self.valid = self.tokenize_file(os.path.join(path, 'valid.txt'), self.concatenate)
+			self.test = self.tokenize_file(os.path.join(path, 'test.txt'), self.concatenate)
 		elif path=="dataset/wiki/wikitext-2/":
 			print("wikitext-2 dataset")
-			self.train = self.tokenize_file(os.path.join(path, 'train'), False)
-			self.valid = self.tokenize_file(os.path.join(path, 'valid'), False)
-			self.test = self.tokenize_file(os.path.join(path, 'test'), False)
+			self.train = self.tokenize_file(os.path.join(path, 'train'), self.concatenate)
+			self.valid = self.tokenize_file(os.path.join(path, 'valid'), self.concatenate)
+			self.test = self.tokenize_file(os.path.join(path, 'test'), self.concatenate)
 		elif path=="dataset/wiki/wikitext-103/":
 			print("wikitext-103 dataset")
-			self.train = self.tokenize_file(os.path.join(path, 'train'), True)
-			self.valid = self.tokenize_file(os.path.join(path, 'valid'), True)
-			self.test = self.tokenize_file(os.path.join(path, 'test'), True)
+			self.train = self.tokenize_file(os.path.join(path, 'train'), self.concatenate)
+			self.valid = self.tokenize_file(os.path.join(path, 'valid'), self.concatenate)
+			self.test = self.tokenize_file(os.path.join(path, 'test'), self.concatenate)
 		elif path=="dataset/foma/":
 			print("foma dataset")
 			dataset = os.path.join(path, 'Original_Data/SP/SP8')
@@ -124,7 +124,7 @@ class Corpus(object):
 					for line in lines:
 						temp = line.strip().split()
 						if temp[1] == "TRUE":
-							self.tokenize_strings(temp[0], False)
+							self.tokenize_strings(temp[0], self.concatenate)
 		except TypeError:
 			pass
 
@@ -134,4 +134,4 @@ class Corpus(object):
 		f.close()
 		music_data = json.loads(data)
 		for song in music_data:
-			self.tokenize_strings(music_data[song], False)
+			self.tokenize_strings(music_data[song], self.concatenate)
