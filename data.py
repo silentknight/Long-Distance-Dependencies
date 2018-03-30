@@ -32,27 +32,26 @@ class SequentialData(object):
 	def __init__(self):
 		self.__wordLine = []
 		self.wordArray = []
-		self.__counter = 0
+		self.dataArray = []
 		self.wordCountList = []
-		self.wordCount = 0
 		self.averageLength = 0
-		self.__numberOfStrings = 0
+		self.totalLength = 0
 
 	def add_to_list(self, wordID):
 		self.__wordLine.append(wordID)
-		self.__counter+=1
 
 	def add_data(self, concatenate):
 		if concatenate:
-			self.wordArray = self.wordArray + self.__wordLine
+			self.wordArray = self.wordArray+self.__wordLine
+			self.dataArray = self.dataArray+self.__wordLine
 		else:
 			self.wordArray.append(self.__wordLine)
-		self.averageLength = (self.averageLength*self.__numberOfStrings+len(self.__wordLine))/(self.__numberOfStrings+1)
-		self.__numberOfStrings+=1
+			self.dataArray = self.dataArray+self.__wordLine
+
+		self.averageLength = (self.averageLength*len(self.wordCountList)+len(self.__wordLine))/(len(self.wordCountList)+1)
+		self.wordCountList.append(len(self.__wordLine))
+		self.totalLength += len(self.__wordLine)
 		self.__wordLine = []
-		self.wordCountList.append(self.__counter)
-		self.wordCount+=self.__counter
-		self.__counter = 0
 
 class Corpus(object):
 	def __init__(self, path, concatenate):
@@ -118,6 +117,7 @@ class Corpus(object):
 				files.sort()
 				for name in files:
 					filename = os.path.join(root,name)
+					print("File being processed: ", filename)
 					f = open(filename, "r")
 					lines = f.readlines()
 					f.close()

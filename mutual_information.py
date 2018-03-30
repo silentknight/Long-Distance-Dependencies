@@ -6,6 +6,8 @@ import scipy.special as spec
 import sys
 import threading
 import os
+import lddCalc
+import array
 import time
 
 class myThread(threading.Thread):
@@ -19,43 +21,25 @@ class myThread(threading.Thread):
 		super(myThread, self).__init__()
 
 	def run(self):
-		if self.overlap == 1:
-			X = [item for sublist in corpus.sequentialData.wordArray for item in sublist]
-			X_new = np.array(X)
-			steps = int(X_new.size/self.d)
-			last = steps*self.d
-			Y_new = X_new[self.d:last]
-			X_new = X_new[0:last-self.d]
-		elif self.overlap == 0:
-			X = []
-			Y = []
-			for line in corpus.sequentialData.wordArray:
-				steps = int(len(line)/self.d)
-				last = steps*self.d
-				X = X+line[0:last-self.d]
-				Y = Y+line[self.d:last]
-			X_new = np.array(X)
-			Y_new = np.array(Y)
-
-		unique_X, counts_X = np.unique(X_new, return_counts=True)
-		unique_Y, counts_Y = np.unique(Y_new, return_counts=True)
-
-		XY = np.zeros((unique_X.size,unique_Y.size))
-		for index in range(X_new.size):
-			XY[np.where(unique_X==X_new[index])[0][0],np.where(unique_Y==Y_new[index])[0][0]]+=1
-
-		self.Hx = np.log(np.sum(counts_X))-np.sum(counts_X*spec.digamma(counts_X))/np.sum(counts_X)
-		self.Hy = np.log(np.sum(counts_Y))-np.sum(counts_Y*spec.digamma(counts_Y))/np.sum(counts_Y)
-		XY = XY.reshape(counts_X.size*counts_Y.size)
-		XY = np.delete(XY,np.where(XY==0)[0])
-		self.Hxy = np.log(np.sum(XY))-np.sum(XY*spec.digamma(XY))/np.sum(XY)
-
+		Ni_X, Ni_Y, Ni_XY = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)
+		self.Hx = np.log(np.sum(Ni_X))-np.sum(Ni_X*spec.digamma(Ni_X))/np.sum(Ni_X)
+		self.Hy = np.log(np.sum(Ni_Y))-np.sum(Ni_Y*spec.digamma(Ni_Y))/np.sum(Ni_Y)
+		Ni_XY = Ni_XY.reshape(Ni_X.size*Ni_Y.size)
+		Ni_XY = np.delete(Ni_XY,np.where(Ni_XY==0)[0])
+		self.Hxy = np.log(np.sum(Ni_XY))-np.sum(Ni_XY*spec.digamma(Ni_XY))/np.sum(Ni_XY)
 		self.mi = self.Hx+self.Hy-self.Hxy
 
 class MutualInformation(object):
 	def __init__(self, corpusData, no_of_threads, data_file_path, overlap):
 		global corpus
+		global dataArray
+		global lineLengthList
+		global totalLength
 		corpus = corpusData
+		# dataArray = np.array(corpus.sequentialData.dataArray, dtype=np.uint64)
+		dataArray = array.array('L', corpus.sequentialData.dataArray)
+		lineLengthList = np.array(corpus.sequentialData.wordCountList, dtype=np.uint64)
+		totalLength = corpus.sequentialData.totalLength
 		self.no_of_threads = no_of_threads
 		self.filename = data_file_path
 		self.overlap = overlap
@@ -67,6 +51,8 @@ class MutualInformation(object):
 		Hy = np.zeros([0,1])
 		Hxy = np.zeros([0,1])
 		d = 1
+
+		print("Average String Length: ", int(corpus.sequentialData.averageLength))
 
 		# Check if already processing is done or new process ?
 		if(os.path.exists(self.filename)):
@@ -92,7 +78,7 @@ class MutualInformation(object):
 
 		end = False
 		try:
-			max_distance = corpus.sequentialData.wordCount
+			max_distance = totalLength
 			while d<max_distance and end==False:
 				mi = np.append(mi,np.zeros(self.no_of_threads))
 				Hx = np.append(Hx,np.zeros(self.no_of_threads))
@@ -115,8 +101,14 @@ class MutualInformation(object):
 					Hy[d+i-1] = thread[i].Hy
 					Hxy[d+i-1] = thread[i].Hxy
 					print(thread[i].d, thread[i].mi, thread[i].Hx, thread[i].Hy, thread[i].Hx+thread[i].Hy, thread[i].Hxy)
-				
+					
+					if np.isnan(thread[i].mi):
+						end = True
+
 				d += self.no_of_threads
+				
+				end = True
+
 		except KeyboardInterrupt:
 			for i in range(self.no_of_threads):
 				if mi[len(mi)-1]==0:
