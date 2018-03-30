@@ -106,9 +106,6 @@ class MutualInformation(object):
 						end = True
 
 				d += self.no_of_threads
-				
-				end = True
-
 		except KeyboardInterrupt:
 			for i in range(self.no_of_threads):
 				if mi[len(mi)-1]==0:
