@@ -37,10 +37,7 @@ def main():
 	# Load data
 	###############################################################################
 
-	concatenate = False
-	if args.overlap == 1:
-		concatenate = True
-	corpus = data.Corpus(args.data, concatenate)
+	corpus = data.Corpus(args.data)
 
 	###############################################################################
 	# Calculate Mutual Information

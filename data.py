@@ -31,7 +31,6 @@ class Dictionary(object):
 class SequentialData(object):
 	def __init__(self):
 		self.__wordLine = []
-		self.wordArray = []
 		self.dataArray = []
 		self.wordCountList = []
 		self.averageLength = 0
@@ -40,43 +39,36 @@ class SequentialData(object):
 	def add_to_list(self, wordID):
 		self.__wordLine.append(wordID)
 
-	def add_data(self, concatenate):
-		if concatenate:
-			self.wordArray = self.wordArray+self.__wordLine
-			self.dataArray = self.dataArray+self.__wordLine
-		else:
-			self.wordArray.append(self.__wordLine)
-			self.dataArray = self.dataArray+self.__wordLine
-
+	def add_data(self):
+		self.dataArray = self.dataArray+self.__wordLine
 		self.averageLength = (self.averageLength*len(self.wordCountList)+len(self.__wordLine))/(len(self.wordCountList)+1)
 		self.wordCountList.append(len(self.__wordLine))
 		self.totalLength += len(self.__wordLine)
 		self.__wordLine = []
 
 class Corpus(object):
-	def __init__(self, path, concatenate):
+	def __init__(self, path):
 		self.dictionary = Dictionary()
 		self.sequentialData = SequentialData()
 		self.datainfo = path
-		self.concatenate = concatenate
 		self.completion = self.choose_dataset(self.datainfo)
 
 	def choose_dataset(self, path):
 		if path=="dataset/dl4mt/":
 			print("Penn Tree Bank from LSTM code")
-			self.train = self.tokenize_file(os.path.join(path, 'train.txt'), self.concatenate) 
-			self.valid = self.tokenize_file(os.path.join(path, 'valid.txt'), self.concatenate)
-			self.test = self.tokenize_file(os.path.join(path, 'test.txt'), self.concatenate)
+			self.train = self.tokenize_file(os.path.join(path, 'train.txt')) 
+			self.valid = self.tokenize_file(os.path.join(path, 'valid.txt'))
+			self.test = self.tokenize_file(os.path.join(path, 'test.txt'))
 		elif path=="dataset/wiki/wikitext-2/":
 			print("wikitext-2 dataset")
-			self.train = self.tokenize_file(os.path.join(path, 'train'), self.concatenate)
-			self.valid = self.tokenize_file(os.path.join(path, 'valid'), self.concatenate)
-			self.test = self.tokenize_file(os.path.join(path, 'test'), self.concatenate)
+			self.train = self.tokenize_file(os.path.join(path, 'train'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid'))
+			self.test = self.tokenize_file(os.path.join(path, 'test'))
 		elif path=="dataset/wiki/wikitext-103/":
 			print("wikitext-103 dataset")
-			self.train = self.tokenize_file(os.path.join(path, 'train'), self.concatenate)
-			self.valid = self.tokenize_file(os.path.join(path, 'valid'), self.concatenate)
-			self.test = self.tokenize_file(os.path.join(path, 'test'), self.concatenate)
+			self.train = self.tokenize_file(os.path.join(path, 'train'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid'))
+			self.test = self.tokenize_file(os.path.join(path, 'test'))
 		elif path=="dataset/foma/":
 			print("foma dataset")
 			dataset = os.path.join(path, 'Original_Data/SP/SP8')
@@ -89,7 +81,7 @@ class Corpus(object):
 			sys.exit(0)
 		return 1
 
-	def tokenize_file(self, path, concatenate):
+	def tokenize_file(self, path):
 		assert os.path.exists(path)
 		with open(path, 'r') as f:
 			tokens = 0
@@ -100,16 +92,16 @@ class Corpus(object):
 				for word in words:
 					wordID = self.dictionary.add_word(word)
 					self.sequentialData.add_to_list(wordID)
-		self.sequentialData.add_data(concatenate)
+		self.sequentialData.add_data()
 
-	def tokenize_strings(self, line, concatenate):
+	def tokenize_strings(self, line):
 		tokens = 0
 		words = list(line)
 		tokens += len(words)
 		for word in words:
 			wordID = self.dictionary.add_word(word)
 			self.sequentialData.add_to_list(wordID)
-		self.sequentialData.add_data(concatenate)
+		self.sequentialData.add_data()
 
 	def process_foma(self, path):
 		try:
@@ -124,7 +116,7 @@ class Corpus(object):
 					for line in lines:
 						temp = line.strip().split()
 						if temp[1] == "TRUE":
-							self.tokenize_strings(temp[0], self.concatenate)
+							self.tokenize_strings(temp[0])
 		except TypeError:
 			pass
 
@@ -134,4 +126,4 @@ class Corpus(object):
 		f.close()
 		music_data = json.loads(data)
 		for song in music_data:
-			self.tokenize_strings(music_data[song], self.concatenate)
+			self.tokenize_strings(music_data[song])
