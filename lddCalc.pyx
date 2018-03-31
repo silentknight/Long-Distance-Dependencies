@@ -4,6 +4,7 @@ from cpython cimport array
 import array
 
 cpdef getJointRV(dataArray, unsigned long[:] lineLengthList, int totalLength, int d, int overlap):
+
 	cdef array.array X = array.array('L', [])
 	cdef array.array Y = array.array('L', [])	
 	cdef unsigned long index = 0
@@ -19,9 +20,13 @@ cpdef getJointRV(dataArray, unsigned long[:] lineLengthList, int totalLength, in
 	for i in range(nLines):
 		steps = lineLengthList[i]/d
 		last = steps*d
-		array.extend(X,dataArray[index:index+last-d])
-		array.extend(Y,dataArray[index+d:index+last])
-		index+=lineLengthList[i]
+		if steps > 1:
+			array.extend(X,dataArray[index:index+last-d])
+			array.extend(Y,dataArray[index+d:index+last])
+			index+=lineLengthList[i]
+
+	if len(X) == 0 or len(Y) == 0:
+		return 0,0,0
 
 	unique_X, counts_X = np.unique(X, return_counts=True)
 	unique_Y, counts_Y = np.unique(Y, return_counts=True)
@@ -45,7 +50,8 @@ cpdef getJointRV(dataArray, unsigned long[:] lineLengthList, int totalLength, in
 	cdef unsigned long[:,:] temp_XY = XY
 	cdef unsigned long n = len(X)
 
-	for index in range(n):
-		temp_XY[Pos_X[X[index]]][Pos_Y[Y[index]]]+=1
+	cdef unsigned long j = 0
+	for j in range(n):
+		temp_XY[Pos_X[X[j]]][Pos_Y[Y[j]]]+=1
 
 	return counts_X, counts_Y, XY

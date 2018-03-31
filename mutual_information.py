@@ -8,7 +8,6 @@ import threading
 import os
 import lddCalc
 import array
-import time
 
 class myThread(threading.Thread):
 	def __init__(self, d, overlap):
@@ -17,11 +16,19 @@ class myThread(threading.Thread):
 		self.Hx = 0
 		self.Hy = 0
 		self.Hxy = 0
+		self.complete = False
 		self.overlap = overlap
 		super(myThread, self).__init__()
 
 	def run(self):
-		Ni_X, Ni_Y, Ni_XY = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)
+		Ni_X, Ni_Y, Ni_XY = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)		
+		try:
+			if Ni_X == 0 and Ni_Y == 0 and Ni_XY == 0:
+				self.complete = True
+				exit()
+		except ValueError:
+			pass
+
 		self.Hx = np.log(np.sum(Ni_X))-np.sum(Ni_X*spec.digamma(Ni_X))/np.sum(Ni_X)
 		self.Hy = np.log(np.sum(Ni_Y))-np.sum(Ni_Y*spec.digamma(Ni_Y))/np.sum(Ni_Y)
 		Ni_XY = Ni_XY.reshape(Ni_X.size*Ni_Y.size)
@@ -36,7 +43,6 @@ class MutualInformation(object):
 		global lineLengthList
 		global totalLength
 		corpus = corpusData
-		# dataArray = np.array(corpus.sequentialData.dataArray, dtype=np.uint64)
 		dataArray = array.array('L', corpus.sequentialData.dataArray)
 		lineLengthList = np.array(corpus.sequentialData.wordCountList, dtype=np.uint64)
 		totalLength = corpus.sequentialData.totalLength
@@ -77,6 +83,9 @@ class MutualInformation(object):
 						d = int(temp[1])+1
 
 		end = False
+		f = open(self.filename,"w")
+		f.write("data: "+corpus.datainfo+"\n")
+		
 		try:
 			max_distance = totalLength
 			while d<max_distance and end==False:
@@ -96,16 +105,24 @@ class MutualInformation(object):
 					thread[i].join()
 
 				for i in range(self.no_of_threads):
+					if thread[i].complete == 1:
+						end = True
+						break
+
+					if np.isnan(thread[i].mi):
+						end = True
+						break
+
 					mi[d+i-1] = thread[i].mi
 					Hx[d+i-1] = thread[i].Hx
 					Hy[d+i-1] = thread[i].Hy
 					Hxy[d+i-1] = thread[i].Hxy
-					print(thread[i].d, thread[i].mi, thread[i].Hx, thread[i].Hy, thread[i].Hx+thread[i].Hy, thread[i].Hxy)
-					
-					if np.isnan(thread[i].mi):
-						end = True
 
+					print(thread[i].d, thread[i].mi, thread[i].Hx, thread[i].Hy, thread[i].Hx+thread[i].Hy, thread[i].Hxy)
+					f.write("d:"+str(d+i)+":"+str(mi[d+i-1])+","+str(Hx[d+i-1])+","+str(Hy[d+i-1])+","+str(Hxy[d+i-1])+"\n")
+				
 				d += self.no_of_threads
+
 		except KeyboardInterrupt:
 			for i in range(self.no_of_threads):
 				if mi[len(mi)-1]==0:
@@ -114,10 +131,12 @@ class MutualInformation(object):
 					Hy = np.delete(Hy,len(Hy)-1)
 					Hxy = np.delete(Hxy,len(Hxy)-1)
 
-		f = open(self.filename,"w")
-		f.write("data: "+corpus.datainfo+"\n")
-		for i in range(len(mi)):
-			f.write("d:"+str(i+1)+":"+str(mi[i])+","+str(Hx[i])+","+str(Hy[i])+","+str(Hxy[i])+"\n")
+			f = open(self.filename,"w")
+			f.write("data: "+corpus.datainfo+"\n")
+			for i in range(len(mi)):
+				f.write("d:"+str(i+1)+":"+str(mi[i])+","+str(Hx[i])+","+str(Hy[i])+","+str(Hxy[i])+"\n")
+			f.close()
+
 		f.close()
 
 		return mi, Hy, Hy, Hxy
