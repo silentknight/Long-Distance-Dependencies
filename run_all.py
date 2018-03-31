@@ -54,18 +54,22 @@ def main():
 	else:
 		x, Hx, Hy, Hxy = ldd.mutualInformation
 
-	plt.subplot(161)
-	plt.semilogy(np.arange(len(x)),x)
-	plt.subplot(162)
-	plt.plot(np.arange(len(x)),x)
-	plt.subplot(163)
-	plt.plot(np.arange(len(Hx)),Hx)
-	plt.subplot(164)
-	plt.plot(np.arange(len(Hy)),Hy)
-	plt.subplot(165)
-	plt.plot(np.arange(len(Hx)),Hx+Hy)
-	plt.subplot(166)
+	plt.subplot(221)
+	plt.loglog(np.arange(len(x)),x,basex=10)
+	plt.grid(True)
+
+	plt.subplot(222)
 	plt.plot(np.arange(len(Hxy)),Hxy)
+	plt.grid(True)
+	
+	plt.subplot(223)
+	plt.plot(np.arange(len(Hy)),Hy)
+	plt.grid(True)
+
+	plt.subplot(224)
+	plt.plot(np.arange(len(Hx)),Hx)
+	plt.grid(True)
+
 	plt.show()
 	
 	###############################################################################

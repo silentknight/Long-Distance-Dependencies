@@ -107,10 +107,22 @@ class MutualInformation(object):
 				for i in range(self.no_of_threads):
 					if thread[i].complete == 1:
 						end = True
+						for j in range(i,self.no_of_threads):
+							if mi[len(mi)-1]==0:
+								mi = np.delete(mi,len(mi)-1)
+								Hx = np.delete(Hx,len(Hx)-1)
+								Hy = np.delete(Hy,len(Hy)-1)
+								Hxy = np.delete(Hxy,len(Hxy)-1)
 						break
 
 					if np.isnan(thread[i].mi):
 						end = True
+						for j in range(i,self.no_of_threads):
+							if mi[len(mi)-1]==0:
+								mi = np.delete(mi,len(mi)-1)
+								Hx = np.delete(Hx,len(Hx)-1)
+								Hy = np.delete(Hy,len(Hy)-1)
+								Hxy = np.delete(Hxy,len(Hxy)-1)
 						break
 
 					mi[d+i-1] = thread[i].mi
