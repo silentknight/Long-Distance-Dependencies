@@ -68,12 +68,20 @@ if args.normalize == "y" or args.normalize == "Y":
 else:
 	x = mi
 
-# plt.subplot(121)
-plt.semilogy(np.arange(start,end+1),x)
-# plt.subplot(122)
-# plt.plot(np.arange(start,end+1),x)
-# plt.subplot(121)
-# plt.plot(Hx[start:end]+Hy[start:end])
-# plt.subplot(122)
-# plt.plot(Hxy[start:end])
+plt.subplot(221)
+plt.loglog(np.arange(len(x)),x,basex=10)
+plt.grid(True)
+
+plt.subplot(222)
+plt.plot(np.arange(len(Hxy)),Hxy)
+plt.grid(True)
+
+plt.subplot(223)
+plt.plot(np.arange(len(Hy)),Hy)
+plt.grid(True)
+
+plt.subplot(224)
+plt.plot(np.arange(len(Hx)),Hx)
+plt.grid(True)
+
 plt.show()
