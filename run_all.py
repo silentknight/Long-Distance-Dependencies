@@ -59,15 +59,15 @@ def main():
 	plt.grid(True)
 
 	plt.subplot(222)
-	plt.plot(np.arange(len(Hxy)),Hxy)
+	plt.semilogx(np.arange(len(Hxy)),Hxy)
 	plt.grid(True)
 	
 	plt.subplot(223)
-	plt.plot(np.arange(len(Hy)),Hy)
+	plt.semilogx(np.arange(len(Hy)),Hy)
 	plt.grid(True)
 
 	plt.subplot(224)
-	plt.plot(np.arange(len(Hx)),Hx)
+	plt.semilogx(np.arange(len(Hx)),Hx)
 	plt.grid(True)
 
 	plt.show()
