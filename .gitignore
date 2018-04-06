@@ -20,6 +20,9 @@ dataset/wiki/wikitext-2
 dataset/wiki/wikitext-2-raw
 dataset/wiki/wikitext-103
 dataset/wiki/wikitext-103-raw
+dataset/hutter-text/enwik8
+dataset/hutter-text/enwik9
+dataset/hutter-text/text8
 __pycache__
 *.pyc
 *.dat

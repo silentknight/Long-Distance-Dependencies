@@ -47,10 +47,11 @@ class SequentialData(object):
 		self.__wordLine = []
 
 class Corpus(object):
-	def __init__(self, path):
+	def __init__(self, path, ifwords):
 		self.dictionary = Dictionary()
 		self.sequentialData = SequentialData()
 		self.datainfo = path
+		self.ifwords = ifwords
 		self.completion = self.choose_dataset(self.datainfo)
 
 	def choose_dataset(self, path):
@@ -69,9 +70,12 @@ class Corpus(object):
 			self.train = self.tokenize_file(os.path.join(path, 'train'))
 			self.valid = self.tokenize_file(os.path.join(path, 'valid'))
 			self.test = self.tokenize_file(os.path.join(path, 'test'))
+		elif path=="dataset/hutter-text/":
+			print("text8")
+			self.text = self.tokenize_file(os.path.join(path, 'text8'))
 		elif path=="dataset/foma/":
 			print("foma dataset")
-			dataset = os.path.join(path, 'Original_Data/SP/SP8')
+			dataset = os.path.join(path, 'Original_Data/SL/SL8')
 			self.process_foma(dataset)
 		elif path=="dataset/music/":
 			dataset = os.path.join(path, 'tunes.json')
@@ -86,8 +90,11 @@ class Corpus(object):
 		with open(path, 'r') as f:
 			tokens = 0
 			for line in f:
-				# words = line.split() + ['<eos>']
-				words = list(line.strip().replace("<unk>", "^"))+[" "]
+				if self.ifwords == 1:
+					words = line.split() + ['<eos>']
+				else:
+					words = list(line.strip().replace("<unk>", "^"))+[" "]
+
 				tokens += len(words)
 				for word in words:
 					wordID = self.dictionary.add_word(word)

@@ -21,6 +21,7 @@ def main():
 	parser.add_argument('--clear', type=int, default=0, help="Clear old data file (ldd_data.dat)")
 	parser.add_argument('--overlap', type=int, default=1, help="Allow overlaps between two independent substrings. 0-No, 1-Yes")
 	parser.add_argument('--normalize', type=int, default=0, help="Normalize the scores in the range [0,1].")
+	parser.add_argument('--words', type=int, default=0, help="Tokenize strings on words or characters: 1-Words, 0-Characters.")
 	args = parser.parse_args()
 
 	###############################################################################
@@ -37,7 +38,7 @@ def main():
 	# Load data
 	###############################################################################
 
-	corpus = data.Corpus(args.data)
+	corpus = data.Corpus(args.data, args.words)
 
 	###############################################################################
 	# Calculate Mutual Information
