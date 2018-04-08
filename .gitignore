@@ -1,3 +1,4 @@
+.idea
 dataset/.amountFactor.tmp
 dataset/.amountSize.tmp
 dataset/.maxlength.tmp
@@ -23,6 +24,7 @@ dataset/wiki/wikitext-103-raw
 dataset/hutter-text/enwik8
 dataset/hutter-text/enwik9
 dataset/hutter-text/text8
+dataset/mobility/.DS_STORE
 __pycache__
 *.pyc
 *.dat
