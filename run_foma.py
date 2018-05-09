@@ -14,7 +14,6 @@ import mutual_information as mi
 def main():
 	parser = argparse.ArgumentParser(description='Long Distance Dependency measurements')
 	parser.add_argument('--data', type=str, default='dataset/dl4mt/', help='location of the data corpus')
-	parser.add_argument('--plot_path', type=str, default='ldd_plot.png', help="Location of the plot to be saved")
 	parser.add_argument('--method', type=str, default="MI", help="Type of method chosen, Choose mi=Relative Entropy, copula=Copulas")
 	parser.add_argument('--log_type', type=str, default="loge", help="Choose Log Type, loge=Log to the base e, log2=log to the base 2, log10=log to the base 10")
 	parser.add_argument('--threads', type=int, default=1, help='Number of threads to spawn')
@@ -72,7 +71,6 @@ def main():
 	plt.semilogx(np.arange(len(Hx)),Hx)
 	plt.grid(True)
 
-	plt.savefig(args.plot_path+".png")
 	plt.show()
 	
 	###############################################################################
