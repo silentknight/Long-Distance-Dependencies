@@ -8,6 +8,8 @@ import argparse
 import matplotlib.pyplot as plt
 import numpy as np
 
+import seaborn as sns
+
 import data
 import mutual_information as mi
 
@@ -55,23 +57,34 @@ def main():
 	else:
 		x, Hx, Hy, Hxy = ldd.mutualInformation
 
-	plt.subplot(221)
-	plt.loglog(np.arange(len(x)),x,basex=10)
-	plt.grid(True)
+	with sns.axes_style("white"):
+		sns.set_style("ticks")
+		sns.set_context("talk")
 
-	plt.subplot(222)
-	plt.semilogx(np.arange(len(Hxy)),Hxy)
-	plt.grid(True)
-	
-	plt.subplot(223)
-	plt.semilogx(np.arange(len(Hy)),Hy)
-	plt.grid(True)
 
-	plt.subplot(224)
-	plt.semilogx(np.arange(len(Hx)),Hx)
-	plt.grid(True)
+		#plt.subplot(221)
+		plt.loglog(np.arange(len(x)),x,basex=10, color='k')
+		plt.xlabel('Distance between symbols d(X,Y)', fontsize=20)
+		plt.ylabel('Mutual Information I(X,Y) in bits', fontsize=20)
+		plt.tight_layout()
+		plt.tick_params(labelsize=20)
+		sns.despine()
+		plt.tight_layout()
+		plt.grid(True)
 
-	plt.show()
+		#plt.subplot(222)
+		#plt.semilogx(np.arange(len(Hxy)),Hxy)
+		#plt.grid(True)
+
+		#plt.subplot(223)
+		#plt.semilogx(np.arange(len(Hy)),Hy)
+		#plt.grid(True)
+
+		#plt.subplot(224)
+		#plt.semilogx(np.arange(len(Hx)),Hx)
+		#plt.grid(True)
+
+		plt.show()
 	
 	###############################################################################
 

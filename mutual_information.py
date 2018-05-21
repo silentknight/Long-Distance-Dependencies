@@ -85,7 +85,7 @@ class MutualInformation(object):
 		end = False
 		f = open(self.filename,"w")
 		f.write("data: "+corpus.datainfo+"\n")
-		
+	## Add bootstraping here
 		try:
 			max_distance = totalLength
 			while d<max_distance and end==False:
