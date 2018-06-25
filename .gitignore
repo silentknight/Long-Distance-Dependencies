@@ -5,14 +5,11 @@ dataset/.maxlength.tmp
 dataset/.maxLines.tmp
 dataset/.minlength.tmp
 dataset/.sed.linesToDelete.tmp
-dataset/dl4mt/test.txt
-dataset/dl4mt/valid.txt
-dataset/dl4mt/train.txt
-dataset/foma/foma
-dataset/foma/Generated_Data
-dataset/foma/Original_Data
-dataset/foma/redbutton
-dataset/foma/template.txt
+dataset/dl4mt/test
+dataset/dl4mt/valid
+dataset/dl4mt/train
+dataset/foma/Data*
+dataset/foma/sp*
 dataset/mnist_data/mnist.pkl.gz
 dataset/penn-tree-bank/ptb
 dataset/penn-tree-bank/treebank
@@ -34,3 +31,5 @@ test*
 *.c
 *.so
 *.html
+datapoints/
+paper_related/

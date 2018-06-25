@@ -5,6 +5,8 @@ import os
 import sys
 from collections import Counter
 import simplejson as json
+import gzip
+import pickle
 
 
 class Dictionary(object):
@@ -60,9 +62,9 @@ class Corpus(object):
 	def choose_dataset(self, path):
 		if path == "dataset/dl4mt/":
 			print("Penn Tree Bank from LSTM code")
-			self.train = self.tokenize_file(os.path.join(path, 'train.txt'))
-			self.valid = self.tokenize_file(os.path.join(path, 'valid.txt'))
-			self.test = self.tokenize_file(os.path.join(path, 'test.txt'))
+			self.train = self.tokenize_file(os.path.join(path, 'train'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid'))
+			self.test = self.tokenize_file(os.path.join(path, 'test'))
 		elif path == "dataset/wiki/wikitext-2/":
 			print("wikitext-2 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'train'))
@@ -73,19 +75,29 @@ class Corpus(object):
 			self.train = self.tokenize_file(os.path.join(path, 'train'))
 			self.valid = self.tokenize_file(os.path.join(path, 'valid'))
 			self.test = self.tokenize_file(os.path.join(path, 'test'))
-		elif path == "dataset/hutter-text/":
+		elif path == "dataset/hutter-text/text8":
 			print("text8")
-			self.text = self.tokenize_file(os.path.join(path, 'text8'))
+			self.text = self.tokenize_file(path)
+		elif path == "dataset/hutter-text/enwik8":
+			print("enwik8")
+			self.text = self.tokenize_file(path)	
 		elif path == "dataset/foma/":
 			print("foma dataset")
-			dataset = os.path.join(path, 'Original_Data/SL/SL8')
-			self.process_foma(dataset)
+			self.text = self.tokenize_file(os.path.join(path, 'Data_SP2_20_v26.dat'))
 		elif path == "dataset/music/":
 			dataset = os.path.join(path, 'tunes.json')
 			self.process_music(dataset)
 		elif path== "dataset/mobility/":
-			dataset = os.path.join(path, 'user_grids.txt')
-			self.process_mobility(dataset)
+			dataset = os.path.join(path, 'taxi_3557_1_grids.dat')
+			self.tokenize_file(dataset)
+			# dataset = os.path.join(path, 'user_grids.txt')
+			# self.process_mobility(dataset)
+		elif path== "dataset/mnist_data/":
+			dataset = os.path.join(path, 'mnist_data_un.dat')
+			self.tokenize_file(dataset)
+		elif path== "dataset/copy_add/":
+			dataset = os.path.join(path, 'copy.dat')
+			self.tokenize_file(dataset)
 		else:
 			print("Please check the dataset path supplied. No such path found")
 			sys.exit(0)
@@ -93,6 +105,7 @@ class Corpus(object):
 
 	def tokenize_file(self, path):
 		assert os.path.exists(path)
+		print(path)
 		with open(path, 'r') as f:
 			tokens = 0
 			for line in f:
@@ -106,6 +119,7 @@ class Corpus(object):
 					wordID = self.dictionary.add_word(word)
 					self.sequentialData.add_to_list(wordID)
 		self.sequentialData.add_data()
+		print("Size of Vocabulary", len(self.dictionary.counter))
 
 	def tokenize_strings(self, line):
 		tokens = 0
@@ -115,6 +129,7 @@ class Corpus(object):
 			wordID = self.dictionary.add_word(word)
 			self.sequentialData.add_to_list(wordID)
 		self.sequentialData.add_data()
+		print("Size of Vocabulary", len(self.dictionary.counter))
 
 	def process_foma(self, path):
 		try:
