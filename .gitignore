@@ -22,6 +22,7 @@ dataset/hutter-text/enwik8
 dataset/hutter-text/enwik9
 dataset/hutter-text/text8
 dataset/mobility/.DS_STORE
+dataset/mobility/taxi_log_2008_by_id
 __pycache__
 *.pyc
 *.dat
