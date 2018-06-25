@@ -10,6 +10,7 @@ parser = argparse.ArgumentParser(description='Long Distance Dependency measureme
 parser.add_argument('--path', type=str, default='ldd_data.dat', help='path of the data file')
 parser.add_argument('--start', type=int, default=1, help='Value of D (Dependency distance) from start for plotting. Default is 1')
 parser.add_argument('--end', type=str, default='end', help='Value of D (Dependency distance) till end for plotting. Default is \'end\' (all the way will the end).')
+parser.add_argument('--logscale', type=int, default=1, help='Plot on Log Scale or normal scale. 1: Log Scale; 0: Normal Scale')
 parser.add_argument('--normalize', type=str, default='n', help='normalize values')
 args = parser.parse_args()
 	
@@ -69,19 +70,31 @@ else:
 	x = mi
 
 plt.subplot(221)
-plt.loglog(np.arange(len(x)),x,basex=10)
+if args.logscale == 1:
+	plt.loglog(np.arange(len(x)),x,basex=10)
+elif args.logscale == 0:
+	plt.plot(x)
 plt.grid(True)
 
 plt.subplot(222)
-plt.semilogx(np.arange(len(Hxy)),Hxy)
+if args.logscale == 1:
+	plt.semilogx(np.arange(len(Hxy)),Hxy)
+elif args.logscale == 0:
+	plt.plot(Hxy)
 plt.grid(True)
 
 plt.subplot(223)
-plt.semilogx(np.arange(len(Hy)),Hy)
+if args.logscale == 1:
+	plt.semilogx(np.arange(len(Hx)),Hx)
+elif args.logscale == 0:
+	plt.plot(Hx)
 plt.grid(True)
 
 plt.subplot(224)
-plt.semilogx(np.arange(len(Hx)),Hx)
+if args.logscale == 1:
+	plt.semilogx(np.arange(len(Hy)),Hy)
+elif args.logscale == 0:
+	plt.plot(Hy)
 plt.grid(True)
 
 plt.show()
