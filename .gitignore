@@ -37,5 +37,5 @@ test*
 *.c
 *.so
 *.html
-datapoints/
+*.png
 paper_related/
