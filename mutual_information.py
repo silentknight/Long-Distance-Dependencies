@@ -37,7 +37,7 @@ class myThread(threading.Thread):
 		self.mi = self.Hx+self.Hy-self.Hxy
 
 class MutualInformation(object):
-	def __init__(self, corpusData, method, compute, log_type, no_of_threads, data_file_path, overlap):
+	def __init__(self, corpusData, compute, log_type, no_of_threads, data_file_path, overlap):
 		global corpus
 		global dataArray
 		global lineLengthList

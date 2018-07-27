@@ -10,6 +10,7 @@ import numpy as np
 
 import data
 import mutual_information as mi
+import pointwise_mutual_information as pmi
 
 def main():
 	parser = argparse.ArgumentParser(description='Long Distance Dependency measurements')
@@ -17,7 +18,6 @@ def main():
 	parser.add_argument('--data', type=str, default='dataset/dl4mt/', help='location of the data corpus')
 	parser.add_argument('--words', type=int, default=0, help="Tokenize strings on words or characters: 1 = Words, 0 = Characters")
 
-	parser.add_argument('--method', type=str, default="ent", help="Type of method chosen, Choose ent = Relative Entropy, cop = Copulas")
 	parser.add_argument('--compute', type=str, default="mi", help="Type of computation chosen, Choose mi = Mutual Information, pmi = Pointwise Mutual Information")
 	parser.add_argument('--log_type', type=str, default="log2", help="Choose Log Type, loge = Log to the base e, log2 = log to the base 2, log10 = log to the base 10")
 	parser.add_argument('--threads', type=int, default=1, help='Number of threads to spawn')
@@ -49,10 +49,13 @@ def main():
 	corpus = data.Corpus(args.data, args.words)
 
 	##########################################################################################################################
-	# Calculate Mutual Information
+	# Calculate Mutual Information or Pointwise Mutual Information
 	##########################################################################################################################
 
-	ldd = mi.MutualInformation(corpus, args.method, args.compute, args.log_type, args.threads, args.datafilepath, args.overlap)
+	if args.compute == "mi":
+		ldd = mi.MutualInformation(corpus, args.log_type, args.threads, args.datafilepath, args.overlap)
+	elif args.compute == "pmi":
+		p_ldd = pmi.PointwiseMutualInformation(args.log_type, args.threads, args.datafilepath, args.overlap)
 
 	# #########################################################################################################################
 	# # Plot the LDD
