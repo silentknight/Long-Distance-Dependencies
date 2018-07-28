@@ -10,7 +10,7 @@ import lddCalc
 import array
 
 class myThread(threading.Thread):
-	def __init__(self, d, overlap):
+	def __init__(self, d, overlap, log_type, method):
 		self.d = d
 		self.mi = 0
 		self.Hx = 0
@@ -18,10 +18,12 @@ class myThread(threading.Thread):
 		self.Hxy = 0
 		self.complete = False
 		self.overlap = overlap
+		self.method = method
+		self.log_type = log_type
 		super(myThread, self).__init__()
 
 	def run(self):
-		Ni_X, Ni_Y, Ni_XY = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)		
+		Ni_X, Ni_Y, Ni_XY = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)
 		try:
 			if Ni_X == 0 and Ni_Y == 0 and Ni_XY == 0:
 				self.complete = True
@@ -29,15 +31,20 @@ class myThread(threading.Thread):
 		except ValueError:
 			pass
 
-		self.Hx = np.log(np.sum(Ni_X))-np.sum(Ni_X*spec.digamma(Ni_X))/np.sum(Ni_X)
-		self.Hy = np.log(np.sum(Ni_Y))-np.sum(Ni_Y*spec.digamma(Ni_Y))/np.sum(Ni_Y)
-		Ni_XY = Ni_XY.reshape(Ni_X.size*Ni_Y.size)
-		Ni_XY = np.delete(Ni_XY,np.where(Ni_XY==0)[0])
-		self.Hxy = np.log(np.sum(Ni_XY))-np.sum(Ni_XY*spec.digamma(Ni_XY))/np.sum(Ni_XY)
-		self.mi = self.Hx+self.Hy-self.Hxy
+		log = lambda val,base: np.log(val) if base==0 else np.log2(val)
+
+		if self.method == "grassberger":
+			self.Hx = log(np.sum(Ni_X),self.log_type)-np.sum(Ni_X*spec.digamma(Ni_X))/np.sum(Ni_X)
+			self.Hy = log(np.sum(Ni_Y),self.log_type)-np.sum(Ni_Y*spec.digamma(Ni_Y))/np.sum(Ni_Y)
+			Ni_XY = Ni_XY.reshape(Ni_X.size*Ni_Y.size)
+			Ni_XY = np.delete(Ni_XY,np.where(Ni_XY==0)[0])
+			self.Hxy = log(np.sum(Ni_XY),self.log_type)-np.sum(Ni_XY*spec.digamma(Ni_XY))/np.sum(Ni_XY)
+			self.mi = self.Hx+self.Hy-self.Hxy
+		elif self.method == "standard":
+			self.mi = 0
 
 class PointwiseMutualInformation(object):
-	def __init__(self, corpusData, log_type, no_of_threads, data_file_path, overlap):
+	def __init__(self, corpusData, log_type, no_of_threads, data_file_path, overlap, method):
 		global corpus
 		global dataArray
 		global lineLengthList
@@ -49,6 +56,8 @@ class PointwiseMutualInformation(object):
 		self.no_of_threads = no_of_threads
 		self.filename = data_file_path
 		self.overlap = overlap
+		self.method = method
+		self.log_type = log_type
 		self.mutualInformation = self.calculate_MI()
 
 	def calculate_MI(self):
@@ -96,7 +105,7 @@ class PointwiseMutualInformation(object):
 
 				thread = []
 				for i in range(self.no_of_threads):
-					thread.append(myThread(d+i, self.overlap))
+					thread.append(myThread(d+i, self.overlap, self.log_type, self.method))
 
 				for i in range(self.no_of_threads):
 					thread[i].start()

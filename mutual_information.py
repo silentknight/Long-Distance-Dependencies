@@ -41,7 +41,12 @@ class myThread(threading.Thread):
 			self.Hxy = log(np.sum(Ni_XY),self.log_type)-np.sum(Ni_XY*spec.digamma(Ni_XY))/np.sum(Ni_XY)
 			self.mi = self.Hx+self.Hy-self.Hxy
 		elif self.method == "standard":
-			self.mi = 0
+			self.Hx = log(np.sum(Ni_X),self.log_type)-np.sum(Ni_X*spec.digamma(Ni_X))/np.sum(Ni_X)
+			self.Hy = log(np.sum(Ni_Y),self.log_type)-np.sum(Ni_Y*spec.digamma(Ni_Y))/np.sum(Ni_Y)
+			Ni_XY = Ni_XY.reshape(Ni_X.size*Ni_Y.size)
+			Ni_XY = np.delete(Ni_XY,np.where(Ni_XY==0)[0])
+			self.Hxy = log(np.sum(Ni_XY),self.log_type)-np.sum(Ni_XY*spec.digamma(Ni_XY))/np.sum(Ni_XY)
+			self.mi = self.Hx+self.Hy-self.Hxy
 
 class MutualInformation(object):
 	def __init__(self, corpusData, log_type, no_of_threads, data_file_path, overlap, method):
