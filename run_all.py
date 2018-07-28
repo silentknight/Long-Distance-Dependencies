@@ -19,7 +19,9 @@ def main():
 	parser.add_argument('--words', type=int, default=0, help="Tokenize strings on words or characters: 1 = Words, 0 = Characters")
 
 	parser.add_argument('--compute', type=str, default="mi", help="Type of computation chosen, Choose mi = Mutual Information, pmi = Pointwise Mutual Information")
-	parser.add_argument('--log_type', type=str, default="log2", help="Choose Log Type, loge = Log to the base e, log2 = log to the base 2, log10 = log to the base 10")
+	parser.add_argument('--mi_method', type=str, default="grassberger", help="MI calculation method, Choose standard = Standard Calculation, grassberger = Grassberger adjustments")
+	parser.add_argument('--pmi_method', type=str, default="standard", help="PMI calculation method, Choose standard = Standard Calculation, pmi = Pointwise Mutual Information")
+	parser.add_argument('--log_type', type=int, default=1, help="Choose Log Type, 0 = Log to the base e, 1 = log to the base 2, 2 = log to the base 10")
 	parser.add_argument('--threads', type=int, default=1, help='Number of threads to spawn')
 	parser.add_argument('--datafilepath', type=str, default='ldd_data.dat', help='File path of last known data process path')
 	parser.add_argument('--overlap', type=int, default=1, help="Allow overlaps between two independent substrings. 0 = No, 1 = Yes")
@@ -53,9 +55,9 @@ def main():
 	##########################################################################################################################
 
 	if args.compute == "mi":
-		ldd = mi.MutualInformation(corpus, args.log_type, args.threads, args.datafilepath, args.overlap)
+		ldd = mi.MutualInformation(corpus, args.log_type, args.threads, args.datafilepath, args.overlap, args.mi_method)
 	elif args.compute == "pmi":
-		p_ldd = pmi.PointwiseMutualInformation(args.log_type, args.threads, args.datafilepath, args.overlap)
+		p_ldd = pmi.PointwiseMutualInformation(corpus, args.log_type, args.threads, args.datafilepath, args.overlap, args.pmi_method)
 
 	# #########################################################################################################################
 	# # Plot the LDD
