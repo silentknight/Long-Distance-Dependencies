@@ -23,11 +23,11 @@ def main():
 	parser.add_argument('--pmi_method', type=str, default="standard", help="PMI calculation method, Choose standard = Standard Calculation, pmi = Pointwise Mutual Information")
 	parser.add_argument('--log_type', type=int, default=1, help="Choose Log Type, 0 = Log to the base e, 1 = log to the base 2, 2 = log to the base 10")
 	parser.add_argument('--threads', type=int, default=1, help='Number of threads to spawn')
-	parser.add_argument('--datafilepath', type=str, default='ldd_data.dat', help='File path of last known data process path')
+	parser.add_argument('--datafilepath', type=str, default='log_data.dat', help='File path of last known data process path')
 	parser.add_argument('--overlap', type=int, default=1, help="Allow overlaps between two independent substrings. 0 = No, 1 = Yes")
 	parser.add_argument('--direction', type=str, default='bi', help="Random variables sampling direction, bi = Bidirectional, uni = Unidirectional")
 
-	parser.add_argument('--clear', type=int, default=0, help="Clear old data file (ldd_data.dat)")
+	parser.add_argument('--clear', type=int, default=0, help="Clear old data file (log_data.dat)")
 
 	parser.add_argument('--normalize', type=int, default=0, help="Normalize the scores in the range [0,1]")
 	parser.add_argument('--plot_path', type=str, default='ldd_plot.png', help="Location of the plot to be saved")
@@ -40,9 +40,9 @@ def main():
 
 	if args.clear == 1:
 		try:
-			os.remove("ldd_data.dat")
+			os.remove("log_data.dat")
 		except OSError:
-			print("ldd_data.dat file does not exist.")
+			print("log_data.dat file does not exist.")
 
 	###############################################################################
 	# Load data

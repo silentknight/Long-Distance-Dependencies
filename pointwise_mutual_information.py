@@ -16,6 +16,7 @@ class myThread(threading.Thread):
 		self.Hx = 0
 		self.Hy = 0
 		self.Hxy = 0
+		self.pmi = 0
 		self.complete = False
 		self.overlap = overlap
 		self.method = method
@@ -23,7 +24,7 @@ class myThread(threading.Thread):
 		super(myThread, self).__init__()
 
 	def run(self):
-		Ni_X, Ni_Y, Ni_XY = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)
+		Ni_X, Ni_Y, Ni_XY, u_X, u_Y = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)
 		try:
 			if Ni_X == 0 and Ni_Y == 0 and Ni_XY == 0:
 				self.complete = True
@@ -33,15 +34,19 @@ class myThread(threading.Thread):
 
 		log = lambda val,base: np.log(val) if base==0 else np.log2(val)
 
-		if self.method == "grassberger":
-			self.Hx = log(np.sum(Ni_X),self.log_type)-np.sum(Ni_X*spec.digamma(Ni_X))/np.sum(Ni_X)
-			self.Hy = log(np.sum(Ni_Y),self.log_type)-np.sum(Ni_Y*spec.digamma(Ni_Y))/np.sum(Ni_Y)
-			Ni_XY = Ni_XY.reshape(Ni_X.size*Ni_Y.size)
-			Ni_XY = np.delete(Ni_XY,np.where(Ni_XY==0)[0])
-			self.Hxy = log(np.sum(Ni_XY),self.log_type)-np.sum(Ni_XY*spec.digamma(Ni_XY))/np.sum(Ni_XY)
-			self.mi = self.Hx+self.Hy-self.Hxy
-		elif self.method == "standard":
-			self.mi = 0
+		if self.method == "standard":
+			P_XY = Ni_XY/np.sum(Ni_XY)
+			P_X = Ni_X/np.sum(Ni_X)
+			P_Y = Ni_Y/np.sum(Ni_Y)
+			P_temp = P_XY/(P_X*P_Y)
+			print("----------------------------------")
+			print(Ni_X)
+			print(u_X)
+			print(Ni_Y)
+			print(u_Y)
+			print("----------------------------------")
+			P_temp[P_temp == 0] = 1
+			self.pmi = P_XY*log(P_temp,self.log_type)
 
 class PointwiseMutualInformation(object):
 	def __init__(self, corpusData, log_type, no_of_threads, data_file_path, overlap, method):
@@ -58,9 +63,9 @@ class PointwiseMutualInformation(object):
 		self.overlap = overlap
 		self.method = method
 		self.log_type = log_type
-		self.mutualInformation = self.calculate_MI()
+		self.mutualInformation = self.calculate_PMI()
 
-	def calculate_MI(self):
+	def calculate_PMI(self):
 		mi = np.zeros([0,1])
 		Hx = np.zeros([0,1])
 		Hy = np.zeros([0,1])

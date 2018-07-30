@@ -54,4 +54,4 @@ cpdef getJointRV(dataArray, unsigned long[:] lineLengthList, int totalLength, in
 	for j in range(n):
 		temp_XY[Pos_X[X[j]]][Pos_Y[Y[j]]]+=1
 
-	return counts_X, counts_Y, XY
+	return counts_X, counts_Y, XY, unique_X, unique_Y

@@ -92,7 +92,7 @@ class Corpus(object):
 			dataset = os.path.join(path, 'tunes.json')
 			self.process_music(dataset)
 		elif path== "dataset/mobility/":
-			dataset = os.path.join(path, 'taxi_3557_1_grids.dat')
+			dataset = os.path.join(path, 'taxi_3557_1_grids')
 			self.tokenize_file(dataset)
 			# dataset = os.path.join(path, 'user_grids.txt')
 			# self.process_mobility(dataset)
