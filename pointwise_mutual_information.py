@@ -35,16 +35,16 @@ class myThread(threading.Thread):
 		log = lambda val,base: np.log(val) if base==0 else np.log2(val)
 
 		if self.method == "standard":
-			P_XY = Ni_XY/np.sum(Ni_XY)
-			P_X = Ni_X/np.sum(Ni_X)
-			P_Y = Ni_Y/np.sum(Ni_Y)
-			P_temp = P_XY/(P_X*P_Y)
 			print("----------------------------------")
 			print(Ni_X)
 			print(u_X)
 			print(Ni_Y)
 			print(u_Y)
 			print("----------------------------------")
+			P_XY = Ni_XY/np.sum(Ni_XY)
+			P_X = Ni_X/np.sum(Ni_X)
+			P_Y = Ni_Y/np.sum(Ni_Y)
+			P_temp = P_XY/(P_X*P_Y)
 			P_temp[P_temp == 0] = 1
 			self.pmi = P_XY*log(P_temp,self.log_type)
 
@@ -81,7 +81,7 @@ class PointwiseMutualInformation(object):
 			f.close()
 
 			temp = lines[0].split()
-			if temp[0] == "data:" and temp[1] == corpus.datainfo:				
+			if temp[0] == "data:" and temp[1] == corpus.datainfo:
 				for line in lines:
 					temp = line.strip().split(":")
 					if temp[0] == "d":

@@ -38,4 +38,5 @@ test*
 *.so
 *.html
 *.png
+*.swp
 paper_related/
