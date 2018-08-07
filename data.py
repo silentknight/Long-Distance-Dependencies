@@ -20,9 +20,9 @@ class Dictionary(object):
 		if word not in self.word2idx:
 			self.idx2word.append(word)
 			self.word2idx[word] = len(self.idx2word) - 1
-		token_id = self.word2idx[word]
-		self.counter[token_id] += 1
-		self.total += 1
+			token_id = self.word2idx[word]
+			self.counter[token_id] += 1
+			self.total += 1
 		return self.word2idx[word]
 
 	def get_word_from_id(self, wordID):

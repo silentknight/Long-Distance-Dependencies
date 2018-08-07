@@ -40,3 +40,4 @@ test*
 *.png
 *.swp
 paper_related/
+pmi_data/

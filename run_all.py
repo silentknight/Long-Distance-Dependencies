@@ -3,6 +3,8 @@
 # System libs
 import os
 import argparse
+import shutil
+import time
 
 # Installed libs
 import matplotlib.pyplot as plt
@@ -86,12 +88,20 @@ def main():
 		plt.show()
 
 	elif args.compute == "pmi":
-		args.datafilepath += "_pmi.dat"		
+		if not os.path.exists("pmi_data"):
+			os.makedirs("pmi_data")
+
+		args.datafilepath = "pmi_data/"+args.datafilepath
+
 		if args.clear == 1:
 			try:
-				os.remove(args.datafilepath)
+				shutil.rmtree(args.datafilepath)
 			except OSError:
-				print(args.datafilepath+" file does not exist.")
+				print(args.datafilepath+" path does not exist.")
+
+		if not os.path.isdir(args.datafilepath):
+			os.mkdir(args.datafilepath);
+
 		p_ldd = pmi.PointwiseMutualInformation(corpus, args.log_type, args.threads, args.datafilepath, args.overlap, args.pmi_method)
 	
 	###############################################################################

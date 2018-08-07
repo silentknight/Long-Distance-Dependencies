@@ -60,35 +60,32 @@ class PointwiseMutualInformation(object):
 		totalLength = corpus.sequentialData.totalLength
 		# self.no_of_threads = no_of_threads
 		self.no_of_threads = 1
-		self.filename = data_file_path
+		self.directory = data_file_path
 		self.overlap = overlap
 		self.method = method
 		self.log_type = log_type
+		# Add more directories to create more refined data
 		self.pointwiseMutualInformation = self.calculate_PMI()
 
 	def calculate_PMI(self):
 		d = 1
-
 		print("Average String Length: ", int(corpus.sequentialData.averageLength))
 
-		# # Check if already processing is done or new process ?
-		# if(os.path.exists(self.filename)):
-		# 	f = open(self.filename,"r")
-		# 	lines = f.readlines()
-		# 	f.close()
+		try:
+			d_num = []
+			files = sorted(os.listdir(self.directory))
+			for file in files:
+				d_num.append(int(file.split('.')[0]))
 
-		# 	temp = lines[0].split()
-		# 	if temp[0] == "data:" and temp[1] == corpus.datainfo:
-		# 		for line in lines:
-		# 			temp = line.strip().split(":")
-		# 			if temp[0] == "d":
-		# 				temp1 = temp[2].split(",")
-		# 				d = int(temp[1])+1
+			d = sorted(d_num)[len(d_num)-1]+1
+		except:
+			print(self.directory+" does not exist")
+
+		f = open(self.directory+"/0.symbols.dat","w")
+		f.write(str(corpus.dictionary.word2idx))
+		f.close()
 
 		end = False
-		f = open(self.filename,"w")
-		f.write("data: "+corpus.datainfo+"\n")
-		
 		try:
 			max_distance = totalLength
 			while d<max_distance and end==False:
@@ -103,21 +100,12 @@ class PointwiseMutualInformation(object):
 				for i in range(self.no_of_threads):
 					thread[i].join()
 
-					print(thread[i].pmi)
-					thread[i].Ni_X
-					thread[i].Ni_Y
-					thread[i].Ni_XY
-					thread[i].Xi
-					thread[i].Yi
-
 					print(d)
-					f.write("d:"+str(d+i)+":"+"\n")
-				
+					np.savez(self.directory+"/"+str(d), thread[i].Xi, thread[i].Yi, thread[i].Ni_X, thread[i].Ni_Y, thread[i].Ni_XY, thread[i].pmi)
+
 				d += self.no_of_threads
 
 		except KeyboardInterrupt:
 			print("Processed upto: "+str(d+i))
-
-		f.close()
 
 		return 100
