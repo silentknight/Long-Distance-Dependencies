@@ -8,14 +8,16 @@ import threading
 import os
 import lddCalc
 import array
+import json
 
 class myThread(threading.Thread):
 	def __init__(self, d, overlap, log_type, method):
 		self.d = d
-		self.mi = 0
-		self.Hx = 0
-		self.Hy = 0
-		self.Hxy = 0
+		self.Xi = 0
+		self.Yi = 0
+		self.Ni_X = 0
+		self.Ni_Y = 0
+		self.Ni_XY = 0
 		self.pmi = 0
 		self.complete = False
 		self.overlap = overlap
@@ -24,7 +26,7 @@ class myThread(threading.Thread):
 		super(myThread, self).__init__()
 
 	def run(self):
-		Ni_X, Ni_Y, Ni_XY, u_X, u_Y = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)
+		Ni_X, Ni_Y, Ni_XY, self.Xi, self.Yi = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)
 		try:
 			if Ni_X == 0 and Ni_Y == 0 and Ni_XY == 0:
 				self.complete = True
@@ -35,18 +37,16 @@ class myThread(threading.Thread):
 		log = lambda val,base: np.log(val) if base==0 else np.log2(val)
 
 		if self.method == "standard":
-			print("----------------------------------")
-			print(Ni_X)
-			print(u_X)
-			print(Ni_Y)
-			print(u_Y)
-			print("----------------------------------")
 			P_XY = Ni_XY/np.sum(Ni_XY)
-			P_X = Ni_X/np.sum(Ni_X)
-			P_Y = Ni_Y/np.sum(Ni_Y)
-			P_temp = P_XY/(P_X*P_Y)
+			P_X = [Ni_X]/np.sum(Ni_X)
+			P_Y = [Ni_Y]/np.sum(Ni_Y)
+			denominator = (np.transpose(P_X)*P_Y)
+			P_temp = P_XY/denominator
 			P_temp[P_temp == 0] = 1
 			self.pmi = P_XY*log(P_temp,self.log_type)
+			self.Ni_X = Ni_X
+			self.Ni_Y = Ni_Y
+			self.Ni_XY = Ni_XY
 
 class PointwiseMutualInformation(object):
 	def __init__(self, corpusData, log_type, no_of_threads, data_file_path, overlap, method):
@@ -58,43 +58,32 @@ class PointwiseMutualInformation(object):
 		dataArray = array.array('L', corpus.sequentialData.dataArray)
 		lineLengthList = np.array(corpus.sequentialData.wordCountList, dtype=np.uint64)
 		totalLength = corpus.sequentialData.totalLength
-		self.no_of_threads = no_of_threads
+		# self.no_of_threads = no_of_threads
+		self.no_of_threads = 1
 		self.filename = data_file_path
 		self.overlap = overlap
 		self.method = method
 		self.log_type = log_type
-		self.mutualInformation = self.calculate_PMI()
+		self.pointwiseMutualInformation = self.calculate_PMI()
 
 	def calculate_PMI(self):
-		mi = np.zeros([0,1])
-		Hx = np.zeros([0,1])
-		Hy = np.zeros([0,1])
-		Hxy = np.zeros([0,1])
 		d = 1
 
 		print("Average String Length: ", int(corpus.sequentialData.averageLength))
 
-		# Check if already processing is done or new process ?
-		if(os.path.exists(self.filename)):
-			f = open(self.filename,"r")
-			lines = f.readlines()
-			f.close()
+		# # Check if already processing is done or new process ?
+		# if(os.path.exists(self.filename)):
+		# 	f = open(self.filename,"r")
+		# 	lines = f.readlines()
+		# 	f.close()
 
-			temp = lines[0].split()
-			if temp[0] == "data:" and temp[1] == corpus.datainfo:
-				for line in lines:
-					temp = line.strip().split(":")
-					if temp[0] == "d":
-						temp1 = temp[2].split(",")
-						mi = np.append(mi,np.zeros(1))
-						mi[int(temp[1])-1] = float(temp1[0])
-						Hx = np.append(Hx,np.zeros(1))
-						Hx[int(temp[1])-1] = float(temp1[1])
-						Hy = np.append(Hy,np.zeros(1))
-						Hy[int(temp[1])-1] = float(temp1[2])
-						Hxy = np.append(Hxy,np.zeros(1))
-						Hxy[int(temp[1])-1] = float(temp1[3])
-						d = int(temp[1])+1
+		# 	temp = lines[0].split()
+		# 	if temp[0] == "data:" and temp[1] == corpus.datainfo:
+		# 		for line in lines:
+		# 			temp = line.strip().split(":")
+		# 			if temp[0] == "d":
+		# 				temp1 = temp[2].split(",")
+		# 				d = int(temp[1])+1
 
 		end = False
 		f = open(self.filename,"w")
@@ -103,10 +92,6 @@ class PointwiseMutualInformation(object):
 		try:
 			max_distance = totalLength
 			while d<max_distance and end==False:
-				mi = np.append(mi,np.zeros(self.no_of_threads))
-				Hx = np.append(Hx,np.zeros(self.no_of_threads))
-				Hy = np.append(Hy,np.zeros(self.no_of_threads))
-				Hxy = np.append(Hxy,np.zeros(self.no_of_threads))
 
 				thread = []
 				for i in range(self.no_of_threads):
@@ -118,51 +103,21 @@ class PointwiseMutualInformation(object):
 				for i in range(self.no_of_threads):
 					thread[i].join()
 
-				for i in range(self.no_of_threads):
-					if thread[i].complete == 1:
-						end = True
-						for j in range(i,self.no_of_threads):
-							if mi[len(mi)-1]==0:
-								mi = np.delete(mi,len(mi)-1)
-								Hx = np.delete(Hx,len(Hx)-1)
-								Hy = np.delete(Hy,len(Hy)-1)
-								Hxy = np.delete(Hxy,len(Hxy)-1)
-						break
+					print(thread[i].pmi)
+					thread[i].Ni_X
+					thread[i].Ni_Y
+					thread[i].Ni_XY
+					thread[i].Xi
+					thread[i].Yi
 
-					if np.isnan(thread[i].mi):
-						end = True
-						for j in range(i,self.no_of_threads):
-							if mi[len(mi)-1]==0:
-								mi = np.delete(mi,len(mi)-1)
-								Hx = np.delete(Hx,len(Hx)-1)
-								Hy = np.delete(Hy,len(Hy)-1)
-								Hxy = np.delete(Hxy,len(Hxy)-1)
-						break
-
-					mi[d+i-1] = thread[i].mi
-					Hx[d+i-1] = thread[i].Hx
-					Hy[d+i-1] = thread[i].Hy
-					Hxy[d+i-1] = thread[i].Hxy
-
-					print(thread[i].d, thread[i].mi, thread[i].Hx, thread[i].Hy, thread[i].Hx+thread[i].Hy, thread[i].Hxy)
-					f.write("d:"+str(d+i)+":"+str(mi[d+i-1])+","+str(Hx[d+i-1])+","+str(Hy[d+i-1])+","+str(Hxy[d+i-1])+"\n")
+					print(d)
+					f.write("d:"+str(d+i)+":"+"\n")
 				
 				d += self.no_of_threads
 
 		except KeyboardInterrupt:
-			for i in range(self.no_of_threads):
-				if mi[len(mi)-1]==0:
-					mi = np.delete(mi,len(mi)-1)
-					Hx = np.delete(Hx,len(Hx)-1)
-					Hy = np.delete(Hy,len(Hy)-1)
-					Hxy = np.delete(Hxy,len(Hxy)-1)
-
-			f = open(self.filename,"w")
-			f.write("data: "+corpus.datainfo+"\n")
-			for i in range(len(mi)):
-				f.write("d:"+str(i+1)+":"+str(mi[i])+","+str(Hx[i])+","+str(Hy[i])+","+str(Hxy[i])+"\n")
-			f.close()
+			print("Processed upto: "+str(d+i))
 
 		f.close()
 
-		return mi, Hy, Hy, Hxy
+		return 100

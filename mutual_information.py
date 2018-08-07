@@ -23,7 +23,7 @@ class myThread(threading.Thread):
 		super(myThread, self).__init__()
 
 	def run(self):
-		Ni_X, Ni_Y, Ni_XY = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)
+		Ni_X, Ni_Y, Ni_XY, u_X, u_Y = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)
 		try:
 			if Ni_X == 0 and Ni_Y == 0 and Ni_XY == 0:
 				self.complete = True
