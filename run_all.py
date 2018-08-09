@@ -25,6 +25,7 @@ def main():
 	parser.add_argument('--pmi_method', type=str, default="standard", help="PMI calculation method, Choose standard = Standard Calculation, pmi = Pointwise Mutual Information")
 	parser.add_argument('--log_type', type=int, default=1, help="Choose Log Type, 0 = Log to the base e, 1 = log to the base 2, 2 = log to the base 10")
 	parser.add_argument('--threads', type=int, default=1, help='Number of threads to spawn')
+	parser.add_argument('--top_dir', type=str, default='', help='To change directory, add path of your preferred directory. Default: current working directory')
 	parser.add_argument('--datafilepath', type=str, default='log_data', help='File name to store log data and load already stored files. Default filenames:- MI: log_data_mi.dat, PMI: log_data_pmi.dat')
 	parser.add_argument('--overlap', type=int, default=1, help="Allow overlaps between two independent substrings. 0 = No, 1 = Yes")
 	parser.add_argument('--direction', type=str, default='bi', help="Random variables sampling direction, bi = Bidirectional, uni = Unidirectional")
@@ -88,10 +89,13 @@ def main():
 		plt.show()
 
 	elif args.compute == "pmi":
-		if not os.path.exists("pmi_data"):
-			os.makedirs("pmi_data")
+		if args.top_dir != '' and args.top_dir[len(args.top_dir)-1] != '/':
+			args.top_dir += '/'
 
-		args.datafilepath = "pmi_data/"+args.datafilepath
+		if not os.path.exists(args.top_dir+"pmi_data"):
+			os.makedirs(args.top_dir+"pmi_data")
+
+		args.datafilepath = args.top_dir+"pmi_data/"+args.datafilepath
 
 		if args.clear == 1:
 			try:

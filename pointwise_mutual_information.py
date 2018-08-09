@@ -99,8 +99,13 @@ class PointwiseMutualInformation(object):
 
 				for i in range(self.no_of_threads):
 					thread[i].join()
+					# thread[i].pmi = thread[i].pmi.astype(np.float32)
 
 					print(d)
+
+					print(thread[i].Xi.dtype, thread[i].Yi.dtype, thread[i].Ni_X.dtype, thread[i].Ni_Y.dtype, thread[i].Ni_XY.dtype, thread[i].pmi.dtype)
+					print(thread[i].Xi.nbytes, thread[i].Yi.nbytes, thread[i].Ni_X.nbytes, thread[i].Ni_Y.nbytes, thread[i].Ni_XY.nbytes, thread[i].pmi.nbytes)
+
 					np.savez(self.directory+"/"+str(d), thread[i].Xi, thread[i].Yi, thread[i].Ni_X, thread[i].Ni_Y, thread[i].Ni_XY, thread[i].pmi)
 
 				d += self.no_of_threads

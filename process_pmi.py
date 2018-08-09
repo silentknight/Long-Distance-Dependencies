@@ -7,6 +7,8 @@ import argparse
 import sys
 import os
 import re
+import ast
+import time
 
 parser = argparse.ArgumentParser(description='Long Distance Dependency measurements plot')
 parser.add_argument('--path', type=str, default='pmi_data/log_data', help='Path of the data file')
@@ -22,30 +24,22 @@ args = parser.parse_args()
 # Open the symbols file and check if the characters are present which are supplied in command line #
 ####################################################################################################
 try:
-	good1 = False
-	good2 = False
 	charID_1 = -1
 	charID_2 = -1
 
 	f = open(args.path+"/0.symbols.dat", 'r')
 	data = f.read()
-	data = data[1:len(data)-2]
-	symbols = re.split(", ", data)
-	for temp in symbols:
-		fields = re.split("': ", temp)
-		if args.char1 == fields[0][1]:
-			good1 = True
-			charID_1 = int(fields[1])
-		if args.char2 == fields[0][1]:
-			good2 = True
-			charID_2 = int(fields[1])
-	f.close()
+	symbols = ast.literal_eval(data)
 
-	if good1 and good2:
-		print("Characters you supplied found, "+args.char1+": "+str(charID_1)+" and "+args.char1+": "+str(charID_2)+".")
+	if args.char1 in symbols and args.char2 in symbols:
+		charID_1 = int(symbols[args.char1])
+		charID_2 = int(symbols[args.char2])
+		print("Characters you supplied found, "+args.char1+": "+str(charID_1)+" and "+args.char2+": "+str(charID_2)+".")
 	else:
 		print("Characters you supplied are not present in the dataset.")
 		sys.exit()
+
+	f.close()
 
 except Exception as e:
 	print(e)
@@ -76,6 +70,7 @@ except ValueError:
 ####################################################################################################
 # Get the data from the files                                                                      #
 ####################################################################################################
+print("Pull file list from the folder")
 try:
 	d_num = []
 	ext = ""
@@ -99,19 +94,21 @@ except Exception as e:
 	print(e)
 	print(args.path+" does not exist")
 
+print("Pull data from numpy file")
 d = start
 pmi_single = np.empty((0,1))
 
 for file in files:
-	npzfile = np.load(args.path+"/"+file)
-	Xi = npzfile['arr_0']
-	Yi = npzfile['arr_1']
-	Ni_X = npzfile['arr_2']
-	Ni_Y = npzfile['arr_3']
-	Ni_XY = npzfile['arr_4']
-	pmi = npzfile['arr_5']
-
-	pmi_single = np.append(pmi_single, pmi[np.where(Xi==charID_1)[0][0]][np.where(Yi==charID_2)[0][0]])
+	pmi_data = np.load(args.path+"/"+file, mmap_mode='r')
+	Xi = pmi_data['arr_0']
+	Yi = pmi_data['arr_1']
+	# Ni_X = pmi_data['arr_2']
+	# Ni_Y = pmi_data['arr_3']
+	# Ni_XY = pmi_data['arr_4']
+	# pmi = pmi_data['arr_5']
+	pmi_single = np.append(pmi_single, pmi_data['arr_5'][np.where(Xi==charID_1)[0][0]][np.where(Yi==charID_2)[0][0]])
+	print("d:"+str(d)+" -> processed")
+	d += 1
 
 if args.logscale == 1:
 	plt.loglog(np.arange(len(pmi_single)),pmi_single,basex=10)
