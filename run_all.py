@@ -19,7 +19,7 @@ def main():
 
 	parser.add_argument('--data', type=str, default='dataset/dl4mt/', help='location of the data corpus')
 	parser.add_argument('--words', type=int, default=0, help="Tokenize strings on words or characters: 1 = Words, 0 = Characters")
-
+	parser.add_argument('--cutoff', type=int, help="Value of maximum D you need.", required=True)
 	parser.add_argument('--compute', type=str, default="mi", help="Type of computation chosen, Choose mi = Mutual Information, pmi = Pointwise Mutual Information")
 	parser.add_argument('--mi_method', type=str, default="grassberger", help="MI calculation method, Choose standard = Standard Calculation, grassberger = Grassberger adjustments")
 	parser.add_argument('--pmi_method', type=str, default="standard", help="PMI calculation method, Choose standard = Standard Calculation, pmi = Pointwise Mutual Information")
@@ -54,7 +54,7 @@ def main():
 				os.remove(args.datafilepath)
 			except OSError:
 				print(args.datafilepath+" file does not exist.")
-		ldd = mi.MutualInformation(corpus, args.log_type, args.threads, args.datafilepath, args.overlap, args.mi_method)
+		ldd = mi.MutualInformation(corpus, args.log_type, args.threads, args.datafilepath, args.overlap, args.mi_method, args.cutoff)
 
 		# #########################################################################################################################
 		# # Plot the LDD
@@ -106,7 +106,7 @@ def main():
 		if not os.path.isdir(args.datafilepath):
 			os.mkdir(args.datafilepath);
 
-		p_ldd = pmi.PointwiseMutualInformation(corpus, args.log_type, args.threads, args.datafilepath, args.overlap, args.pmi_method)
+		p_ldd = pmi.PointwiseMutualInformation(corpus, args.log_type, args.threads, args.datafilepath, args.overlap, args.pmi_method, args.cutoff)
 
 	###############################################################################
 

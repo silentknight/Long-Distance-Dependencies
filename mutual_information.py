@@ -49,7 +49,7 @@ class myThread(threading.Thread):
 			self.mi = self.Hx+self.Hy-self.Hxy
 
 class MutualInformation(object):
-	def __init__(self, corpusData, log_type, no_of_threads, data_file_path, overlap, method):
+	def __init__(self, corpusData, log_type, no_of_threads, data_file_path, overlap, method, cutoff):
 		global corpus
 		global dataArray
 		global lineLengthList
@@ -63,6 +63,7 @@ class MutualInformation(object):
 		self.overlap = overlap
 		self.method = method
 		self.log_type = log_type
+		self.cutoff = cutoff
 		self.mutualInformation = self.calculate_MI()
 
 	def calculate_MI(self):
@@ -102,7 +103,7 @@ class MutualInformation(object):
 		
 		try:
 			max_distance = totalLength
-			while d<max_distance and end==False:
+			while d<max_distance and d<=self.cutoff and end==False:
 				mi = np.append(mi,np.zeros(self.no_of_threads))
 				Hx = np.append(Hx,np.zeros(self.no_of_threads))
 				Hy = np.append(Hy,np.zeros(self.no_of_threads))

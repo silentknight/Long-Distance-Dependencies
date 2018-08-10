@@ -49,7 +49,7 @@ class myThread(threading.Thread):
 			self.Ni_XY = Ni_XY
 
 class PointwiseMutualInformation(object):
-	def __init__(self, corpusData, log_type, no_of_threads, data_file_path, overlap, method):
+	def __init__(self, corpusData, log_type, no_of_threads, data_file_path, overlap, method, cutoff):
 		global corpus
 		global dataArray
 		global lineLengthList
@@ -64,6 +64,7 @@ class PointwiseMutualInformation(object):
 		self.overlap = overlap
 		self.method = method
 		self.log_type = log_type
+		self.cutoff = cutoff
 		# Add more directories to create more refined data
 		self.pointwiseMutualInformation = self.calculate_PMI()
 
@@ -97,7 +98,7 @@ class PointwiseMutualInformation(object):
 		end = False
 		try:
 			max_distance = totalLength
-			while d<max_distance and end==False:
+			while d<max_distance and d<=self.cutoff and end==False:
 
 				thread = []
 				for i in range(self.no_of_threads):
