@@ -8,7 +8,7 @@ import sys
 import os
 import re
 import ast
-import time
+import scipy.sparse
 
 parser = argparse.ArgumentParser(description='Long Distance Dependency measurements plot')
 parser.add_argument('--path', type=str, default='pmi_data/log_data', help='Path of the data file')
@@ -66,7 +66,7 @@ except ValueError:
 	else:
 		print("Not a well formed integer")
 		sys.exit()
-	
+
 ####################################################################################################
 # Get the data from the files                                                                      #
 ####################################################################################################
@@ -74,7 +74,7 @@ print("Pull file list from the folder")
 try:
 	d_num = []
 	ext = ""
-	files = sorted(os.listdir(args.path))
+	files = sorted(os.listdir(args.path+"/pmi"))
 	for file in files:
 		d_num.append(int(file.split('.')[0]))
 		ext = file.split('.')[1]
@@ -90,8 +90,7 @@ try:
 			if file >= start and file <= end:
 				files.append(str(file)+'.'+ext)
 
-except Exception as e:
-	print(e)
+except:
 	print(args.path+" does not exist")
 
 print("Pull data from numpy file")
@@ -99,14 +98,16 @@ d = start
 pmi_single = np.empty((0,1))
 
 for file in files:
-	pmi_data = np.load(args.path+"/"+file, mmap_mode='r')
+	pmi_data = np.load(args.path+"/np/"+file, mmap_mode='r')
 	Xi = pmi_data['arr_0']
 	Yi = pmi_data['arr_1']
-	# Ni_X = pmi_data['arr_2']
-	# Ni_Y = pmi_data['arr_3']
-	# Ni_XY = pmi_data['arr_4']
-	# pmi = pmi_data['arr_5']
-	pmi_single = np.append(pmi_single, pmi_data['arr_5'][np.where(Xi==charID_1)[0][0]][np.where(Yi==charID_2)[0][0]])
+	Ni_X = pmi_data['arr_2']
+	Ni_Y = pmi_data['arr_3']
+	Ni_XY = scipy.sparse.load_npz(args.path+"/Ni_XY/"+file)
+	pmi = scipy.sparse.load_npz(args.path+"/pmi/"+file)
+	pmi = pmi.todense()
+
+	pmi_single = np.append(pmi_single, pmi[np.where(Xi==charID_1)[0][0],np.where(Yi==charID_2)[0][0]])
 	print("d:"+str(d)+" -> processed")
 	d += 1
 

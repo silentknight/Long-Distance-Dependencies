@@ -8,7 +8,7 @@ import threading
 import os
 import lddCalc
 import array
-import json
+import scipy
 
 class myThread(threading.Thread):
 	def __init__(self, d, overlap, log_type, method):
@@ -73,17 +73,26 @@ class PointwiseMutualInformation(object):
 
 		try:
 			d_num = []
-			files = sorted(os.listdir(self.directory))
+			files = sorted(os.listdir(self.directory+"/np"))
 			for file in files:
 				d_num.append(int(file.split('.')[0]))
 
 			d = sorted(d_num)[len(d_num)-1]+1
 		except:
-			print(self.directory+" does not exist")
+			print(self.directory+" does not exist. Hence cannot load the contents.")
 
 		f = open(self.directory+"/0.symbols.dat","w")
 		f.write(str(corpus.dictionary.word2idx))
 		f.close()
+
+		if not os.path.isdir(self.directory+"/np"):
+			os.makedirs(self.directory+"/np")
+
+		if not os.path.isdir(self.directory+"/Ni_XY"):
+			os.makedirs(self.directory+"/Ni_XY")
+
+		if not os.path.isdir(self.directory+"/pmi"):
+			os.makedirs(self.directory+"/pmi")
 
 		end = False
 		try:
@@ -99,18 +108,17 @@ class PointwiseMutualInformation(object):
 
 				for i in range(self.no_of_threads):
 					thread[i].join()
-					# thread[i].pmi = thread[i].pmi.astype(np.float32)
+					s_Ni_XY = scipy.sparse.csc_matrix(thread[i].Ni_XY)
+					s_pmi = scipy.sparse.csc_matrix(thread[i].pmi)
+					np.savez(self.directory+"/np/"+str(d), thread[i].Xi, thread[i].Yi, thread[i].Ni_X, thread[i].Ni_Y)
+					scipy.sparse.save_npz(self.directory+"/Ni_XY/"+str(d), s_Ni_XY)
+					scipy.sparse.save_npz(self.directory+"/pmi/"+str(d), s_pmi)
 
 					print(d)
-
-					print(thread[i].Xi.dtype, thread[i].Yi.dtype, thread[i].Ni_X.dtype, thread[i].Ni_Y.dtype, thread[i].Ni_XY.dtype, thread[i].pmi.dtype)
-					print(thread[i].Xi.nbytes, thread[i].Yi.nbytes, thread[i].Ni_X.nbytes, thread[i].Ni_Y.nbytes, thread[i].Ni_XY.nbytes, thread[i].pmi.nbytes)
-
-					np.savez(self.directory+"/"+str(d), thread[i].Xi, thread[i].Yi, thread[i].Ni_X, thread[i].Ni_Y, thread[i].Ni_XY, thread[i].pmi)
 
 				d += self.no_of_threads
 
 		except KeyboardInterrupt:
-			print("Processed upto: "+str(d+i))
+			print("Processed upto: "+str(d-1))
 
 		return 100

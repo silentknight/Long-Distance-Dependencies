@@ -39,5 +39,6 @@ test*
 *.html
 *.png
 *.swp
+*.save
 paper_related/
 pmi_data/

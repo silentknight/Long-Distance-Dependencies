@@ -34,7 +34,7 @@ def main():
 
 	parser.add_argument('--normalize', type=int, default=0, help="Normalize the scores in the range [0,1]")
 	parser.add_argument('--plot_path', type=str, default='ldd_plot.png', help="Location of the plot to be saved")
-	
+
 	args = parser.parse_args()
 
 	###############################################################################
@@ -72,7 +72,7 @@ def main():
 		plt.subplot(222)
 		plt.semilogx(np.arange(len(Hxy)),Hxy)
 		plt.grid(True)
-		
+
 		plt.subplot(223)
 		plt.semilogx(np.arange(len(Hy)),Hy)
 		plt.grid(True)
@@ -101,13 +101,13 @@ def main():
 			try:
 				shutil.rmtree(args.datafilepath)
 			except OSError:
-				print(args.datafilepath+" path does not exist.")
+				print("Cannot remove. "+args.datafilepath+" path does not exist.")
 
 		if not os.path.isdir(args.datafilepath):
 			os.mkdir(args.datafilepath);
 
 		p_ldd = pmi.PointwiseMutualInformation(corpus, args.log_type, args.threads, args.datafilepath, args.overlap, args.pmi_method)
-	
+
 	###############################################################################
 
 if __name__ == '__main__':
