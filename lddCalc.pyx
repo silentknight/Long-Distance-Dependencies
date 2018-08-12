@@ -2,7 +2,7 @@ import numpy as np
 cimport numpy as np
 from cpython cimport array
 import array
-import scipy
+import scipy.sparse
 
 cpdef getJointRV(dataArray, unsigned long[:] lineLengthList, int totalLength, int d, int overlap):
 
