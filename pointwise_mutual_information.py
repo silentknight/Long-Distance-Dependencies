@@ -38,9 +38,15 @@ class myThread(threading.Thread):
 
 		if self.method == "standard":
 			P_XY = Ni_XY/np.sum(Ni_XY)
-			P_X = [Ni_X]/np.sum(Ni_X)
-			P_Y = [Ni_Y]/np.sum(Ni_Y)
-			denominator = (np.transpose(P_X)*P_Y)
+
+			# P_X = [Ni_X]/np.sum(Ni_X)
+			# P_Y = [Ni_Y]/np.sum(Ni_Y)
+			# denominator = (np.transpose(P_X)*P_Y)
+
+			P_X = scipy.sparse.csc_matrix([Ni_X]/np.sum(Ni_X))
+			P_Y = scipy.sparse.csc_matrix([Ni_Y]/np.sum(Ni_Y))
+			denominator = P_X.transpose()*P_Y
+
 			P_temp = P_XY/denominator
 			P_temp[P_temp == 0] = 1
 			self.pmi = P_XY.multiply(log(P_temp,self.log_type)).tocsc()

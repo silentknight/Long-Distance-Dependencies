@@ -25,8 +25,6 @@ class myThread(threading.Thread):
 	def run(self):
 		Ni_X, Ni_Y, Ni_XY, u_X, u_Y = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)
 
-		print(Ni_XY.data.nbytes+Ni_XY.indptr.nbytes+Ni_XY.indices.nbytes)
-
 		try:
 			if Ni_X == 0 and Ni_Y == 0 and Ni_XY == 0:
 				self.complete = True
