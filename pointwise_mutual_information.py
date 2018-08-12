@@ -43,7 +43,7 @@ class myThread(threading.Thread):
 			denominator = (np.transpose(P_X)*P_Y)
 			P_temp = P_XY/denominator
 			P_temp[P_temp == 0] = 1
-			self.pmi = P_XY*log(P_temp,self.log_type)
+			self.pmi = P_XY.multiply(log(P_temp,self.log_type)).tocsc()
 			self.Ni_X = Ni_X
 			self.Ni_Y = Ni_Y
 			self.Ni_XY = Ni_XY

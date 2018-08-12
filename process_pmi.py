@@ -10,7 +10,7 @@ import re
 import ast
 import scipy.sparse
 
-parser = argparse.ArgumentParser(description='Long Distance Dependency measurements plot')
+parser = argparse.ArgumentParser(description='Pointwise Mutual Information Processing file.')
 parser.add_argument('--path', type=str, default='pmi_data/log_data', help='Path of the data file')
 parser.add_argument('--start', type=int, default=1, help='Value of D (Dependency distance) from start for plotting. Default is 1')
 parser.add_argument('--end', type=str, default='end', help='Value of D (Dependency distance) till end for plotting. Default is \'end\' (all the way will the end).')
