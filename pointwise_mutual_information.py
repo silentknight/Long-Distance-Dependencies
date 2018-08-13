@@ -8,7 +8,7 @@ import threading
 import os
 import lddCalc
 import array
-import scipy
+import scipy.sparse as sp
 
 class myThread(threading.Thread):
 	def __init__(self, d, overlap, log_type, method):
@@ -38,13 +38,12 @@ class myThread(threading.Thread):
 
 		if self.method == "standard":
 			P_XY = Ni_XY/np.sum(Ni_XY)
-			P_X = scipy.sparse.csc_matrix([Ni_X]/np.sum(Ni_X))
-			P_Y = scipy.sparse.csc_matrix([Ni_Y]/np.sum(Ni_Y))
-			denominator = P_X.transpose()*P_Y
+			P_X = Ni_X/np.sum(Ni_X)
+			P_Y = Ni_Y/np.sum(Ni_Y)
+			P_XY = P_XY.tocoo()
+			pmi_data = lddCalc.getStandardPMI(P_XY.data, np.uint64(P_XY.row), np.uint64(P_XY.col), P_X, P_Y, np.uint64(P_XY.data.size), np.uint64(P_X.size), np.uint64(P_Y.size), self.log_type)
+			self.pmi = sp.coo_matrix((pmi_data, (P_XY.row, P_XY.col)), shape=P_XY.shape).tocsr()
 
-			P_temp = P_XY/denominator
-			P_temp[P_temp == 0] = 1
-			self.pmi = P_XY.multiply(log(P_temp,self.log_type)).tocsc()
 			self.Ni_X = Ni_X
 			self.Ni_Y = Ni_Y
 			self.Ni_XY = Ni_XY
@@ -110,11 +109,11 @@ class PointwiseMutualInformation(object):
 
 				for i in range(self.no_of_threads):
 					thread[i].join()
-					s_Ni_XY = scipy.sparse.csc_matrix(thread[i].Ni_XY)
-					s_pmi = scipy.sparse.csc_matrix(thread[i].pmi)
+					s_Ni_XY = sp.csc_matrix(thread[i].Ni_XY)
+					s_pmi = sp.csc_matrix(thread[i].pmi)
 					np.savez(self.directory+"/np/"+str(d), thread[i].Xi, thread[i].Yi, thread[i].Ni_X, thread[i].Ni_Y)
-					scipy.sparse.save_npz(self.directory+"/Ni_XY/"+str(d), s_Ni_XY)
-					scipy.sparse.save_npz(self.directory+"/pmi/"+str(d), s_pmi)
+					sp.save_npz(self.directory+"/Ni_XY/"+str(d), s_Ni_XY)
+					sp.save_npz(self.directory+"/pmi/"+str(d), s_pmi)
 
 					print(d)
 
