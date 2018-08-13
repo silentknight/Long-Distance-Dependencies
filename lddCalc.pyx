@@ -62,8 +62,8 @@ cpdef getStandardPMI(P_XY_data, P_XY_row, P_XY_col, PX, PY, unsigned long dataLe
 		denominator = px[row[i]]*py[col[i]]
 
 		if base == 0:
-			temp_pmi[i] = data[i]*log(data[i]/denominator)
+			temp_pmi[i] = log(data[i]/denominator)
 		elif base == 1:
-			temp_pmi[i] = data[i]*log2(data[i]/denominator)
+			temp_pmi[i] = log2(data[i]/denominator)
 
 	return pmi
