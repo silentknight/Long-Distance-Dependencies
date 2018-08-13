@@ -2,6 +2,7 @@
 
 # System libs
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
 import numpy as np
 import argparse
 import sys
@@ -111,11 +112,11 @@ try:
 
 		if args.char2 == None:
 			if pmi_row == []:
-				pmi_row = pmi[np.where(Xi==charID_1)[0][0],:]
-				Ni_XY_row = Ni_XY[np.where(Xi==charID_1)[0][0],:]
+				pmi_row = pmi[np.where(Xi==charID_1)[0][0],:].toarray()
+				Ni_XY_row = Ni_XY[np.where(Xi==charID_1)[0][0],:].toarray()
 			else:
-				pmi_row = np.append(pmi_row, pmi[np.where(Xi==charID_1)[0][0],:], axis=0)
-				Ni_XY_row = np.append(Ni_XY_row, Ni_XY[np.where(Xi==charID_1)[0][0],:], axis=0)
+				pmi_row = np.append(pmi_row, pmi[np.where(Xi==charID_1)[0][0],:].toarray(), axis=0)
+				Ni_XY_row = np.append(Ni_XY_row, Ni_XY[np.where(Xi==charID_1)[0][0],:].toarray(), axis=0)
 		else:
 			pmi_single = np.append(pmi_single, pmi[np.where(Xi==charID_1)[0][0],np.where(Yi==charID_2)[0][0]])
 			Ni_XY_single = np.append(Ni_XY_single, Ni_XY[np.where(Xi==charID_1)[0][0],np.where(Yi==charID_2)[0][0]])
@@ -123,6 +124,7 @@ try:
 		print("d:"+str(d)+" -> processed")
 		d += 1
 except (KeyboardInterrupt, ValueError) as e:
+	print(e)
 	print("Processing halted. Printing upto d: "+str(d-1))
 
 if args.char2 == None:
@@ -130,12 +132,17 @@ if args.char2 == None:
 	ax = fig.add_subplot(211)
 	plt.imshow(pmi_row)
 	ax.set_aspect('auto')
+	ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+	ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 	plt.colorbar(orientation='vertical')
 
 	ax = fig.add_subplot(212)
 	plt.imshow(Ni_XY_row)
 	ax.set_aspect('auto')
+	ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+	ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 	plt.colorbar(orientation='vertical')
+	print(np.max(Ni_XY_row))
 
 	plt.show()
 else:
