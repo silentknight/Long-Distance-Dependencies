@@ -105,9 +105,9 @@ try:
 		Ni_X = pmi_data['arr_2']
 		Ni_Y = pmi_data['arr_3']
 		Ni_XY = scipy.sparse.load_npz(args.path+"/Ni_XY/"+file)
-		Ni_XY = Ni_XY.todense()
+		# Ni_XY = Ni_XY.todense()
 		pmi = scipy.sparse.load_npz(args.path+"/pmi/"+file)
-		pmi = pmi.todense()
+		# pmi = pmi.todense()
 
 		if args.char2 == None:
 			if pmi_row == []:
@@ -122,8 +122,8 @@ try:
 
 		print("d:"+str(d)+" -> processed")
 		d += 1
-except KeyboardInterrupt:
-	print("Processing halted. Printing upto d: "+str(d))
+except (KeyboardInterrupt, ValueError) as e:
+	print("Processing halted. Printing upto d: "+str(d-1))
 
 if args.char2 == None:
 	fig = plt.figure()
