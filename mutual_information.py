@@ -38,19 +38,13 @@ class myThread(threading.Thread):
 		if self.method == "grassberger":
 			self.Hx = log(np.sum(Ni_X),self.log_type)-np.sum(Ni_X*spec.digamma(Ni_X))/np.sum(Ni_X)
 			self.Hy = log(np.sum(Ni_Y),self.log_type)-np.sum(Ni_Y*spec.digamma(Ni_Y))/np.sum(Ni_Y)
-			Ni_XY = Ni_XY.reshape(Ni_X.size*Ni_Y.size)
-			newIdx = np.argsort(Ni_XY.col)
-			Ni_XY = scipy.sparse.coo_matrix((Ni_XY.data[newIdx],(Ni_XY.row,np.arange(Ni_XY.col.shape[0]))), shape=(1,Ni_XY.col.shape[0])).toarray()[0]
-
-
+			Ni_XY = Ni_XY.tocsr().data
 			self.Hxy = log(np.sum(Ni_XY),self.log_type)-np.sum(Ni_XY*spec.digamma(Ni_XY))/np.sum(Ni_XY)
 			self.mi = self.Hx+self.Hy-self.Hxy
 		elif self.method == "standard":
 			self.Hx = -1*np.sum(Ni_X/np.sum(Ni_X)*log(Ni_X/np.sum(Ni_X),self.log_type))
 			self.Hy = -1*np.sum(Ni_Y/np.sum(Ni_Y)*log(Ni_Y/np.sum(Ni_Y),self.log_type))
-			Ni_XY = Ni_XY.reshape(Ni_X.size*Ni_Y.size)
-			newIdx = np.argsort(Ni_XY.col)
-			Ni_XY = scipy.sparse.coo_matrix((Ni_XY.data[newIdx],(Ni_XY.row,np.arange(Ni_XY.col.shape[0]))), shape=(1,Ni_XY.col.shape[0])).toarray()[0]
+			Ni_XY = Ni_XY.tocsr().data
 			self.Hxy = -1*np.sum(Ni_XY/np.sum(Ni_XY)*log(Ni_XY/np.sum(Ni_XY),self.log_type))
 			self.mi = self.Hx+self.Hy-self.Hxy
 
