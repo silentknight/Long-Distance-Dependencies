@@ -34,6 +34,7 @@ def main():
 
 	parser.add_argument('--normalize', type=int, default=0, help="Normalize the scores in the range [0,1]")
 	parser.add_argument('--plot_path', type=str, default='ldd_plot.png', help="Location of the plot to be saved")
+	parser.add_argument('--plot', type=int, default=1, help="1: For plot, 0: For no plot")
 
 	args = parser.parse_args()
 
@@ -60,33 +61,34 @@ def main():
 		# # Plot the LDD
 		# #########################################################################################################################
 
-		if args.normalize == 1:
-			x, Hx, Hy, Hxy = ldd.mutualInformation/np.amax(ldd.mutualInformation)
-		else:
-			x, Hx, Hy, Hxy = ldd.mutualInformation
+		if args.plot == 1:
+			if args.normalize == 1:
+				x, Hx, Hy, Hxy = ldd.mutualInformation/np.amax(ldd.mutualInformation)
+			else:
+				x, Hx, Hy, Hxy = ldd.mutualInformation
 
-		plt.subplot(221)
-		plt.loglog(np.arange(len(x)),x,basex=10)
-		plt.grid(True)
+			plt.subplot(221)
+			plt.loglog(np.arange(len(x)),x,basex=10)
+			plt.grid(True)
 
-		plt.subplot(222)
-		plt.semilogx(np.arange(len(Hxy)),Hxy)
-		plt.grid(True)
+			plt.subplot(222)
+			plt.semilogx(np.arange(len(Hxy)),Hxy)
+			plt.grid(True)
 
-		plt.subplot(223)
-		plt.semilogx(np.arange(len(Hy)),Hy)
-		plt.grid(True)
+			plt.subplot(223)
+			plt.semilogx(np.arange(len(Hy)),Hy)
+			plt.grid(True)
 
-		plt.subplot(224)
-		plt.semilogx(np.arange(len(Hx)),Hx)
-		plt.grid(True)
+			plt.subplot(224)
+			plt.semilogx(np.arange(len(Hx)),Hx)
+			plt.grid(True)
 
-		if(args.plot_path.split('.')[-1] == "png"):
-			plot_filename = args.plot_path
-		else:
-			plot_filename = args.plot_path+".png"
-		plt.savefig(plot_filename)
-		plt.show()
+			if(args.plot_path.split('.')[-1] == "png"):
+				plot_filename = args.plot_path
+			else:
+				plot_filename = args.plot_path+".png"
+			plt.savefig(plot_filename)
+			plt.show()
 
 	elif args.compute == "pmi":
 		if args.top_dir != '' and args.top_dir[len(args.top_dir)-1] != '/':
