@@ -35,7 +35,10 @@ cpdef getJointRV(dataArray, unsigned long[:] lineLengthList, int totalLength, in
 
 	nuXi = len(unique_X)
 	nuYi = len(unique_Y)
-	temp_sp = scipy.sparse.coo_matrix((np.ones(len(X)), (np.asarray(X), np.asarray(Y))), shape=(nuXi, nuYi))
+
+	sizeXY = max(nuXi,nuYi)
+
+	temp_sp = scipy.sparse.coo_matrix((np.ones(len(X)), (np.asarray(X), np.asarray(Y))), shape=(sizeXY, sizeXY))
 	XY = temp_sp.tocsc()
 
 	return counts_X, counts_Y, XY, unique_X, unique_Y
