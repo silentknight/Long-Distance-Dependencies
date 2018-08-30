@@ -74,6 +74,7 @@ class MutualInformation(object):
 		d = 1
 
 		print("Average String Length: ", int(corpus.sequentialData.averageLength))
+		print("Total String Length: ", int(corpus.sequentialData.totalLength))
 
 		# Check if already processing is done or new process ?
 		if(os.path.exists(self.filename)):

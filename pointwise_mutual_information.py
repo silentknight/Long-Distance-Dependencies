@@ -71,6 +71,7 @@ class PointwiseMutualInformation(object):
 	def calculate_PMI(self):
 		d = 1
 		print("Average String Length: ", int(corpus.sequentialData.averageLength))
+		print("Total String Length: ", int(corpus.sequentialData.totalLength))
 
 		try:
 			d_num = []
