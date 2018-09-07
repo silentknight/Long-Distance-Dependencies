@@ -42,3 +42,4 @@ test*
 *.save
 paper_related/
 pmi_data/
+mi_data/
