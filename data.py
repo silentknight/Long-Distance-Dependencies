@@ -163,7 +163,4 @@ class Corpus(object):
 		data = f.read()
 		f.close()
 		mobility_data = json.loads(data)
-
-		print set(mobility_data)
-
 		self.tokenize_strings(mobility_data)

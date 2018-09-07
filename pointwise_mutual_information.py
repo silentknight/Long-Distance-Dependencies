@@ -41,13 +41,7 @@ class myThread(threading.Thread):
 			P_X = Ni_X.astype(np.double)/np.sum(Ni_X).astype(np.double)
 			P_Y = Ni_Y.astype(np.double)/np.sum(Ni_Y).astype(np.double)
 			P_XY = P_XY.tocoo()
-
-			print Ni_X
-			print P_X
-			print np.sum(Ni_X)
-
 			pmi_data = lddCalc.getStandardPMI(P_XY.data, np.uint64(P_XY.row), np.uint64(P_XY.col), P_X, P_Y, np.uint64(P_XY.data.size), np.uint64(P_X.size), np.uint64(P_Y.size), self.log_type)
-
 			self.pmi = sp.coo_matrix((pmi_data, (P_XY.row, P_XY.col)), shape=P_XY.shape).tocsr()
 			self.Ni_X = Ni_X
 			self.Ni_Y = Ni_Y
