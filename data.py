@@ -84,17 +84,15 @@ class Corpus(object):
 		elif path == "dataset/foma/":
 			print("foma dataset")
 			self.text = self.tokenize_file(os.path.join(path, 'Data_SP2_20_v26.dat'))
-
 			# dataset = os.path.join(path, 'Original_Data/SP/SP8')
 			# self.process_foma(dataset)
-
 		elif path == "dataset/music/":
 			dataset = os.path.join(path, 'tunes.json')
 			self.process_music(dataset)
 		elif path== "dataset/mobility/":
 			# dataset = os.path.join(path, 'taxi_3557_1_grids')
 			# self.tokenize_file(dataset)
-			dataset = os.path.join(path, 'user_grids.txt')
+			dataset = os.path.join(path, '5_clean.txt')
 			self.process_mobility(dataset)
 		elif path== "dataset/mnist_data/":
 			dataset = os.path.join(path, 'mnist_data_un.dat')
@@ -165,6 +163,7 @@ class Corpus(object):
 		data = f.read()
 		f.close()
 		mobility_data = json.loads(data)
-		print mobility_data
+
+		print set(mobility_data)
+
 		self.tokenize_strings(mobility_data)
-		os.exit()
