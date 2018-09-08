@@ -13,8 +13,6 @@ import scipy.sparse as sp
 class myThread(threading.Thread):
 	def __init__(self, d, overlap, log_type, method):
 		self.d = d
-		self.Xi = 0
-		self.Yi = 0
 		self.Ni_X = 0
 		self.Ni_Y = 0
 		self.Ni_XY = 0
@@ -27,8 +25,9 @@ class myThread(threading.Thread):
 
 	def run(self):
 		Ni_X, Ni_Y, Ni_XY, self.Xi, self.Yi = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)
+
 		try:
-			if Ni_X == 0 and Ni_Y == 0 and Ni_XY == 0:
+			if Ni_X.nnz == 0 and Ni_Y.nnz == 0 and Ni_XY.nnz == 0:
 				self.complete = True
 				exit()
 		except ValueError:
@@ -37,12 +36,12 @@ class myThread(threading.Thread):
 		log = lambda val,base: np.log(val) if base==0 else np.log2(val)
 
 		if self.method == "standard":
-			P_XY = Ni_XY.astype(np.double)/np.sum(Ni_XY).astype(np.double)
-			P_X = Ni_X.astype(np.double)/np.sum(Ni_X).astype(np.double)
-			P_Y = Ni_Y.astype(np.double)/np.sum(Ni_Y).astype(np.double)
+			P_XY = Ni_XY/np.sum(Ni_XY)
+			P_X = (Ni_X/np.sum(Ni_X)).toarray()[0]
+			P_Y = (Ni_Y/np.sum(Ni_Y)).toarray()[0]
 			P_XY = P_XY.tocoo()
 			pmi_data = lddCalc.getStandardPMI(P_XY.data, np.uint64(P_XY.row), np.uint64(P_XY.col), P_X, P_Y, np.uint64(P_XY.data.size), np.uint64(P_X.size), np.uint64(P_Y.size), self.log_type)
-			self.pmi = sp.coo_matrix((pmi_data, (P_XY.row, P_XY.col)), shape=P_XY.shape).tocsr()
+			self.pmi = sp.coo_matrix((pmi_data, (P_XY.row, P_XY.col)), shape=P_XY.shape).tocsc()
 			self.Ni_X = Ni_X
 			self.Ni_Y = Ni_Y
 			self.Ni_XY = Ni_XY
@@ -109,17 +108,15 @@ class PointwiseMutualInformation(object):
 
 				for i in range(self.no_of_threads):
 					thread[i].join()
-					s_Ni_XY = sp.csc_matrix(thread[i].Ni_XY)
-					s_pmi = sp.csc_matrix(thread[i].pmi)
 					np.savez(self.directory+"/np/"+str(d), thread[i].Xi, thread[i].Yi, thread[i].Ni_X, thread[i].Ni_Y)
-					sp.save_npz(self.directory+"/Ni_XY/"+str(d), s_Ni_XY)
-					sp.save_npz(self.directory+"/pmi/"+str(d), s_pmi)
+					sp.save_npz(self.directory+"/Ni_XY/"+str(d), thread[i].Ni_XY)
+					sp.save_npz(self.directory+"/pmi/"+str(d), thread[i].pmi)
 
 					print(d)
 
 				d += self.no_of_threads
 
 		except KeyboardInterrupt:
-			print("Processed upto: "+str(d-1))
+			print("Processed upto: "+str(d))
 
 		return 100

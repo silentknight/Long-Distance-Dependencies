@@ -27,24 +27,27 @@ class myThread(threading.Thread):
 		Ni_X, Ni_Y, Ni_XY, u_X, u_Y = lddCalc.getJointRV(dataArray, lineLengthList, totalLength, self.d, self.overlap)
 
 		try:
-			if Ni_X == 0 and Ni_Y == 0 and Ni_XY == 0:
+			if Ni_X.nnz == 0 and Ni_Y.nnz == 0 and Ni_XY.nnz == 0:
 				self.complete = True
 				exit()
 		except ValueError:
 			pass
 
+
 		log = lambda val,base: np.log(val) if base==0 else np.log2(val)
+
+		Ni_X = Ni_X.data
+		Ni_Y = Ni_Y.data
+		Ni_XY = Ni_XY.data
 
 		if self.method == "grassberger":
 			self.Hx = log(np.sum(Ni_X),self.log_type)-np.sum(Ni_X*spec.digamma(Ni_X))/np.sum(Ni_X)
 			self.Hy = log(np.sum(Ni_Y),self.log_type)-np.sum(Ni_Y*spec.digamma(Ni_Y))/np.sum(Ni_Y)
-			Ni_XY = Ni_XY.tocsr().data
 			self.Hxy = log(np.sum(Ni_XY),self.log_type)-np.sum(Ni_XY*spec.digamma(Ni_XY))/np.sum(Ni_XY)
 			self.mi = self.Hx+self.Hy-self.Hxy
 		elif self.method == "standard":
 			self.Hx = -1*np.sum(Ni_X/np.sum(Ni_X)*log(Ni_X/np.sum(Ni_X),self.log_type))
 			self.Hy = -1*np.sum(Ni_Y/np.sum(Ni_Y)*log(Ni_Y/np.sum(Ni_Y),self.log_type))
-			Ni_XY = Ni_XY.tocsr().data
 			self.Hxy = -1*np.sum(Ni_XY/np.sum(Ni_XY)*log(Ni_XY/np.sum(Ni_XY),self.log_type))
 			self.mi = self.Hx+self.Hy-self.Hxy
 
@@ -97,10 +100,14 @@ class MutualInformation(object):
 						Hxy = np.append(Hxy,np.zeros(1))
 						Hxy[int(temp[1])-1] = float(temp1[3])
 						d = int(temp[1])+1
+		else:
+			print("File does not exist to load previous data")
 
 		end = False
 		f = open(self.filename,"w")
 		f.write("data: "+corpus.datainfo+"\n")
+		for i in range(len(mi)):
+			f.write("d:"+str(i+1)+":"+str(mi[i])+","+str(Hx[i])+","+str(Hy[i])+","+str(Hxy[i])+"\n")
 		
 		try:
 			max_distance = totalLength
@@ -152,18 +159,7 @@ class MutualInformation(object):
 				d += self.no_of_threads
 
 		except KeyboardInterrupt:
-			for i in range(self.no_of_threads):
-				if mi[len(mi)-1]==0:
-					mi = np.delete(mi,len(mi)-1)
-					Hx = np.delete(Hx,len(Hx)-1)
-					Hy = np.delete(Hy,len(Hy)-1)
-					Hxy = np.delete(Hxy,len(Hxy)-1)
-
-			f = open(self.filename,"w")
-			f.write("data: "+corpus.datainfo+"\n")
-			for i in range(len(mi)):
-				f.write("d:"+str(i+1)+":"+str(mi[i])+","+str(Hx[i])+","+str(Hy[i])+","+str(Hxy[i])+"\n")
-			f.close()
+			print("Processed upto: "+str(d-1))
 
 		f.close()
 

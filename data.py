@@ -9,6 +9,7 @@ import gzip
 import pickle
 
 
+# Save this function in a file
 class Dictionary(object):
 	def __init__(self):
 		self.word2idx = {}
@@ -16,7 +17,9 @@ class Dictionary(object):
 		self.counter = Counter()
 		self.total = 0
 
+	# Cythoniza this function
 	def add_word(self, word):
+		word = str(word)
 		if word not in self.word2idx:
 			self.idx2word.append(word)
 			self.word2idx[word] = len(self.idx2word) - 1
@@ -32,6 +35,7 @@ class Dictionary(object):
 		return len(self.idx2word)
 
 
+# Save this function in a file
 class SequentialData(object):
 	def __init__(self):
 		self.__wordLine = []
@@ -40,9 +44,11 @@ class SequentialData(object):
 		self.averageLength = 0
 		self.totalLength = 0
 
+	# Cythoniza this function
 	def add_to_list(self, wordID):
 		self.__wordLine.append(wordID)
 
+	# Cythoniza this function
 	def add_data(self):
 		self.dataArray = self.dataArray + self.__wordLine
 		self.averageLength = (self.averageLength * len(self.wordCountList) + len(self.__wordLine)) / (len(self.wordCountList) + 1)
@@ -92,7 +98,7 @@ class Corpus(object):
 		elif path== "dataset/mobility/":
 			# dataset = os.path.join(path, 'taxi_3557_1_grids')
 			# self.tokenize_file(dataset)
-			dataset = os.path.join(path, '5_clean.txt')
+			dataset = os.path.join(path, '10_clean.txt')
 			self.process_mobility(dataset)
 		elif path== "dataset/mnist_data/":
 			dataset = os.path.join(path, 'mnist_data_un.dat')

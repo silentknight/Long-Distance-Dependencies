@@ -21,10 +21,12 @@ cpdef getJointRV(dataArray, unsigned long[:] lineLengthList, int totalLength, in
 
 	for i in range(nLines):
 		steps = lineLengthList[i]/d
-		last = steps*d
+		# last = steps*d
 		if steps > 1:
-			array.extend(X,dataArray[index:index+last-d])
-			array.extend(Y,dataArray[index+d:index+last])
+			array.extend(X,dataArray[index:index+lineLengthList[i]-d])
+			array.extend(Y,dataArray[index+d:index+lineLengthList[i]])
+			# array.extend(X,dataArray[index:index+last-d])
+			# array.extend(Y,dataArray[index+d:index+last])
 			index+=lineLengthList[i]
 
 	if len(X) == 0 or len(Y) == 0:
@@ -33,10 +35,10 @@ cpdef getJointRV(dataArray, unsigned long[:] lineLengthList, int totalLength, in
 	unique_X, counts_X = np.unique(X, return_counts=True)
 	unique_Y, counts_Y = np.unique(Y, return_counts=True)
 
-	nuXi = len(unique_X)
-	nuYi = len(unique_Y)
+	counts_X = scipy.sparse.coo_matrix((counts_X, (np.zeros(len(unique_X)), unique_X)), shape=(1,max(unique_X)+1), dtype=np.float64).tocsc()
+	counts_Y = scipy.sparse.coo_matrix((counts_Y, (np.zeros(len(unique_Y)), unique_Y)), shape=(1,max(unique_Y)+1), dtype=np.float64).tocsc()
 
-	temp_sp = scipy.sparse.coo_matrix((np.ones(len(X)), (np.asarray(X), np.asarray(Y))), shape=(max(X)+1, max(Y)+1))
+	temp_sp = scipy.sparse.coo_matrix((np.ones(len(X)), (np.asarray(X), np.asarray(Y))), shape=(max(X)+1, max(Y)+1), dtype=np.float64)
 	XY = temp_sp.tocsc()
 
 	return counts_X, counts_Y, XY, unique_X, unique_Y
@@ -61,7 +63,6 @@ cpdef getStandardPMI(P_XY_data, P_XY_row, P_XY_col, PX, PY, unsigned long dataLe
 
 	for i in range(dataLen):
 		denominator = px[row[i]]*py[col[i]]
-
 		if base == 0:
 			temp_pmi[i] = log(data[i]/denominator)
 		elif base == 1:

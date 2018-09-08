@@ -106,9 +106,7 @@ try:
 		Ni_X = pmi_data['arr_2']
 		Ni_Y = pmi_data['arr_3']
 		Ni_XY = scipy.sparse.load_npz(args.path+"/Ni_XY/"+file)
-		# Ni_XY = Ni_XY.todense()
 		pmi = scipy.sparse.load_npz(args.path+"/pmi/"+file)
-		# pmi = pmi.todense()
 
 		if args.char2 == None:
 			if pmi_row == []:
