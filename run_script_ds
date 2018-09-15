@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+
+# All PMI for Wikitext 2
+python run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 1 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath wiki2_words_standard_logx
+echo "Wiki 2 PMI words standard logx complete"
+python run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 1 --clear 1 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath wiki2_words_standard_log2
+echo "Wiki 2 PMI words standard log2 complete"
+python run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 1 --cutoff 2000 --top_dir /mnt/data/ --datafilepath wiki2_letters_standard_logx
+echo "Wiki 2 PMI letters standard logx complete"
+python run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 1 --clear 1 --cutoff 2000 --top_dir /mnt/data/ --datafilepath wiki2_letters_standard_log2
+echo "Wiki 2 PMI letters standard log2 complete"
+
+# All PMI Penn Tree Banks
+python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 1 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath penn_tree_words_standard_logx
+echo "Penn PMI words standard logx complete"
+python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 1 --clear 1 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath penn_tree_words_standard_log2
+echo "Penn PMI words standard log2 complete"
+python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 1 --cutoff 2000 --top_dir /mnt/data/ --datafilepath penn_tree_letters_standard_logx
+echo "Penn PMI letters standard logx complete"
+python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 1 --clear 1 --cutoff 2000 --top_dir /mnt/data/ --datafilepath penn_tree_letters_standard_log2
+echo "Penn PMI letters standard log2 complete"
+
+# All PMI text8
+python run_all.py --data dataset/hutter-text/text8 --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 1 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath text8_words_standard_logx
+echo "Text8 PMI words standard logx complete"
+python run_all.py --data dataset/hutter-text/text8 --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 1 --clear 1 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath text8_words_standard_log2
+echo "Text8 PMI words standard log2 complete"
+python run_all.py --data dataset/hutter-text/text8 --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 1 --cutoff 2000 --top_dir /mnt/data/ --datafilepath text8_letters_standard_logx
+echo "Text8 PMI letters standard logx complete"
+python run_all.py --data dataset/hutter-text/text8 --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 1 --clear 1 --cutoff 2000 --top_dir /mnt/data/ --datafilepath text8_letters_standard_log2
+echo "Text8 PMI letters standard log2 complete"
+
+# All PMI enwik8
+python run_all.py --data dataset/hutter-text/enwik8 --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 1 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath enwik8_words_standard_logx
+echo "Enwik8 PMI words standard logx complete"
+python run_all.py --data dataset/hutter-text/enwik8 --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 1 --clear 1 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath enwik8_words_standard_log2
+echo "Enwik8 PMI words standard log2 complete"
+python run_all.py --data dataset/hutter-text/enwik8 --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 1 --cutoff 2000 --top_dir /mnt/data/ --datafilepath enwik8_letters_standard_logx
+echo "Enwik8 PMI letters standard logx complete"
+python run_all.py --data dataset/hutter-text/enwik8 --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 1 --clear 1 --cutoff 2000 --top_dir /mnt/data/ --datafilepath enwik8_letters_standard_log2
+echo "Enwik8 PMI letters standard log2 complete"
+
+# All PMI Wikitext 103
+python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 1 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath wiki103_words_standard_logx
+echo "Wiki 103 PMI words standard logx complete"
+python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 1 --clear 1 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath wiki103_words_standard_log2
+echo "Wiki 103 PMI words standard log2 complete"
+python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 1 --cutoff 2000 --top_dir /mnt/data/ --datafilepath wiki103_letters_standard_logx
+echo "Wiki 103 PMI letters standard logx complete"
+python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 1 --clear 1 --cutoff 2000 --top_dir /mnt/data/ --datafilepath wiki103_letters_standard_log2
+echo "Wiki 103 PMI letters standard log2 complete"
+
+# # -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# # All MI for Wikitext 2
+# python run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 0 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/wiki2_words_standard_logx
+# echo "Wiki 2 MI words standard logx complete"
+# python run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 0 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/wiki2_words_standard_log2
+# echo "Wiki 2 MI words standard log2 complete"
+# python run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 0 --cutoff 2000 --plot 0 --datafilepath mi_data/wiki2_letters_standard_logx
+# echo "Wiki 2 MI letters standard logx complete"
+# python run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 0 --cutoff 2000 --plot 0 --datafilepath mi_data/wiki2_letters_standard_log2
+# echo "Wiki 2 MI letters standard log2 complete"
+# python run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/wiki2_words_grassberger_logx
+# echo "Wiki 2 MI words grassberger logx complete"
+# python run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 0 --cutoff 2000 --plot 0 --datafilepath mi_data/wiki2_letters_grassberger_logx
+# echo "Wiki 2 MI letters grassberger logx complete"
+
+# # All MI Penn Tree Banks
+# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/penn_tree_words_standard_logx
+# echo "Penn MI words standard logx complete"
+# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/penn_tree_words_standard_log2
+# echo "Penn MI words standard log2 complete"
+# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/penn_tree_letters_standard_logx
+# echo "Penn MI letters standard logx complete"
+# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/penn_tree_letters_standard_log2
+# echo "Penn MI letters standard log2 complete"
+# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/penn_tree_words_grassberger_logx
+# echo "Penn MI words grassberger logx complete"
+# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/penn_tree_letters_grassberger_logx
+# echo "Penn MI letters grassberger logx complete"
+
+# # All MI Wikitext 103
+# python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/wiki103_words_standard_logx
+# echo "Wiki 103 MI words standard logx complete"
+# python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/wiki103_words_standard_log2
+# echo "Wiki 103 MI words standard log2 complete"
+# python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/wiki103_letters_standard_logx
+# echo "Wiki 103 MI letters standard logx complete"
+# python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/wiki103_letters_standard_log2
+# echo "Wiki 103 MI letters standard log2 complete"
+# python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/wiki103_words_grassberger_logx
+# echo "Wiki 103 MI words grassberger logx complete"
+# python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/wiki103_letters_grassberger_logx
+# echo "Wiki 103 MI letters grassberger logx complete"
+
+# # All MI text8
+# python run_all.py --data dataset/hutter-text/text8 --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/text8_words_standard_logx
+# echo "Text8 MI words standard logx complete"
+# python run_all.py --data dataset/hutter-text/text8 --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/text8_words_standard_log2
+# echo "Text8 MI words standard log2 complete"
+# python run_all.py --data dataset/hutter-text/text8 --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/text8_letters_standard_logx
+# echo "Text8 MI letters standard logx complete"
+# python run_all.py --data dataset/hutter-text/text8 --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/text8_letters_standard_log2
+# echo "Text8 MI letters standard log2 complete"
+# python run_all.py --data dataset/hutter-text/text8 --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/text8_words_grassberger_logx
+# echo "Text8 MI words grassberger logx complete"
+# python run_all.py --data dataset/hutter-text/text8 --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/text8_letters_grassberger_logx
+# echo "Text8 MI letters grassberger logx complete"
+
+# # All MI enwik8
+# python run_all.py --data dataset/hutter-text/enwik8 --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/enwik8_words_standard_logx
+# echo "Enwik8 MI words standard logx complete"
+# python run_all.py --data dataset/hutter-text/enwik8 --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/enwik8_words_standard_log2
+# echo "Enwik8 MI words standard log2 complete"
+# python run_all.py --data dataset/hutter-text/enwik8 --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/enwik8_letters_standard_logx
+# echo "Enwik8 MI letters standard logx complete"
+# python run_all.py --data dataset/hutter-text/enwik8 --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/enwik8_letters_standard_log2
+# echo "Enwik8 MI letters standard log2 complete"
+# python run_all.py --data dataset/hutter-text/enwik8 --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/enwik8_words_grassberger_logx
+# echo "Enwik8 MI words grassberger logx complete"
+# python run_all.py --data dataset/hutter-text/enwik8 --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/enwik8_letters_grassberger_logx
+# echo "Enwik8 MI letters grassberger logx complete"
