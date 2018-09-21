@@ -86,7 +86,7 @@ class Corpus(object):
 			self.text = self.tokenize_file(path)
 		elif path == "dataset/hutter-text/enwik8":
 			print("enwik8")
-			self.text = self.tokenize_file(path)	
+			self.text = self.tokenize_file(path)
 		elif path == "dataset/foma/":
 			print("foma dataset")
 			self.text = self.tokenize_file(os.path.join(path, 'Data_SP2_20_v26.dat'))
@@ -108,7 +108,7 @@ class Corpus(object):
 			self.tokenize_file(dataset)
 
 		elif path== "dataset/paper_dataset/":
-			dataset = self.tokenize_file(os.path.join(path, 'test'))
+			dataset = self.tokenize_file(os.path.join(path, 'wikitext-m/cleaned_train_103'))
 		else:
 			print("Please check the dataset path supplied. No such path found")
 			sys.exit(0)
