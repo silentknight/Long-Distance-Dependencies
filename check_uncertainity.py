@@ -15,8 +15,7 @@ import json
 parser = argparse.ArgumentParser(description='Pointwise Mutual Information Processing file.')
 parser.add_argument('--pmi_path', type=str, default='pmi_data/log_data', help='Path of the pmi folder')
 parser.add_argument('--subseq_path', type=str, default='pmi_data/log_data', help='Path of the subsequences')
-parser.add_argument('--logscale', type=int, default=1, help='Plot on Log Scale or normal scale. 1: Log Scale; 0: Normal Scale')
-parser.add_argument('--normalize', type=str, default='n', help='Normalize values')
+parser.add_argument('--plot', type=int, default=1, help='Display plot. 1: Display; 0: Hide')
 args = parser.parse_args()
 
 ####################################################################################################
@@ -64,22 +63,25 @@ for subsequence in subsequences:
 			pmi_vector = np.append(pmi_vector, pmi[np.where(Xi==char1_ID)[0][0],np.where(Yi==char2_ID)[0][0]])
 			Ni_XY_vector = np.append(Ni_XY_vector, Ni_XY[np.where(Xi==char1_ID)[0][0],np.where(Yi==char2_ID)[0][0]])
 
-	print(pmi_vector)
-	print(Ni_XY_vector)
+	print('The accumulated value = %f' % np.sum(pmi_vector))
+	print('The weighted accumulated value = %f' % (np.sum(pmi_vector)/pmi_vector.size))
+	print('The vector is %s' % pmi_vector)
+	print('-' * 100)
 
-	if not len(pmi_vector) == 0:
-		ax = plt.subplot(211)
-		if len(pmi_vector) == 1:
-			plt.bar(np.arange(len(pmi_vector)),pmi_vector)
-		elif len(pmi_vector) > 1:
-			plt.plot(pmi_vector)
-		ax.grid(True)
+	if args.plot == 1:
+		if not len(pmi_vector) == 0:
+			ax = plt.subplot(211)
+			if len(pmi_vector) == 1:
+				plt.bar(np.arange(len(pmi_vector)),pmi_vector)
+			elif len(pmi_vector) > 1:
+				plt.plot(pmi_vector)
+			ax.grid(True)
 
-		ax = plt.subplot(212)
-		if len(Ni_XY_vector) == 1:
-			plt.bar(np.arange(len(Ni_XY_vector)),Ni_XY_vector)
-		elif len(Ni_XY_vector) > 1:
-			plt.plot(Ni_XY_vector)
-		ax.grid(True)
+			ax = plt.subplot(212)
+			if len(Ni_XY_vector) == 1:
+				plt.bar(np.arange(len(Ni_XY_vector)),Ni_XY_vector)
+			elif len(Ni_XY_vector) > 1:
+				plt.plot(Ni_XY_vector)
+			ax.grid(True)
 
-		plt.show()
+			plt.show()
