@@ -36,13 +36,15 @@ except:
 	sys.exit()
 
 for subsequence in subsequences:
-	
+
+	xticks_labels = []
 	pmi_vector = np.empty((0,1))
 	Ni_XY_vector = np.empty((0,1))
 	
 	for i in range(len(subsequence)):
 		for j in range(i+1,len(subsequence)):
 			d = abs(i-j)
+			xticks_labels.append(str(i)+','+str(j))
 
 			char1_ID = int(symbols[str(subsequence[i])])
 			char2_ID = int(symbols[str(subsequence[j])])
@@ -75,6 +77,7 @@ for subsequence in subsequences:
 				plt.bar(np.arange(len(pmi_vector)),pmi_vector)
 			elif len(pmi_vector) > 1:
 				plt.plot(pmi_vector)
+			plt.xticks(np.arange(len(xticks_labels)), xticks_labels)
 			ax.grid(True)
 
 			ax = plt.subplot(212)
@@ -82,6 +85,7 @@ for subsequence in subsequences:
 				plt.bar(np.arange(len(Ni_XY_vector)),Ni_XY_vector)
 			elif len(Ni_XY_vector) > 1:
 				plt.plot(Ni_XY_vector)
+			plt.xticks(np.arange(len(xticks_labels)), xticks_labels)
 			ax.grid(True)
 
 			plt.show()
