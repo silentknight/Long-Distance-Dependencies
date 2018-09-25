@@ -73,18 +73,12 @@ for subsequence in subsequences:
 	if args.plot == 1:
 		if not len(pmi_vector) == 0:
 			ax = plt.subplot(211)
-			if len(pmi_vector) == 1:
-				plt.bar(np.arange(len(pmi_vector)),pmi_vector)
-			elif len(pmi_vector) > 1:
-				plt.plot(pmi_vector)
+			plt.bar(np.arange(len(pmi_vector)),pmi_vector)
 			plt.xticks(np.arange(len(xticks_labels)), xticks_labels)
 			ax.grid(True)
 
 			ax = plt.subplot(212)
-			if len(Ni_XY_vector) == 1:
-				plt.bar(np.arange(len(Ni_XY_vector)),Ni_XY_vector)
-			elif len(Ni_XY_vector) > 1:
-				plt.plot(Ni_XY_vector)
+			plt.bar(np.arange(len(Ni_XY_vector)),Ni_XY_vector)
 			plt.xticks(np.arange(len(xticks_labels)), xticks_labels)
 			ax.grid(True)
 
