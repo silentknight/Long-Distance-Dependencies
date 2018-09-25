@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 # System libs
+import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 import numpy as np
@@ -70,16 +71,28 @@ for subsequence in subsequences:
 	print('The vector is %s' % pmi_vector)
 	print('-' * 100)
 
-	if args.plot == 1:
-		if not len(pmi_vector) == 0:
-			ax = plt.subplot(211)
-			plt.bar(np.arange(len(pmi_vector)),pmi_vector)
-			plt.xticks(np.arange(len(xticks_labels)), xticks_labels)
-			ax.grid(True)
+	with plt.style.context(('seaborn')):
+		if args.plot == 1:
+			if not len(pmi_vector) == 0:
+				ax = plt.subplot(211)
+				plt.bar(np.arange(len(pmi_vector)),pmi_vector)
+				plt.xticks(np.arange(len(xticks_labels)), xticks_labels)
+				plt.tick_params(labelsize='large', width=3)
+				plt.grid(True)
+				plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
+				plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
+				ax.set_title("PMI values")
+				# ax.set_xlabel('Elements at indexes (i,j)', fontsize=15)
+				ax.set_ylabel('PMI in nats', fontsize=15)
 
-			ax = plt.subplot(212)
-			plt.bar(np.arange(len(Ni_XY_vector)),Ni_XY_vector)
-			plt.xticks(np.arange(len(xticks_labels)), xticks_labels)
-			ax.grid(True)
+				ax = plt.subplot(212)
+				plt.bar(np.arange(len(Ni_XY_vector)),Ni_XY_vector)
+				plt.xticks(np.arange(len(xticks_labels)), xticks_labels)
+				ax.grid(True)
+				plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
+				plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
+				ax.set_title("Ni XY")
+				ax.set_xlabel('Elements at indexes (i,j)', fontsize=15)
+				ax.set_ylabel('Frequency of occurence', fontsize=15)
 
-			plt.show()
+				plt.show()
