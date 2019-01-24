@@ -101,14 +101,17 @@ class Corpus(object):
 			dataset = os.path.join(path, '10_clean.txt')
 			self.process_mobility(dataset)
 		elif path== "dataset/mnist_data/":
-			dataset = os.path.join(path, 'mnist_data_un.dat')
+			dataset = os.path.join(path, 'mnist_data.dat')
 			self.tokenize_file(dataset)
 		elif path== "dataset/copy_add/":
 			dataset = os.path.join(path, 'copy.dat')
 			self.tokenize_file(dataset)
 
 		elif path== "dataset/paper_dataset/":
-			dataset = self.tokenize_file(os.path.join(path, 'wikitext-m/cleaned_train_103'))
+			dataset = self.tokenize_file(os.path.join(path, 'wikitext-m/cleaned_train_2'))
+
+		elif path== "dataset/m-wikitext-2/":
+			dataset = self.tokenize_file(os.path.join(path, 'train'))
 		else:
 			print("Please check the dataset path supplied. No such path found")
 			sys.exit(0)

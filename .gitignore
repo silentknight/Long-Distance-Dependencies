@@ -30,6 +30,7 @@ dataset/mobility/.DS_STORE
 dataset/mobility/taxi_log_2008_by_id
 dataset/billion_words
 dataset/paper_dataset
+dataset/m-wikitext-2
 __pycache__
 *.pyc
 *.dat
