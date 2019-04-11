@@ -16,6 +16,10 @@ dataset/foma/Original_Data
 dataset/foma/redbutton
 dataset/foma/template.txt
 dataset/mnist_data/mnist.pkl.gz
+dataset/mnist_data/mnist_data.dat
+dataset/mnist_data/mnist_data_un.dat
+dataset/mnist_data/mnist_data_per_1.dat
+dataset/mnist_data/mnist_data_per_2.dat
 dataset/penn-tree-bank/ptb
 dataset/penn-tree-bank/treebank
 dataset/wiki/old
@@ -33,7 +37,6 @@ dataset/paper_dataset
 dataset/m-wikitext-2
 __pycache__
 *.pyc
-*.dat
 trash
 build
 test*
