@@ -12,6 +12,7 @@ parser.add_argument('--start', type=int, default=1, help='Value of D (Dependency
 parser.add_argument('--end', type=str, default='end', help='Value of D (Dependency distance) till end for plotting. Default is \'end\' (all the way will the end).')
 parser.add_argument('--logscale', type=int, default=1, help='Plot on Log Scale or normal scale. 1: Log Scale; 0: Normal Scale')
 parser.add_argument('--normalize', type=str, default='n', help='normalize values')
+parser.add_argument('--savepath', type=str, default='ldd_plot', help='path to save the plot (no extensions)')
 args = parser.parse_args()
 	
 try:
@@ -64,6 +65,13 @@ if temp[0] == "data:":
 else:
 	print("Not a valid file")
 
+mi = mi[start:end]
+Hx = Hx[start:end]
+Hy = Hy[start:end]
+Hxy = Hxy[start:end]
+
+print(len(mi))
+
 if args.normalize == "y" or args.normalize == "Y":
 	x = mi/np.amax(mi)
 else:
@@ -97,4 +105,5 @@ elif args.logscale == 0:
 	plt.plot(Hy)
 plt.grid(True)
 
+plt.savefig(args.savepath+'.png')
 plt.show()

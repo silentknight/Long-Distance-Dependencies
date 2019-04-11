@@ -101,7 +101,7 @@ class Corpus(object):
 			dataset = os.path.join(path, '10_clean.txt')
 			self.process_mobility(dataset)
 		elif path== "dataset/mnist_data/":
-			dataset = os.path.join(path, 'mnist_data_un.dat')
+			dataset = os.path.join(path, 'mnist_data_per_1.dat')
 			self.tokenize_file(dataset)
 		elif path== "dataset/copy_add/":
 			dataset = os.path.join(path, 'copy.dat')
