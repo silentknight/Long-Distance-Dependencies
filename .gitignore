@@ -39,7 +39,6 @@ __pycache__
 *.pyc
 trash
 build
-test*
 *.c
 *.so
 *.html
