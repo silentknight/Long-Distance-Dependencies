@@ -24,8 +24,10 @@ dataset/penn-tree-bank/ptb
 dataset/penn-tree-bank/treebank
 dataset/wiki/old
 dataset/wiki/wikitext-2
+dataset/wiki/wikitext-2C
 dataset/wiki/wikitext-2-raw
 dataset/wiki/wikitext-103
+dataset/wiki/wikitext-103C
 dataset/wiki/wikitext-103-raw
 dataset/hutter-text/enwik8
 dataset/hutter-text/enwik9
