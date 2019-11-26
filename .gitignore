@@ -47,5 +47,4 @@ build
 *.png
 *.swp
 *.save
-paper_related/
 pmi_data/
