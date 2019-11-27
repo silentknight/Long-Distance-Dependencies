@@ -3,6 +3,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import spline
+from astropy.modeling import models
+from scipy import stats
 
 # filenames = ["enwik8_letters_","penn_tree_letters_","text8_letters_","wiki2_letters_","wiki103_letters_"]
 filenames = ["penn_tree_words_","text8_words_","text8_subset_words_","text8_wo_rare_words_","text8_wo_rare_subset_words_","wiki2_words_","wiki2_cleaned_words_","wiki103_words_","wiki103_cleaned_words_"]
@@ -42,27 +44,30 @@ for filename in filenames:
 
     all_mi.append(mi.tolist())
 
-index = 0
-vals = all_mi[index]
-plt.loglog(np.arange(1,len(vals)+1), vals)
+break_point = 4
+dataset = 6
 
-end1 = 4
-vals = all_mi[index][0:end1]
-plt.loglog(np.arange(1,len(vals)+1), vals[0]*np.power(np.linspace(1,len(vals)+1,len(vals)),-0.46))
-
-start2 = 8
-vals = all_mi[index][start2:]
-plt.loglog(np.arange(1,len(vals)+1), vals[0]*np.power(np.linspace(1,len(vals)+1,len(vals)),-0.008))
-
-plt.tick_params(labelsize='large', width=3)
-plt.grid(True)
+x = np.linspace(1, 1000, 1000)
+f = models.SmoothlyBrokenPowerLaw1D(amplitude=all_mi[dataset][break_point-1], x_break=break_point, alpha_1=0.361, alpha_2=0.0035)
+f.delta = 0.26
+fit_sample = f(x)
 
 # p1, p2, p3, p4, p5 = plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], np.arange(1,len(all_mi[1])+1), all_mi[1], np.arange(1,len(all_mi[2])+1), all_mi[2], np.arange(1,len(all_mi[3])+1), all_mi[3], np.arange(1,len(all_mi[4])+1), all_mi[4])
-#p1, p2, p3, p4, p5, p6, p7, p8, p9 = plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], np.arange(1,len(all_mi[1])+1), all_mi[1], np.arange(1,len(all_mi[2])+1), all_mi[2], np.arange(1,len(all_mi[3])+1), all_mi[3],np.arange(1,len(all_mi[4])+1), all_mi[4], np.arange(1,len(all_mi[5])+1), all_mi[5], np.arange(1,len(all_mi[6])+1), all_mi[6], np.arange(1,len(all_mi[7])+1), all_mi[7], np.arange(1,len(all_mi[8])+1), all_mi[8])
+# p1, p2, p3, p4, p5, p6, p7, p8, p9 = plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], np.arange(1,len(all_mi[1])+1), all_mi[1], np.arange(1,len(all_mi[2])+1), all_mi[2], np.arange(1,len(all_mi[3])+1), all_mi[3],np.arange(1,len(all_mi[4])+1), all_mi[4], np.arange(1,len(all_mi[5])+1), all_mi[5], np.arange(1,len(all_mi[6])+1), all_mi[6], np.arange(1,len(all_mi[7])+1), all_mi[7], np.arange(1,len(all_mi[8])+1), all_mi[8])
+
+p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset])
+p2 = plt.loglog(x, fit_sample)
 
 ax = plt.axes()
 ax.set_xlabel('Distance', fontsize=15)
 ax.set_ylabel('Mutual Information, I(X,Y)', fontsize=15)
+
+[D, p_value] = stats.ks_2samp(all_mi[dataset], fit_sample)
+
+print("")
+print("amplitude", all_mi[dataset][break_point-1])
+print("D", D)
+print("p-value", p_value)
 
 # lgd = ax.legend((p1, p2, p3, p4, p5), ("enwik8 characters","PennTree Banks characters","text8 characters","WikiText 2 characters","WikiText 103 characters"), loc='lower left', shadow=True, fancybox=True)
 # lgd = ax.legend((p1, p2, p3, p4, p5, p6, p7, p8, p9), ("PennTree Banks words","text8 words","text8 small words","text8 w/o rare words","text8 w/o rare small words","WikiText 2 words","WikiText2 cleaned words","WikiText103 words","WikiText103 cleaned words"), loc='lower left', shadow=True, fancybox=True)
