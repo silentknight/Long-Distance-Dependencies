@@ -1,0 +1,302 @@
+Normal Wikitext 2 - Train, Test, Valid
+Normal PTB - Train, Test, Valid
+Normal Wikitext 103 - Train, Test, Valid
+Normal Text8 - Train, Test, Valid
+Modified Wikitext 2 - Test, Valid
+Combined Data - Wikitext 2, Wikitext 103, PTB, Text8 -> Already there
+
+Cutoff 500
+
+LDD, Ni -> PMI as well
+
+PTB - V=10000, L=1085779, R=0.009209977
+PTB Train - V=10000, L=929589, R=0.010757442
+PTB Test - V=6049, L=82430, R=0.073383477
+PTB Valid - V=6022, L=73760, R=0.081643167
+
+Wikitext 2 - V=33278, L=2551843, R=0.013040771
+Wikitext 2 Train - V=33278, L=2088628, R=0.015932947
+Wikitext 2 Test - V=14143, L=245569, R=0.057592774
+Wikitext 2 Valid - V=13777, L=217646, R=0.063300038
+Modified Wiki Test 1 - V=22798, L=877714, R=0.025974292
+Modified Wiki Test 2 - V=22616, L=841566, R=0.026873709
+Modified Wiki Valid 1 - V=17514, L=386597, R=0.04530299
+
+Cleaned Wikitext 2 Train - V=33011, L=1857571, R=
+Cleaned Wikitext 2 Test - V=11597, L=147017, R=
+Cleaned Wikitext 2 Valid - V=11790, L=147080, R=
+Cleaned Wikitext 2 Test 1 - V=20005, L=544467, R=
+Cleaned Wikitext 2 Test 2 - V=19832, L=525512, R=
+Cleaned Wikitext 2 Valid 1 - V=14936, L=252500, R=
+
+Wikitext 103 - V=267735, L=103690236, R=0.002582066
+Wikitext 103 Train - V=267735, L=103227021, R=0.002593652
+Wikitext 103 Test - V=19766, L=245569, R=0.080490616
+Wikitext 103 Valid - V=18891, L=217646, R=0.086796909
+
+Cleaned Wikitext 103 Train - V=266842, L=98635845, R=
+Cleaned Wikitext 103 Test - V=19150, L=229119, R=
+Cleaned Wikitext 103 Valid - V=18545, L=208177, R=
+
+Text8 - V=253855, L=17005208, R=0.014928074
+Text8 Train - V=249886, L=16490036, R=0.015153757
+Text8 Test - V=21507, L=255205, R=0.084273427
+Test8 Valid - V=20319, L=259968, R=0.07815962
+
+
+Valid PPL, Test PPL
+
+WT2-1
+
+Valid_old - 
+Test - 
+Test_M_1 - 
+Test_M_2 - 
+
+Valid_new - 
+Test - 
+Test_M_1 - 
+Test_M_2 - 
+
+
+WT2-2
+
+Valid_old - 
+Test - 
+Test_M_1 - 
+Test_M_2 - 
+
+Valid_new - 
+Test - 
+Test_M_1 - 
+Test_M_2 - 
+
+
+WT2-3
+
+Valid_old - 
+Test - 
+Test_M_1 - 
+Test_M_2 - 
+
+Valid_new - 
+Test - 
+Test_M_1 - 
+Test_M_2 - 
+
+Cleaning Wiki:
+
+Train 2
+19162
+199821
+2257
+99792
+678
+755013
+9725811
+10780437
+
+Train 103
+941818
+10127380
+109840
+4954087
+1734
+1745927
+521533332
+538360726
+
+Test 2
+2175
+23426
+350
+12603
+481
+453725
+765264
+1255018
+
+Test 2 m1
+7994
+89271
+1121
+45111
+1577
+1515111
+2822808
+4472301
+
+Test 2 m2
+7484
+79786
+726
+32081
+1508
+1457254
+2730025
+4299146
+
+Test 103
+2175
+23988
+347
+12650
+35
+32933
+1209762
+1279333
+
+Valid 2
+1919
+20077
+195
+8850
+331
+322960
+768305
+1120192
+
+Valid 2 m
+3518
+36488
+352
+16204
+655
+614553
+1310633
+1977878
+
+Valid 103
+1919
+20470
+194
+8871
+8
+5787
+1105550
+1140678
+
+AWD-LSTM
+Wiki2 Test_m1, Valid_m
+
+
+wikitext-2 Reshaped 1 test dataset
+dataset/wiki2Resample/testR1
+Size of Vocabulary: 13700
+Total Length: 186318
+Corpus loaded
+wikitext-2 Reshaped 2 test dataset
+dataset/wiki2Resample/testR2
+Size of Vocabulary: 16201
+Total Length: 249890
+Corpus loaded
+wikitext-2 Reshaped 3 test dataset
+dataset/wiki2Resample/testR3
+Size of Vocabulary: 15114
+Total Length: 219066
+Corpus loaded
+wikitext-2 Reshaped 4 test dataset
+dataset/wiki2Resample/testR4
+Size of Vocabulary: 15426
+Total Length: 238707
+Corpus loaded
+wikitext-2 Reshaped 1 train dataset
+dataset/wiki2Resample/trainR1
+Size of Vocabulary: 42270
+Total Length: 2158325
+Corpus loaded
+wikitext-2 Reshaped 2 train dataset
+dataset/wiki2Resample/trainR2
+Size of Vocabulary: 42038
+Total Length: 2096264
+Corpus loaded
+wikitext-2 Reshaped 3 train dataset
+dataset/wiki2Resample/trainR3
+Size of Vocabulary: 42388
+Total Length: 2127269
+Corpus loaded
+wikitext-2 Reshaped 4 train dataset
+dataset/wiki2Resample/trainR4
+Size of Vocabulary: 42424
+Total Length: 2126734
+Corpus loaded
+wikitext-2 Reshaped 1 valid dataset
+dataset/wiki2Resample/validR1
+Size of Vocabulary: 14722
+Total Length: 207670
+Corpus loaded
+wikitext-2 Reshaped 2 valid dataset
+dataset/wiki2Resample/validR2
+Size of Vocabulary: 14769
+Total Length: 206159
+Corpus loaded
+wikitext-2 Reshaped 3 valid dataset
+dataset/wiki2Resample/validR3
+Size of Vocabulary: 14523
+Total Length: 205978
+Corpus loaded
+wikitext-2 Reshaped 4 valid dataset
+dataset/wiki2Resample/validR4
+Size of Vocabulary: 13670
+Total Length: 186872
+Corpus loaded
+wikitext-2 Homogenous 1 test dataset
+dataset/wiki2Homogenous/testH1
+Size of Vocabulary: 22498
+Total Length: 249984
+Corpus loaded
+wikitext-2 Homogenous 2 test dataset
+dataset/wiki2Homogenous/testH2
+Size of Vocabulary: 22650
+Total Length: 253002
+Corpus loaded
+wikitext-2 Homogenous Cleaned 1 test dataset
+dataset/wiki2Homogenous/testCH1
+Size of Vocabulary: 21343
+Total Length: 218724
+Corpus loaded
+wikitext-2 Homogenous Cleaned 2 test dataset
+dataset/wiki2Homogenous/testCH2
+Size of Vocabulary: 21447
+Total Length: 224038
+Corpus loaded
+wikitext-2 Homogenous 1 train dataset
+dataset/wiki2Homogenous/trainH1
+Size of Vocabulary: 41955
+Total Length: 2092702
+Corpus loaded
+wikitext-2 Homogenous 2 train dataset
+dataset/wiki2Homogenous/trainH2
+Size of Vocabulary: 41884
+Total Length: 2085467
+Corpus loaded
+wikitext-2 Homogenous Cleaned 1 train dataset
+dataset/wiki2Homogenous/trainCH1
+Size of Vocabulary: 41260
+Total Length: 1871770
+Corpus loaded
+wikitext-2 Homogenous Cleaned 2 train dataset
+dataset/wiki2Homogenous/trainCH2
+Size of Vocabulary: 41194
+Total Length: 1865853
+Corpus loaded
+wikitext-2 Homogenous 1 valid dataset
+dataset/wiki2Homogenous/validH1
+Size of Vocabulary: 21169
+Total Length: 221511
+Corpus loaded
+wikitext-2 Homogenous 2 valid dataset
+dataset/wiki2Homogenous/validH2
+Size of Vocabulary: 21690
+Total Length: 225732
+Corpus loaded
+wikitext-2 Homogenous Cleaned 1 valid dataset
+dataset/wiki2Homogenous/validCH1
+Size of Vocabulary: 20224
+Total Length: 195689
+Corpus loaded
+wikitext-2 Homogenous Cleaned 2 valid dataset
+dataset/wiki2Homogenous/validCH2
+Size of Vocabulary: 20322
+Total Length: 196324
+Corpus loaded

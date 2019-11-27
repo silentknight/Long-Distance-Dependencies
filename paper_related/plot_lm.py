@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 
-import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import spline
 
-# filenames = ["enwik8_char","ptb_char","text8_char","wiki2_char","wiki103_char"]
-filenames = ["ptb_words","wiki2_words"]
-all_mi = []
+# filenames = ["enwik8_letters_","penn_tree_letters_","text8_letters_","wiki2_letters_","wiki103_letters_"]
+filenames = ["penn_tree_words_","text8_words_","text8_subset_words_","text8_wo_rare_words_","text8_wo_rare_subset_words_","wiki2_words_","wiki2_cleaned_words_","wiki103_words_","wiki103_cleaned_words_"]
 
+all_mi = []
 for filename in filenames:
-    f = open("../datapoints/"+filename+".log", "r")
+    f = open(filename+"grassberger_logx_mi.dat", "r")
     lines = f.readlines()
     f.close()
 
@@ -41,27 +40,31 @@ for filename in filenames:
     else:
         print("Not a valid file")
 
-    all_mi.append(mi[0:1000].tolist())
+    all_mi.append(mi.tolist())
 
-# red dashes, blue squares and green triangles
-with plt.style.context(('seaborn')):
-    # p1, p2, p3, p4, p5 = plt.loglog(np.arange(len(all_mi[0])), all_mi[0], np.arange(len(all_mi[1])), all_mi[1], np.arange(len(all_mi[2])), all_mi[2], np.arange(len(all_mi[3])), all_mi[3], np.arange(len(all_mi[4])), all_mi[4])
+index = 0
+vals = all_mi[index]
+plt.loglog(np.arange(1,len(vals)+1), vals)
 
-    xnew = np.linspace(1,len(all_mi[0])-1,len(all_mi[0])*2)
-    y_smooth = spline(np.arange(len(all_mi[0])),all_mi[0],xnew)
-    
-    p1, p2 = plt.loglog(xnew, y_smooth, np.arange(len(all_mi[1])), all_mi[1])
-    # p1, p2 = plt.loglog(np.arange(len(all_mi[0])), all_mi[0], np.arange(len(all_mi[1])), all_mi[1])
-    plt.tick_params(labelsize='large', width=3)
-    plt.grid(True)
-    plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
-    plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
+end1 = 4
+vals = all_mi[index][0:end1]
+plt.loglog(np.arange(1,len(vals)+1), vals[0]*np.power(np.linspace(1,len(vals)+1,len(vals)),-0.46))
 
-    ax = plt.axes()
-    ax.set_xlabel('Distance between words, D(X,Y)', fontsize=15)
-    ax.set_ylabel('Mutual Information, I(X,Y)', fontsize=15)
-    # lgd = ax.legend((p1, p2, p3, p4, p5), ("enwik8 characters","PennTree Banks characters","text8 characters","WikiText 2 characters","WikiText 103 characters"), loc='lower left', shadow=True, fancybox=True)
-    lgd = ax.legend((p1, p2), ("PennTree Banks Words","WikiText 2 Words"), loc='upper right', shadow=True, fancybox=True)
+start2 = 8
+vals = all_mi[index][start2:]
+plt.loglog(np.arange(1,len(vals)+1), vals[0]*np.power(np.linspace(1,len(vals)+1,len(vals)),-0.008))
 
-    # plt.savefig('lm_words', bbox_extra_artists=(lgd,), bbox_inches='tight')
-    plt.show()
+plt.tick_params(labelsize='large', width=3)
+plt.grid(True)
+
+# p1, p2, p3, p4, p5 = plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], np.arange(1,len(all_mi[1])+1), all_mi[1], np.arange(1,len(all_mi[2])+1), all_mi[2], np.arange(1,len(all_mi[3])+1), all_mi[3], np.arange(1,len(all_mi[4])+1), all_mi[4])
+#p1, p2, p3, p4, p5, p6, p7, p8, p9 = plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], np.arange(1,len(all_mi[1])+1), all_mi[1], np.arange(1,len(all_mi[2])+1), all_mi[2], np.arange(1,len(all_mi[3])+1), all_mi[3],np.arange(1,len(all_mi[4])+1), all_mi[4], np.arange(1,len(all_mi[5])+1), all_mi[5], np.arange(1,len(all_mi[6])+1), all_mi[6], np.arange(1,len(all_mi[7])+1), all_mi[7], np.arange(1,len(all_mi[8])+1), all_mi[8])
+
+ax = plt.axes()
+ax.set_xlabel('Distance', fontsize=15)
+ax.set_ylabel('Mutual Information, I(X,Y)', fontsize=15)
+
+# lgd = ax.legend((p1, p2, p3, p4, p5), ("enwik8 characters","PennTree Banks characters","text8 characters","WikiText 2 characters","WikiText 103 characters"), loc='lower left', shadow=True, fancybox=True)
+# lgd = ax.legend((p1, p2, p3, p4, p5, p6, p7, p8, p9), ("PennTree Banks words","text8 words","text8 small words","text8 w/o rare words","text8 w/o rare small words","WikiText 2 words","WikiText2 cleaned words","WikiText103 words","WikiText103 cleaned words"), loc='lower left', shadow=True, fancybox=True)
+
+plt.show()

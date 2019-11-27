@@ -65,7 +65,7 @@ if temp[0] == "data:":
 else:
 	print("Not a valid file")
 
-mi = mi[start:end]
+mi = mi[start:end]*100
 Hx = Hx[start:end]
 Hy = Hy[start:end]
 Hxy = Hxy[start:end]
