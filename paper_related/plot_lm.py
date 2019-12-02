@@ -44,32 +44,60 @@ for filename in filenames:
 
     all_mi.append(mi.tolist())
 
-break_point = 4
-dataset = 6
+break_point = [4,4,4,4,4,4,4,5,4]
+dataset = 4
 
-x = np.linspace(1, 1000, 1000)
-f = models.SmoothlyBrokenPowerLaw1D(amplitude=all_mi[dataset][break_point-1], x_break=break_point, alpha_1=0.361, alpha_2=0.0035)
-f.delta = 0.26
-fit_sample = f(x)
+for dataset in range(len(filenames)):
+
+    sdds = 0
+    ldds = 0
+
+    for i in range(break_point[dataset]):
+        sdds += all_mi[dataset][i]
+
+    for i in range(break_point[dataset],len(all_mi[dataset])):
+        ldds += all_mi[dataset][i]
+
+    print("\n")
+    print("Dataset", dataset)
+    print("SDDs", sdds)
+    print("LDDs", ldds)
+    print("Proportional", sdds/ldds, ldds/sdds)
+
+
+# amplitude = all_mi[dataset][break_point-1]
+# alpha_1 = 0.325
+# alpha_2 = 0.00889
+
+# x = np.linspace(1, 1000, 1000)
+# f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+# f.delta = 0.23
+# fit_sample = f(x)
 
 # p1, p2, p3, p4, p5 = plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], np.arange(1,len(all_mi[1])+1), all_mi[1], np.arange(1,len(all_mi[2])+1), all_mi[2], np.arange(1,len(all_mi[3])+1), all_mi[3], np.arange(1,len(all_mi[4])+1), all_mi[4])
 # p1, p2, p3, p4, p5, p6, p7, p8, p9 = plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], np.arange(1,len(all_mi[1])+1), all_mi[1], np.arange(1,len(all_mi[2])+1), all_mi[2], np.arange(1,len(all_mi[3])+1), all_mi[3],np.arange(1,len(all_mi[4])+1), all_mi[4], np.arange(1,len(all_mi[5])+1), all_mi[5], np.arange(1,len(all_mi[6])+1), all_mi[6], np.arange(1,len(all_mi[7])+1), all_mi[7], np.arange(1,len(all_mi[8])+1), all_mi[8])
 
-p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset])
-p2 = plt.loglog(x, fit_sample)
+# p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset])
+# p2 = plt.loglog(x, fit_sample)
 
-ax = plt.axes()
-ax.set_xlabel('Distance', fontsize=15)
-ax.set_ylabel('Mutual Information, I(X,Y)', fontsize=15)
+# ax = plt.axes()
+# ax.set_xlabel('Distance', fontsize=15)
+# ax.set_ylabel('Mutual Information, I(X,Y)', fontsize=15)
 
-[D, p_value] = stats.ks_2samp(all_mi[dataset], fit_sample)
+# [D, p_value] = stats.ks_2samp(all_mi[dataset], fit_sample)
 
-print("")
-print("amplitude", all_mi[dataset][break_point-1])
-print("D", D)
-print("p-value", p_value)
+# print("")
+# print("Dataset", dataset)
+# print("D_inf", break_point)
+# print("c1",all_mi[dataset][0])
+# print("alpha 1", alpha_1)
+# print("amplitude", all_mi[dataset][break_point-1])
+# print("alpha 2", alpha_2)
+# print("delta", f.delta)
+# print("D", D)
+# print("p-value", p_value)
 
 # lgd = ax.legend((p1, p2, p3, p4, p5), ("enwik8 characters","PennTree Banks characters","text8 characters","WikiText 2 characters","WikiText 103 characters"), loc='lower left', shadow=True, fancybox=True)
 # lgd = ax.legend((p1, p2, p3, p4, p5, p6, p7, p8, p9), ("PennTree Banks words","text8 words","text8 small words","text8 w/o rare words","text8 w/o rare small words","WikiText 2 words","WikiText2 cleaned words","WikiText103 words","WikiText103 cleaned words"), loc='lower left', shadow=True, fancybox=True)
 
-plt.show()
+# plt.show()
