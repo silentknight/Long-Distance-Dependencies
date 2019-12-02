@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # filenames = ["wiki103_words_grassberger_logx_mi.dat","wiki2_words_grassberger_logx_mi.dat","penn_tree_words_grassberger_logx_mi.dat","enwik8_words_grassberger_logx_mi.dat","text8_words_grassberger_logx_mi.dat"]
-filenames = ["wiki103_words_standard_logx_mi.dat","wiki2_words_standard_logx_mi.dat","penn_tree_words_standard_logx_mi.dat","enwik8_words_standard_logx_mi.dat","text8_words_standard_logx_mi.dat"]
+filenames = ["wiki103_words_standard_logx_mi.dat","wiki2_words_100000_standard_logx_mi.dat","penn_tree_words_standard_logx_mi.dat","enwik8_words_standard_logx_mi.dat","text8_words_standard_logx_mi.dat"]
 # filenames = ["wiki103_words_standard_log2_mi.dat","wiki2_words_standard_log2_mi.dat","penn_tree_words_standard_log2_mi.dat","enwik8_words_standard_log2_mi.dat","text8_words_standard_log2_mi.dat"]
 
 all_mi = []

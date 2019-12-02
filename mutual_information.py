@@ -40,7 +40,7 @@ class myThread(threading.Thread):
 		Ni_Y = Ni_Y.data
 		Ni_XY = Ni_XY.data
 
-		print(Ni_X.size, Ni_Y.size, Ni_XY.size)
+		# print(Ni_X.size, Ni_Y.size, Ni_XY.size)
 
 		if self.method == "grassberger":
 			self.Hx = log(np.sum(Ni_X),self.log_type)-np.sum(Ni_X*spec.digamma(Ni_X))/np.sum(Ni_X)
