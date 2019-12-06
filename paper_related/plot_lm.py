@@ -70,41 +70,67 @@ for filename in filenames:
 #     print("LDDs", ldds)
 #     print("Proportional", sdds/ldds, ldds/sdds)
 
-break_point = 4
-
-dataset = 0
-alpha_1 = 0.4785
-alpha_2 = 0.00801
-
-# dataset = 1
-# alpha_1 = 0.4811
-# alpha_2 = 0.016
-
-# dataset = 2
-# alpha_1 = 0.421
-# alpha_2 = 0.0028
-
-# dataset = 3
-# alpha_1 = 0.6931
-# alpha_2 = 0.019
-
-amplitude = all_mi[dataset][break_point-1]
-
-x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
-f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-f.delta = 0.3
-# f.delta = 0.228
-# f.delta = 0.346
-# f.delta = 0.35
-fit_sample = f(x)
-
 with plt.style.context(('seaborn')):
+    break_point = 4
+
+    dataset = 0
+    alpha_1 = 0.4785
+    alpha_2 = 0.00801
+
+    amplitude = all_mi[dataset][break_point-1]
+
+    x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    f.delta = 0.3
+    # f.delta = 0.228
+    # f.delta = 0.346
+    # f.delta = 0.35
+    fit_sample = f(x)
+
+    p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="Penn TreeBanks")
+    p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for Penn TreeBank")
+
+    # dataset = 1
+    # alpha_1 = 0.4811
+    # alpha_2 = 0.016
+
+    dataset = 2
+    alpha_1 = 0.421
+    alpha_2 = 0.0028
+
+    amplitude = all_mi[dataset][break_point-1]
+
+    x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    # f.delta = 0.3
+    # f.delta = 0.228
+    f.delta = 0.346
+    # f.delta = 0.35
+    fit_sample = f(x)
+
+    p3 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="WikiText2")
+    p4 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2")
+
+    # dataset = 3
+    # alpha_1 = 0.6931
+    # alpha_2 = 0.019
+
+    # amplitude = all_mi[dataset][break_point-1]
+
+    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    # # f.delta = 0.3
+    # # f.delta = 0.228
+    # f.delta = 0.346
+    # # f.delta = 0.35
+    # fit_sample = f(x)
+
     # p1, p2, p3, p4, p5 = plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], np.arange(1,len(all_mi[1])+1), all_mi[1], np.arange(1,len(all_mi[2])+1), all_mi[2], np.arange(1,len(all_mi[3])+1), all_mi[3], np.arange(1,len(all_mi[4])+1), all_mi[4])
     # p1, p2, p3, p4, p5, p6, p7, p8, p9 = plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], np.arange(1,len(all_mi[1])+1), all_mi[1], np.arange(1,len(all_mi[2])+1), all_mi[2], np.arange(1,len(all_mi[3])+1), all_mi[3],np.arange(1,len(all_mi[4])+1), all_mi[4], np.arange(1,len(all_mi[5])+1), all_mi[5], np.arange(1,len(all_mi[6])+1), all_mi[6], np.arange(1,len(all_mi[7])+1), all_mi[7], np.arange(1,len(all_mi[8])+1), all_mi[8])
 
     # plt.subplot(221)
-    p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset])
-    p2 = plt.loglog(x, fit_sample)
+    # p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="LDD Curve")
+    # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law")
     # plt.grid(True)
 
     # plt.subplot(222)
@@ -120,7 +146,13 @@ with plt.style.context(('seaborn')):
     # plt.grid(True)
 
     ax = plt.axes()
-    ax.set_xlabel('Distance', fontsize=15)
+    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True) 
+    plt.tick_params(labelsize='large', width=3)
+    plt.grid(True)
+    plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
+    plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
+    # ax.set_xlim(1, len(all_mi[0]))
+    ax.set_xlabel('Distance between words, D(X,Y)', fontsize=15)
     ax.set_ylabel('Mutual Information, I(X,Y)', fontsize=15)
 
     [D, p_value] = stats.ks_2samp(all_mi[dataset], fit_sample)
@@ -138,6 +170,6 @@ with plt.style.context(('seaborn')):
 
     # lgd = ax.legend((p1, p2, p3, p4, p5), ("enwik8 characters","PennTree Banks characters","text8 characters","WikiText 2 characters","WikiText 103 characters"), loc='lower left', shadow=True, fancybox=True)
     # lgd = ax.legend((p1, p2, p3, p4, p5, p6, p7, p8, p9), ("PennTree Banks words","text8 words","text8 small words","text8 w/o rare words","text8 w/o rare small words","WikiText 2 words","WikiText2 cleaned words","WikiText103 words","WikiText103 cleaned words"), loc='lower left', shadow=True, fancybox=True)
-    lgd = ax.legend((p1, p2), ("LDD Curve","Smoothly Broken Power-Law"), loc='lower left', shadow=True, fancybox=True)
-
+    
+    plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
