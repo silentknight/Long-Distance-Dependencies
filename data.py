@@ -90,7 +90,17 @@ class Corpus(object):
 			print("wikitext-103 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainC'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validC'))
-			self.test = self.tokenize_file(os.path.join(path, 'testC'))
+			self.test = self.tokenize_file(os.path.join(path, 'testC'))			
+		elif path == "dataset/POS/dl4mt/":
+			print("Penn Treebank POS dataset")
+			self.train = self.tokenize_file(os.path.join(path, 'train-pos'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid-pos'))
+			self.test = self.tokenize_file(os.path.join(path, 'test-pos'))
+		elif path == "dataset/POS/wikitext-2/":
+			print("Wikitext-2 POS dataset")
+			self.train = self.tokenize_file(os.path.join(path, 'train-pos'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid-pos'))
+			self.test = self.tokenize_file(os.path.join(path, 'test-pos'))
 		elif path == "dataset/hutter-text/text8":
 			print("text8")
 			self.text = self.tokenize_file(path)
