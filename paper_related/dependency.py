@@ -92,71 +92,73 @@ try:
 except:
 	print(args.path+" does not exist")
 
-# print("Pull data from numpy file")
-# d = start
-# pmi_single = np.empty((0,1))
-# Ni_XY_single = np.empty((0,1))
-# pmi_row = []
-# Ni_XY_row = []
+print("Pull data from numpy file")
 
-# try:
-# 	for file in files:
-# 		pmi_data = np.load(args.path+"/np/"+file, mmap_mode='r')
-# 		Xi = pmi_data['arr_0']
-# 		Yi = pmi_data['arr_1']
-# 		Ni_X = pmi_data['arr_2']
-# 		Ni_Y = pmi_data['arr_3']
-# 		Ni_XY = scipy.sparse.load_npz(args.path+"/Ni_XY/"+file)
-# 		pmi = scipy.sparse.load_npz(args.path+"/pmi/"+file)
+d = start
+pmi_single = np.empty((0,1))
+Ni_XY_single = np.empty((0,1))
+pmi_row = []
+Ni_XY_row = []
 
-# 		if args.char2 == None:
-# 			if pmi_row == []:
-# 				pmi_row = pmi[np.where(Xi==charID_1)[0][0],:].toarray()
-# 				Ni_XY_row = Ni_XY[np.where(Xi==charID_1)[0][0],:].toarray()
-# 			else:
-# 				pmi_row = np.append(pmi_row, pmi[np.where(Xi==charID_1)[0][0],:].toarray(), axis=0)
-# 				Ni_XY_row = np.append(Ni_XY_row, Ni_XY[np.where(Xi==charID_1)[0][0],:].toarray(), axis=0)
-# 		else:
-# 			pmi_single = np.append(pmi_single, pmi[np.where(Xi==charID_1)[0][0],np.where(Yi==charID_2)[0][0]])
-# 			Ni_XY_single = np.append(Ni_XY_single, Ni_XY[np.where(Xi==charID_1)[0][0],np.where(Yi==charID_2)[0][0]])
+try:
+	for file in files:
+		pmi_data = np.load(args.path+"/np/"+file, mmap_mode='r', allow_pickle=True)
+		Xi = pmi_data['arr_0']
+		Yi = pmi_data['arr_1']
+		Ni_X = pmi_data['arr_2']
+		Ni_Y = pmi_data['arr_3']
+		Ni_XY = scipy.sparse.load_npz(args.path+"/Ni_XY/"+file)
+		pmi = scipy.sparse.load_npz(args.path+"/pmi/"+file)
 
-# 		print("d:"+str(d)+" -> processed")
-# 		d += 1
-# except (KeyboardInterrupt, ValueError) as e:
-# 	print(e)
-# 	print("Processing halted. Printing upto d: "+str(d-1))
+		if args.word2 == None:
+			if pmi_row == []:
+				pmi_row = pmi[np.where(Xi==wordID_1)[0][0],:].toarray()
+				Ni_XY_row = Ni_XY[np.where(Xi==wordID_1)[0][0],:].toarray()
+			else:
+				pmi_row = np.append(pmi_row, pmi[np.where(Xi==wordID_1)[0][0],:].toarray(), axis=0)
+				Ni_XY_row = np.append(Ni_XY_row, Ni_XY[np.where(Xi==wordID_1)[0][0],:].toarray(), axis=0)
+		else:
+			pmi_single = np.append(pmi_single, pmi[np.where(Xi==wordID_1)[0][0],np.where(Yi==wordID_2)[0][0]])
+			Ni_XY_single = np.append(Ni_XY_single, Ni_XY[np.where(Xi==wordID_1)[0][0],np.where(Yi==wordID_2)[0][0]])
 
-# if args.char2 == None:
-# 	fig = plt.figure()
-# 	ax = fig.add_subplot(211)
-# 	plt.imshow(pmi_row)
-# 	ax.set_aspect('auto')
-# 	ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-# 	ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-# 	plt.colorbar(orientation='vertical')
+		sys.stdout.write("\rProcessed -> d: %d" % (d))
+		sys.stdout.flush()
+		d += 1
+except (KeyboardInterrupt, ValueError) as e:
+	print(e)
+	print("Processing halted. Printing upto d: "+str(d-1))
 
-# 	ax = fig.add_subplot(212)
-# 	plt.imshow(Ni_XY_row)
-# 	ax.set_aspect('auto')
-# 	ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-# 	ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-# 	plt.colorbar(orientation='vertical')
-# 	print(np.max(Ni_XY_row))
+if args.word2 == None:
+	print("Just one word selected...")
+	fig = plt.figure()
+	ax = fig.add_subplot(211)
+	plt.imshow(pmi_row)
+	ax.set_aspect('auto')
+	ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+	ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+	plt.colorbar(orientation='vertical')
+	ax = fig.add_subplot(212)
+	plt.imshow(Ni_XY_row)
+	ax.set_aspect('auto')
+	ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+	ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+	plt.colorbar(orientation='vertical')
+	print(np.max(Ni_XY_row))
+	plt.show()
 
-# 	plt.show()
-# else:
-# 	plt.subplot(211)
-# 	if args.logscale == 1:
-# 		plt.loglog(np.arange(len(pmi_single)),pmi_single,basex=10)
-# 	elif args.logscale == 0:
-# 		plt.plot(pmi_single)
-# 	plt.grid(True)
-
-# 	plt.subplot(212)
-# 	if args.logscale == 1:
-# 		plt.loglog(np.arange(len(Ni_XY_single)),Ni_XY_single,basex=10)
-# 	elif args.logscale == 0:
-# 		plt.bar(np.arange(len(pmi_single)),Ni_XY_single)
-# 	plt.grid(True)
-
-# 	plt.show()
+else:
+	print("Two words selected...")
+	print(Ni_XY_single.max())
+	plt.subplot(211)
+	if args.logscale == 1:
+		plt.loglog(np.arange(len(pmi_single)),pmi_single,basex=10)
+	elif args.logscale == 0:
+		plt.plot(pmi_single)
+	plt.grid(True)
+	plt.subplot(212)
+	if args.logscale == 1:
+		plt.loglog(np.arange(len(Ni_XY_single)),Ni_XY_single,basex=10)
+	elif args.logscale == 0:
+		plt.bar(np.arange(len(pmi_single)),Ni_XY_single)
+	plt.grid(True)
+	plt.show()
