@@ -2,16 +2,11 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.interpolate import spline
 from astropy.modeling import models
 from scipy import stats
 
-# filenames = ["enwik8_letters","penn_tree_letters","text8_letters","wiki2_letters","wiki103_letters"]
-# filenames = ["penn_tree_words","text8_words","text8_subset_words","text8_wo_rare_words","text8_wo_rare_subset_words","wiki2_words","wiki2_cleaned_words","wiki103_words","wiki103_cleaned_words"]
+filenames = ["penn_tree_words_10000","text8_words_10000","text8_subset_words_10000","text8_wor_words_10000","text8_subset_wor_words_10000","wiki2_words_10000","wiki2_cleaned_words_10000","wiki103_words_10000","wiki103_cleaned_words_10000"]
 # filenames = ["enwik8_letters_15000","penn_tree_letters_15000","wiki2_letters_15000"]
-# filenames = ["penn_tree_words_10000","text8_words_10000","wiki2_words_10000","wiki103_words_10000"]
-
-filenames = ["enwik8_letters_15000"]
 
 all_mi = []
 all_Hx = []
@@ -79,17 +74,17 @@ for filename in filenames:
 with plt.style.context(('seaborn')):
 
     # ###################################################################################################################
-    # break_point = 4
-    # dataset = 0
-    # alpha_1 = 0.4785
-    # alpha_2 = 0.00801
-    # amplitude = all_mi[dataset][break_point-1]
-    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
-    # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # f.delta = 0.3
-    # fit_sample = f(x)
-    # p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="Penn TreeBanks")
-    # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for Penn TreeBank")
+    break_point = 4
+    dataset = 0
+    alpha_1 = 0.4785
+    alpha_2 = 0.00801
+    amplitude = all_mi[dataset][break_point-1]
+    x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    f.delta = 0.3
+    fit_sample = f(x)
+    p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], "r-", label="PTB")
+    p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law fit for PTB")
 
     # break_point = 4
     # dataset = 1s
@@ -128,33 +123,19 @@ with plt.style.context(('seaborn')):
     # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText103")
 
     #######################################################################################################################
-    break_point = 1200
-    dataset = 0
-    alpha_1 = 0.64
-    alpha_2 = 0.46
-    # amplitude = 0.0004814
-    amplitude = all_mi[dataset][break_point-1]
-    x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
-    f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    f.delta = 0.2
-    fit_sample = f(x)
+    # break_point = 1200
+    # dataset = 0
+    # alpha_1 = 0.64
+    # alpha_2 = 0.46
+    # # amplitude = 0.0004814
+    # amplitude = all_mi[dataset][break_point-1]
+    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    # f.delta = 0.2
+    # fit_sample = f(x)
 
-    # plt.subplot(221)
-    p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="LDD Curve")
-    p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law")
-    # plt.grid(True)
-
-    # plt.subplot(222)
-    # p3 = plt.loglog(np.arange(1,len(all_Hxy[dataset])+1), all_Hxy[dataset])
-    # plt.grid(True)
-
-    # plt.subplot(223)
-    # p4 = plt.loglog(np.arange(1,len(all_Hx[dataset])+1), all_Hx[dataset])
-    # plt.grid(True)
-
-    # plt.subplot(224)
-    # p5 = plt.loglog(np.arange(1,len(all_Hy[dataset])+1), all_Hy[dataset])
-    # plt.grid(True)
+    # p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="LDD Curve")
+    # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law")
 
     #########################################################################################################################
     [D, p_value] = stats.ks_2samp(all_mi[dataset], fit_sample)
@@ -177,8 +158,9 @@ with plt.style.context(('seaborn')):
     plt.grid(True)
     plt.grid(which='major', linestyle='-', linewidth='0.1', color='grey')
     plt.grid(which='minor', linestyle='-', linewidth='0.1', color='grey')
-    # ax.set_xlim(1, len(all_mi[0]))
+    ax.set_xlim(1.0, 10000.0)
+    ax.set_ylim(0.5665692652625367, 2.840370753962389)
     ax.set_xlabel('Distance between words, D(X,Y)', fontsize=15)
     ax.set_ylabel('Mutual Information, I(X,Y)', fontsize=15)
-    # plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
