@@ -35,7 +35,7 @@ cpdef getJointRV(dataArray, unsigned long[:] lineLengthList, int totalLength, in
 	unique_X, counts_X = np.unique(X, return_counts=True)
 	unique_Y, counts_Y = np.unique(Y, return_counts=True)
 
-	counts_X = scipy.sparse.coo_matrix((counts_X, (np.zeros(len(unique_X)), unique_X)), shape=(1,int(max(unique_X))+1), dtype=np.float64).tocsc()
+	counts_X = scipy.sparse.coo_matrix((counts_X, (np.zeros(len(unique_X)), unique_X)), shape=(1,int(max(unique_X)+1)), dtype=np.float64).tocsc()
 	counts_Y = scipy.sparse.coo_matrix((counts_Y, (np.zeros(len(unique_Y)), unique_Y)), shape=(1,int(max(unique_Y)+1)), dtype=np.float64).tocsc()
 
 	temp_sp = scipy.sparse.coo_matrix((np.ones(len(X)), (np.asarray(X), np.asarray(Y))), shape=(max(X)+1, max(Y)+1), dtype=np.float64)
