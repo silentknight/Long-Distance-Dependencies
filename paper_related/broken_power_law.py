@@ -51,20 +51,20 @@ for filename in filenames:
     all_Hxy.append(Hxy.tolist())
 
 #######################################################################################################################
-with plt.style.context(('seaborn')):
+# with plt.style.context(('seaborn')):
 
     ###################################################################################################################
-    break_point = 4
-    dataset = 0
-    alpha_1 = 0.4786
-    alpha_2 = 0.01
-    amplitude = all_mi[dataset][break_point-1]
-    x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
-    f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    f.delta = 0.275
-    fit_sample = f(x)
-    p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], "r-", label="PTB")
-    p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law fit for PTB")
+    # break_point = 4
+    # dataset = 0
+    # alpha_1 = 0.4786
+    # alpha_2 = 0.01
+    # amplitude = all_mi[dataset][break_point-1]
+    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    # f.delta = 0.275
+    # fit_sample = f(x)
+    # p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], "r-", label="PTB")
+    # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law fit for PTB")
 
     # break_point = 4
     # dataset = 1
@@ -177,50 +177,51 @@ with plt.style.context(('seaborn')):
     # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law")
 
     #########################################################################################################################
-    [D, p_value] = stats.ks_2samp(all_mi[dataset], fit_sample)
+    # [D, p_value] = stats.ks_2samp(all_mi[dataset], fit_sample)
 
-    print("")
-    print("Dataset", dataset)
-    print("D_inf", break_point)
-    print("c1",all_mi[dataset][0])
-    print("alpha 1", alpha_1)
-    print("amplitude", all_mi[dataset][break_point-1])
-    print("alpha 2", alpha_2)
-    print("delta", f.delta)
-    print("D", D)
-    print("p-value", p_value)
-    print("length", len(all_mi[dataset]))
+    # print("")
+    # print("Dataset", dataset)
+    # print("D_inf", break_point)
+    # print("c1",all_mi[dataset][0])
+    # print("alpha 1", alpha_1)
+    # print("amplitude", all_mi[dataset][break_point-1])
+    # print("alpha 2", alpha_2)
+    # print("delta", f.delta)
+    # print("D", D)
+    # print("p-value", p_value)
+    # print("length", len(all_mi[dataset]))
     
-    #########################################################################################################################
-    ax = plt.axes()
-    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True) 
-    plt.tick_params(labelsize='large', width=3)
-    plt.grid(True)
-    plt.grid(which='major', linestyle='-', linewidth='0.1', color='grey')
-    plt.grid(which='minor', linestyle='-', linewidth='0.1', color='grey')
-    ax.set_xlim(1.0, 10000.0)
-    ax.set_ylim(0.5665692652625367, 2.840370753962389)
-    ax.set_xlabel('Distance between words, d', fontsize=15)
-    ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-    plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
-    plt.show()
+    # #########################################################################################################################
+    # ax = plt.axes()
+    # lgd = ax.legend(loc='upper right', shadow=True, fancybox=True) 
+    # plt.tick_params(labelsize='large', width=3)
+    # plt.grid(True)
+    # plt.grid(which='major', linestyle='-', linewidth='0.1', color='grey')
+    # plt.grid(which='minor', linestyle='-', linewidth='0.1', color='grey')
+    # ax.set_xlim(1.0, 10000.0)
+    # ax.set_ylim(0.5665692652625367, 2.840370753962389)
+    # ax.set_xlabel('Distance between words, d', fontsize=15)
+    # ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
+    # plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    # plt.show()
 
 ######################################################################################################################
-# break_point = [30,30,30,30,30]
-# end_point = [1000,1000,1000,1000,1000]
-# for dataset in range(len(filenames)):
+break_point = [4,4,4,4,4,4,4,5,4]
+# end_point = [784,784,784,784,784,784,784,784,784,784]
+end_point = [384,384,384,384,384,384,384,384,384,384]
+for dataset in range(len(filenames)):
 
-#     sdds = 0
-#     ldds = 0
+    sdds = 0
+    ldds = 0
 
-#     for i in range(break_point[dataset]):
-#         sdds += all_mi[dataset][i]
+    for i in range(break_point[dataset]):
+        sdds += all_mi[dataset][i]
 
-#     for i in range(break_point[dataset],end_point[dataset]):
-#         ldds += all_mi[dataset][i]
+    for i in range(break_point[dataset],end_point[dataset]):
+        ldds += all_mi[dataset][i]
 
-#     print("\n")
-#     print("Dataset", dataset)
-#     print("SDDs", sdds)
-#     print("LDDs", ldds)
-#     print("Proportional", sdds/ldds, ldds/sdds)
+    print("\n")
+    print("Dataset", dataset)
+    print("SDDs", sdds)
+    print("LDDs", ldds)
+    print("Proportional", sdds/ldds, ldds/sdds)
