@@ -135,7 +135,7 @@ if args.plottype == 0:
 		print("\nJust one word selected...")
 		fig = plt.figure()
 		ax = fig.add_subplot(211)
-		plt.imshow(pmi_row)
+		plt.imshow(np.transpose(pmi_row))
 		ax.set_aspect('auto')
 		ax.xaxis.set_major_locator(MaxNLocator(integer=True))
 		ax.yaxis.set_major_locator(MaxNLocator(integer=True))
@@ -166,58 +166,54 @@ if args.plottype == 0:
 		plt.grid(True)
 		plt.show()
 else:
-	d = 1
+	d = start
 	try:
 		for file in files:
-			pmi = scipy.sparse.load_npz(args.path+"/pmi/500.npz")#+file)
-			Ni_XY = scipy.sparse.load_npz(args.path+"/Ni_XY/500.npz").toarray()#+file).toarray()
-			# pmi_data = np.load(args.path+"/np/"+file, mmap_mode='r', allow_pickle=True)
-			# Xi = pmi_data['arr_0']
-			# Yi = pmi_data['arr_1']
-			# Ni_X = pmi_data['arr_2']
-			# Ni_Y = pmi_data['arr_3']
+			pmi = scipy.sparse.load_npz(args.path+"/pmi/"+file)
+			Ni_XY = scipy.sparse.load_npz(args.path+"/Ni_XY/"+file).toarray()
+			pmi_data = np.load(args.path+"/np/"+file, mmap_mode='r', allow_pickle=True)
+			Xi = pmi_data['arr_0']
+			Yi = pmi_data['arr_1']
+			Ni_X = pmi_data['arr_2']
+			Ni_Y = pmi_data['arr_3']
 
-			# fig = plt.figure()
-			# ax = fig.add_subplot(111)
-			# plt.imshow(Ni_XY)
-			# ax.set_aspect('auto')
-			# ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-			# ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-			# plt.colorbar(orientation='vertical')
-			# plt.show()
+			plt.imshow(Ni_XY)
+			plt.colorbar(orientation='vertical')
+			plt.show()
 
-			# sys.stdout.write("\rProcessed -> d: %d max_val: %d" % (d,np.max(Ni_XY)))
+			print(d, np.nonzero(Ni_XY))
+			# sys.stdout.write("\rProcessed -> d: %d max_val: %d" % (d,np.nonzero(Ni_XY)))
 			# sys.stdout.flush()
 
-			rows,cols = np.where(Ni_XY>1000)
-			number_of_pairs = len(rows)
+			# rows,cols = np.where(Ni_XY>1000)
+			# number_of_pairs = len(rows)
 
-			print("\n\nProcessing d = %s" % (d))
+			# print("\n\nProcessing d = %s" % (d))
 
-			for i in range(number_of_pairs):
-				found_word1 = ""
-				found_word2 = ""
-				for word, wordID in symbols.items():
-					if rows[i] == wordID:
-						found_word1 = word
-					if cols[i] == wordID:
-						found_word2 = word
+			# for i in range(number_of_pairs):
+			# 	found_word1 = ""
+			# 	found_word2 = ""
+			# 	for word, wordID in symbols.items():
+			# 		if rows[i] == wordID:
+			# 			found_word1 = word
+			# 		if cols[i] == wordID:
+			# 			found_word2 = word
 
-				print("%10s %10s -> Frequency: %d" %(found_word1,found_word2,Ni_XY[rows[i]][cols[i]]))
+			# 	print("%10s %10s -> Frequency: %d" %(found_word1,found_word2,Ni_XY[rows[i]][cols[i]]))
 
 			d+=1
 
-			rows,cols = np.where((Ni_XY>0)&(Ni_XY<=10))
-			print("#Pairs (1-10) %d" %(len(rows)))
+			# rows,cols = np.where((Ni_XY>0)&(Ni_XY<=10))
+			# print("#Pairs (1-10) %d" %(len(rows)))
 
-			rows,cols = np.where((Ni_XY>10)&(Ni_XY<=100))
-			print("#Pairs (10-100) %d" %(len(rows)))
+			# rows,cols = np.where((Ni_XY>10)&(Ni_XY<=100))
+			# print("#Pairs (10-100) %d" %(len(rows)))
 			
-			rows,cols = np.where((Ni_XY>100)&(Ni_XY<=1000))
-			print("#Pairs (100-1000) %d" %(len(rows)))
+			# rows,cols = np.where((Ni_XY>100)&(Ni_XY<=1000))
+			# print("#Pairs (100-1000) %d" %(len(rows)))
 
-			rows,cols = np.where((Ni_XY>1000))
-			print("#Pairs (>1000) %d" %(len(rows)))
+			# rows,cols = np.where((Ni_XY>1000))
+			# print("#Pairs (>1000) %d" %(len(rows)))
 
 	except (KeyboardInterrupt, ValueError) as e:
 		print(e)
