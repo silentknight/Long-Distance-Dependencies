@@ -3,6 +3,7 @@
 # System libs
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
+from matplotlib.colors import LogNorm
 import numpy as np
 import argparse
 import sys
@@ -73,6 +74,7 @@ except ValueError:
 # Get the data from the files                                                                      #
 ####################################################################################################
 print("Pulling file list from the folder")
+
 try:
 	d_num = []
 	ext = ""
@@ -96,6 +98,7 @@ except:
 print("Pull data from numpy file")
 
 if args.plottype == 0:
+
 	d = start
 	pmi_single = np.empty((0,1))
 	Ni_XY_single = np.empty((0,1))
@@ -132,6 +135,7 @@ if args.plottype == 0:
 		print("Processing halted. Printing upto d: "+str(d-1))
 
 	if args.word2 == None:
+
 		print("\nJust one word selected...")
 		fig = plt.figure()
 		ax = fig.add_subplot(211)
@@ -150,6 +154,7 @@ if args.plottype == 0:
 		plt.show()
 
 	else:
+
 		print("Two words selected...")
 		print(Ni_XY_single.max())
 		plt.subplot(211)
@@ -165,11 +170,14 @@ if args.plottype == 0:
 			plt.bar(np.arange(len(pmi_single)),Ni_XY_single)
 		plt.grid(True)
 		plt.show()
-else:
+
+elif args.plottype == 1:
+
 	d = start
+
 	try:
 		for file in files:
-			pmi = scipy.sparse.load_npz(args.path+"/pmi/"+file)
+			pmi = scipy.sparse.load_npz(args.path+"/pmi/"+file).toarray()
 			Ni_XY = scipy.sparse.load_npz(args.path+"/Ni_XY/"+file).toarray()
 			pmi_data = np.load(args.path+"/np/"+file, mmap_mode='r', allow_pickle=True)
 			Xi = pmi_data['arr_0']
@@ -177,43 +185,48 @@ else:
 			Ni_X = pmi_data['arr_2']
 			Ni_Y = pmi_data['arr_3']
 
-			plt.imshow(Ni_XY)
-			plt.colorbar(orientation='vertical')
-			plt.show()
+			print("Processing d = %s \n\n" % (d))
 
-			print(d, np.nonzero(Ni_XY))
+			# print("Negatively Dependent (:,-3)  = %d" % np.size(pmi[np.where(pmi<-3)]))
+			# print("Negatively Dependent [-3,-2) = %d" % np.size(pmi[np.where((pmi<-2)&(pmi>=-3))]))
+			# print("Negatively Dependent [-2,-1) = %d" % np.size(pmi[np.where((pmi<-1)&(pmi>=-2))]))
+			# print("Negatively Dependent [-1,0)  = %d" % np.size(pmi[np.where((pmi<0)&(pmi>=-1))]))
+			# print("Independent = %20d" % np.size(pmi[np.where(pmi==0)]))
+			# print("Positively Dependent (0,1)   = %d" % np.size(pmi[np.where((pmi>0)&(pmi<1))]))
+			# print("Positively Dependent [1,2)   = %d" % np.size(pmi[np.where((pmi>=1)&(pmi<2))]))
+			# print("Positively Dependent [2,3)   = %d" % np.size(pmi[np.where((pmi>=2)&(pmi<3))]))
+			# print("Positively Dependent [3,4)   = %d" % np.size(pmi[np.where((pmi>=3)&(pmi<4))]))
+			# print("Positively Dependent [4,5)   = %d" % np.size(pmi[np.where((pmi>=4)&(pmi<5))]))
+			# print("Positively Dependent [5,6)   = %d" % np.size(pmi[np.where((pmi>=5)&(pmi<6))]))
+			# print("Positively Dependent [6,7)   = %d" % np.size(pmi[np.where((pmi>=6)&(pmi<7))]))
+			# print("Positively Dependent [7,8)   = %d" % np.size(pmi[np.where((pmi>=7)&(pmi<8))]))
+			# print("Positively Dependent [8,9)   = %d" % np.size(pmi[np.where((pmi>=8)&(pmi<9))]))
+			# print("Positively Dependent [9,10)  = %d" % np.size(pmi[np.where((pmi>=9)&(pmi<10))]))
+			# print("Positively Dependent [10,:)  = %d" % np.size(pmi[np.where(pmi>=10)]))
+
+			[rows, cols] = np.where((pmi<-3))#&(pmi<5.5))
+			for i in range(np.size(rows)):
+				found_word1 = ""
+				found_word2 = ""
+				for word, wordID in symbols.items():
+					if rows[i] == wordID:
+						found_word1 = word
+					if cols[i] == wordID:
+						found_word2 = word
+
+				print("%20s %20s -> PMI: %3.5f, Freq: %3.5f" %(found_word1,found_word2,pmi[rows[i]][cols[i]],Ni_XY[rows[i]][cols[i]]))
+
 			# sys.stdout.write("\rProcessed -> d: %d max_val: %d" % (d,np.nonzero(Ni_XY)))
 			# sys.stdout.flush()
 
-			# rows,cols = np.where(Ni_XY>1000)
-			# number_of_pairs = len(rows)
+			print("---------------------------------------------------------------------------\n\n")
 
-			# print("\n\nProcessing d = %s" % (d))
-
-			# for i in range(number_of_pairs):
-			# 	found_word1 = ""
-			# 	found_word2 = ""
-			# 	for word, wordID in symbols.items():
-			# 		if rows[i] == wordID:
-			# 			found_word1 = word
-			# 		if cols[i] == wordID:
-			# 			found_word2 = word
-
-			# 	print("%10s %10s -> Frequency: %d" %(found_word1,found_word2,Ni_XY[rows[i]][cols[i]]))
+			# plt.imshow(pmi)
+			# plt.colorbar(orientation='vertical')
+			# plt.clim(-7, 15);
+			# plt.show()
 
 			d+=1
-
-			# rows,cols = np.where((Ni_XY>0)&(Ni_XY<=10))
-			# print("#Pairs (1-10) %d" %(len(rows)))
-
-			# rows,cols = np.where((Ni_XY>10)&(Ni_XY<=100))
-			# print("#Pairs (10-100) %d" %(len(rows)))
-			
-			# rows,cols = np.where((Ni_XY>100)&(Ni_XY<=1000))
-			# print("#Pairs (100-1000) %d" %(len(rows)))
-
-			# rows,cols = np.where((Ni_XY>1000))
-			# print("#Pairs (>1000) %d" %(len(rows)))
 
 	except (KeyboardInterrupt, ValueError) as e:
 		print(e)
