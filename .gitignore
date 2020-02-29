@@ -50,3 +50,5 @@ build
 *.swp
 *.save
 pmi_data/
+dataset/NEW/
+dataset/time_series/

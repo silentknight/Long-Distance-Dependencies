@@ -177,8 +177,12 @@ elif args.plottype == 1:
 
 	try:
 		for file in files:
-			pmi = scipy.sparse.load_npz(args.path+"/pmi/"+file).toarray()
-			Ni_XY = scipy.sparse.load_npz(args.path+"/Ni_XY/"+file).toarray()
+			pmi_temp = scipy.sparse.load_npz(args.path+"/pmi/"+file)
+			[pmi_rows, pmi_cols, pmi] = scipy.sparse.find(pmi_temp)
+
+			Ni_XY_temp = scipy.sparse.load_npz(args.path+"/Ni_XY/"+file)
+			[Ni_XY_rows, Ni_XY_cols, Ni_XY] = scipy.sparse.find(Ni_XY_temp)
+
 			pmi_data = np.load(args.path+"/np/"+file, mmap_mode='r', allow_pickle=True)
 			Xi = pmi_data['arr_0']
 			Yi = pmi_data['arr_1']
@@ -187,34 +191,34 @@ elif args.plottype == 1:
 
 			print("Processing d = %s \n\n" % (d))
 
-			# print("Negatively Dependent (:,-3)  = %d" % np.size(pmi[np.where(pmi<-3)]))
-			# print("Negatively Dependent [-3,-2) = %d" % np.size(pmi[np.where((pmi<-2)&(pmi>=-3))]))
-			# print("Negatively Dependent [-2,-1) = %d" % np.size(pmi[np.where((pmi<-1)&(pmi>=-2))]))
-			# print("Negatively Dependent [-1,0)  = %d" % np.size(pmi[np.where((pmi<0)&(pmi>=-1))]))
-			# print("Independent = %20d" % np.size(pmi[np.where(pmi==0)]))
-			# print("Positively Dependent (0,1)   = %d" % np.size(pmi[np.where((pmi>0)&(pmi<1))]))
-			# print("Positively Dependent [1,2)   = %d" % np.size(pmi[np.where((pmi>=1)&(pmi<2))]))
-			# print("Positively Dependent [2,3)   = %d" % np.size(pmi[np.where((pmi>=2)&(pmi<3))]))
-			# print("Positively Dependent [3,4)   = %d" % np.size(pmi[np.where((pmi>=3)&(pmi<4))]))
-			# print("Positively Dependent [4,5)   = %d" % np.size(pmi[np.where((pmi>=4)&(pmi<5))]))
-			# print("Positively Dependent [5,6)   = %d" % np.size(pmi[np.where((pmi>=5)&(pmi<6))]))
-			# print("Positively Dependent [6,7)   = %d" % np.size(pmi[np.where((pmi>=6)&(pmi<7))]))
-			# print("Positively Dependent [7,8)   = %d" % np.size(pmi[np.where((pmi>=7)&(pmi<8))]))
-			# print("Positively Dependent [8,9)   = %d" % np.size(pmi[np.where((pmi>=8)&(pmi<9))]))
-			# print("Positively Dependent [9,10)  = %d" % np.size(pmi[np.where((pmi>=9)&(pmi<10))]))
-			# print("Positively Dependent [10,:)  = %d" % np.size(pmi[np.where(pmi>=10)]))
+			print("Negatively Dependent (:,-3)  = %d" % np.size(pmi[np.where(pmi<-3)]))
+			print("Negatively Dependent [-3,-2) = %d" % np.size(pmi[np.where((pmi<-2)&(pmi>=-3))]))
+			print("Negatively Dependent [-2,-1) = %d" % np.size(pmi[np.where((pmi<-1)&(pmi>=-2))]))
+			print("Negatively Dependent [-1,0)  = %d" % np.size(pmi[np.where((pmi<0)&(pmi>=-1))]))
+			print("Independent = %d" % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+			print("Positively Dependent (0,1)   = %d" % np.size(pmi[np.where((pmi>0)&(pmi<1))]))
+			print("Positively Dependent [1,2)   = %d" % np.size(pmi[np.where((pmi>=1)&(pmi<2))]))
+			print("Positively Dependent [2,3)   = %d" % np.size(pmi[np.where((pmi>=2)&(pmi<3))]))
+			print("Positively Dependent [3,4)   = %d" % np.size(pmi[np.where((pmi>=3)&(pmi<4))]))
+			print("Positively Dependent [4,5)   = %d" % np.size(pmi[np.where((pmi>=4)&(pmi<5))]))
+			print("Positively Dependent [5,6)   = %d" % np.size(pmi[np.where((pmi>=5)&(pmi<6))]))
+			print("Positively Dependent [6,7)   = %d" % np.size(pmi[np.where((pmi>=6)&(pmi<7))]))
+			print("Positively Dependent [7,8)   = %d" % np.size(pmi[np.where((pmi>=7)&(pmi<8))]))
+			print("Positively Dependent [8,9)   = %d" % np.size(pmi[np.where((pmi>=8)&(pmi<9))]))
+			print("Positively Dependent [9,10)  = %d" % np.size(pmi[np.where((pmi>=9)&(pmi<10))]))
+			print("Positively Dependent [10,:)  = %d" % np.size(pmi[np.where(pmi>=10)]))
 
-			[rows, cols] = np.where((pmi<-3))#&(pmi<5.5))
-			for i in range(np.size(rows)):
-				found_word1 = ""
-				found_word2 = ""
-				for word, wordID in symbols.items():
-					if rows[i] == wordID:
-						found_word1 = word
-					if cols[i] == wordID:
-						found_word2 = word
+			# [rows, cols] = np.where((pmi>10))
+			# for i in range(np.size(rows)):
+			# 	found_word1 = ""
+			# 	found_word2 = ""
+			# 	for word, wordID in symbols.items():
+			# 		if rows[i] == wordID:
+			# 			found_word1 = word
+			# 		if cols[i] == wordID:
+			# 			found_word2 = word
 
-				print("%20s %20s -> PMI: %3.5f, Freq: %3.5f" %(found_word1,found_word2,pmi[rows[i]][cols[i]],Ni_XY[rows[i]][cols[i]]))
+			# 	print("%20s %20s -> PMI: %3.5f, Joint Freq: %5d" %(found_word1, found_word2, pmi[rows[i]][cols[i]], Ni_XY[rows[i]][cols[i]]))
 
 			# sys.stdout.write("\rProcessed -> d: %d max_val: %d" % (d,np.nonzero(Ni_XY)))
 			# sys.stdout.flush()
