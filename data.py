@@ -101,37 +101,47 @@ class Corpus(object):
 			self.train = self.tokenize_file(os.path.join(path, 'train-pos'))
 			self.valid = self.tokenize_file(os.path.join(path, 'valid-pos'))
 			self.test = self.tokenize_file(os.path.join(path, 'test-pos'))
+		elif path == "dataset/paper_dataset/":
+			dataset = self.tokenize_file(os.path.join(path, 'wikitext-m/cleaned_train_2'))
+		elif path == "dataset/m-wikitext-2/":
+			dataset = self.tokenize_file(os.path.join(path, 'train'))
+
 		elif path == "dataset/hutter-text/text8":
 			print("text8")
 			self.text = self.tokenize_file(path)
 		elif path == "dataset/hutter-text/enwik8":
 			print("enwik8")
 			self.text = self.tokenize_file(path)
+
 		elif path == "dataset/foma/":
 			print("foma dataset")
 			self.text = self.tokenize_file(os.path.join(path, 'Data_SP2_20_size.dat'))
 			# dataset = os.path.join(path, 'Original_Data/SP/SP8')
 			# self.process_foma(dataset)
+		
 		elif path == "dataset/music/":
 			dataset = os.path.join(path, 'tunes.json')
 			self.process_music(dataset)
-		elif path== "dataset/mobility/":
+		
+		elif path == "dataset/mobility/":
 			# dataset = os.path.join(path, 'taxi_3557_1_grids')
 			# self.tokenize_file(dataset)
 			dataset = os.path.join(path, '10_clean.txt')
 			self.process_mobility(dataset)
-		elif path== "dataset/mnist_data/":
+		
+		elif path == "dataset/mnist_data/":
 			dataset = os.path.join(path, 'mnist_data_per_2.dat')
 			self.tokenize_file(dataset)
-		elif path== "dataset/copy_add/":
+		
+		elif path == "dataset/copy_add/":
 			dataset = os.path.join(path, 'copy.dat')
 			self.tokenize_file(dataset)
 
-		elif path== "dataset/paper_dataset/":
-			dataset = self.tokenize_file(os.path.join(path, 'wikitext-m/cleaned_train_2'))
+		elif path == "dataset/time_series/":
+			dataset = os.path.join(path, 'TS_anomalies','A1Benchmark','real_4.csv')
+			print("Time Series Path: %s" % dataset)
+			self.process_time_series(dataset)
 
-		elif path== "dataset/m-wikitext-2/":
-			dataset = self.tokenize_file(os.path.join(path, 'train'))
 		else:
 			print("Please check the dataset path supplied. No such path found")
 			sys.exit(0)
@@ -196,3 +206,11 @@ class Corpus(object):
 		f.close()
 		mobility_data = json.loads(data)
 		self.tokenize_strings(mobility_data)
+
+	def process_time_series(self, path):
+		f = open(path, r)
+		data = f.read()
+		f.close()
+
+		print(data)
+		sys.exit(0)
