@@ -51,19 +51,23 @@ for filename in filenames:
     all_Hxy.append(Hxy.tolist())
 
 #######################################################################################################################
-# with plt.style.context(('seaborn')):
+with plt.style.context(('seaborn')):
 
     ###################################################################################################################
-    # break_point = 4
+    # # break_point = 4
+    # break_point = 729
     # dataset = 0
-    # alpha_1 = 0.4786
-    # alpha_2 = 0.01
+    # data = all_mi[dataset]#[20:]
+    # # alpha_1 = 0.4786
+    # # alpha_2 = 0.01
+    # alpha_1 = 0.002
+    # alpha_2 = -0.001
     # amplitude = all_mi[dataset][break_point-1]
-    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    # x = np.linspace(1, len(data), len(data))
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     # f.delta = 0.275
     # fit_sample = f(x)
-    # p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], "r-", label="PTB")
+    # p1 = plt.loglog(np.arange(1,len(data)+1), data, "r-", label="PTB")
     # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law fit for PTB")
 
     # break_point = 4
@@ -71,11 +75,11 @@ for filename in filenames:
     # alpha_1 = 0.4811
     # alpha_2 = 0.016
     # amplitude = all_mi[dataset][break_point-1]
-    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    # x = np.linspace(1, len(data), len(data))
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     # f.delta = 0.228
     # fit_sample = f(x)
-    # p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="Text8")
+    # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="Text8")
     # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for Text8")
 
     # break_point = 4
@@ -83,11 +87,11 @@ for filename in filenames:
     # alpha_1 = 0.305
     # alpha_2 = 0.01
     # amplitude = all_mi[dataset][break_point-1]
-    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    # x = np.linspace(1, len(data), len(data))
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     # f.delta = 0.19
     # fit_sample = f(x)
-    # p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="Text8 (S)")
+    # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="Text8 (S)")
     # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for Text8 (S)")
 
     # break_point = 4
@@ -95,11 +99,11 @@ for filename in filenames:
     # alpha_1 = 0.55
     # alpha_2 = 0.02
     # amplitude = all_mi[dataset][break_point-1]
-    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    # x = np.linspace(1, len(data), len(data))
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     # f.delta = 0.235
     # fit_sample = f(x)
-    # p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="Text8 (wR)")
+    # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="Text8 (wR)")
     # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for Text8 (wR)")
 
     # break_point = 4
@@ -107,11 +111,11 @@ for filename in filenames:
     # alpha_1 = 0.42
     # alpha_2 = 0.013
     # amplitude = all_mi[dataset][break_point-1]
-    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    # x = np.linspace(1, len(data), len(data))
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     # f.delta = 0.19
     # fit_sample = f(x)
-    # p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="Text8 (wR/S)")
+    # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="Text8 (wR/S)")
     # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for Text8 (wR/S)")
 
     # break_point = 4
@@ -119,11 +123,11 @@ for filename in filenames:
     # alpha_1 = 0.421
     # alpha_2 = 0.00281
     # amplitude = all_mi[dataset][break_point-1]
-    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    # x = np.linspace(1, len(data), len(data))
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     # f.delta = 0.346
     # fit_sample = f(x)
-    # p3 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="WikiText2")
+    # p3 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText2")
     # p4 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2")
 
     # break_point = 4
@@ -131,35 +135,40 @@ for filename in filenames:
     # alpha_1 = 0.38215
     # alpha_2 = 0.003
     # amplitude = all_mi[dataset][break_point-1]
-    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    # x = np.linspace(1, len(data), len(data))
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     # f.delta = 0.25
     # fit_sample = f(x)
-    # p3 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="WikiText2 (C)")
+    # p3 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText2 (C)")
     # p4 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 (C)")
 
     # break_point = 5
-    # dataset = 7
+    break_point = 2660
+    dataset = 7
+    data = all_mi[dataset][50:]
     # alpha_1 = 0.694
     # alpha_2 = 0.020
-    # amplitude = all_mi[dataset][break_point-1]
-    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
-    # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # f.delta = 0.345
-    # fit_sample = f(x)
-    # p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="WikiText103")
-    # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText103")
+    alpha_1 = 0.020
+    alpha_2 = 0.0
+    amplitude = all_mi[dataset][break_point-1]
+    x = np.linspace(1, len(data), len(data))
+    f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    f.delta = 0.345
+    fit_sample = f(x)
+    p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText103")
+    p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText103")
 
     # break_point = 4
     # dataset = 8
+    # data = all_mi[dataset]#[20:]
     # alpha_1 = 0.77
     # alpha_2 = 0.021
     # amplitude = all_mi[dataset][break_point-1]
-    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    # x = np.linspace(1, len(data), len(data))
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     # f.delta = 0.35
     # fit_sample = f(x)
-    # p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="WikiText103 (C)")
+    # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText103 (C)")
     # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText103 (C)")
 
     #######################################################################################################################
@@ -169,59 +178,59 @@ for filename in filenames:
     # alpha_2 = -0.001
     # # amplitude = 0.0004814
     # amplitude = all_mi[dataset][break_point-1]
-    # x = np.linspace(1, len(all_mi[dataset]), len(all_mi[dataset]))
+    # x = np.linspace(1, len(data), len(data))
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     # f.delta = 0.1
     # fit_sample = f(x)
-    # p1 = plt.loglog(np.arange(1,len(all_mi[dataset])+1), all_mi[dataset], label="LDD Curve")
+    # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="LDD Curve")
     # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law")
 
     #########################################################################################################################
-    # [D, p_value] = stats.ks_2samp(all_mi[dataset], fit_sample)
+    [D, p_value] = stats.ks_2samp(data, fit_sample)
 
-    # print("")
-    # print("Dataset", dataset)
-    # print("D_inf", break_point)
-    # print("c1",all_mi[dataset][0])
-    # print("alpha 1", alpha_1)
-    # print("amplitude", all_mi[dataset][break_point-1])
-    # print("alpha 2", alpha_2)
-    # print("delta", f.delta)
-    # print("D", D)
-    # print("p-value", p_value)
-    # print("length", len(all_mi[dataset]))
+    print("")
+    print("Dataset :", dataset)
+    print("D_inf :", break_point)
+    print("c1 :",data[0])
+    print("alpha 1 :", alpha_1)
+    print("amplitude :", all_mi[dataset][break_point-1])
+    print("alpha 2 :", alpha_2)
+    print("delta :", f.delta)
+    print("D :", D)
+    print("p-value :", p_value)
+    print("length :", len(data))
     
-    # #########################################################################################################################
-    # ax = plt.axes()
-    # lgd = ax.legend(loc='upper right', shadow=True, fancybox=True) 
-    # plt.tick_params(labelsize='large', width=3)
-    # plt.grid(True)
-    # plt.grid(which='major', linestyle='-', linewidth='0.1', color='grey')
-    # plt.grid(which='minor', linestyle='-', linewidth='0.1', color='grey')
-    # ax.set_xlim(1.0, 10000.0)
-    # ax.set_ylim(0.5665692652625367, 2.840370753962389)
-    # ax.set_xlabel('Distance between words, d', fontsize=15)
-    # ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-    # plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
-    # plt.show()
+    #########################################################################################################################
+    ax = plt.axes()
+    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True) 
+    plt.tick_params(labelsize='large', width=3)
+    plt.grid(True)
+    plt.grid(which='major', linestyle='-', linewidth='0.1', color='grey')
+    plt.grid(which='minor', linestyle='-', linewidth='0.1', color='grey')
+    ax.set_xlim(1.0, 10000.0)
+    ax.set_ylim(0.5665692652625367, 2.840370753962389)
+    ax.set_xlabel('Distance between words, d', fontsize=15)
+    ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
+    plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.show()
 
 ######################################################################################################################
-break_point = [4,4,4,4,4,4,4,5,4]
-# end_point = [784,784,784,784,784,784,784,784,784,784]
-end_point = [384,384,384,384,384,384,384,384,384,384]
-for dataset in range(len(filenames)):
+# break_point = [4,4,4,4,4,4,4,5,4]
+# # end_point = [784,784,784,784,784,784,784,784,784,784]
+# end_point = [384,384,384,384,384,384,384,384,384,384]
+# for dataset in range(len(filenames)):
 
-    sdds = 0
-    ldds = 0
+#     sdds = 0
+#     ldds = 0
 
-    for i in range(break_point[dataset]):
-        sdds += all_mi[dataset][i]
+#     for i in range(break_point[dataset]):
+#         sdds += all_mi[dataset][i]
 
-    for i in range(break_point[dataset],end_point[dataset]):
-        ldds += all_mi[dataset][i]
+#     for i in range(break_point[dataset],end_point[dataset]):
+#         ldds += all_mi[dataset][i]
 
-    print("\n")
-    print("Dataset", dataset)
-    print("SDDs", sdds)
-    print("LDDs", ldds)
-    print("Proportional", sdds/ldds, ldds/sdds)
+#     print("\n")
+#     print("Dataset", dataset)
+#     print("SDDs", sdds)
+#     print("LDDs", ldds)
+#     print("Proportional", sdds/ldds, ldds/sdds)
