@@ -7,6 +7,9 @@ from collections import Counter
 import simplejson as json
 import gzip
 import pickle
+import matplotlib.pyplot as plt
+import numpy as np
+from hurst import compute_Hc, random_walk
 
 
 # Save this function in a file
@@ -138,9 +141,9 @@ class Corpus(object):
 			self.tokenize_file(dataset)
 
 		elif path == "dataset/time_series/":
-			dataset = os.path.join(path, 'TS_anomalies','A1Benchmark','real_4.csv')
+			dataset = os.path.join(path, 'TS_anomalies','A1Benchmark','real_1.csv')
 			print("Time Series Path: %s" % dataset)
-			self.process_time_series(dataset)
+			self.process_time_series(dataset,2) #Column number of data
 
 		else:
 			print("Please check the dataset path supplied. No such path found")
@@ -207,10 +210,30 @@ class Corpus(object):
 		mobility_data = json.loads(data)
 		self.tokenize_strings(mobility_data)
 
-	def process_time_series(self, path):
-		f = open(path, r)
-		data = f.read()
+	def process_time_series(self, path, column_choice):
+		f = open(path, "r")
+		lines = f.readlines()
 		f.close()
 
-		print(data)
-		sys.exit(0)
+		processed_data = ""
+		processed_vals = []
+		for i in range(len(lines)):
+			cols = lines[i].split(",")
+			if i>1:
+				processed_data += " " + cols[column_choice-1]
+				processed_vals.append(float(cols[column_choice-1]))
+			elif i==1:
+				processed_data = cols[column_choice-1]
+				processed_vals.append(float(cols[column_choice-1]))
+
+		plt.plot(processed_vals)
+		plt.show()
+
+		tokens = 0
+		words = processed_data.split()
+		tokens += len(words)
+		for word in words:
+			wordID = self.dictionary.add_word(word)
+			self.sequentialData.add_to_list(wordID)
+		self.sequentialData.add_data()
+		print("Size of Vocabulary", len(self.dictionary.counter))
