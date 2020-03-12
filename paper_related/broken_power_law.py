@@ -142,14 +142,11 @@ with plt.style.context(('seaborn')):
     # p3 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText2 (C)")
     # p4 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 (C)")
 
-    # break_point = 5
-    break_point = 2660
+    break_point = 5
     dataset = 7
     data = all_mi[dataset][50:]
-    # alpha_1 = 0.694
-    # alpha_2 = 0.020
-    alpha_1 = 0.020
-    alpha_2 = 0.0
+    alpha_1 = 0.694
+    alpha_2 = 0.020
     amplitude = all_mi[dataset][break_point-1]
     x = np.linspace(1, len(data), len(data))
     f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
