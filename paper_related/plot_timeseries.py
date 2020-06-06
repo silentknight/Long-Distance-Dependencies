@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["time_series_2"]
+filenames = ["time_series_1","time_series_real2","time_series_real3","time_series_2"]
 all_mi = []
 
 for filename in filenames:
@@ -43,8 +43,10 @@ for filename in filenames:
 
 # red dashes, blue squares and green triangles
 with plt.style.context(('seaborn')):
-    plt.loglog(np.arange(len(all_mi[0])), all_mi[0], label='A1Benchmark/real_4.csv')
-    # plt.loglog(np.arange(len(all_mi[1])), all_mi[1], label='A1Benchmark/real_4.csv')
+    plt.loglog(np.arange(len(all_mi[0])), all_mi[0], label='A1Benchmark/real_1.csv')
+    plt.loglog(np.arange(len(all_mi[1])), all_mi[1], label='A1Benchmark/real_2.csv')
+    plt.loglog(np.arange(len(all_mi[2])), all_mi[2], label='A1Benchmark/real_3.csv')
+    # plt.loglog(np.arange(len(all_mi[3])), all_mi[3], label='A1Benchmark/real_4.csv')
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
@@ -56,6 +58,6 @@ with plt.style.context(('seaborn')):
     print(ax.get_ylim())
     ax.set_xlabel('Distance between timestamps, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=1, numpoints=1) 
-    plt.savefig('time_series2', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    lgd = ax.legend(loc='lower left', shadow=True, fancybox=True, ncol=1, numpoints=1) 
+    plt.savefig('time_series_real', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()

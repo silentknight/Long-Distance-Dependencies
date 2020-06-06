@@ -141,7 +141,7 @@ class Corpus(object):
 			self.tokenize_file(dataset)
 
 		elif path == "dataset/time_series/":
-			dataset = os.path.join(path, 'TS_anomalies','A1Benchmark','real_1.csv')
+			dataset = os.path.join(path, 'TS_anomalies','A1Benchmark','real_3.csv')
 			print("Time Series Path: %s" % dataset)
 			self.process_time_series(dataset,2) #Column number of data
 
