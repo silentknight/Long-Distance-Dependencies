@@ -31,7 +31,7 @@ for filename in filenames:
         for line in lines:
             temp = line.strip().split(":")
             if temp[0] == "d":
-                temp1 = temp[2].split(",")              
+                temp1 = temp[2].split(",")
                 mi = np.append(mi,np.zeros(1))
                 mi[int(temp[1])-1] = float(temp1[0])
                 Hx = np.append(Hx,np.zeros(1))
@@ -182,7 +182,7 @@ with plt.style.context(('seaborn')):
     # amplitude = all_mi[dataset][break_point+10]
     # x = np.linspace(1, len(data), len(data))
     # f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # fit_sample = f(x)    
+    # fit_sample = f(x)
     # p2 = plt.loglog(x, fit_sample, label="Broken Power-Law for WikiText103")
     # amplitude = all_mi[dataset][break_point-1]
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
@@ -208,19 +208,6 @@ with plt.style.context(('seaborn')):
     # p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText103 (C)")
 
     #######################################################################################################################
-    # dataset = 0
-    # data = all_mi[dataset]
-    
-    # alpha_1 = 0.4786
-    # alpha_2 = 0.01
-    # break_point = 4
-    # amplitude = all_mi[dataset][break_point+8]
-    # x = np.linspace(1, len(data), len(data))
-    # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # f.delta = 0.275
-    # fit_sample = f(x)
-    # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law: Stage 1")
-
     dataset = 0
     data = all_mi[dataset]
     p1 = plt.loglog(np.arange(1,len(data)+1), data, label="Dependency Decay Curve of PTB")
@@ -233,7 +220,7 @@ with plt.style.context(('seaborn')):
     f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     f.delta = 0.275
     fit_sample = f(x)
-    p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law: Stage 1")
+    p2 = plt.loglog(x, fit_sample, "--",  label="Smoothly Broken Power-Law: Stage 1")
 
     alpha_1 = 0.01
     alpha_2 = 0.000001
@@ -243,7 +230,7 @@ with plt.style.context(('seaborn')):
     f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     f.delta = 0.1
     fit_sample = f(x)
-    p3 = plt.loglog(x+15, fit_sample, label="Smoothly Broken Power-Law: Stage 2")
+    p3 = plt.loglog(x+15, fit_sample, ':', label="Smoothly Broken Power-Law: Stage 2")
 
     #########################################################################################################################
     [D, p_value] = stats.ks_2samp(data, fit_sample)
@@ -259,10 +246,10 @@ with plt.style.context(('seaborn')):
     print("D :", D)
     print("p-value :", p_value)
     print("length :", len(data))
-    
+
     # #########################################################################################################################
     ax = plt.axes()
-    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True) 
+    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True)
     plt.tick_params(labelsize='large', width=3)
     plt.grid(True)
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
