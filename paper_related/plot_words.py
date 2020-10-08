@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["penn_tree","text8","text8_subset","text8_wor","text8_subset_wor","wiki2","wiki2_cleaned","wiki103","wiki103_cleaned"]
+filenames = ["penn_tree","text8","text8_subset","text8_wor","text8_subset_wor","wiki2","wiki2_cleaned","wiki103","wiki103_cleaned","10kGNAD"]
 
 all_mi = []
 all_hx = []
@@ -59,6 +59,7 @@ with plt.style.context(('seaborn')):
     plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], "b--", label="Wiki2 (C)")
     plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], "g-", label="Wiki103")
     plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], "g--", label="Wiki103 (C)")
+    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], "c--", label="German News")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
@@ -70,6 +71,6 @@ with plt.style.context(('seaborn')):
     print(ax.get_ylim())
     ax.set_xlabel('Distance between words, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=3, numpoints=1) 
+    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=3, numpoints=1, prop={'size': 14}) 
     plt.savefig('lm_words', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()

@@ -52,3 +52,4 @@ build
 pmi_data/
 dataset/NEW/
 dataset/time_series/
+*.csv

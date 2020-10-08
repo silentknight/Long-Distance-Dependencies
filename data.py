@@ -94,6 +94,16 @@ class Corpus(object):
 			self.train = self.tokenize_file(os.path.join(path, 'trainC'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validC'))
 			self.test = self.tokenize_file(os.path.join(path, 'testC'))			
+		elif path == "dataset/wiki/wikitext-2-raw/":
+			print("wikitext-2 dataset")
+			self.train = self.tokenize_file(os.path.join(path, 'trainR'))
+			self.valid = self.tokenize_file(os.path.join(path, 'validR'))
+			self.test = self.tokenize_file(os.path.join(path, 'testR'))
+		elif path == "dataset/wiki/wikitext-103-raw/":
+			print("wikitext-103 dataset")
+			self.train = self.tokenize_file(os.path.join(path, 'trainR'))
+			self.valid = self.tokenize_file(os.path.join(path, 'validR'))
+			self.test = self.tokenize_file(os.path.join(path, 'testR'))	
 		elif path == "dataset/POS/dl4mt/":
 			print("Penn Treebank POS dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'train-pos'))
@@ -144,6 +154,10 @@ class Corpus(object):
 			dataset = os.path.join(path, 'TS_anomalies','A1Benchmark','real_3.csv')
 			print("Time Series Path: %s" % dataset)
 			self.process_time_series(dataset,2) #Column number of data
+
+		elif path == "dataset/10kGNAD/":
+			self.articles_german = self.tokenize_file(os.path.join(path, 'articles.csv'))
+			print("10k German News Articles Dataset")
 
 		else:
 			print("Please check the dataset path supplied. No such path found")

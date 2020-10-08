@@ -120,3 +120,5 @@ echo "Wiki 103 PMI words standard log2 complete"
 # echo "Enwik8 MI words grassberger logx complete"
 # python run_all.py --data dataset/hutter-text/enwik8 --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/enwik8_letters_grassberger_logx
 # echo "Enwik8 MI letters grassberger logx complete"
+
+python run_all.py --data dataset/10kGNAD/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/10kGNAD_words_grassberger_logx
