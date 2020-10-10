@@ -93,6 +93,16 @@ class Corpus(object):
 			print("wikitext-103 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainC'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validC'))
+			self.test = self.tokenize_file(os.path.join(path, 'testC'))	
+		elif path == "dataset/wiki/wiki2C/":
+			print("wikitext-2 dataset")
+			self.train = self.tokenize_file(os.path.join(path, 'trainC'))
+			self.valid = self.tokenize_file(os.path.join(path, 'validC'))
+			self.test = self.tokenize_file(os.path.join(path, 'testC'))
+		elif path == "dataset/wiki/wiki103C/":
+			print("wikitext-103 dataset")
+			self.train = self.tokenize_file(os.path.join(path, 'trainC'))
+			self.valid = self.tokenize_file(os.path.join(path, 'validC'))
 			self.test = self.tokenize_file(os.path.join(path, 'testC'))			
 		elif path == "dataset/wiki/wikitext-2-raw/":
 			print("wikitext-2 dataset")

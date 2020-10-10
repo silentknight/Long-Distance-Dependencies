@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["penn_tree","text8","text8_subset","text8_wor","text8_subset_wor","wiki2","wiki2_cleaned","wiki103","wiki103_cleaned","10kGNAD"]
+filenames = ["penn_tree","text8","text8_subset","text8_wor","text8_subset_wor","wiki2","wiki2_cleaned","wiki103","wiki103_cleaned","10kGNAD","wiki2_raw","wiki103_raw"]
 
 all_mi = []
 all_hx = []
@@ -50,15 +50,17 @@ for filename in filenames:
 
 with plt.style.context(('seaborn')):
 
-    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], "r-", label="PTB")
+    plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], "b-", label="Wiki2")
+    plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], "b--", label="Wiki2 (C)")
+    plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[10], "b:", label="Wiki2 (Raw)")
+    plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], "g-", label="Wiki103")
+    plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], "g--", label="Wiki103 (C)")
+    plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[11], "g:", label="Wiki103 (Raw)")
     plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], 'm-', label="Text8")
     plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], 'm--', label="Text8 (S)")
     plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], 'c-', label="Text8 (wR)")
     plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], 'c--', label="Text8 (wR/S)")
-    plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], "b-", label="Wiki2")
-    plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], "b--", label="Wiki2 (C)")
-    plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], "g-", label="Wiki103")
-    plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], "g--", label="Wiki103 (C)")
+    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], "r-", label="PTB")
     # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], "c--", label="German News")
 
     plt.tick_params(labelsize='large', width=5)
@@ -67,10 +69,11 @@ with plt.style.context(('seaborn')):
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
     ax = plt.axes()
     ax.set_xlim(1, len(all_mi[0]))
+    ax.set_ylim(0.56, 3.2)
     print(ax.get_xlim())
     print(ax.get_ylim())
     ax.set_xlabel('Distance between words, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=3, numpoints=1, prop={'size': 14}) 
+    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=3, numpoints=1, prop={'size': 12}) 
     plt.savefig('lm_words', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
