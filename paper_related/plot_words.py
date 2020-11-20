@@ -29,7 +29,7 @@ for filename in filenames:
         for line in lines:
             temp = line.strip().split(":")
             if temp[0] == "d":
-                temp1 = temp[2].split(",")              
+                temp1 = temp[2].split(",")
                 mi = np.append(mi,np.zeros(1))
                 mi[int(temp[1])-1] = float(temp1[0])
                 Hx = np.append(Hx,np.zeros(1))
@@ -51,17 +51,17 @@ for filename in filenames:
 with plt.style.context(('seaborn')):
 
     plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], "b-", label="Wiki2")
-    plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], "b--", label="Wiki2 (C)")
-    plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[10], "b:", label="Wiki2 (Raw)")
+    #plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], "b--", label="Wiki2 (C)")
+    #plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], "b:", label="Wiki2 (Raw)")
     plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], "g-", label="Wiki103")
-    plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], "g--", label="Wiki103 (C)")
-    plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[11], "g:", label="Wiki103 (Raw)")
+    #plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], "g--", label="Wiki103 (C)")
+    #plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], "g:", label="Wiki103 (Raw)")
     plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], 'm-', label="Text8")
-    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], 'm--', label="Text8 (S)")
-    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], 'c-', label="Text8 (wR)")
-    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], 'c--', label="Text8 (wR/S)")
+    #plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], 'm--', label="Text8 (S)")
+    #plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], 'c-', label="Text8 (wR)")
+    #plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], 'c--', label="Text8 (wR/S)")
     plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], "r-", label="PTB")
-    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], "c--", label="German News")
+    #plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], "c--", label="German News")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
