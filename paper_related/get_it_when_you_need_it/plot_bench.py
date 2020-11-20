@@ -25,7 +25,7 @@ for filename in filenames:
         for line in lines:
             temp = line.strip().split(":")
             if temp[0] == "d":
-                temp1 = temp[2].split(",")              
+                temp1 = temp[2].split(",")
                 mi = np.append(mi,np.zeros(1))
                 mi[int(temp[1])-1] = float(temp1[0])
                 Hx = np.append(Hx,np.zeros(1))
@@ -47,7 +47,7 @@ with plt.style.context(('seaborn')):
     plt.loglog(np.arange(len(all_mi[1])), all_mi[1], label='Permuted MNIST 1')
     plt.loglog(np.arange(len(all_mi[2])), all_mi[2], label='Permuted MNIST 2')
     plt.loglog(np.arange(len(all_mi[3])), all_mi[3], label='Permuted MNIST 3')
-    
+
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
@@ -58,6 +58,6 @@ with plt.style.context(('seaborn')):
     print(ax.get_ylim())
     ax.set_xlabel('Distance between pixels, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=1, numpoints=1) 
+    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=1, numpoints=1)
     plt.savefig('mnist', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()

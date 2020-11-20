@@ -29,7 +29,7 @@ for filename in filenames:
         for line in lines:
             temp = line.strip().split(":")
             if temp[0] == "d":
-                temp1 = temp[2].split(",")              
+                temp1 = temp[2].split(",")
                 mi = np.append(mi,np.zeros(1))
                 mi[int(temp[1])-1] = float(temp1[0])
                 Hx = np.append(Hx,np.zeros(1))
@@ -64,6 +64,6 @@ with plt.style.context(('seaborn')):
     ax.set_xlim(1, len(all_mi[0]))
     ax.set_xlabel('Distance between characters, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=3, numpoints=1) 
+    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=3, numpoints=1)
     plt.savefig('lm_letters', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
