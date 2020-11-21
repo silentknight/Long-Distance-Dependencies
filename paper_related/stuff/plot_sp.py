@@ -27,7 +27,7 @@ for filename in filenames:
         for line in lines:
             temp = line.strip().split(":")
             if temp[0] == "d":
-                temp1 = temp[2].split(",")              
+                temp1 = temp[2].split(",")
                 mi = np.append(mi,np.zeros(1))
                 mi[int(temp[1])-1] = float(temp1[0])
                 Hx = np.append(Hx,np.zeros(1))
