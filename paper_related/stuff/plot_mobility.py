@@ -8,7 +8,7 @@ filenames = ["taxi_1_1","taxi_2_1","taxi_3_1","user_grids"]
 all_mi = []
 
 for filename in filenames:
-    f = open("datapoints/"+filename+".log", "r")
+    f = open(filename+".log", "r")
     lines = f.readlines()
     f.close()
 
@@ -25,7 +25,7 @@ for filename in filenames:
         for line in lines:
             temp = line.strip().split(":")
             if temp[0] == "d":
-                temp1 = temp[2].split(",")              
+                temp1 = temp[2].split(",")
                 mi = np.append(mi,np.zeros(1))
                 mi[int(temp[1])-1] = float(temp1[0])
                 Hx = np.append(Hx,np.zeros(1))
