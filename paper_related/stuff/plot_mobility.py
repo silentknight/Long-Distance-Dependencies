@@ -39,20 +39,26 @@ for filename in filenames:
     else:
         print("Not a valid file")
 
-    all_mi.append(mi[0:1000].tolist())
+    all_mi.append(mi.tolist())
 
 # red dashes, blue squares and green triangles
 with plt.style.context(('seaborn')):
-    p1, p2, p3, p4 = plt.loglog(np.arange(len(all_mi[0])), all_mi[0], np.arange(len(all_mi[1])), all_mi[1], np.arange(len(all_mi[2])), all_mi[2], np.arange(len(all_mi[3])), all_mi[3])
-    plt.tick_params(labelsize='large', width=3)
+    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="Taxi 1")
+    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="Taxi 2")
+    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="Taxi 3")
+    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="User Mobility")
+
+    plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
-
     ax = plt.axes()
-    ax.set_xlabel('Distance between location samples, D(X,Y)', fontsize=15)
-    ax.set_ylabel('Mutual Information, I(X,Y)', fontsize=15)
-    lgd = ax.legend((p1, p2, p3, p4), ("Taxi 1","Taxi 2","Taxi 3","User Mobility"), loc='lower left', shadow=True, fancybox=True)
-
+    ax.set_xlim(1, len(all_mi[0]))
+    # ax.set_ylim(0.56, 3.2)
+    print(ax.get_xlim())
+    print(ax.get_ylim())
+    ax.set_xlabel('Distance between location samples, d', fontsize=15)
+    ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
+    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=2, numpoints=1, prop={'size': 12})
     plt.savefig('mobility', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
