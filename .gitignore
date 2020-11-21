@@ -46,7 +46,6 @@ build
 *.c
 *.so
 *.html
-*.png
 *.swp
 *.save
 pmi_data/
