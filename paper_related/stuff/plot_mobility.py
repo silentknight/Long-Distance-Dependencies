@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["taxi_1_1","taxi_2_1","taxi_3_1","user_grids"]
+filenames = ["taxi_1_1","taxi_2_1","user_grids"]
 all_mi = []
 
 for filename in filenames:
@@ -45,8 +45,7 @@ for filename in filenames:
 with plt.style.context(('seaborn')):
     plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="Taxi 1")
     plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="Taxi 2")
-    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="Taxi 3")
-    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="User Mobility")
+    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="User Mobility")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
