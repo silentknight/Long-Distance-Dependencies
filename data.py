@@ -93,7 +93,7 @@ class Corpus(object):
 			print("wikitext-103 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainC'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validC'))
-			self.test = self.tokenize_file(os.path.join(path, 'testC'))	
+			self.test = self.tokenize_file(os.path.join(path, 'testC'))
 		elif path == "dataset/wiki/wiki2C/":
 			print("wikitext-2 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainC'))
@@ -103,7 +103,7 @@ class Corpus(object):
 			print("wikitext-103 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainC'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validC'))
-			self.test = self.tokenize_file(os.path.join(path, 'testC'))			
+			self.test = self.tokenize_file(os.path.join(path, 'testC'))
 		elif path == "dataset/wiki/wikitext-2-raw/":
 			print("wikitext-2 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainR'))
@@ -113,7 +113,7 @@ class Corpus(object):
 			print("wikitext-103 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainR'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validR'))
-			self.test = self.tokenize_file(os.path.join(path, 'testR'))	
+			self.test = self.tokenize_file(os.path.join(path, 'testR'))
 		elif path == "dataset/wiki/wikitext-2-wR/":
 			print("wikitext-2 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainwR'))
@@ -123,7 +123,7 @@ class Corpus(object):
 			print("wikitext-103 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainwR'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validwR'))
-			self.test = self.tokenize_file(os.path.join(path, 'testwR'))	
+			self.test = self.tokenize_file(os.path.join(path, 'testwR'))
 		elif path == "dataset/POS/dl4mt/":
 			print("Penn Treebank POS dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'train-pos'))
@@ -151,21 +151,21 @@ class Corpus(object):
 			self.text = self.tokenize_file(os.path.join(path, 'Data_SP2_20_size.dat'))
 			# dataset = os.path.join(path, 'Original_Data/SP/SP8')
 			# self.process_foma(dataset)
-		
+
 		elif path == "dataset/music/":
 			dataset = os.path.join(path, 'tunes.json')
 			self.process_music(dataset)
-		
+
 		elif path == "dataset/mobility/":
 			# dataset = os.path.join(path, 'taxi_3557_1_grids')
 			# self.tokenize_file(dataset)
 			dataset = os.path.join(path, '10_clean.txt')
 			self.process_mobility(dataset)
-		
+
 		elif path == "dataset/mnist_data/":
 			dataset = os.path.join(path, 'mnist_data_per_2.dat')
 			self.tokenize_file(dataset)
-		
+
 		elif path == "dataset/copy_add/":
 			dataset = os.path.join(path, 'copy.dat')
 			self.tokenize_file(dataset)
