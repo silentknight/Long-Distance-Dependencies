@@ -85,35 +85,55 @@ class Corpus(object):
 			self.valid = self.tokenize_file(os.path.join(path, 'valid'))
 			self.test = self.tokenize_file(os.path.join(path, 'test'))
 		elif path == "dataset/wiki/wikitext-2C/":
-			print("wikitext-2 dataset")
+			print("wikitext-2 cleaned dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainC'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validC'))
 			self.test = self.tokenize_file(os.path.join(path, 'testC'))
 		elif path == "dataset/wiki/wikitext-103C/":
-			print("wikitext-103 dataset")
+			print("wikitext-103 cleaned dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainC'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validC'))
 			self.test = self.tokenize_file(os.path.join(path, 'testC'))
 		elif path == "dataset/wiki/wiki2C/":
-			print("wikitext-2 dataset")
+			print("wikitext-2 cleaned dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainC'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validC'))
 			self.test = self.tokenize_file(os.path.join(path, 'testC'))
 		elif path == "dataset/wiki/wiki103C/":
-			print("wikitext-103 dataset")
+			print("wikitext-103 cleaned dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainC'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validC'))
 			self.test = self.tokenize_file(os.path.join(path, 'testC'))
 		elif path == "dataset/wiki/wikitext-2-raw/":
-			print("wikitext-2 dataset")
+			print("wikitext-2 raw dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainR'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validR'))
 			self.test = self.tokenize_file(os.path.join(path, 'testR'))
 		elif path == "dataset/wiki/wikitext-103-raw/":
-			print("wikitext-103 dataset")
+			print("wikitext-103 raw dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainR'))
 			self.valid = self.tokenize_file(os.path.join(path, 'validR'))
 			self.test = self.tokenize_file(os.path.join(path, 'testR'))
+		elif path == "dataset/wiki/wikitext-2P/":
+			print("wikitext-2 PTB dataset")
+			self.train = self.tokenize_file(os.path.join(path, 'train'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid'))
+			self.test = self.tokenize_file(os.path.join(path, 'test'))
+		elif path == "dataset/wiki/wikitext-19/":
+			print("wikitext-19 dataset")
+			self.train = self.tokenize_file(os.path.join(path, 'train'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid'))
+			self.test = self.tokenize_file(os.path.join(path, 'test'))
+		elif path == "dataset/wiki/wikitext-19C/":
+			print("wikitext-19 cleaned dataset")
+			self.train = self.tokenize_file(os.path.join(path, 'train'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid'))
+			self.test = self.tokenize_file(os.path.join(path, 'test'))
+		elif path == "dataset/wiki/wikitext-19L/":
+			print("wikitext-19 text8 dataset")
+			self.train = self.tokenize_file(os.path.join(path, 'train'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid'))
+			self.test = self.tokenize_file(os.path.join(path, 'test'))
 		elif path == "dataset/wiki/wikitext-2-wR/":
 			print("wikitext-2 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'trainwR'))
