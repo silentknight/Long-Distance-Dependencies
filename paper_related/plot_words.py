@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["penn_tree","text8","text8_subset","text8_wor","text8_subset_wor","wiki2","wiki2_cleaned","wiki103","wiki103_cleaned","10kGNAD","wiki2_raw","wiki103_raw"]
+filenames = ["penn_tree","text8","text8_subset","text8_wor","text8_subset_wor","wiki2","wiki2_cleaned","wiki2_raw","wiki2_PTB","wiki103","wiki103_cleaned","wiki103_raw","wiki19","wiki19_cleaned","wiki19_Text8","10kGNAD"]
 
 all_mi = []
 all_hx = []
@@ -50,18 +50,22 @@ for filename in filenames:
 
 with plt.style.context(('seaborn')):
 
-    plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], "b-", label="Wiki2")
-    #plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], "b--", label="Wiki2 (C)")
-    #plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], "b:", label="Wiki2 (Raw)")
-    plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], "g-", label="Wiki103")
-    #plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], "g--", label="Wiki103 (C)")
-    #plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], "g:", label="Wiki103 (Raw)")
-    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], 'm-', label="Text8")
-    #plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], 'm--', label="Text8 (S)")
-    #plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], 'c-', label="Text8 (wR)")
-    #plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], 'c--', label="Text8 (wR/S)")
     plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], "r-", label="PTB")
-    #plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], "c--", label="German News")
+    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], 'm-', label="Text8")
+    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], 'm--', label="Text8 (S)")
+    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], 'c-', label="Text8 (wR)")
+    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], 'c--', label="Text8 (wR/S)")
+    plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], "b-", label="Wiki2")
+    plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], "b--", label="Wiki2 (C)")
+    plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], "b:", label="Wiki2 (Raw)")
+    plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], "b-.", label="Wiki2 (PTB)")
+    plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], "g-", label="Wiki103")
+    plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], "g--", label="Wiki103 (C)")
+    plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], "g:", label="Wiki103 (Raw)")
+    plt.loglog(np.arange(1,len(all_mi[12])+1), all_mi[12], "c-", label="Wiki19")
+    plt.loglog(np.arange(1,len(all_mi[13])+1), all_mi[13], "c--", label="Wiki19 (C)")
+    plt.loglog(np.arange(1,len(all_mi[14])+1), all_mi[14], "c-.", label="Wiki19 (Text8)")
+    plt.loglog(np.arange(1,len(all_mi[15])+1), all_mi[15], "k--", label="German Text")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
@@ -69,7 +73,7 @@ with plt.style.context(('seaborn')):
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
     ax = plt.axes()
     ax.set_xlim(1, len(all_mi[0]))
-    ax.set_ylim(0.56, 3.2)
+    # ax.set_ylim(0.56, 3.2)
     print(ax.get_xlim())
     print(ax.get_ylim())
     ax.set_xlabel('Distance between words, d', fontsize=15)
