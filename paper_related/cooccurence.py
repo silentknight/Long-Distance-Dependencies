@@ -18,7 +18,7 @@ parser.add_argument('--start', type=int, default=1, help='Value of D (Dependency
 parser.add_argument('--end', type=str, default='end', help='Value of D (Dependency distance) till end for plotting. Default is \'end\' (all the way will the end).')
 parser.add_argument('--logscale', type=int, default=1, help='Plot on Log Scale or normal scale. 1: Log Scale; 0: Normal Scale')
 parser.add_argument('--normalize', type=str, default='n', help='Normalize values')
-#parser.add_argument('--word1', type=str, help='Word you want to find the distribution of', required=True)
+parser.add_argument('--word1', type=str, help='Word you want to find the distribution of')
 parser.add_argument('--word2', type=str, help='Word against which you want to find the distribution')
 parser.add_argument('--pmi_l_thresh', type=int, help='PMI lower threshold')
 parser.add_argument('--pmi_u_thresh', type=int, help='PMI upper threshold')
@@ -47,6 +47,7 @@ print(path)
 ####################################################################################################
 # Open the symbols file and check if the characters are present which are supplied in command line #
 ####################################################################################################
+symbols = {}
 try:
 	word1 = -1
 	word2 = -1
@@ -55,6 +56,12 @@ try:
 	data = f.read()
 	symbols = ast.literal_eval(data)
 
+	f.close()
+except:
+	print(path+" does not exist. Please check the path. Do not add / at the end of the path.")
+	sys.exit()
+
+try:
 	if args.word1 in symbols and args.word2 in symbols:
 		wordID_1 = int(symbols[args.word1])
 		wordID_2 = int(symbols[args.word2])
@@ -62,15 +69,9 @@ try:
 	elif args.word2 == None:
 		wordID_1 = int(symbols[args.word1])
 		print("Word you supplied is: "+args.word1+". Hence computing distribution across all other words.")
-	else:
-		print("Words you supplied were not present in the dataset. Hence Exiting !!")
-		sys.exit()
-	f.close()
 except:
-	print(path+" does not exist. Please check the path. Do not add / at the end of the path.")
-	sys.exit()
+	print("Either words are not supplied or supplied words are not present in the dataset.")
 
-sys.exit()
 ####################################################################################################
 # Get the start and end of "d"                                                                     #
 ####################################################################################################
