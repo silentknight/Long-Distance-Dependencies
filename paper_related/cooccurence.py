@@ -20,8 +20,8 @@ parser.add_argument('--logscale', type=int, default=1, help='Plot on Log Scale o
 parser.add_argument('--normalize', type=str, default='n', help='Normalize values')
 parser.add_argument('--word1', type=str, help='Word you want to find the distribution of')
 parser.add_argument('--word2', type=str, help='Word against which you want to find the distribution')
-parser.add_argument('--pmi_l_thresh', type=int, help='PMI lower threshold')
-parser.add_argument('--pmi_u_thresh', type=int, help='PMI upper threshold')
+parser.add_argument('--pmi_l', type=int, help='PMI lower threshold')
+parser.add_argument('--pmi_u', type=int, help='PMI upper threshold')
 args = parser.parse_args()
 
 ####################################################################################################
@@ -135,30 +135,32 @@ try:
 		Ni_X = pmi_data['arr_2'].tolist().toarray()[0]
 		Ni_Y = pmi_data['arr_3'].tolist().toarray()[0]
 
-		print("Processing d = %s \n\n" % (d))
-		print("Negatively Dependent (:,-3)  = %d" % np.size(pmi[np.where(pmi<-3)]))
-		print("Negatively Dependent [-3,-2) = %d" % np.size(pmi[np.where((pmi<-2)&(pmi>=-3))]))
-		print("Negatively Dependent [-2,-1) = %d" % np.size(pmi[np.where((pmi<-1)&(pmi>=-2))]))
-		print("Negatively Dependent [-1,0)  = %d" % np.size(pmi[np.where((pmi<0)&(pmi>=-1))]))
-		print("Independent = %d" % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
-		print("Positively Dependent (0,1)   = %d" % np.size(pmi[np.where((pmi>0)&(pmi<1))]))
-		print("Positively Dependent [1,2)   = %d" % np.size(pmi[np.where((pmi>=1)&(pmi<2))]))
-		print("Positively Dependent [2,3)   = %d" % np.size(pmi[np.where((pmi>=2)&(pmi<3))]))
-		print("Positively Dependent [3,4)   = %d" % np.size(pmi[np.where((pmi>=3)&(pmi<4))]))
-		print("Positively Dependent [4,5)   = %d" % np.size(pmi[np.where((pmi>=4)&(pmi<5))]))
-		print("Positively Dependent [5,6)   = %d" % np.size(pmi[np.where((pmi>=5)&(pmi<6))]))
-		print("Positively Dependent [6,7)   = %d" % np.size(pmi[np.where((pmi>=6)&(pmi<7))]))
-		print("Positively Dependent [7,8)   = %d" % np.size(pmi[np.where((pmi>=7)&(pmi<8))]))
-		print("Positively Dependent [8,9)   = %d" % np.size(pmi[np.where((pmi>=8)&(pmi<9))]))
-		print("Positively Dependent [9,10)  = %d" % np.size(pmi[np.where((pmi>=9)&(pmi<10))]))
-		print("Positively Dependent [10,:)  = %d" % np.size(pmi[np.where(pmi>=10)]))
+		f = open("cooccur_data/data"+str(d)+".log","w")
 
-		if args.pmi_l_thresh != None and args.pmi_u_thresh != None:
-			index = np.where((pmi>=args.pmi_l_thresh)&(pmi<=args.pmi_u_thresh))
-		elif args.pmi_u_thresh != None:
-			index = np.where(pmi>=args.pmi_u_thresh)
-		elif args.pmi_l_thresh != None:
-			index = np.where(pmi<=args.pmi_l_thresh)
+		f.write("Processing d = %s \n\n" % (d))
+		f.write("Negatively Dependent (:,-3)  = %d" % np.size(pmi[np.where(pmi<-3)]))
+		f.write("Negatively Dependent [-3,-2) = %d" % np.size(pmi[np.where((pmi<-2)&(pmi>=-3))]))
+		f.write("Negatively Dependent [-2,-1) = %d" % np.size(pmi[np.where((pmi<-1)&(pmi>=-2))]))
+		f.write("Negatively Dependent [-1,0)  = %d" % np.size(pmi[np.where((pmi<0)&(pmi>=-1))]))
+		f.write("Independent = %d" % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+		f.write("Positively Dependent (0,1)   = %d" % np.size(pmi[np.where((pmi>0)&(pmi<1))]))
+		f.write("Positively Dependent [1,2)   = %d" % np.size(pmi[np.where((pmi>=1)&(pmi<2))]))
+		f.write("Positively Dependent [2,3)   = %d" % np.size(pmi[np.where((pmi>=2)&(pmi<3))]))
+		f.write("Positively Dependent [3,4)   = %d" % np.size(pmi[np.where((pmi>=3)&(pmi<4))]))
+		f.write("Positively Dependent [4,5)   = %d" % np.size(pmi[np.where((pmi>=4)&(pmi<5))]))
+		f.write("Positively Dependent [5,6)   = %d" % np.size(pmi[np.where((pmi>=5)&(pmi<6))]))
+		f.write("Positively Dependent [6,7)   = %d" % np.size(pmi[np.where((pmi>=6)&(pmi<7))]))
+		f.write("Positively Dependent [7,8)   = %d" % np.size(pmi[np.where((pmi>=7)&(pmi<8))]))
+		f.write("Positively Dependent [8,9)   = %d" % np.size(pmi[np.where((pmi>=8)&(pmi<9))]))
+		f.write("Positively Dependent [9,10)  = %d" % np.size(pmi[np.where((pmi>=9)&(pmi<10))]))
+		f.write("Positively Dependent [10,:)  = %d" % np.size(pmi[np.where(pmi>=10)]))
+
+		if args.pmi_l != None and args.pmi_u != None:
+			index = np.where((pmi>=args.pmi_l)&(pmi<=args.pmi_u))
+		elif args.pmi_u != None:
+			index = np.where(pmi>=args.pmi_u)
+		elif args.pmi_l != None:
+			index = np.where(pmi<=args.pmi_l)
 		else:
 			print("No PMI thresholds provided")
 			exit()
@@ -173,7 +175,7 @@ try:
 					found_word2 = word
 
 			if(Ni_X[pmi_rows[i]]>5 and Ni_Y[pmi_cols[i]]>5):
-				print("%20s:%6d %20s:%6d -> Joint Freq: %5d, PMI: %3.5f" %(found_word1, Ni_X[pmi_rows[i]], found_word2, Ni_Y[pmi_cols[i]], Ni_XY[i], pmi[i]))
+				f.write("%20s:%6d %20s:%6d -> Joint Freq: %5d, PMI: %3.5f" %(found_word1, Ni_X[pmi_rows[i]], found_word2, Ni_Y[pmi_cols[i]], Ni_XY[i], pmi[i]))
 
 		# sys.stdout.write("\rProcessed -> d: %d max_val: %d" % (d,np.nonzero(Ni_XY)))
 		# sys.stdout.flush()
@@ -185,7 +187,13 @@ try:
 		# plt.clim(-7, 15);
 		# plt.show()
 
+		f.close()
+
 		d+=1
+		if end == "end":
+			pass
+		elif d == end:
+			exit()
 
 except (KeyboardInterrupt, ValueError) as e:
 	print(e)
