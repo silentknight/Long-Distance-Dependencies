@@ -159,9 +159,9 @@ try:
 		fm.write("%d," % np.size(pmi[np.where(pmi<-3)]))
 		fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-3))]))
 		fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
-		fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<5))]))
-		fm.write("%d," % np.size(pmi[np.where((pmi>=5)&(pmi<10))]))
-		fm.write("%d," % np.size(pmi[np.where(pmi>=10)]))
+		fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<6))]))
+		fm.write("%d," % np.size(pmi[np.where((pmi>=6)&(pmi<12))]))
+		fm.write("%d," % np.size(pmi[np.where(pmi>=12)]))
 		fm.write("\n")
 
 		#if args.pmi_l != None and args.pmi_u != None:
