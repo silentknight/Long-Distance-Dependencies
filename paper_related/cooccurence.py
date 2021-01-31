@@ -120,6 +120,7 @@ except:
 
 print("Pull data from numpy file")
 
+fm = open("cooccur_dataset_"+str(args.dataset),"w")
 d = start
 try:
 	for file in files:
@@ -136,7 +137,6 @@ try:
 		Ni_Y = pmi_data['arr_3'].tolist().toarray()[0]
 
 		f = open("cooccur_data/data"+str(d)+".log","w")
-
 		f.write("\nProcessing d = %s \n\n" % (d))
 		f.write("\nNegatively Dependent (:,-3)  = %d" % np.size(pmi[np.where(pmi<-3)]))
 		f.write("\nNegatively Dependent [-3,-2) = %d" % np.size(pmi[np.where((pmi<-2)&(pmi>=-3))]))
@@ -154,42 +154,43 @@ try:
 		f.write("\nPositively Dependent [8,9)   = %d" % np.size(pmi[np.where((pmi>=8)&(pmi<9))]))
 		f.write("\nPositively Dependent [9,10)  = %d" % np.size(pmi[np.where((pmi>=9)&(pmi<10))]))
 		f.write("\nPositively Dependent [10,:)  = %d" % np.size(pmi[np.where(pmi>=10)]))
-
-		if args.pmi_l != None and args.pmi_u != None:
-			index = np.where((pmi>=args.pmi_l)&(pmi<=args.pmi_u))
-		elif args.pmi_u != None:
-			index = np.where(pmi>=args.pmi_u)
-		elif args.pmi_l != None:
-			index = np.where(pmi<=args.pmi_l)
-		else:
-			print("No PMI thresholds provided")
-			exit()
-
-		for i in index[0]:
-			found_word1 = ""
-			found_word2 = ""
-			for word, wordID in symbols.items():
-				if pmi_rows[i] == wordID:
-					found_word1 = word
-				if pmi_cols[i] == wordID:
-					found_word2 = word
-
-			if(Ni_X[pmi_rows[i]]>5 and Ni_Y[pmi_cols[i]]>5):
-				f.write("\n%20s:%6d %20s:%6d -> Joint Freq: %5d, PMI: %3.5f" %(found_word1, Ni_X[pmi_rows[i]], found_word2, Ni_Y[pmi_cols[i]], Ni_XY[i], pmi[i]))
-
-		# sys.stdout.write("\rProcessed -> d: %d max_val: %d" % (d,np.nonzero(Ni_XY)))
-		# sys.stdout.flush()
-
-		print("---------------------------------------------------------------------------\n\n")
-
-		# plt.imshow(pmi)
-		# plt.colorbar(orientation='vertical')
-		# plt.clim(-7, 15);
-		# plt.show()
-
 		f.close()
 
+		fm.write("%d," % np.size(pmi[np.where(pmi<-3)]))
+		fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-3))]))
+		fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+		fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<5))]))
+		fm.write("%d," % np.size(pmi[np.where((pmi>=5)&(pmi<10))]))
+		fm.write("%d," % np.size(pmi[np.where(pmi>=10)]))
+		fm.write("\n")
+
+		#if args.pmi_l != None and args.pmi_u != None:
+		#	index = np.where((pmi>=args.pmi_l)&(pmi<=args.pmi_u))
+		#elif args.pmi_u != None:
+		#	index = np.where(pmi>=args.pmi_u)
+		#elif args.pmi_l != None:
+		#	index = np.where(pmi<=args.pmi_l)
+		#else:
+		#	print("No PMI thresholds provided")
+		#	exit()
+
+		#for i in index[0]:
+		#	found_word1 = ""
+		#	found_word2 = ""
+		#	for word, wordID in symbols.items():
+		#		if pmi_rows[i] == wordID:
+		#			found_word1 = word
+		#		if pmi_cols[i] == wordID:
+		#			found_word2 = word
+
+		#	if(Ni_X[pmi_rows[i]]>5 and Ni_Y[pmi_cols[i]]>5):
+		#		f.write("\n%20s:%6d %20s:%6d -> Joint Freq: %5d, PMI: %3.5f" %(found_word1, Ni_X[pmi_rows[i]], found_word2, Ni_Y[pmi_cols[i]], Ni_XY[i], pmi[i]))
+
+		sys.stdout.write("\rProcessed -> d: %d" % d)
+		sys.stdout.flush()
+
 		d+=1
+
 		if end == "end":
 			pass
 		elif d == end:
@@ -198,3 +199,5 @@ try:
 except (KeyboardInterrupt, ValueError) as e:
 	print(e)
 	print("Processing halted. Printing upto d: "+str(d-1))
+
+fm.close()
