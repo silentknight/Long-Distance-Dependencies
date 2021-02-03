@@ -3,18 +3,209 @@ Processing d = 15
 
 
 Negatively Dependent (:,-3)  = 0
-Negatively Dependent [-3,-2) = 73
-Negatively Dependent [-2,-1) = 6277
-Negatively Dependent [-1,0)  = 89404
-Independent = 1106256601
-Positively Dependent (0,1)   = 206071
-Positively Dependent [1,2)   = 184922
-Positively Dependent [2,3)   = 153007
-Positively Dependent [3,4)   = 129970
-Positively Dependent [4,5)   = 115073
-Positively Dependent [5,6)   = 96431
-Positively Dependent [6,7)   = 75560
-Positively Dependent [7,8)   = 51927
-Positively Dependent [8,9)   = 32006
-Positively Dependent [9,10)  = 16735
-Positively Dependent [10,:)  = 11227
+Negatively Dependent [-3,-2) = 42
+Negatively Dependent [-2,-1) = 3042
+Negatively Dependent [-1,0)  = 41928
+Independent = 99519015
+Positively Dependent (0,1)   = 98429
+Positively Dependent [1,2)   = 85845
+Positively Dependent [2,3)   = 69539
+Positively Dependent [3,4)   = 58831
+Positively Dependent [4,5)   = 46290
+Positively Dependent [5,6)   = 34606
+Positively Dependent [6,7)   = 21889
+Positively Dependent [7,8)   = 12492
+Positively Dependent [8,9)   = 5871
+Positively Dependent [9,10)  = 1987
+Positively Dependent [10,:)  = 194
+              cluett:     7           snack-food:     7 -> Joint Freq:     1, PMI: 10.00597
+              gitano:     7                swapo:     7 -> Joint Freq:     1, PMI: 10.00597
+                 ipo:     8               pierre:     6 -> Joint Freq:     1, PMI: 10.02659
+           ssangyong:     7         nonexecutive:     6 -> Joint Freq:     1, PMI: 10.16012
+             leipzig:     7                forum:     7 -> Joint Freq:     1, PMI: 10.00597
+               grave:     8                dusty:     6 -> Joint Freq:     1, PMI: 10.02659
+            donoghue:     7              longest:     7 -> Joint Freq:     1, PMI: 10.00597
+           confessed:     6              renewal:     7 -> Joint Freq:     1, PMI: 10.16012
+      respectability:     6            addresses:     6 -> Joint Freq:     1, PMI: 10.31428
+              speeds:     6            nightmare:     7 -> Joint Freq:     1, PMI: 10.16012
+            warranty:     7               garage:     6 -> Joint Freq:     1, PMI: 10.16012
+            dragging:     7          short-lived:     7 -> Joint Freq:     1, PMI: 10.00597
+          small-town:     6               rooted:     6 -> Joint Freq:     1, PMI: 10.31428
+            resident:     6           girlfriend:     7 -> Joint Freq:     1, PMI: 10.16012
+             olympic:     6           liberation:     8 -> Joint Freq:     1, PMI: 10.02659
+               tramp:     6               campus:     8 -> Joint Freq:     1, PMI: 10.02659
+               tramp:     6               silent:     8 -> Joint Freq:     1, PMI: 10.02659
+          confronted:     6           confronted:     6 -> Joint Freq:     1, PMI: 10.31428
+          thornburgh:     8           prosecuted:     6 -> Joint Freq:     1, PMI: 10.02659
+           parallels:     8             booklets:     6 -> Joint Freq:     1, PMI: 10.02659
+              chores:     8             educated:     6 -> Joint Freq:     1, PMI: 10.02659
+            festival:     7                prize:    10 -> Joint Freq:     2, PMI: 10.34245
+               oakes:     7        distinguished:     6 -> Joint Freq:     1, PMI: 10.16012
+             olympic:     6           disclosing:     6 -> Joint Freq:     1, PMI: 10.31428
+               micro:     6                logic:    15 -> Joint Freq:     2, PMI: 10.09113
+          prevention:     7        uncomfortable:     6 -> Joint Freq:     1, PMI: 10.16012
+              pumped:     8                 foam:     6 -> Joint Freq:     1, PMI: 10.02659
+       refrigerators:     7                 foam:     6 -> Joint Freq:     1, PMI: 10.16012
+                r.i.:     6           prevailing:     8 -> Joint Freq:     1, PMI: 10.02659
+             faberge:     6             cosmetic:     8 -> Joint Freq:     1, PMI: 10.02659
+            plumbing:     7                  tag:     7 -> Joint Freq:     1, PMI: 10.00597
+        thoroughbred:     6                boone:     7 -> Joint Freq:     1, PMI: 10.16012
+           five-cent:    11              omitted:    14 -> Joint Freq:    11, PMI: 11.25874
+               crest:     8             tailored:     6 -> Joint Freq:     1, PMI: 10.02659
+          peripheral:     6                pulls:     7 -> Joint Freq:     1, PMI: 10.16012
+             refuses:     7                vicar:     7 -> Joint Freq:     1, PMI: 10.00597
+               hyman:     6                wound:     8 -> Joint Freq:     1, PMI: 10.02659
+     extraordinarily:     6            diplomats:     8 -> Joint Freq:     1, PMI: 10.02659
+       distinguished:     6              privacy:     8 -> Joint Freq:     1, PMI: 10.02659
+           overbuilt:     7               touted:     7 -> Joint Freq:     1, PMI: 10.00597
+           contrasts:     7             provoked:     6 -> Joint Freq:     1, PMI: 10.16012
+            confined:     7              shaping:     7 -> Joint Freq:     1, PMI: 10.00597
+             haskins:     6              shaping:     7 -> Joint Freq:     1, PMI: 10.16012
+                tilt:     7             decisive:     6 -> Joint Freq:     1, PMI: 10.16012
+               basin:     6               inouye:     8 -> Joint Freq:     1, PMI: 10.02659
+              ernest:     7             inventor:     6 -> Joint Freq:     1, PMI: 10.16012
+          censorship:     7           censorship:     7 -> Joint Freq:     1, PMI: 10.00597
+                oral:     7             preclude:     7 -> Joint Freq:     1, PMI: 10.00597
+              fulton:    14           depository:    16 -> Joint Freq:    12, PMI: 10.97106
+           inception:     6                  gut:     6 -> Joint Freq:     1, PMI: 10.31428
+              linear:     6             granting:     7 -> Joint Freq:     1, PMI: 10.16012
+       exceptionally:     8              pennies:     6 -> Joint Freq:     1, PMI: 10.02659
+               hangs:     6             jeopardy:     6 -> Joint Freq:     1, PMI: 10.31428
+              widget:     7               widget:     7 -> Joint Freq:     1, PMI: 10.00597
+        hypothetical:     6         hypothetical:     6 -> Joint Freq:     1, PMI: 10.31428
+                etc.:     8             inviting:     6 -> Joint Freq:     1, PMI: 10.02659
+        appropriated:     6    hart-scott-rodino:     7 -> Joint Freq:     1, PMI: 10.16012
+            crystals:     6              ceramic:     7 -> Joint Freq:     1, PMI: 10.16012
+            crystals:     6                dover:     7 -> Joint Freq:     1, PMI: 10.16012
+               dover:     7             neutrons:     7 -> Joint Freq:     1, PMI: 10.00597
+          ecological:     7        redevelopment:     6 -> Joint Freq:     1, PMI: 10.16012
+            searched:     7             wellcome:     6 -> Joint Freq:     1, PMI: 10.16012
+             hopeful:     8            stevenson:     6 -> Joint Freq:     1, PMI: 10.02659
+           importing:     7             importer:     7 -> Joint Freq:     1, PMI: 10.00597
+            younkers:     6             younkers:     6 -> Joint Freq:     1, PMI: 10.31428
+               fujis:     8                 till:     6 -> Joint Freq:     1, PMI: 10.02659
+                bone:     6                 bone:     6 -> Joint Freq:     1, PMI: 10.31428
+                flom:     7          respectable:     6 -> Joint Freq:     1, PMI: 10.16012
+            salvador:     7           warehouses:     6 -> Joint Freq:     1, PMI: 10.16012
+            spectrum:     7           professors:     7 -> Joint Freq:     1, PMI: 10.00597
+              eduard:     6               unesco:     8 -> Joint Freq:     1, PMI: 10.02659
+         appearances:     6               eduard:     6 -> Joint Freq:     1, PMI: 10.31428
+               wendy:     7              aligned:     6 -> Joint Freq:     1, PMI: 10.16012
+        face-to-face:     6            surprises:     7 -> Joint Freq:     1, PMI: 10.16012
+              devote:     8              workout:     6 -> Joint Freq:     1, PMI: 10.02659
+           peninsula:     6           invitation:     7 -> Joint Freq:     1, PMI: 10.16012
+            sideline:     6             pleasure:     7 -> Joint Freq:     1, PMI: 10.16012
+               isler:     6              sailing:     7 -> Joint Freq:     1, PMI: 10.16012
+               reads:     6            newcomers:     8 -> Joint Freq:     1, PMI: 10.02659
+            modified:     6               vendor:     8 -> Joint Freq:     1, PMI: 10.02659
+             subdued:     6                  fix:     8 -> Joint Freq:     1, PMI: 10.02659
+          disappears:     7              bizarre:     6 -> Joint Freq:     1, PMI: 10.16012
+          satisfying:     6             reinvest:     6 -> Joint Freq:     1, PMI: 10.31428
+             enfield:    11                 hees:     8 -> Joint Freq:     2, PMI: 10.11360
+             oversee:     8            yetnikoff:     6 -> Joint Freq:     1, PMI: 10.02659
+       redevelopment:     6                karen:     8 -> Joint Freq:     1, PMI: 10.02659
+               patel:     8                  oat:     6 -> Joint Freq:     1, PMI: 10.02659
+ chlorofluorocarbons:     6             protocol:     6 -> Joint Freq:     1, PMI: 10.31428
+        disabilities:     8        intentionally:     6 -> Joint Freq:     1, PMI: 10.02659
+                 gun:     7            diversion:     6 -> Joint Freq:     1, PMI: 10.16012
+        face-to-face:     6               update:     6 -> Joint Freq:     1, PMI: 10.31428
+              detect:     7           dependents:     6 -> Joint Freq:     1, PMI: 10.16012
+          influences:     6           jeopardize:     7 -> Joint Freq:     1, PMI: 10.16012
+         subordinate:     8          culmination:     6 -> Joint Freq:     1, PMI: 10.02659
+               limbo:     7             applause:     7 -> Joint Freq:     1, PMI: 10.00597
+             13-week:     7              tenders:     9 -> Joint Freq:     2, PMI: 10.44781
+              fleets:     7              managua:     6 -> Joint Freq:     1, PMI: 10.16012
+             olympic:     6               geared:     6 -> Joint Freq:     1, PMI: 10.31428
+              downey:     6           flamboyant:     8 -> Joint Freq:     1, PMI: 10.02659
+                jazz:     8               sexual:     6 -> Joint Freq:     1, PMI: 10.02659
+            weighing:     8               metall:     6 -> Joint Freq:     1, PMI: 10.02659
+          negligence:     6              logical:     6 -> Joint Freq:     1, PMI: 10.31428
+          flamboyant:     8              logical:     6 -> Joint Freq:     1, PMI: 10.02659
+         probability:     6                adams:     7 -> Joint Freq:     1, PMI: 10.16012
+             carpets:     6                adams:     7 -> Joint Freq:     1, PMI: 10.16012
+              dreams:     7               haunts:     7 -> Joint Freq:     1, PMI: 10.00597
+                 ufo:     7               aliens:     6 -> Joint Freq:     1, PMI: 10.16012
+           shattered:     7              kitchen:     7 -> Joint Freq:     1, PMI: 10.00597
+        legislatures:     6            emergence:     6 -> Joint Freq:     1, PMI: 10.31428
+            sheraton:     8            construct:     6 -> Joint Freq:     1, PMI: 10.02659
+          encourages:     7            ignorance:     6 -> Joint Freq:     1, PMI: 10.16012
+             peasant:     7              forming:     6 -> Joint Freq:     1, PMI: 10.16012
+        instrumental:     6                noise:     7 -> Joint Freq:     1, PMI: 10.16012
+       gubernatorial:     7            rejecting:     6 -> Joint Freq:     1, PMI: 10.16012
+             mideast:     8               topple:     6 -> Joint Freq:     1, PMI: 10.02659
+          laundering:     6          identifying:     6 -> Joint Freq:     1, PMI: 10.31428
+           suspected:     8     tumor-suppressor:     6 -> Joint Freq:     1, PMI: 10.02659
+               sworn:     6                 oral:     7 -> Joint Freq:     1, PMI: 10.16012
+            centered:     6                teeth:     7 -> Joint Freq:     1, PMI: 10.16012
+         reinforcing:     6                  ems:     8 -> Joint Freq:     1, PMI: 10.02659
+          attraction:     6                swell:     6 -> Joint Freq:     1, PMI: 10.31428
+       transatlantic:     6        transatlantic:     6 -> Joint Freq:     1, PMI: 10.31428
+         40-year-old:     7                  sr.:     6 -> Joint Freq:     1, PMI: 10.16012
+                loud:     6           proclaimed:     7 -> Joint Freq:     1, PMI: 10.16012
+              flavor:     8               baring:     6 -> Joint Freq:     1, PMI: 10.02659
+                sang:     7               casual:     7 -> Joint Freq:     1, PMI: 10.00597
+        broadcasters:     6         broadcasters:     6 -> Joint Freq:     1, PMI: 10.31428
+          destroying:     6              reveals:     6 -> Joint Freq:     1, PMI: 10.31428
+                 ems:     8           aggregates:     6 -> Joint Freq:     1, PMI: 10.02659
+           glamorous:     8               twelve:     6 -> Joint Freq:     1, PMI: 10.02659
+              advent:     7             prisoner:     6 -> Joint Freq:     1, PMI: 10.16012
+              tricky:     8            broderick:     6 -> Joint Freq:     1, PMI: 10.02659
+                keen:     7                 keen:     7 -> Joint Freq:     1, PMI: 10.00597
+               craft:     8               greens:     6 -> Joint Freq:     1, PMI: 10.02659
+          attraction:     6              koreans:     8 -> Joint Freq:     1, PMI: 10.02659
+               flags:     8                 flaw:     6 -> Joint Freq:     1, PMI: 10.02659
+               leaks:     6                coups:     8 -> Joint Freq:     1, PMI: 10.02659
+             rattled:     7              cynthia:     6 -> Joint Freq:     1, PMI: 10.16012
+                col.:     8               abrams:     6 -> Joint Freq:     1, PMI: 10.02659
+              conway:     7               conway:     7 -> Joint Freq:     1, PMI: 10.00597
+             jackets:     7              24-hour:     6 -> Joint Freq:     1, PMI: 10.16012
+           broderick:     6                  faa:     8 -> Joint Freq:     1, PMI: 10.02659
+              linear:     6             plumbing:     7 -> Joint Freq:     1, PMI: 10.16012
+               havoc:     7           compounded:     7 -> Joint Freq:     1, PMI: 10.00597
+       deliberations:     6         disabilities:     8 -> Joint Freq:     1, PMI: 10.02659
+               prone:     6               bausch:     6 -> Joint Freq:     1, PMI: 10.31428
+           surprises:     7              gallons:     7 -> Joint Freq:     1, PMI: 10.00597
+        poughkeepsie:     6         poughkeepsie:     6 -> Joint Freq:     1, PMI: 10.31428
+            spurring:     7              refined:     6 -> Joint Freq:     1, PMI: 10.16012
+               libya:     6               kuwait:     6 -> Joint Freq:     1, PMI: 10.31428
+            decisive:     6                dealt:     8 -> Joint Freq:     1, PMI: 10.02659
+      life-insurance:     7           accustomed:     6 -> Joint Freq:     1, PMI: 10.16012
+             perjury:     7              topiary:     7 -> Joint Freq:     1, PMI: 10.00597
+            lyondell:     7            acquitted:     6 -> Joint Freq:     1, PMI: 10.16012
+          dishonesty:     6           dishonesty:     6 -> Joint Freq:     1, PMI: 10.31428
+           continent:     6             ethiopia:     7 -> Joint Freq:     1, PMI: 10.16012
+            mengistu:     7             ethiopia:     7 -> Joint Freq:     1, PMI: 10.00597
+              hazard:     6            pesticide:     8 -> Joint Freq:     1, PMI: 10.02659
+            dialysis:     6              ehrlich:     7 -> Joint Freq:     1, PMI: 10.16012
+             excited:     6          interactive:     7 -> Joint Freq:     1, PMI: 10.16012
+               zones:     6            overbuilt:     7 -> Joint Freq:     1, PMI: 10.16012
+                 dlj:     6                  dlj:     6 -> Joint Freq:     1, PMI: 10.31428
+        coordination:     6   developing-country:     6 -> Joint Freq:     1, PMI: 10.31428
+             staging:     7             violetta:     7 -> Joint Freq:     1, PMI: 10.00597
+         whittington:     7          whittington:     7 -> Joint Freq:     1, PMI: 10.00597
+                 s.c:     8                 cubs:     6 -> Joint Freq:     1, PMI: 10.02659
+             strokes:     6             arteries:     7 -> Joint Freq:     1, PMI: 10.16012
+               roper:     9          probability:     6 -> Joint Freq:     2, PMI: 10.60196
+             reveals:     6               vinson:     8 -> Joint Freq:     1, PMI: 10.02659
+             battled:     6             freeways:     8 -> Joint Freq:     1, PMI: 10.02659
+            agricole:     8             agricole:     8 -> Joint Freq:     2, PMI: 10.43206
+             emerson:     7              emerson:     7 -> Joint Freq:     1, PMI: 10.00597
+               crest:     8              prefers:     6 -> Joint Freq:     1, PMI: 10.02659
+          bureaucrat:     6                lesko:     8 -> Joint Freq:     1, PMI: 10.02659
+           crusaders:     7            crusaders:     7 -> Joint Freq:     1, PMI: 10.00597
+               quack:     6                ducks:     8 -> Joint Freq:     1, PMI: 10.02659
+             enserch:     6              enserch:     6 -> Joint Freq:     1, PMI: 10.31428
+               picop:     8                picop:     8 -> Joint Freq:     2, PMI: 10.43206
+             greeted:     6                 iafp:     6 -> Joint Freq:     1, PMI: 10.31428
+                gatt:     8            provinces:     6 -> Joint Freq:     1, PMI: 10.02659
+                n.m.:     8               skiers:     6 -> Joint Freq:     1, PMI: 10.02659
+               devoe:     6                devoe:     6 -> Joint Freq:     1, PMI: 10.31428
+              endure:     6                 cela:     6 -> Joint Freq:     1, PMI: 10.31428
+              d'arcy:     6        reinforcement:     8 -> Joint Freq:     1, PMI: 10.02659
+               doman:     7                doman:     7 -> Joint Freq:     1, PMI: 10.00597
+         commerciale:     7          discovision:     7 -> Joint Freq:     1, PMI: 10.00597
+             dialing:     7             cherokee:     6 -> Joint Freq:     1, PMI: 10.16012
+             beretta:     7              corsica:     6 -> Joint Freq:     1, PMI: 10.16012
+             corsica:     6              beretta:     7 -> Joint Freq:     1, PMI: 10.16012
+               pepsi:     6        caffeine-free:     7 -> Joint Freq:     1, PMI: 10.16012
+       caffeine-free:     7        caffeine-free:     7 -> Joint Freq:     1, PMI: 10.00597

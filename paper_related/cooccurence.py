@@ -154,42 +154,41 @@ try:
 		f.write("\nPositively Dependent [8,9)   = %d" % np.size(pmi[np.where((pmi>=8)&(pmi<9))]))
 		f.write("\nPositively Dependent [9,10)  = %d" % np.size(pmi[np.where((pmi>=9)&(pmi<10))]))
 		f.write("\nPositively Dependent [10,:)  = %d" % np.size(pmi[np.where(pmi>=10)]))
-		f.close()
 
 		fm.write("%d," % np.size(pmi[np.where(pmi<-3)]))
 		fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-3))]))
 		fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
-		fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<6))]))
-		fm.write("%d," % np.size(pmi[np.where((pmi>=6)&(pmi<12))]))
-		fm.write("%d," % np.size(pmi[np.where(pmi>=12)]))
+		fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<10))]))
+		fm.write("%d," % np.size(pmi[np.where(pmi>=10)]))
 		fm.write("\n")
 
-		#if args.pmi_l != None and args.pmi_u != None:
-		#	index = np.where((pmi>=args.pmi_l)&(pmi<=args.pmi_u))
-		#elif args.pmi_u != None:
-		#	index = np.where(pmi>=args.pmi_u)
-		#elif args.pmi_l != None:
-		#	index = np.where(pmi<=args.pmi_l)
-		#else:
-		#	print("No PMI thresholds provided")
-		#	exit()
+		if args.pmi_l != None and args.pmi_u != None:
+			index = np.where((pmi>=args.pmi_l)&(pmi<=args.pmi_u))
+		elif args.pmi_u != None:
+			index = np.where(pmi>=args.pmi_u)
+		elif args.pmi_l != None:
+			index = np.where(pmi<=args.pmi_l)
+		else:
+			print("No PMI thresholds provided")
+			exit()
 
-		#for i in index[0]:
-		#	found_word1 = ""
-		#	found_word2 = ""
-		#	for word, wordID in symbols.items():
-		#		if pmi_rows[i] == wordID:
-		#			found_word1 = word
-		#		if pmi_cols[i] == wordID:
-		#			found_word2 = word
+		for i in index[0]:
+			found_word1 = ""
+			found_word2 = ""
+			for word, wordID in symbols.items():
+				if pmi_rows[i] == wordID:
+					found_word1 = word
+				if pmi_cols[i] == wordID:
+					found_word2 = word
 
-		#	if(Ni_X[pmi_rows[i]]>5 and Ni_Y[pmi_cols[i]]>5):
-		#		f.write("\n%20s:%6d %20s:%6d -> Joint Freq: %5d, PMI: %3.5f" %(found_word1, Ni_X[pmi_rows[i]], found_word2, Ni_Y[pmi_cols[i]], Ni_XY[i], pmi[i]))
+			if(Ni_X[pmi_rows[i]]>5 and Ni_Y[pmi_cols[i]]>5):
+				f.write("\n%20s:%6d %20s:%6d -> Joint Freq: %5d, PMI: %3.5f" %(found_word1, Ni_X[pmi_rows[i]], found_word2, Ni_Y[pmi_cols[i]], Ni_XY[i], pmi[i]))
 
 		sys.stdout.write("\rProcessed -> d: %d" % d)
 		sys.stdout.flush()
 
 		d+=1
+		f.close()
 
 		if end == "end":
 			pass
