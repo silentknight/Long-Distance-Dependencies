@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["1","6"]
+filenames = ["6","8"]
 
 all_hn = []
 all_ln = []
@@ -55,19 +55,19 @@ for filename in filenames:
 
 with plt.style.context(('seaborn')):
 
-    plt.loglog(np.arange(1,len(all_hn[0])+1), all_hn[0], "r-", label="PTB High Neg")
-    plt.loglog(np.arange(1,len(all_ln[0])+1), all_ln[0], 'm-', label="PTB Low Neg")
-    plt.loglog(np.arange(1,len(all_ind[0])+1), all_ind[0], 'c-', label="PTB Ind")
-    plt.loglog(np.arange(1,len(all_lp[0])+1), all_lp[0], 'b-', label="PTB Low Pos")
-    plt.loglog(np.arange(1,len(all_mp[0])+1), all_mp[0], 'g-', label="PTB Mid Pos")
-    plt.loglog(np.arange(1,len(all_hp[0])+1), all_hp[0], "k-", label="PTB High Pos")
+    plt.loglog(np.arange(1,len(all_hn[0])+1), all_hn[0], "r-", label="Wiki2 High Neg")
+    plt.loglog(np.arange(1,len(all_ln[0])+1), all_ln[0], 'm-', label="Wiki2 Low Neg")
+    plt.loglog(np.arange(1,len(all_ind[0])+1), all_ind[0], 'c-', label="Wiki2 Ind")
+    plt.loglog(np.arange(1,len(all_lp[0])+1), all_lp[0], 'b-', label="Wiki2 Low Pos")
+    plt.loglog(np.arange(1,len(all_mp[0])+1), all_mp[0], 'g-', label="Wiki2 Mid Pos")
+    plt.loglog(np.arange(1,len(all_hp[0])+1), all_hp[0], "k-", label="Wiki2 High Pos")
 
-    plt.loglog(np.arange(1,len(all_hn[1])+1), all_hn[1], "r--", label="Wiki High Neg")
-    plt.loglog(np.arange(1,len(all_ln[1])+1), all_ln[1], 'm--', label="Wiki Low Neg")
-    plt.loglog(np.arange(1,len(all_ind[1])+1), all_ind[1], 'c--', label="Wiki Ind")
-    plt.loglog(np.arange(1,len(all_lp[1])+1), all_lp[1], 'b--', label="Wiki Low Pos")
-    plt.loglog(np.arange(1,len(all_mp[1])+1), all_mp[1], 'g--', label="Wiki Mid Pos")
-    plt.loglog(np.arange(1,len(all_hp[1])+1), all_hp[1], "k--", label="Wiki High Pos")
+    plt.loglog(np.arange(1,len(all_hn[1])+1), all_hn[1], "r--", label="Wiki103 High Neg")
+    plt.loglog(np.arange(1,len(all_ln[1])+1), all_ln[1], 'm--', label="Wiki103 Low Neg")
+    plt.loglog(np.arange(1,len(all_ind[1])+1), all_ind[1], 'c--', label="Wiki103 Ind")
+    plt.loglog(np.arange(1,len(all_lp[1])+1), all_lp[1], 'b--', label="Wiki103 Low Pos")
+    plt.loglog(np.arange(1,len(all_mp[1])+1), all_mp[1], 'g--', label="Wiki103 Mid Pos")
+    plt.loglog(np.arange(1,len(all_hp[1])+1), all_hp[1], "k--", label="Wiki103 High Pos")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
@@ -81,5 +81,5 @@ with plt.style.context(('seaborn')):
     ax.set_xlabel('Distance between words, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=3, numpoints=1, prop={'size': 12})
-    plt.savefig('lm_words', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('pmi_plots', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()

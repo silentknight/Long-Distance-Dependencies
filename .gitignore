@@ -43,6 +43,7 @@ dataset/paper_dataset/
 dataset/m-wikitext-2
 dataset/POS/dl4mt/
 dataset/POS/wikitext-2/
+dataset/one-billion-words/
 __pycache__
 *.pyc
 trash
@@ -56,4 +57,4 @@ pmi_data/
 dataset/NEW/
 dataset/time_series/
 *.csv
-
+*.out

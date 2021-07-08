@@ -199,6 +199,13 @@ class Corpus(object):
 			self.articles_german = self.tokenize_file(os.path.join(path, 'articles.csv'))
 			print("10k German News Articles Dataset")
 
+		elif path == "dataset/one-billion-words/":
+			print("One Billion Words Dataset")
+			self.process_one_billion_words(os.path.join(path, 'train', 'heldout'))
+			self.process_one_billion_words(os.path.join(path, 'train', 'training'))
+			self.tokenize_file(os.path.join(path, 'test.txt'))
+			self.tokenize_file(os.path.join(path, 'valid.txt'))
+
 		else:
 			print("Please check the dataset path supplied. No such path found")
 			sys.exit(0)
@@ -246,6 +253,17 @@ class Corpus(object):
 						temp = line.strip().split()
 						if temp[1] == "TRUE":
 							self.tokenize_strings(temp[0])
+		except TypeError:
+			pass
+
+	def process_one_billion_words(self, path):
+		try:
+			for root, dirs, files in os.walk(path):
+				files.sort()
+				for name in files:
+					filename = os.path.join(root, name)
+					print("File being processed: ", filename)
+					self.tokenize_file(filename)
 		except TypeError:
 			pass
 
