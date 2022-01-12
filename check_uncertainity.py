@@ -41,7 +41,7 @@ for subsequence in subsequences:
 	xticks_labels = []
 	pmi_vector = np.empty((0,1))
 	Ni_XY_vector = np.empty((0,1))
-	
+
 	for i in range(len(subsequence)):
 		for j in range(i+1,len(subsequence)):
 			d = abs(i-j)
@@ -53,7 +53,7 @@ for subsequence in subsequences:
 			if not os.path.exists(os.path.join(args.pmi_path, "pmi", str(d)+".npz")):
 				print("File at D=%d is absent. Re-run PMI computations" % d)
 				sys.exit()
-				
+
 			pmi_data = np.load(os.path.join(args.pmi_path, "np", str(d)+".npz"), mmap_mode='r')
 			Xi = pmi_data['arr_0']
 			Yi = pmi_data['arr_1']

@@ -66,17 +66,17 @@
 # echo "Wiki 2 MI letters grassberger logx complete"
 
 # # All MI Penn Tree Banks
-# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/penn_tree_words_standard_logx
+# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/penn_tree_words_10000_standard_logx
 # echo "Penn MI words standard logx complete"
-# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/penn_tree_words_standard_log2
+# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/penn_tree_words_standard_log2
 # echo "Penn MI words standard log2 complete"
-# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/penn_tree_letters_standard_logx
+# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 0 --clear 1 --cutoff 15000 --plot 0 --datafilepath mi_data/penn_tree_letters_standard_logx
 # echo "Penn MI letters standard logx complete"
-# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/penn_tree_letters_standard_log2
+# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method standard --log_type 1 --clear 1 --cutoff 15000 --plot 0 --datafilepath mi_data/penn_tree_letters_standard_log2
 # echo "Penn MI letters standard log2 complete"
-# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 1000 --plot 0 --datafilepath mi_data/penn_tree_words_grassberger_logx
+# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/penn_tree_words_grassberger_logx
 # echo "Penn MI words grassberger logx complete"
-# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --cutoff 2000 --plot 0 --datafilepath mi_data/penn_tree_letters_grassberger_logx
+# python run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 1 --cutoff 15000 --plot 0 --datafilepath mi_data/penn_tree_letters_grassberger_logx
 # echo "Penn MI letters grassberger logx complete"
 
 # # All MI Wikitext 103
@@ -128,6 +128,8 @@
 # python run_all.py --data dataset/wiki/wikitext-2P/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki2_PTB_words_grassberger_logx
 # python run_all.py --data dataset/wiki/wikitext-19/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki19_words_10000_grassberger_logx
 # python run_all.py --data dataset/wiki/wikitext-19C/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki19_cleaned_words_10000_grassberger_logx
-#python run_all.py --data dataset/wiki/wikitext-19L/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki19_Text8_words_10000_grassberger_logx
+# python run_all.py --data dataset/wiki/wikitext-19L/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki19_Text8_words_10000_grassberger_logx
 
-python run_all.py --data dataset/one-billion-words/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/one_billion_words_10000_grassberger_logx
+# python run_all.py --data dataset/one-billion-words/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/one_billion_words_10000_grassberger_logx
+
+python run_all.py --data dataset/mnist_data/ --overlap 1 --threads 5 --compute mi --mi_method standard --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/mnist_standard_logx
