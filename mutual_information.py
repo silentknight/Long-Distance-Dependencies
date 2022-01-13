@@ -88,7 +88,7 @@ class MutualInformation(object):
 			f.close()
 
 			temp = lines[0].split()
-			if temp[0] == "data:" and temp[1] == corpus.datainfo:				
+			if temp[0] == "data:" and temp[1] == corpus.datainfo:
 				for line in lines:
 					temp = line.strip().split(":")
 					if temp[0] == "d":
@@ -110,7 +110,7 @@ class MutualInformation(object):
 		f.write("data: "+corpus.datainfo+"\n")
 		for i in range(len(mi)):
 			f.write("d:"+str(i+1)+":"+str(mi[i])+","+str(Hx[i])+","+str(Hy[i])+","+str(Hxy[i])+"\n")
-		
+
 		try:
 			max_distance = totalLength
 			while d<max_distance and d<=self.cutoff and end==False:
@@ -157,7 +157,7 @@ class MutualInformation(object):
 
 					print(thread[i].d, thread[i].mi, thread[i].Hx, thread[i].Hy, thread[i].Hx+thread[i].Hy, thread[i].Hxy)
 					f.write("d:"+str(d+i)+":"+str(mi[d+i-1])+","+str(Hx[d+i-1])+","+str(Hy[d+i-1])+","+str(Hxy[d+i-1])+"\n")
-				
+
 				d += self.no_of_threads
 
 		except KeyboardInterrupt:
