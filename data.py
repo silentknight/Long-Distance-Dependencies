@@ -168,9 +168,7 @@ class Corpus(object):
 
 		elif path == "dataset/foma/":
 			print("foma dataset")
-			self.text = self.tokenize_file(os.path.join(path, 'Data_SP2_20_size.dat'))
-			# dataset = os.path.join(path, 'Original_Data/SP/SP8')
-			# self.process_foma(dataset)
+			self.text = self.tokenize_file(os.path.join(path, 'Data_SP16_100.dat'))
 
 		elif path == "dataset/music/":
 			dataset = os.path.join(path, 'tunes.json')
@@ -183,7 +181,7 @@ class Corpus(object):
 			self.process_mobility(dataset)
 
 		elif path == "dataset/mnist_data/":
-			dataset = os.path.join(path, 'mnist_data_per_2.dat')
+			dataset = os.path.join(path, 'mnist_data_un.dat')
 			self.tokenize_file(dataset)
 
 		elif path == "dataset/copy_add/":
@@ -198,6 +196,13 @@ class Corpus(object):
 		elif path == "dataset/10kGNAD/":
 			self.articles_german = self.tokenize_file(os.path.join(path, 'articles.csv'))
 			print("10k German News Articles Dataset")
+
+		elif path == "dataset/one-billion-words/":
+			print("One Billion Words Dataset")
+			self.process_one_billion_words(os.path.join(path, 'train', 'heldout'))
+			self.process_one_billion_words(os.path.join(path, 'train', 'training'))
+			self.tokenize_file(os.path.join(path, 'test.txt'))
+			self.tokenize_file(os.path.join(path, 'valid.txt'))
 
 		else:
 			print("Please check the dataset path supplied. No such path found")
@@ -246,6 +251,17 @@ class Corpus(object):
 						temp = line.strip().split()
 						if temp[1] == "TRUE":
 							self.tokenize_strings(temp[0])
+		except TypeError:
+			pass
+
+	def process_one_billion_words(self, path):
+		try:
+			for root, dirs, files in os.walk(path):
+				files.sort()
+				for name in files:
+					filename = os.path.join(root, name)
+					print("File being processed: ", filename)
+					self.tokenize_file(filename)
 		except TypeError:
 			pass
 

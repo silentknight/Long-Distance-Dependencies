@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["penn_tree","text8","text8_subset","text8_wor","text8_subset_wor","wiki2","wiki2_cleaned","wiki2_raw","wiki2_PTB","wiki103","wiki103_cleaned","wiki103_raw","wiki19","wiki19_cleaned","wiki19_Text8","10kGNAD"]
+filenames = ["penn_tree","text8","text8_subset","text8_wor","text8_subset_wor","wiki2","wiki2_cleaned","wiki2_raw","wiki2_PTB","wiki103","wiki103_cleaned","wiki103_raw","wiki19","wiki19_cleaned","wiki19_Text8","10kGNAD","one_billion"]
 
 all_mi = []
 all_hx = []
@@ -66,6 +66,7 @@ with plt.style.context(('seaborn')):
     plt.loglog(np.arange(1,len(all_mi[13])+1), all_mi[13], "k--", label="Wiki19 (C)")
     plt.loglog(np.arange(1,len(all_mi[14])+1), all_mi[14], "k-.", label="Wiki19 (Text8)")
     plt.loglog(np.arange(1,len(all_mi[15])+1), all_mi[15], "y--", label="German Text")
+    plt.loglog(np.arange(1,len(all_mi[16])+1), all_mi[16], "y-", label="One Billion Words")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)

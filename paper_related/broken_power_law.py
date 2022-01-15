@@ -5,7 +5,7 @@ import numpy as np
 from astropy.modeling import models
 from scipy import stats
 
-filenames = ["penn_tree","text8","text8_subset","text8_wor","text8_subset_wor","wiki2","wiki2_cleaned","wiki2_raw","wiki2_PTB","wiki103","wiki103_cleaned","10kGNAD"]
+filenames = ["penn_tree","text8","text8_subset","text8_wor","text8_subset_wor","wiki2","wiki2_cleaned","wiki103","wiki103_cleaned","10kGNAD"]
 # filenames = ["enwik8","text8","penn_tree","wiki2","wiki103"]
 
 all_mi = []
@@ -52,6 +52,31 @@ for filename in filenames:
     all_Hy.append(Hy.tolist())
     all_Hxy.append(Hxy.tolist())
 
+# ######################################################################################################################
+break_point = [4,4,4,4,4,4,4,4,4,4]
+# break_point = [15,12,12,15,16,23,17,20,22,17]
+end_point = [784,784,784,784,784,784,784,784,784,784]
+# end_point = [200,200,200,200,200,200,200,200,200,200]
+end_point = [384,384,384,384,384,384,384,384,384,384]
+# end_point = [728,951,580,559,530,2230,1330,2660,2600,210]
+
+for dataset in range(len(filenames)):
+    sdds = 0
+    ldds = 0
+
+    for i in range(break_point[dataset]):
+        sdds += all_mi[dataset][i]
+
+    for i in range(break_point[dataset],end_point[dataset]):
+        ldds += all_mi[dataset][i]
+
+    print("\n")
+    print("Dataset", filenames[dataset])
+    print("SDDs", sdds)
+    print("LDDs", ldds)
+    print("Proportional", sdds/ldds, ldds/sdds)
+
+# ######################################################################################################################
 with plt.style.context(('seaborn')):
 
     ###################################################################################################################
@@ -177,42 +202,42 @@ with plt.style.context(('seaborn')):
     ###################################################################################################################
     # Wiki2 (C)
     ###################################################################################################################
-    # break_point = 4
-    # dataset = 6
-    # data = all_mi[dataset]
-    # alpha_1 = 0.38215
-    # alpha_2 = 0.003
-    # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText2 (C)")
-    # amplitude = all_mi[dataset][break_point+12]
-    # x = np.linspace(1, len(data), len(data))
-    # f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # fit_sample = f(x)
-    # p2 = plt.loglog(x, fit_sample, label="Broken Power-Law for WikiText2 (C)")
-    # amplitude = all_mi[dataset][break_point-1]
-    # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # f.delta = 0.25
-    # fit_sample = f(x)
-    # p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 (C)")
+    break_point = 4
+    dataset = 6
+    data = all_mi[dataset]
+    alpha_1 = 0.38215
+    alpha_2 = 0.003
+    p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText2 (C)")
+    amplitude = all_mi[dataset][break_point+12]
+    x = np.linspace(1, len(data), len(data))
+    f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    fit_sample = f(x)
+    p2 = plt.loglog(x, fit_sample, label="Broken Power-Law for WikiText2 (C)")
+    amplitude = all_mi[dataset][break_point-1]
+    f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    f.delta = 0.25
+    fit_sample = f(x)
+    p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 (C)")
 
     ###################################################################################################################
     # Wiki2 Raw
     ###################################################################################################################
-    break_point = 4
-    dataset = 7
-    data = all_mi[dataset]
-    alpha_1 = 0.421
-    alpha_2 = 0.00281
-    p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText2 Raw")
-    amplitude = all_mi[dataset][break_point+16]
-    x = np.linspace(1, len(data), len(data))
-    f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    fit_sample = f(x)
-    p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 Raw")
-    amplitude = all_mi[dataset][break_point-1]
-    f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    f.delta = 0.346
-    fit_sample = f(x)
-    p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 Raw")
+    # break_point = 4
+    # dataset = 7
+    # data = all_mi[dataset]
+    # alpha_1 = 0.421
+    # alpha_2 = 0.00281
+    # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText2 Raw")
+    # amplitude = all_mi[dataset][break_point+16]
+    # x = np.linspace(1, len(data), len(data))
+    # f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    # fit_sample = f(x)
+    # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 Raw")
+    # amplitude = all_mi[dataset][break_point-1]
+    # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    # f.delta = 0.346
+    # fit_sample = f(x)
+    # p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 Raw")
 
     ###################################################################################################################
     # Wiki2 PTB
@@ -511,30 +536,6 @@ with plt.style.context(('seaborn')):
     ax.set_ylim(0.5665692652625367, 3.5)
     ax.set_xlabel('Distance between words, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-    # plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
-    # plt.show()
+    ## plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    ## plt.show()
 
-# ######################################################################################################################
-# break_point = [4,4,4,4,4,4,4,5,4]
-# break_point = [15,12,12,15,16,23,17,20,22,17]
-# end_point = [784,784,784,784,784,784,784,784,784,784]
-# end_point = [384,384,384,384,384,384,384,384,384,384]
-# end_point = [200,200,200,200,200,200,200,200,200,200]
-# end_point = [728,951,580,559,530,2230,1330,2660,2600,210]
-
-#for dataset in range(len(filenames)):
-
-#    sdds = 0
-#    ldds = 0
-
-#    for i in range(break_point[dataset]):
-#        sdds += all_mi[dataset][i]
-
-#    for i in range(break_point[dataset],end_point[dataset]):
-#        ldds += all_mi[dataset][i]
-
-#    print("\n")
-#    print("Dataset", dataset)
-#    print("SDDs", sdds)
-#    print("LDDs", ldds)
-#    print("Proportional", sdds/ldds, ldds/sdds)
