@@ -4,13 +4,12 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-# filenames = ["sp2_20_char","sp2_100_char","sp2_200_char","sp2_500_char","sp4_100_char","sp16_100_char","sp2_20_v26_char","sp2_20_char_f_mi","sp2_20_char_size_mi"]
-filenames = ["sp2_100_mi","sp2_100_removed_mi"]
+filenames = ["sp2_20","sp2_100","sp2_200","sp2_500","sp2_100_comp","sp4_100_comp","sp16_100_comp","sp2_20_comp","sp2_20_v26","sp8_20_comp","sp8_20_v26","sp2_20_small","sp2_100_small","sp2_20_f1","sp2_100_f1"]
 
 all_mi = []
 
 for filename in filenames:
-    f = open(filename+".log", "r")
+    f = open(filename+"_mi.dat", "r")
     lines = f.readlines()
     f.close()
 
@@ -45,30 +44,44 @@ for filename in filenames:
 
 # red dashes, blue squares and green triangles
 with plt.style.context(('seaborn')):
-    # plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2 20 V4 FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2 100 V4 FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP2 200 V4 FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="SP2 500 V4 FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP4 100 V4 FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="SP16 100 V4 FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="SP2 20 V26 FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP2 20 V4 FS={ab,bc,cd,dc}")
-    # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="SP2 20 V4 FS={ab,bc} Small")
+    # plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2, L=20, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2, L=100, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP2, L=200, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="SP2, L=500, V=4, FS={ab,bc}")
 
-    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2 100 lines")
-    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2 100 Concatenated")
+    # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP2, L=100, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="SP4, L=100, V=4, FS={abba,bccb}")
+    # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="SP16, L=100, V=4, FS={abbaabbaabbaabba,bccbbccbbccbbccb}")
+
+    # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP2, L=20, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="SP2, L=20, V=26, FS={ab,bc}")
+    
+    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="SP8, L=20, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="SP8, L=20, V=26, FS={ab,bc}")
+
+    # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP2, L=20, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], label="SP2, L=20, V=4, FS={ab,bc}, Small")
+
+    # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP2, L=100, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[12])+1), all_mi[12], label="SP2, L=100, V=4, FS={ab,bc}, Small")
+    
+    # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP2, L=20, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[13])+1), all_mi[13], label="SP2, L=20, V=4, FS={ab,bc,cd,dc}")
+
+    # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP2, L=100, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[14])+1), all_mi[14], label="SP2, L=100, V=4, FS={ab,bc,cd,dc}")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
-    plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
-    plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
-    # ax = plt.axes()
-    # ax.set_xlim(1, 1000)
-    # # ax.set_ylim(-0.005, 0.06)
-    # print(ax.get_xlim())
-    # print(ax.get_ylim())
-    # ax.set_xlabel('Distance between symbols, d', fontsize=15)
-    # ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-    # lgd = ax.legend(loc='lower left', shadow=True, fancybox=True, ncol=2, numpoints=1, prop={'size': 12})
+    # plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
+    # plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
+    ax = plt.axes()
+    ax.set_xlim(1, 1000)
+    # ax.set_ylim(-0.005, 0.06)
+    print(ax.get_xlim())
+    print(ax.get_ylim())
+    ax.set_xlabel('Distance between symbols, d', fontsize=15)
+    ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
+    lgd = ax.legend(loc='lower left', shadow=True, fancybox=True, ncol=2, numpoints=1, prop={'size': 12})
     # plt.savefig('spk_full', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
