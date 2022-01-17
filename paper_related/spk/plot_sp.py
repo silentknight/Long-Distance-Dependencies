@@ -56,8 +56,10 @@ with plt.style.context(('seaborn')):
     # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP2, L=20, V=4, FS={ab,bc,cd,dc}")
     # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="SP2, L=20, V=26, FS={ab,bc,cd,de,ef,fg}")
 
-    plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="SP8, L=20, V=4, FS={abbaabba,bccbbccb}")
-    plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="SP8, L=20, V=26, FS={abbaabba,bccbbccb,cddccddc,\ndeeddeed,effeeffe,fggffggf,ffhhiikk}")
+    plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="SP8, L=20, V=4")
+    plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="SP8, L=20, V=26")
+    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="SP8, L=20, V=4, FS={abbaabba,bccbbccb}")
+    # plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="SP8, L=20, V=26, FS={abbaabba,bccbbccb,cddccddc,\ndeeddeed,effeeffe,fggffggf,ffhhiikk}")
 
     # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP2, L=20, V=4, FS={ab,bc,cd,dc}")
     # plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], label="SP2, L=20, V=4, FS={ab,bc,cd,dc}, Small")
