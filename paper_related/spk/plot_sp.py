@@ -44,14 +44,14 @@ for filename in filenames:
 
 # red dashes, blue squares and green triangles
 with plt.style.context(('seaborn')):
-    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2, L=20, V=4, FS={ab,bc}")
-    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2, L=100, V=4, FS={ab,bc}")
-    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP2, L=200, V=4, FS={ab,bc}")
-    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="SP2, L=500, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2, L=20, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2, L=100, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP2, L=200, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="SP2, L=500, V=4, FS={ab,bc}")
 
-    # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP2, L=100, V=4, FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="SP4, L=100, V=4, FS={abba,bccb}")
-    # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="SP16, L=100, V=4, FS={abbaabbaabbaabba,bccbbccbbccbbccb}")
+    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP2, L=100, V=4, FS={ab,bc}")
+    plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="SP4, L=100, V=4, FS={abba,bccb}")
+    plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="SP16, L=100, V=4, FS={abbaabbaabbaabba,bccbbccbbccbbccb}")
 
     # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP2, L=20, V=4, FS={ab,bc}")
     # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="SP2, L=20, V=26, FS={ab,bc}")
@@ -83,5 +83,5 @@ with plt.style.context(('seaborn')):
     ax.set_xlabel('Distance between symbols (Lag), d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='lower left', shadow=True, fancybox=True, numpoints=1, prop={'size': 12})
-    plt.savefig('spk_len', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('spk_k', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
