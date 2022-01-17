@@ -168,7 +168,7 @@ class Corpus(object):
 
 		elif path == "dataset/foma/":
 			print("foma dataset")
-			self.text = self.tokenize_file(os.path.join(path, 'Data_SP16_100.dat'))
+			self.text = self.tokenize_file(os.path.join(path, 'Data_SP2_20_New_F1.dat'))
 
 		elif path == "dataset/music/":
 			dataset = os.path.join(path, 'tunes.json')
