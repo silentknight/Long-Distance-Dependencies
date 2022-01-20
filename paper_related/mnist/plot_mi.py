@@ -4,8 +4,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-# filenames = ["mnist_grassberger_logx_mi.dat","mnist_standard_logx_mi.dat"]
-filenames = ["penn_tree_words_10000_grassberger_logx_mi.dat","penn_tree_words_10000_standard_logx_mi.dat"]
+filenames = ["mnist_grassberger_logx_mi.dat","mnist_standard_logx_mi.dat"]
+#filenames = ["penn_tree_words_10000_grassberger_logx_mi.dat","penn_tree_words_10000_standard_logx_mi.dat"]
 
 all_mi = []
 all_hx = []
