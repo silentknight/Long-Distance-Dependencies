@@ -51,8 +51,8 @@ for filename in filenames:
 
 with plt.style.context(('seaborn')):
 
-    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], "r-", label="Using Grassbergers Equation")
-    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], 'm-', label="Using Shannon's Equation")
+    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="Using Grassbergers Equation")
+    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="Using Shannon's Equation")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
@@ -63,7 +63,7 @@ with plt.style.context(('seaborn')):
     # ax.set_ylim(0.56, 3.2)
     print(ax.get_xlim())
     print(ax.get_ylim())
-    ax.set_xlabel('Distance between symbols (lag), d', fontsize=15)
+    ax.set_xlabel('Distance between words (lag), d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=3, numpoints=1, prop={'size': 12})
     plt.savefig('mi_intro', bbox_extra_artists=(lgd,), bbox_inches='tight')
