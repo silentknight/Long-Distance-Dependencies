@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # filenames = ["mnist_grassberger_logx_mi.dat","mnist_standard_logx_mi.dat"]
-filenames = ["penn_tree_words_10000_grassberger_logx_mi.dat","penn_tree_words_10000_standard_logx_mi.dat"]
+# filenames = ["penn_tree_words_10000_grassberger_logx_mi.dat","penn_tree_words_10000_standard_logx_mi.dat"]
+filenames = ["wiki2_words_10000_grassberger_logx_mi.dat","wiki2_words_10000_standard_logx_mi.dat"]
 
 all_mi = []
 all_hx = []
@@ -66,5 +67,5 @@ with plt.style.context(('seaborn')):
     ax.set_xlabel('Distance between words (lag), d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=3, numpoints=1, prop={'size': 12})
-    plt.savefig('mi_intro', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('mi_intro_wiki2', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
