@@ -13,9 +13,9 @@ with plt.style.context(('seaborn')):
     ##########################################################################################################################
 
     break_point = 5
-    alpha_1 = 1.2
-    alpha_2 = 0.2
-    amplitude = 10
+    alpha_1 = 0.5
+    alpha_2 = 0.05
+    amplitude = 6
     f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     fit_sample = f(x)
     p1 = plt.loglog(x, fit_sample, label="Broken Power-Law Decay")
@@ -55,7 +55,7 @@ with plt.style.context(('seaborn')):
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
     ax.set_xlim(1.0, 1000.0)
-    ax.set_ylim(0.001, 11)
+    #ax.set_ylim(0.001, 11)
     ax.set_xlabel('Distance between symbol, d', fontsize=20)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=20)
     plt.savefig('pl_broken', bbox_extra_artists=(lgd,), bbox_inches='tight')
