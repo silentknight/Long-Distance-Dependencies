@@ -12,20 +12,20 @@ with plt.style.context(('seaborn')):
 
     ##########################################################################################################################
 
-    #break_point = 5
-    #alpha_1 = 0.4
-    #alpha_2 = 0.05
-    #amplitude = 1.2
-    #f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    #fit_sample = f(x)
-    #p1 = plt.loglog(x, fit_sample, label="Broken Power-Law Decay")
+    break_point = 5
+    alpha_1 = 1.2
+    alpha_2 = 0.2
+    amplitude = 10
+    f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    fit_sample = f(x)
+    p1 = plt.loglog(x, fit_sample, label="Broken Power-Law Decay")
 
     ##########################################################################################################################
 
-    a = 10
-    alpha = 0.2
-    y = a*pow(x,-alpha)
-    p2 = plt.loglog(x, y, label="Power-Law Decay")
+    #a = 10
+    #alpha = 0.2
+    #y = a*pow(x,-alpha)
+    #p2 = plt.loglog(x, y, label="Power-Law Decay")
 
     ##########################################################################################################################
 
@@ -58,5 +58,5 @@ with plt.style.context(('seaborn')):
     ax.set_ylim(0.001, 11)
     ax.set_xlabel('Distance between symbol, d', fontsize=20)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=20)
-    plt.savefig('pl_shallow', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('pl_broken', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
