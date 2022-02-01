@@ -23,7 +23,7 @@ with plt.style.context(('seaborn')):
     ##########################################################################################################################
 
     a = 10
-    alpha = 0.2
+    alpha = 1.2
     y = a*pow(x,-alpha)
     p2 = plt.loglog(x, y, label="Power-Law Decay")
 
@@ -55,8 +55,8 @@ with plt.style.context(('seaborn')):
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
     ax.set_xlim(1.0, 1000.0)
-    #ax.set_ylim(0.1, 3)
+    ax.set_ylim(0.02, 11)
     ax.set_xlabel('Distance between symbol, d', fontsize=20)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=20)
-    plt.savefig('pl_shallow', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('pl_deep', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
