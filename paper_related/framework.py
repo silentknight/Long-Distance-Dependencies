@@ -29,22 +29,23 @@ with plt.style.context(('seaborn')):
 
     ##########################################################################################################################
 
-    a = 1.5
-    b = 0.08
-    y = a*pow(b,x)
-    p3 = plt.loglog(x, y, label="Exponential Decay")
+    # a = 1
+    # b = 0.1
+    # y = a*pow(b,x)
+    # p3 = plt.loglog(x, y, label="Exponential Decay")
 
     ##########################################################################################################################
 
-    #x = np.linspace(1, 10000, 10000)
-
-    #break_point = 5
-    #alpha_1 = 0.4
-    #alpha_2 = -0.6
-    #amplitude = 1.2
-    #f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    #fit_sample = f(x)
-    #p4 = plt.loglog(x, fit_sample, label="Broken Power-Law Decay")
+    x = np.linspace(1, 1000, 1000)
+    y = np.zeros(1000)
+    a = 2
+    alpha_1 = 0.9
+    alpha_2 = -1
+    for i in range(0,1000,50):
+        y[i:i+35] = a*pow(x[0:35],-alpha_1)
+        y[i+35:i+50] = y[i+34]*pow(x[0:15],-alpha_2)
+        a = y[i+49]
+    p4 = plt.loglog(x, y, label="Power-Law Decay with Periodicity")
 
     ##########################################################################################################################
     ax = plt.axes()
@@ -57,5 +58,5 @@ with plt.style.context(('seaborn')):
     ax.set_ylim(0.1, 3)
     ax.set_xlabel('Distance between symbol, d', fontsize=20)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=20)
-    plt.savefig('standard_exponential', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('standard_pl_periodic', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
