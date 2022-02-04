@@ -45,6 +45,13 @@ dataset/m-wikitext-2
 dataset/POS/dl4mt/
 dataset/POS/wikitext-2/
 dataset/one-billion-words/
+dataset/cifar-10/data_batch_1
+dataset/cifar-10/data_batch_2
+dataset/cifar-10/data_batch_3
+dataset/cifar-10/data_batch_4
+dataset/cifar-10/data_batch_5
+dataset/cifar-10/batches.meta
+dataset/cifar-10/test_batch
 __pycache__
 *.pyc
 trash
