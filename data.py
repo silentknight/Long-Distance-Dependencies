@@ -224,7 +224,6 @@ class Corpus(object):
 					words = line.split() + ['<eos>']
 				else:
 					words = list(line.strip().replace("<unk>", "^")) + [" "]
-
 				tokens += len(words)
 				for word in words:
 					wordID = self.dictionary.add_word(word)
@@ -234,13 +233,15 @@ class Corpus(object):
 
 	def tokenize_strings(self, line):
 		tokens = 0
-		words = list(line)
+		if self.ifwords == 1:
+			words = line.split() + ['<eos>']
+		else:
+			words = list(line.strip().replace("<unk>", "^")) + [" "]
 		tokens += len(words)
 		for word in words:
 			wordID = self.dictionary.add_word(word)
 			self.sequentialData.add_to_list(wordID)
 		self.sequentialData.add_data()
-		print(wordID)
 		print("Size of Vocabulary", len(self.dictionary.counter))
 
 	def process_foma(self, path):
@@ -367,5 +368,4 @@ class Corpus(object):
 			pixel_line = " ".join(string_pixels)
 			all_pixels += pixel_line
 
-		print(len(all_pixels))
-		self.tokenize_strings(all_pixels)
+			self.tokenize_strings(all_pixels)
