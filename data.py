@@ -234,9 +234,9 @@ class Corpus(object):
 	def tokenize_strings(self, line):
 		tokens = 0
 		if self.ifwords == 1:
-			words = line.split() + ['<eos>']
+			words = line.strip().split()
 		else:
-			words = list(line.strip().replace("<unk>", "^")) + [" "]
+			words = list(line.strip())
 		tokens += len(words)
 		for word in words:
 			wordID = self.dictionary.add_word(word)
@@ -366,6 +366,7 @@ class Corpus(object):
 
 			string_pixels = [str(pix) for pix in pixel_values]
 			pixel_line = " ".join(string_pixels)
+			pixel_line = pixel_line.strip()+" "
 			all_pixels += pixel_line
 
 		self.tokenize_strings(all_pixels)
