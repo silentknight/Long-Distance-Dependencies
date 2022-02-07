@@ -368,4 +368,4 @@ class Corpus(object):
 			pixel_line = " ".join(string_pixels)
 			all_pixels += pixel_line
 
-			self.tokenize_strings(all_pixels)
+		self.tokenize_strings(all_pixels)
