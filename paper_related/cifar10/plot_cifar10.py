@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["cifar10_red", "cifar10_green"] #"cifar10_blue", "cifar10_gray"]
+filenames = ["cifar10_red", "cifar10_green", "cifar10_blue", "cifar10_gray"]
 all_mi = []
 
 for filename in filenames:
@@ -44,8 +44,8 @@ for filename in filenames:
 with plt.style.context(('seaborn')):
     plt.loglog(np.arange(len(all_mi[0])), all_mi[0], 'r-', label='Cifar10 Red Channel')
     plt.loglog(np.arange(len(all_mi[1])), all_mi[1], 'g-', label='Cifar10 Green Channel')
-    #plt.loglog(np.arange(len(all_mi[2])), all_mi[2], 'b-', label='Cifar10 Blue Channel')
-    #plt.loglog(np.arange(len(all_mi[3])), all_mi[3], 'k-', label='Cifar10 Grayscale')
+    plt.loglog(np.arange(len(all_mi[2])), all_mi[2], 'b-', label='Cifar10 Blue Channel')
+    plt.loglog(np.arange(len(all_mi[3])), all_mi[3], 'k-', label='Cifar10 Grayscale')
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
