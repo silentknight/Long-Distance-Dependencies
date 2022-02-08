@@ -366,7 +366,7 @@ class Corpus(object):
 
 			string_pixels = [str(pix) for pix in pixel_values]
 			pixel_line = " ".join(string_pixels)
-			pixel_line = pixel_line.strip()+" "
+			pixel_line = pixel_line.strip() + " "
 			all_pixels += pixel_line
 
 		self.tokenize_strings(all_pixels)
