@@ -359,7 +359,7 @@ class Corpus(object):
 				pixel_values = data_red
 			elif channel == "green":
 				pixel_values = data_green
-			elif channel == "red":
+			elif channel == "blue":
 				pixel_values = data_blue
 			elif channel == "gray":
 				pixel_values = data_grayscale

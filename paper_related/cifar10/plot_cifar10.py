@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["cifar10_red"]
+filenames = ["cifar10_red", "cifar10_green"] #"cifar10_blue", "cifar10_gray"]
 all_mi = []
 
 for filename in filenames:
@@ -41,18 +41,18 @@ for filename in filenames:
 
     all_mi.append(mi.tolist())
 
-# red dashes, blue squares and green triangles
 with plt.style.context(('seaborn')):
     plt.loglog(np.arange(len(all_mi[0])), all_mi[0], 'r-', label='Cifar10 Red Channel')
-    #plt.loglog(np.arange(len(all_mi[1])), all_mi[1], label='Permuted MNIST 1')
-    #plt.loglog(np.arange(len(all_mi[2])), all_mi[2], label='Permuted MNIST 2')
+    plt.loglog(np.arange(len(all_mi[1])), all_mi[1], 'g-', label='Cifar10 Green Channel')
+    #plt.loglog(np.arange(len(all_mi[2])), all_mi[2], 'b-', label='Cifar10 Blue Channel')
+    #plt.loglog(np.arange(len(all_mi[3])), all_mi[3], 'k-', label='Cifar10 Grayscale')
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
     ax = plt.axes()
-#    ax.set_xlim(1, 1000)
+    ax.set_xlim(1, 2000)
 #    ax.set_ylim(0.0000048, 0.6)
     print(ax.get_xlim())
     print(ax.get_ylim())
