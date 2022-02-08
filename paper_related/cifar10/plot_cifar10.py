@@ -43,7 +43,7 @@ for filename in filenames:
 
 # red dashes, blue squares and green triangles
 with plt.style.context(('seaborn')):
-    plt.loglog(np.arange(len(all_mi[0])), all_mi[0], label='Cifar10 Red Channel')
+    plt.loglog(np.arange(len(all_mi[0])), all_mi[0], 'r-', label='Cifar10 Red Channel')
     #plt.loglog(np.arange(len(all_mi[1])), all_mi[1], label='Permuted MNIST 1')
     #plt.loglog(np.arange(len(all_mi[2])), all_mi[2], label='Permuted MNIST 2')
 
@@ -52,8 +52,8 @@ with plt.style.context(('seaborn')):
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
     ax = plt.axes()
-    ax.set_xlim(1, 1000)
-    ax.set_ylim(0.0000048, 0.6)
+#    ax.set_xlim(1, 1000)
+#    ax.set_ylim(0.0000048, 0.6)
     print(ax.get_xlim())
     print(ax.get_ylim())
     ax.set_xlabel('Distance between pixels, d', fontsize=15)
