@@ -363,6 +363,8 @@ class Corpus(object):
 				pixel_values = data_blue
 			elif channel == "gray":
 				pixel_values = data_grayscale
+			elif channel == "full":
+				pixel_values = data[i]
 
 			string_pixels = [str(pix) for pix in pixel_values]
 			pixel_line = " ".join(string_pixels)

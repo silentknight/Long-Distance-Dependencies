@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["cifar10_red", "cifar10_green", "cifar10_blue", "cifar10_gray"]
+filenames = ["cifar10_red", "cifar10_green", "cifar10_blue", "cifar10_gray", "cifar10_full"]
 all_mi = []
 
 for filename in filenames:
@@ -45,7 +45,8 @@ with plt.style.context(('seaborn')):
     #plt.loglog(np.arange(len(all_mi[0])), all_mi[0], 'r-', label='Cifar10 Red Channel')
     #plt.loglog(np.arange(len(all_mi[1])), all_mi[1], 'g-', label='Cifar10 Green Channel')
     #plt.loglog(np.arange(len(all_mi[2])), all_mi[2], 'b-', label='Cifar10 Blue Channel')
-    plt.loglog(np.arange(len(all_mi[3])), all_mi[3], 'k-', label='Cifar10 Grayscale')
+    #plt.loglog(np.arange(len(all_mi[3])), all_mi[3], 'k-', label='Cifar10 Grayscale')
+    plt.loglog(np.arange(len(all_mi[4])), all_mi[4], 'k-', label='Cifar10 Full Image')
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
@@ -59,5 +60,5 @@ with plt.style.context(('seaborn')):
     ax.set_xlabel('Distance between pixels, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=1, numpoints=1, prop={'size':12})
-    plt.savefig('cifar10_gray', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('cifar10_full', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
