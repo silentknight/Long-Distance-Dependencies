@@ -46,7 +46,7 @@ with plt.style.context(('seaborn')):
     plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], 'g-', label='Cifar10 Green Channel')
     plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], 'b-', label='Cifar10 Blue Channel')
     plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], color='gray', linestyle='solid', label='Cifar10 Grayscale')
-    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], 'k-', label='Cifar10 Full Image')
+    #plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], 'k-', label='Cifar10 Full Image')
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
