@@ -53,7 +53,7 @@ with plt.style.context(('seaborn')):
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
     ax = plt.axes()
-    ax.set_xlim(1, 2000)
+    ax.set_xlim(1, 5000)
 #    ax.set_ylim(0.0000048, 0.6)
     print(ax.get_xlim())
     print(ax.get_ylim())
