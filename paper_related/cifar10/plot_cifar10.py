@@ -42,11 +42,11 @@ for filename in filenames:
     all_mi.append(mi.tolist())
 
 with plt.style.context(('seaborn')):
-#    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], 'r-', label='Cifar10 Red Channel')
-#    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], 'g-', label='Cifar10 Green Channel')
-#    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], 'b-', label='Cifar10 Blue Channel')
-#    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], color='gray', linestyle='dashed', label='Cifar10 Grayscale')
-    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], 'k-', label='Cifar10 Full Image')
+    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], 'r-', label='Cifar10 Red Channel')
+    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], 'g-', label='Cifar10 Green Channel')
+    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], 'b-', label='Cifar10 Blue Channel')
+    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], color='gray', linestyle='dashed', label='Cifar10 Grayscale')
+    #plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], 'k-', label='Cifar10 Full Image')
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
@@ -60,5 +60,5 @@ with plt.style.context(('seaborn')):
     ax.set_xlabel('Distance between pixels, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=1, numpoints=1, prop={'size':12})
-    plt.savefig('cifar10_full', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('cifar10_channels', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
