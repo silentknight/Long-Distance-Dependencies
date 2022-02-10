@@ -175,8 +175,6 @@ class Corpus(object):
 			self.process_music(dataset)
 
 		elif path == "dataset/mobility/":
-			# dataset = os.path.join(path, 'taxi_3557_1_grids')
-			# self.tokenize_file(dataset)
 			dataset = os.path.join(path, '10_clean.txt')
 			self.process_mobility(dataset)
 
@@ -196,7 +194,7 @@ class Corpus(object):
 		elif path == "dataset/time_series/":
 			dataset = os.path.join(path, 'TS_anomalies','A1Benchmark','real_3.csv')
 			print("Time Series Path: %s" % dataset)
-			self.process_time_series(dataset,2) #Column number of data
+			self.process_time_series(dataset,2)
 
 		elif path == "dataset/10kGNAD/":
 			self.articles_german = self.tokenize_file(os.path.join(path, 'articles.csv'))
@@ -353,7 +351,8 @@ class Corpus(object):
 		all_pixels = ""
 		for i in range(data.shape[0]):
 			[data_red, data_green, data_blue] = np.split(data[i],3)
-			data_grayscale = 0.299*data_red + 0.587*data_green + 0.114*data_blue
+			data_grayscale = np.around(0.299*data_red + 0.587*data_green + 0.114*data_blue)
+			data_grayscale = data_grayscale.astype(int)
 
 			if channel == "red":
 				pixel_values = data_red

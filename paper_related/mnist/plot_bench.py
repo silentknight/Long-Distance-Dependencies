@@ -43,9 +43,9 @@ for filename in filenames:
 
 # red dashes, blue squares and green triangles
 with plt.style.context(('seaborn')):
-    plt.loglog(np.arange(len(all_mi[0])), all_mi[0], label='Standard MNIST')
-    #plt.loglog(np.arange(len(all_mi[1])), all_mi[1], label='Permuted MNIST 1')
-    #plt.loglog(np.arange(len(all_mi[2])), all_mi[2], label='Permuted MNIST 2')
+    #plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label='Standard MNIST')
+    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label='Permuted MNIST 1')
+    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label='Permuted MNIST 2')
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
@@ -59,5 +59,5 @@ with plt.style.context(('seaborn')):
     ax.set_xlabel('Distance between pixels, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=1, numpoints=1, prop={'size':12})
-    plt.savefig('mnist_unpermuted', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('mnist_permuted', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()

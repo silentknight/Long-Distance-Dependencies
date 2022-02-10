@@ -139,5 +139,6 @@
 # python run_all.py --data dataset/cifar-10/.red --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 2000 --plot 0 --datafilepath mi_data/cifar10_red_grassberger_logx
 # python run_all.py --data dataset/cifar-10/.green --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 2000 --plot 0 --datafilepath mi_data/cifar10_green_grassberger_logx
 # python run_all.py --data dataset/cifar-10/.blue --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 2000 --plot 0 --datafilepath mi_data/cifar10_blue_grassberger_logx
-# python run_all.py --data dataset/cifar-10/.gray --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 2000 --plot 0 --datafilepath mi_data/cifar10_gray_grassberger_logx
-python run_all.py --data dataset/cifar-10/.full --overlap 1 --threads 7 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 5000 --plot 0 --datafilepath mi_data/cifar10_full_grassberger_logx
+python run_all.py --data dataset/cifar-10/.gray --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 2000 --plot 0 --datafilepath mi_data/cifar10_gray_grassberger_logx
+# python run_all.py --data dataset/cifar-10/.full --overlap 1 --threads 7 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 5000 --plot 0 --datafilepath mi_data/cifar10_full_grassberger_logx
+
