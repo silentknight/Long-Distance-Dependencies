@@ -1,4 +1,4 @@
-dir = ''
+dir = 'wikitext-19/'
 
 f = open(dir+"train", "r")
 data = f.read()
@@ -48,6 +48,8 @@ for valid_word in valid_words:
 
 print(len(unused_test_words))
 print(len(unused_valid_words))
+
+raw_input("Press to continue")
 
 outfile = ""
 for line in test_lines:
