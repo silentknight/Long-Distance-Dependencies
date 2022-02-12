@@ -127,8 +127,8 @@
 # python run_all.py --data dataset/wiki/wikitext-103-raw/ --overlap 1 --threads 8 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki103_raw_words_grassberger_logx
 # python run_all.py --data dataset/wiki/wikitext-2P/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki2_PTB_words_grassberger_logx
 # python run_all.py --data dataset/wiki/wikitext-19/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki19_words_10000_grassberger_logx
-python run_all.py --data dataset/wiki/wikitext-19L/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki19_Text8_words_10000_grassberger_logx
-python run_all.py --data dataset/wiki/wikitext-19C/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki19_cleaned_words_10000_grassberger_logx
+python run_all.py --data dataset/wiki/wikitext-19L/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki19_Text8_words_10000_grassberger_logx
+python run_all.py --data dataset/wiki/wikitext-19C/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki19_cleaned_words_10000_grassberger_logx
 
 # python run_all.py --data dataset/one-billion-words/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/one_billion_words_10000_grassberger_logx
 
