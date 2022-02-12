@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 import re
 
-filename = 'valid'
-f = open(filename,'r')
+directory = "wikitext-19C/"
+filename = 'train'
+f = open(directory+filename,'r')
 lines = f.readlines()
 f.close()
 
@@ -40,11 +41,11 @@ try:
 	print(lotOfUNKLen)
 	print(len(newData))
 
-	f = open(filename,'r')
+	f = open(directory+filename,'r')
 	print(len(f.read()))
 	f.close()
 
-	f = open('cleaned_'+filename,'w')
+	f = open(directory+'cleaned_'+filename,'w')
 	f.write(newData)
 	f.close()
 except KeyboardInterrupt:

@@ -1,15 +1,15 @@
-def freq(str): 
+def freq(str):
 
-	str_list = str.split() 
-	unique_words = set(str_list) 
-	
+	str_list = str.split()
+	unique_words = set(str_list)
+
 	for words in unique_words:
 		if str_list.count(words) <= 1:
-			print(words+'-') 
+			print(words+'-')
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
 
-	f = open('trainwR')
+	f = open('wikitext-2P/train')
 	str = f.read()
 	f.close()
-	freq(str) 
+	freq(str)

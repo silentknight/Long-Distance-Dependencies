@@ -76,9 +76,9 @@ class Corpus(object):
 			self.test = self.tokenize_file(os.path.join(path, 'test'))
 		elif path == "dataset/wiki/wikitext-2/":
 			print("wikitext-2 dataset")
-			self.train = self.tokenize_file(os.path.join(path, 'train'))
-			self.valid = self.tokenize_file(os.path.join(path, 'valid'))
-			self.test = self.tokenize_file(os.path.join(path, 'test'))
+			self.train = self.tokenize_file(os.path.join(path, 'train_2'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid_2'))
+			self.test = self.tokenize_file(os.path.join(path, 'test_2'))
 		elif path == "dataset/wiki/wikitext-103/":
 			print("wikitext-103 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'train'))
@@ -116,9 +116,9 @@ class Corpus(object):
 			self.test = self.tokenize_file(os.path.join(path, 'testR'))
 		elif path == "dataset/wiki/wikitext-2P/":
 			print("wikitext-2 PTB dataset")
-			self.train = self.tokenize_file(os.path.join(path, 'train_3'))
-			self.valid = self.tokenize_file(os.path.join(path, 'valid'))
-			self.test = self.tokenize_file(os.path.join(path, 'test'))
+			self.train = self.tokenize_file(os.path.join(path, 'train_4'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid_4'))
+			self.test = self.tokenize_file(os.path.join(path, 'test_4'))
 		elif path == "dataset/wiki/wikitext-19/":
 			print("wikitext-19 dataset")
 			self.train = self.tokenize_file(os.path.join(path, 'train'))

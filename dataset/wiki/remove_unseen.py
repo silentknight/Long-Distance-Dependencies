@@ -1,6 +1,7 @@
-dir = 'wikitext-19/'
+dir = 'wikitext-2P/'
+ext = '_5'
 
-f = open(dir+"train", "r")
+f = open(dir+"train"+ext, "r")
 data = f.read()
 words = data.split() + ['<eos>']
 words = set(words)
@@ -10,7 +11,7 @@ for word in words:
 	train_words.append(word.strip())
 print(len(train_words))
 
-f = open(dir+"test", "r")
+f = open(dir+"test"+ext, "r")
 data = f.read()
 test_lines = data.splitlines()
 words = data.split() + ['<eos>']
@@ -21,7 +22,7 @@ for word in words:
 	test_words.append(word.strip())
 print(len(test_words))
 
-f = open(dir+"valid", "r")
+f = open(dir+"valid"+ext, "r")
 data = f.read()
 valid_lines = data.splitlines()
 words = data.split() + ['<eos>']
@@ -46,17 +47,15 @@ for valid_word in valid_words:
 	else:
 		unused_valid_words.append(valid_word)
 
-print(len(unused_test_words))
-print(len(unused_valid_words))
-
-raw_input("Press to continue")
+print((unused_test_words))
+print((unused_valid_words))
 
 outfile = ""
 for line in test_lines:
 	for word in unused_test_words:
 		line = line.replace(' '+word+' ', ' <unk> ')
 	outfile += line + "\n"
-with open(dir+'test_new', 'w') as file:
+with open(dir+'new_test'+ext, 'w') as file:
 	file.write(outfile)
 
 outfile = ""
@@ -64,6 +63,6 @@ for line in valid_lines:
 	for word in unused_valid_words:
 		line = line.replace(' '+word+' ', ' <unk> ')
 	outfile += line + "\n"
-with open(dir+'valid_new', 'w') as file:
+with open(dir+'new_valid'+ext, 'w') as file:
 	file.write(outfile)
 
