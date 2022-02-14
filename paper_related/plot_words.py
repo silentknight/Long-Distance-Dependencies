@@ -56,24 +56,24 @@ with plt.style.context(('seaborn')):
 
     plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], color='fuchsia', linestyle='solid', label="Text8")
     plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], color='indigo', linestyle='solid', label="Text8 (w/ Rare)")
-    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], color='pink', linestyle='solid', label="Text8 (Subset)")
-    # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], color='purple', linestyle='solid', label="Text8 (w/ Rare Ssubset)")
+    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], color='pink', linestyle='solid', label="Text8 (Subset)")
+    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], color='purple', linestyle='solid', label="Text8 (w/ Rare Ssubset)")
 
-    plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], color='blue', linestyle='solid', label="Wiki2")
-    plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], color='darkblue', linestyle='solid', label="Wiki2 (Raw)")
+    # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], color='blue', linestyle='solid', label="Wiki2")
+    # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], color='darkblue', linestyle='solid', label="Wiki2 (Raw)")
     # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], color='cyan', linestyle='solid', label="Wiki2 (Cleaned)")
 
-    # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], color='brown', linestyle='solid', label="Wiki19")
-    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], color='khaki', linestyle='solid', label="Wiki19 (Text8)")
+    plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], color='brown', linestyle='solid', label="Wiki19")
+    plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], color='khaki', linestyle='solid', label="Wiki19 (Text8)")
 
-    plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], color='yellowgreen', linestyle='solid', label="Wiki103")
-    plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], color='darkgreen', linestyle='solid', label="Wiki103 (Raw)")
+    # plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], color='yellowgreen', linestyle='solid', label="Wiki103")
+    # plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], color='darkgreen', linestyle='solid', label="Wiki103 (Raw)")
     # plt.loglog(np.arange(1,len(all_mi[12])+1), all_mi[12], color='lightgreen', linestyle='solid', label="Wiki103 (Cleaned)")
 
-    # plt.loglog(np.arange(1,len(all_mi[13])+1), all_mi[13], color='aqua', linestyle='solid', label="Wiki Sample 1")
-    # plt.loglog(np.arange(1,len(all_mi[14])+1), all_mi[14], color='cyan', linestyle='solid', label="Wiki Sample 2")
-    # plt.loglog(np.arange(1,len(all_mi[15])+1), all_mi[15], color='magenta', linestyle='solid', label="Wiki PTB Size 1")
-    # plt.loglog(np.arange(1,len(all_mi[16])+1), all_mi[16], color='green', linestyle='solid', label="Wiki PTB Size 2")
+    # plt.loglog(np.arange(1,len(all_mi[13])+1), all_mi[13], color='gold', linestyle='solid', label="Wiki Sample 1")
+    # plt.loglog(np.arange(1,len(all_mi[14])+1), all_mi[14], color='wheat', linestyle='solid', label="Wiki Sample 2")
+    # plt.loglog(np.arange(1,len(all_mi[15])+1), all_mi[15], color='green', linestyle='solid', label="Wiki PTB Size 1")
+    # plt.loglog(np.arange(1,len(all_mi[16])+1), all_mi[16], color='lime', linestyle='solid', label="Wiki PTB Size 2")
     # plt.loglog(np.arange(1,len(all_mi[17])+1), all_mi[17], color='black', linestyle='solid', label="Wiki PTB Vocabulary 1")
     # plt.loglog(np.arange(1,len(all_mi[18])+1), all_mi[18], color='grey', linestyle='solid', label="Wiki PTB Vocabulary 2")
 
@@ -91,5 +91,5 @@ with plt.style.context(('seaborn')):
     ax.set_xlabel('Distance between words, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=2, numpoints=1, prop={'size': 12})
-    plt.savefig('lm_words_raw', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('lm_words_text8_type', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
