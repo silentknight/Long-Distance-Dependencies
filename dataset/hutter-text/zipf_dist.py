@@ -1,10 +1,10 @@
 import re
 from operator import itemgetter
 
-dir = "wikitext-19L/"
+dir = ""
 
 frequency = {}
-open_file = open(dir+'train', 'r')
+open_file = open(dir+'text8', 'r')
 file_to_string = open_file.read()
 words = re.findall(r'(\b[A-Za-z][a-z]{2,9}\b)', file_to_string)
 
