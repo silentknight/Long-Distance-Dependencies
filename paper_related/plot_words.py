@@ -57,7 +57,7 @@ with plt.style.context(('seaborn')):
     plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], color='fuchsia', linestyle='solid', label="Text8")
     plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], color='indigo', linestyle='solid', label="Text8 (w/ Rare)")
     plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], color='pink', linestyle='solid', label="Text8 (Subset)")
-    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], color='purple', linestyle='solid', label="Text8 (w/ Rare Ssubset)")
+    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], color='purple', linestyle='solid', label="Text8 (w/ Rare Subset)")
 
     # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], color='blue', linestyle='solid', label="Wiki2")
     # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], color='darkblue', linestyle='solid', label="Wiki2 (Raw)")

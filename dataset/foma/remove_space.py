@@ -3,7 +3,7 @@ import random
 def myfunction():
   return 0.1
 
-filename = "Data_SP2_20_New_F1.dat"
+filename = "Data_SP2_v26_100.dat"
 
 f = open("trash/"+filename,"r")
 lines = f.readlines()
