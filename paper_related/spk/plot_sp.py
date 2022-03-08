@@ -87,6 +87,6 @@ with plt.style.context(('seaborn')):
     # ax.set_ylim(ax.get_ylim()[0]-1e-7, ax.get_ylim()[1])
     ax.set_xlabel('Distance between symbols (Lag), d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-    lgd = ax.legend(loc='lower left', shadow=True, fancybox=True, numpoints=1, prop={'size': 12})
+    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, numpoints=1, prop={'size': 12})
     plt.savefig('spk_k1', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
