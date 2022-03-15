@@ -72,11 +72,13 @@ with plt.style.context(('seaborn')):
     # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP2, L=100, V=4, FS={ab,bc}")
     # plt.loglog(np.arange(1,len(all_mi[14])+1), all_mi[14], label="SP2, L=100, V=4, FS={ab,bc,cd,dc}")
 
-    plt.loglog(np.arange(1,len(all_mi[17])+1), all_mi[17], label="SP2, L=100, V=26")
-    plt.loglog(np.arange(1,len(all_mi[18])+1), all_mi[18], label="SP4, L=100, V=26")
-    plt.loglog(np.arange(1,len(all_mi[19])+1), all_mi[19], label="SP6, L=100, V=26")
-    plt.loglog(np.arange(1,len(all_mi[20])+1), all_mi[20], label="SP8, L=100, V=26")
-    plt.loglog(np.arange(1,len(all_mi[21])+1), all_mi[21], label="SP10, L=100, V=26")
+    # plt.loglog(np.arange(1,len(all_mi[17])+1), all_mi[17], label="SP2, L=100, V=26")
+    # plt.loglog(np.arange(1,len(all_mi[18])+1), all_mi[18], label="SP4, L=100, V=26")
+    # plt.loglog(np.arange(1,len(all_mi[19])+1), all_mi[19], label="SP6, L=100, V=26")
+    # plt.loglog(np.arange(1,len(all_mi[20])+1), all_mi[20], label="SP8, L=100, V=26")
+    # plt.loglog(np.arange(1,len(all_mi[21])+1), all_mi[21], label="SP10, L=100, V=26")
+
+    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="Constant Mutual Information")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
@@ -88,5 +90,5 @@ with plt.style.context(('seaborn')):
     ax.set_xlabel('Distance between symbols (Lag), d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, numpoints=1, prop={'size': 12})
-    plt.savefig('spk_k1', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('constant_mi', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
