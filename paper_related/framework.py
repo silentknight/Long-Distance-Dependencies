@@ -51,15 +51,15 @@ with plt.style.context(('seaborn')):
     ##########################################################################################################################
 
     x = np.linspace(1, 1000, 1000)
+    y = np.zeros(1000)
     a = 1
-    alpha_1 = 0.9
-    alpha_2 = -1
-    y = power
-    for i in range(0,1000,50):
-    #    y[i:i+35] = a*pow(x[0:35],-alpha_1)
-    #    y[i+35:i+50] = y[i+34]*pow(x[0:15],-alpha_2)
-    #    a = y[i+49]
-    p4 = plt.loglog(x, y, label="Power-Law Decay with Periodicity")
+    alpha_1 = 0.02
+    alpha_2 = 0.4
+    alpha_3 = 0.02
+    y[0:400] = a*pow(x[0:400],-alpha_1)
+    y[400:420] = y[399]*pow(x[400:420],-alpha_2)
+    y[420:1000] = y[419]*pow(x[420:1000],-alpha_3)
+    p4 = plt.loglog(x, y, label="Broken Power-Law Decay Type 2")
 
     ##########################################################################################################################
 
