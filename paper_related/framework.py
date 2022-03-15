@@ -64,7 +64,7 @@ with plt.style.context(('seaborn')):
     ##########################################################################################################################
 
     ax = plt.axes()
-    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, prop={'size': 15})
+    lgd = ax.legend(loc='lower left', shadow=True, fancybox=True, prop={'size': 15})
     plt.tick_params(labelsize='large', width=3)
     plt.grid(True)
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
