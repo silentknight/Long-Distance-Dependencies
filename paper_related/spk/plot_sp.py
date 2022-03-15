@@ -78,7 +78,7 @@ with plt.style.context(('seaborn')):
     # plt.loglog(np.arange(1,len(all_mi[20])+1), all_mi[20], label="SP8, L=100, V=26")
     # plt.loglog(np.arange(1,len(all_mi[21])+1), all_mi[21], label="SP10, L=100, V=26")
 
-    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="Constant Mutual Information")
+    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="Constant Mutual Information")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
