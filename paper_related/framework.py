@@ -70,7 +70,7 @@ with plt.style.context(('seaborn')):
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
     ax.set_xlim(1.0, 1000.0)
-    ax.set_ylim(2.4, 12)
+    # ax.set_ylim(2.4, 12)
     ax.set_xlabel('Distance between symbol, d', fontsize=20)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=20)
     plt.savefig('pl_broken2', bbox_extra_artists=(lgd,), bbox_inches='tight')
