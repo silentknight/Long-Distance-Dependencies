@@ -59,7 +59,7 @@ with plt.style.context(('seaborn')):
     y[0:400] = a*pow(x[0:400],-alpha_1)
     y[400:420] = y[399]*pow(x[400:420],-alpha_2)
     y[420:1000] = y[419]*pow(x[420:1000],-alpha_3)
-    p4 = plt.loglog(x, y, label="Broken Power-Law Decay Type 2")
+    p4 = plt.loglog(x, y, label="Fixed-Width Persistent Dependency")
 
     ##########################################################################################################################
 
@@ -73,5 +73,5 @@ with plt.style.context(('seaborn')):
     # ax.set_ylim(2.4, 12)
     ax.set_xlabel('Distance between symbol, d', fontsize=20)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=20)
-    plt.savefig('pl_broken2', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('persistence_ldd', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
