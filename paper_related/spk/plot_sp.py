@@ -103,5 +103,5 @@ with plt.style.context(('seaborn')):
     ax.set_xlabel('Distance between symbols (Lag), d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, numpoints=1, prop={'size': 12})
-    # plt.savefig('reg_grammars', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('reg_grammars', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
