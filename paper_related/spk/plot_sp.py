@@ -99,6 +99,7 @@ with plt.style.context(('seaborn')):
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
     ax = plt.axes()
     ax.set_xlim(1, 1000)
+    print(ax.get_ylim())
     # ax.set_ylim(ax.get_ylim()[0]-1e-7, ax.get_ylim()[1])
     ax.set_xlabel('Distance between symbols (Lag), d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
