@@ -4,10 +4,10 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-# filenames = ["sp2_20","sp2_100","sp2_200","sp2_500","sp2_100_comp","sp4_100_comp","sp16_100_comp","sp2_20_comp","sp2_20_v26","sp8_20_comp", "sp8_20_v26", \
-            # "sp2_20_small","sp2_100_small","sp2_20_f1","sp2_100_f1","sp2_20_new_f1","sp2_20_new_f2","sp2_v26_100","sp4_v26_100","sp6_v26_100","sp8_v26_100","sp10_v26_100"]
+filenames = ["sp2_20","sp2_100","sp2_200","sp2_500","sp2_100_comp","sp4_100_comp","sp16_100_comp","sp2_20_comp","sp2_20_v26","sp8_20_comp","sp8_20_v26","sp2_20_small","sp2_100_small","sp2_20_f1",
+             "sp2_100_f1","sp2_20_new_f1","sp2_20_new_f2","sp2_v26_100","sp4_v26_100","sp6_v26_100","sp8_v26_100","sp10_v26_100","sp2_5000","sp2_10000","penn_tree_letters_15000_grassberger_logx"]
 
-filenames = ["sp2_v4_20","sp4_v4_20","sp8_v4_20","sp2_v26_20","sp4_v26_20","sp2_v61_20","sp2_v4_200","sp4_v4_200","sp8_v4_200","sp2_v26_200","sp4_v26_200","sp2_v61_200"]
+# filenames = ["sp2_v4_20","sp4_v4_20","sp8_v4_20","sp2_v26_20","sp4_v26_20","sp2_v61_20","sp2_v4_200","sp4_v4_200","sp8_v4_200","sp2_v26_200","sp4_v26_200","sp2_v61_200"]
 
 all_mi = []
 
@@ -47,10 +47,13 @@ for filename in filenames:
 
 # red dashes, blue squares and green triangles
 with plt.style.context(('seaborn')):
-    # plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2, L=20, V=4, FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2, L=100, V=4, FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP2, L=200, V=4, FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="SP2, L=500, V=4, FS={ab,bc}")
+    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2, L=20, V=4, FS={ab,bc}")
+    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2, L=100, V=4, FS={ab,bc}")
+    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP2, L=200, V=4, FS={ab,bc}")
+    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="SP2, L=500, V=4, FS={ab,bc}")
+    plt.loglog(np.arange(1,len(all_mi[22])+1), all_mi[22], label="SP2, L=5000, V=4, FS={ab,bc}")
+    plt.loglog(np.arange(1,len(all_mi[23])+1), all_mi[23], label="SP2, L=10000, V=4, FS={ab,bc}")
+    plt.loglog(np.arange(1,len(all_mi[24])+1), all_mi[24], label="PTB Characters")
 
     # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP2, L=100, V=4, FS={ab,bc}")
     # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="SP4, L=100, V=4, FS={abba,bccb}")
@@ -89,23 +92,23 @@ with plt.style.context(('seaborn')):
     # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP4, V=26, L=20")
     # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="SP2, V=61, L=20")
 
-    plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="SP2, V=4, L=200")
-    plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP4, V=4, L=200")
-    plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="SP8, V=4, L=200")
-    plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="SP2, V=26, L=200")
-    plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="SP4, V=26, L=200")
-    plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], label="SP2, V=61, L=200")
+    # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="SP2, V=4, L=200")
+    # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP4, V=4, L=200")
+    # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="SP8, V=4, L=200")
+    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="SP2, V=26, L=200")
+    # plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="SP4, V=26, L=200")
+    # plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], label="SP2, V=61, L=200")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
     ax = plt.axes()
-    ax.set_xlim(1, 1000)
-    ax.set_ylim(4.3e-11, 0.65)
+    ax.set_xlim(1, 15000)
+    # ax.set_ylim(4.3e-11, 0.65)
     print(ax.get_ylim())
     ax.set_xlabel('Distance between symbols (Lag), d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='lower left', shadow=True, fancybox=True, numpoints=3, prop={'size': 12})
-    plt.savefig('reg_grammars_sp_200', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('reg_grammars_sp_len', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
