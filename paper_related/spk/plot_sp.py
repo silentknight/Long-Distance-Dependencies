@@ -7,7 +7,7 @@ import numpy as np
 # filenames = ["sp2_20","sp2_100","sp2_200","sp2_500","sp2_100_comp","sp4_100_comp","sp16_100_comp","sp2_20_comp","sp2_20_v26","sp8_20_comp", "sp8_20_v26", \
             # "sp2_20_small","sp2_100_small","sp2_20_f1","sp2_100_f1","sp2_20_new_f1","sp2_20_new_f2","sp2_v26_100","sp4_v26_100","sp6_v26_100","sp8_v26_100","sp10_v26_100"]
 
-filenames = ["sp2_v4_20","sp2_v4_200","sp4_v4_20","sp4_v4_200","sp8_v4_20","sp8_v4_200","sp2_v26_20","sp4_v26_20","sp2_v61_20"]
+filenames = ["sp2_v4_20","sp4_v4_20","sp8_v4_20","sp2_v26_20","sp4_v26_20","sp2_v61_20","sp2_v4_200","sp4_v4_200","sp8_v4_200","sp2_v26_200","sp4_v26_200","sp2_v61_200"]
 
 all_mi = []
 
@@ -83,15 +83,18 @@ with plt.style.context(('seaborn')):
     # plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="Constant Mutual Information")
 
     plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2, V=4, L=20")
-    # plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2, V=4, L=200")
-    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP4, V=4, L=20")
-    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="SP4, V=4, L=200")
-    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP8, V=4, L=20")
-    # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="SP8, V=4, L=200")
+    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP4, V=4, L=20")
+    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP8, V=4, L=20")
+    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="SP2, V=26, L=20")
+    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP4, V=26, L=20")
+    plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="SP2, V=61, L=20")
 
-    # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="SP2, V=26, L=20")
-    # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP4, V=26, L=20")
-    # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="SP2, V=61, L=20")
+    # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="SP2, V=4, L=200")
+    # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP4, V=4, L=200")
+    # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="SP8, V=4, L=200")
+    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="SP2, V=26, L=200")
+    # plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="SP4, V=26, L=200")
+    # plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], label="SP2, V=61, L=200")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
