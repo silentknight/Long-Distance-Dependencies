@@ -47,13 +47,14 @@ for filename in filenames:
 
 # red dashes, blue squares and green triangles
 with plt.style.context(('seaborn')):
+
+    plt.loglog(np.arange(1,len(all_mi[24])+1), all_mi[24], 'k-', label="PTB Characters")
     plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2, L=20, V=4, FS={ab,bc}")
     plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2, L=100, V=4, FS={ab,bc}")
     plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP2, L=200, V=4, FS={ab,bc}")
     plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="SP2, L=500, V=4, FS={ab,bc}")
     plt.loglog(np.arange(1,len(all_mi[22])+1), all_mi[22], label="SP2, L=5000, V=4, FS={ab,bc}")
     plt.loglog(np.arange(1,len(all_mi[23])+1), all_mi[23], label="SP2, L=10000, V=4, FS={ab,bc}")
-    plt.loglog(np.arange(1,len(all_mi[24])+1), all_mi[24], 'k-', label="PTB Characters")
 
     # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP2, L=100, V=4, FS={ab,bc}")
     # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="SP4, L=100, V=4, FS={abba,bccb}")
