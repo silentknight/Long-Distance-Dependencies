@@ -120,7 +120,11 @@ except:
 
 print("Pull data from numpy file")
 
-fm = open("cooccur_dataset_"+str(args.dataset),"w")
+datapath = "word_pairs_"+str(args.dataset)
+if not os.path.exists(datapath):
+	os.makedirs(datapath)
+
+fm = open("word_pair_dependence_"+str(args.dataset),"w")
 d = start
 try:
 	for file in files:
@@ -136,7 +140,7 @@ try:
 		Ni_X = pmi_data['arr_2'].tolist().toarray()[0]
 		Ni_Y = pmi_data['arr_3'].tolist().toarray()[0]
 
-		f = open("cooccur_data/data"+str(d)+".log","w")
+		f = open(datapath+"/data"+str(d)+".log","w")
 		f.write("\nProcessing d = %s \n\n" % (d))
 		f.write("\nNegatively Dependent (:,-3)  = %d" % np.size(pmi[np.where(pmi<-3)]))
 		f.write("\nNegatively Dependent [-3,-2) = %d" % np.size(pmi[np.where((pmi<-2)&(pmi>=-3))]))
@@ -155,13 +159,33 @@ try:
 		f.write("\nPositively Dependent [9,10)  = %d" % np.size(pmi[np.where((pmi>=9)&(pmi<10))]))
 		f.write("\nPositively Dependent [10,:)  = %d" % np.size(pmi[np.where(pmi>=10)]))
 
-		fm.write("%d," % np.size(pmi[np.where(pmi<-3)]))
-		fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-3))]))
-		fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
-		fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=6))]))
-		fm.write("%d," % np.size(pmi[np.where((pmi>6)&(pmi<=12))]))
-		fm.write("%d," % np.size(pmi[np.where(pmi>=12)]))
-		fm.write("\n")
+		if args.dataset == 1:
+			fm.write("%d," % np.size(pmi[np.where(pmi<-3)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-3))]))
+			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=5))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>5)&(pmi<=10))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi>10)]))
+			fm.write("\n")
+		elif args.dataset == 6:
+			fm.write("%d," % np.size(pmi[np.where(pmi<-3)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-3))]))
+			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=6))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>6)&(pmi<=12))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi>12)]))
+			fm.write("\n")
+		elif args.dataset == 8:
+			fm.write("%d," % np.size(pmi[np.where(pmi<-3)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-3))]))
+			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=6))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>6)&(pmi<=12))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi>12)]))
+			fm.write("\n")
+		else:
+			print("Dataset not available")
+			exit()
 
 		#if args.pmi_l != None and args.pmi_u != None:
 		#	index = np.where((pmi>=args.pmi_l)&(pmi<=args.pmi_u))
@@ -187,14 +211,14 @@ try:
 
 		sys.stdout.write("\rProcessed -> d: %d" % d)
 		sys.stdout.flush()
-
-		d+=1
 		f.close()
 
 		if end == "end":
 			pass
 		elif d == end:
 			exit()
+
+		d+=1
 
 except (KeyboardInterrupt, ValueError) as e:
 	print(e)

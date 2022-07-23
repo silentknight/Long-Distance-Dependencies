@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["6","8"]
+filenames = ["1","6","8"]
 
 all_hn = []
 all_ln = []
@@ -14,7 +14,7 @@ all_mp = []
 all_hp = []
 
 for filename in filenames:
-    f = open("cooccur_dataset_"+filename, "r")
+    f = open("word_pair_dependence_"+filename, "r")
     lines = f.readlines()
     f.close()
 

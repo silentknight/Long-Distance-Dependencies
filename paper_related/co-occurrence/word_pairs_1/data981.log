@@ -1,0 +1,20 @@
+
+Processing d = 981 
+
+
+Negatively Dependent (:,-3)  = 0
+Negatively Dependent [-3,-2) = 8
+Negatively Dependent [-2,-1) = 2351
+Negatively Dependent [-1,0)  = 42494
+Independent = 99508625
+Positively Dependent (0,1)   = 103901
+Positively Dependent [1,2)   = 87838
+Positively Dependent [2,3)   = 71108
+Positively Dependent [3,4)   = 60271
+Positively Dependent [4,5)   = 47064
+Positively Dependent [5,6)   = 34972
+Positively Dependent [6,7)   = 22126
+Positively Dependent [7,8)   = 12187
+Positively Dependent [8,9)   = 5268
+Positively Dependent [9,10)  = 1679
+Positively Dependent [10,:)  = 108
