@@ -13,7 +13,7 @@ import ast
 import scipy.sparse
 
 parser = argparse.ArgumentParser(description='Get Contextual Dependencies')
-parser.add_argument('--dataset', type=int, default=1, help='Dataset number as listed in LDD paper')
+parser.add_argument('--dataset', type=int, help='Dataset number as listed in LDD paper', required=True)
 parser.add_argument('--start', type=int, default=1, help='Value of D (Dependency distance) from start for plotting. Default is 1')
 parser.add_argument('--end', type=str, default='end', help='Value of D (Dependency distance) till end for plotting. Default is \'end\' (all the way will the end).')
 parser.add_argument('--logscale', type=int, default=1, help='Plot on Log Scale or normal scale. 1: Log Scale; 0: Normal Scale')
@@ -180,8 +180,8 @@ try:
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-3))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=6))]))
-			fm.write("%d," % np.size(pmi[np.where((pmi>6)&(pmi<=12))]))
-			fm.write("%d," % np.size(pmi[np.where(pmi>12)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>6)&(pmi<=16))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi>16)]))
 			fm.write("\n")
 		else:
 			print("Dataset not available")

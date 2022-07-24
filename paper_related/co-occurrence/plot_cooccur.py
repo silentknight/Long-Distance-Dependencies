@@ -6,12 +6,12 @@ import numpy as np
 
 filenames = ["1","6","8"]
 
-all_hn = []
-all_ln = []
+all_sn = []
+all_wn = []
 all_ind = []
-all_lp = []
+all_wp = []
 all_mp = []
-all_hp = []
+all_sp = []
 
 for filename in filenames:
     f = open("word_pair_dependence_"+filename, "r")
@@ -22,52 +22,45 @@ for filename in filenames:
     end = 0
     index = 0
 
-    hn = np.zeros([0,1])
-    ln = np.zeros([0,1])
+    sn = np.zeros([0,1])
+    wn = np.zeros([0,1])
     ind = np.zeros([0,1])
-    lp = np.zeros([0,1])
+    wp = np.zeros([0,1])
     mp = np.zeros([0,1])
-    hp = np.zeros([0,1])
+    sp = np.zeros([0,1])
     temp = lines[0].split()
 
     for line in lines:
         temp = line.strip().split(",")
-        hn = np.append(hn,np.zeros(1))
-        hn[index] = int(temp[0])
-        ln = np.append(ln,np.zeros(1))
-        ln[index] = int(temp[1])
+        sn = np.append(sn,np.zeros(1))
+        sn[index] = int(temp[0])
+        wn = np.append(wn,np.zeros(1))
+        wn[index] = int(temp[1])
         ind = np.append(ind,np.zeros(1))
         ind[index] = int(temp[2])
-        lp = np.append(lp,np.zeros(1))
-        lp[index] = int(temp[3])
+        wp = np.append(wp,np.zeros(1))
+        wp[index] = int(temp[3])
         mp = np.append(mp,np.zeros(1))
         mp[index] = int(temp[4])
-        hp = np.append(hp,np.zeros(1))
-        hp[index] = int(temp[5])
+        sp = np.append(sp,np.zeros(1))
+        sp[index] = int(temp[5])
         index+=1
 
-    all_hn.append(hn.tolist()[0:3000])
-    all_ln.append(ln.tolist()[0:3000])
+    all_sn.append(sn.tolist()[0:3000])
+    all_wn.append(wn.tolist()[0:3000])
     all_ind.append(ind.tolist()[0:3000])
-    all_lp.append(lp.tolist()[0:3000])
+    all_wp.append(wp.tolist()[0:3000])
     all_mp.append(mp.tolist()[0:3000])
-    all_hp.append(hp.tolist()[0:3000])
+    all_sp.append(sp.tolist()[0:3000])
 
 with plt.style.context(('seaborn')):
 
-    plt.loglog(np.arange(1,len(all_hn[0])+1), all_hn[0], "r-", label="Wiki2 High Neg")
-    plt.loglog(np.arange(1,len(all_ln[0])+1), all_ln[0], 'm-', label="Wiki2 Low Neg")
-    plt.loglog(np.arange(1,len(all_ind[0])+1), all_ind[0], 'c-', label="Wiki2 Ind")
-    plt.loglog(np.arange(1,len(all_lp[0])+1), all_lp[0], 'b-', label="Wiki2 Low Pos")
-    plt.loglog(np.arange(1,len(all_mp[0])+1), all_mp[0], 'g-', label="Wiki2 Mid Pos")
-    plt.loglog(np.arange(1,len(all_hp[0])+1), all_hp[0], "k-", label="Wiki2 High Pos")
-
-    plt.loglog(np.arange(1,len(all_hn[1])+1), all_hn[1], "r--", label="Wiki103 High Neg")
-    plt.loglog(np.arange(1,len(all_ln[1])+1), all_ln[1], 'm--', label="Wiki103 Low Neg")
-    plt.loglog(np.arange(1,len(all_ind[1])+1), all_ind[1], 'c--', label="Wiki103 Ind")
-    plt.loglog(np.arange(1,len(all_lp[1])+1), all_lp[1], 'b--', label="Wiki103 Low Pos")
-    plt.loglog(np.arange(1,len(all_mp[1])+1), all_mp[1], 'g--', label="Wiki103 Mid Pos")
-    plt.loglog(np.arange(1,len(all_hp[1])+1), all_hp[1], "k--", label="Wiki103 High Pos")
+    plt.loglog(np.arange(1,len(all_hn[0])+1), all_hn[0], "r-", label="Strong Negative")
+    plt.loglog(np.arange(1,len(all_ln[0])+1), all_ln[0], 'm-', label="Weak Negative")
+    plt.loglog(np.arange(1,len(all_ind[0])+1), all_ind[0], 'c-', label="Independent")
+    plt.loglog(np.arange(1,len(all_lp[0])+1), all_lp[0], 'b-', label="Weak Positive")
+    plt.loglog(np.arange(1,len(all_mp[0])+1), all_mp[0], 'g-', label="Moderate Positive")
+    plt.loglog(np.arange(1,len(all_hp[0])+1), all_hp[0], "k-", label="Strong Positive")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
