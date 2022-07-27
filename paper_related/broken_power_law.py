@@ -7,6 +7,7 @@ from scipy import stats
 
 filenames = ["penn_tree","text8","text8_subset","text8_wor","text8_subset_wor","wiki2","wiki2_cleaned","wiki103","wiki103_cleaned","10kGNAD"]
 # filenames = ["enwik8","text8","penn_tree","wiki2","wiki103"]
+"penn_tree","text8","text8 (w/o Rare), Text8 (Subset), Text8 (w/o Rare Subset), WikiText2, WikiText2 (Raw), WikiText2 (Cleaned), WikiText19, WikiText19 (Text8 like), Wiki103, WikiText103 (Raw), WikiText103 (Cleaned), WikiText Sample #1, WikiText Sample #2, WikiText (PTB size #1), WikiText (PTB size #2), WikiText (PTB vocab #1), WikiText (PTB vocab #2)
 
 all_mi = []
 all_Hx = []
