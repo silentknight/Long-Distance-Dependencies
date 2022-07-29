@@ -160,16 +160,16 @@ try:
 		#f.write("\nPositively Dependent [10,:)  = %d" % np.size(pmi[np.where(pmi>=10)]))
 
 		if args.dataset == 1:
-			fm.write("%d," % np.size(pmi[np.where(pmi<-1)]))
-			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi<-1.1)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.1))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=2.5))]))
 			fm.write("%d," % np.size(pmi[np.where((pmi>2.5)&(pmi<=9.4))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>9.4)]))
 			fm.write("\n")
 		elif args.dataset == 6:
-			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
-			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.4))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
 			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=11.9))]))

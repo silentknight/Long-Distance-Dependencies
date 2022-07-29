@@ -6,7 +6,7 @@ import numpy as np
 
 filenames = ["1","6","8"]
 
-f = open("word_pair_dependence_"+filenames[2], "r")
+f = open("word_pair_dependence_"+filenames[0], "r")
 lines = f.readlines()
 f.close()
 
@@ -100,5 +100,5 @@ with plt.style.context(('seaborn')):
 	print(fig.get_figwidth())
 	print(fig.get_figheight())
 
-	plt.savefig('pmi_plots_wiki103')
+	plt.savefig('pmi_plots_ptb')
 	plt.show()
