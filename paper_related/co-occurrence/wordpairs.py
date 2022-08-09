@@ -20,8 +20,8 @@ parser.add_argument('--logscale', type=int, default=1, help='Plot on Log Scale o
 parser.add_argument('--normalize', type=str, default='n', help='Normalize values')
 parser.add_argument('--word1', type=str, help='Word you want to find the distribution of')
 parser.add_argument('--word2', type=str, help='Word against which you want to find the distribution')
-parser.add_argument('--pmi_l', type=int, help='PMI lower threshold')
-parser.add_argument('--pmi_u', type=int, help='PMI upper threshold')
+parser.add_argument('--pmi_l', type=float, help='PMI lower threshold')
+parser.add_argument('--pmi_u', type=float, help='PMI upper threshold')
 args = parser.parse_args()
 
 ####################################################################################################
@@ -154,8 +154,8 @@ try:
 				if pmi_cols[i] == wordID:
 					found_word2 = word
 
-			if(Ni_X[pmi_rows[i]]>5 and Ni_Y[pmi_cols[i]]>5):
-				print("%s & %d & %s & %d & %d & %3.5f" %(found_word1, Ni_X[pmi_rows[i]], found_word2, Ni_Y[pmi_cols[i]], Ni_XY[i], pmi[i]))
+			if(Ni_X[pmi_rows[i]]>5 and Ni_Y[pmi_cols[i]]>5 and Ni_XY[i]>1):
+				print("%s ($%d$) & %s ($%d$) & $%d$ & $%3.5f$" %(found_word1, Ni_X[pmi_rows[i]], found_word2, Ni_Y[pmi_cols[i]], Ni_XY[i], pmi[i]))
 
 		print("Processed -> d: %d" % d)
 
