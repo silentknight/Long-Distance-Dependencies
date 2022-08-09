@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 filenames = ["sp2_20","sp2_100","sp2_200","sp2_500","sp2_100_comp","sp4_100_comp","sp16_100_comp","sp2_20_comp","sp2_20_v26","sp8_20_comp","sp8_20_v26","sp2_20_small","sp2_100_small","sp2_20_f1",
-             "sp2_100_f1","sp2_20_new_f1","sp2_20_new_f2","sp2_v26_100","sp4_v26_100","sp6_v26_100","sp8_v26_100","sp10_v26_100","sp2_5000","sp2_10000","penn_tree_letters_15000_grassberger_logx"]
+             "sp2_100_f1","sp2_20_new_f1","sp2_20_new_f2","sp2_v26_100","sp4_v26_100","sp6_v26_100","sp8_v26_100","sp10_v26_100","sp2_5000","sp2_10000","penn_tree_letters_15000_grassberger_logx","wiki2_letters_15000_grassberger_logx"]
 
 # filenames = ["sp2_v4_20","sp4_v4_20","sp8_v4_20","sp2_v26_20","sp4_v26_20","sp2_v61_20","sp2_v4_200","sp4_v4_200","sp8_v4_200","sp2_v26_200","sp4_v26_200","sp2_v61_200"]
 
@@ -49,6 +49,7 @@ for filename in filenames:
 with plt.style.context(('seaborn')):
 
     plt.loglog(np.arange(1,len(all_mi[24])+1), all_mi[24], 'k-', label="PTB Characters")
+    plt.loglog(np.arange(1,len(all_mi[25])+1), all_mi[25], 'k-', label="WikiText2 Characters")
     plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2, L=20, V=4, FS={ab,bc}")
     plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2, L=100, V=4, FS={ab,bc}")
     plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP2, L=200, V=4, FS={ab,bc}")
