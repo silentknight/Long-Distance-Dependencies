@@ -51,8 +51,8 @@ with plt.style.context(('seaborn')):
 
     plt.loglog(np.arange(1,len(all_mi[24])+1), all_mi[24], color='black', label="PTB Characters")
     plt.loglog(np.arange(1,len(all_mi[25])+1), all_mi[25], color='slategrey', label="WikiText2 Characters")
-    plt.loglog(np.arange(1,len(all_mi[26])+1), all_mi[26], color='brown', label="Text8 Characters")
-    plt.loglog(np.arange(1,len(all_mi[27])+1), all_mi[27], color='gold', label="Enwik8 Characters")
+    # plt.loglog(np.arange(1,len(all_mi[26])+1), all_mi[26], color='brown', label="Text8 Characters")
+    # plt.loglog(np.arange(1,len(all_mi[27])+1), all_mi[27], color='gold', label="Enwik8 Characters")
     plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2, L=20, V=4, FS={ab,bc}")
     plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2, L=100, V=4, FS={ab,bc}")
     plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP2, L=200, V=4, FS={ab,bc}")
