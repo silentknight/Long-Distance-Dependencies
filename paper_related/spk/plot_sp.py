@@ -48,11 +48,12 @@ for filename in filenames:
 
 # red dashes, blue squares and green triangles
 with plt.style.context(('seaborn')):
+    ax = plt.axes()
 
     plt.loglog(np.arange(1,len(all_mi[24])+1), all_mi[24], color='black', label="PTB Characters")
     plt.loglog(np.arange(1,len(all_mi[25])+1), all_mi[25], color='slategrey', label="WikiText2 Characters")
-    plt.loglog(np.arange(1,len(all_mi[26])+1), all_mi[26], color='brown', label="Text8 Characters")
-    plt.loglog(np.arange(1,len(all_mi[27])+1), all_mi[27], color='gold', label="Enwik8 Characters")
+    # plt.loglog(np.arange(1,len(all_mi[26])+1), all_mi[26], color='brown', label="Text8 Characters")
+    # plt.loglog(np.arange(1,len(all_mi[27])+1), all_mi[27], color='gold', label="Enwik8 Characters")
     plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2, L=20, V=4, FS={ab,bc}")
     plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2, L=100, V=4, FS={ab,bc}")
     plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP2, L=200, V=4, FS={ab,bc}")
@@ -108,7 +109,6 @@ with plt.style.context(('seaborn')):
     plt.grid(True)
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
-    ax = plt.axes()
     ax.set_xlim(1, 15000)
     # ax.set_ylim(4.3e-11, 0.65)
     print(ax.get_ylim())
