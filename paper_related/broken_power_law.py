@@ -6,7 +6,7 @@ from astropy.modeling import models
 from scipy import stats
 
 # filenames = ["enwik8","text8","penn_tree","wiki2","wiki103"]
-filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned","wiki19","wiki19_text8","wiki103","Wiki103_raw","wiki103_cleaned",
+filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned","wiki19","wiki19_text8","wiki103","wiki103_raw","wiki103_cleaned",
              "wiki_sample_1","wiki_sample_2","wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD"]
 
 all_mi = []
@@ -79,18 +79,19 @@ for filename in filenames:
 
 # ######################################################################################################################
 with plt.style.context(('seaborn')):
+    ax = plt.axes()
 
     ###################################################################################################################
     # PTB
     ###################################################################################################################
     # break_point = 4
     # dataset = 0
-    # data = all_mi[dataset]
+    # data = all_mi[dataset][0:730]
     # alpha_1 = 0.4786
     # alpha_2 = 0.01
     # p1 = plt.loglog(np.arange(1,len(data)+1), data, "r-", label="PTB")
     # amplitude = all_mi[dataset][break_point+8]
-    # x = np.linspace(1, len(data), len(data))
+    # x = np.linspace(0, len(data), len(data))
     # f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     # fit_sample = f(x)
     # p2 = plt.loglog(x, fit_sample, label="Broken Power-Law fit for PTB")
@@ -205,18 +206,18 @@ with plt.style.context(('seaborn')):
     ###################################################################################################################
     # break_point = 4
     # dataset = 6
-    # data = all_mi[dataset]
-    # alpha_1 = 0.421
-    # alpha_2 = 0.00281
+    # data = all_mi[dataset][20:]
+    # alpha_1 = 0.00225
+    # alpha_2 = 0.0
     # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText2 Raw")
-    # amplitude = all_mi[dataset][break_point+16]
+    # amplitude = all_mi[dataset][break_point+10]
     # x = np.linspace(1, len(data), len(data))
     # f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     # fit_sample = f(x)
     # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 Raw")
     # amplitude = all_mi[dataset][break_point-1]
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # f.delta = 0.346
+    # f.delta = 0.2682
     # fit_sample = f(x)
     # p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 Raw")
 
@@ -245,9 +246,9 @@ with plt.style.context(('seaborn')):
     ###################################################################################################################
     # break_point = 4
     # dataset = 8
-    # data = all_mi[dataset]
-    # alpha_1 = 0.77
-    # alpha_2 = 0.021
+    # data = all_mi[dataset][16:]
+    # alpha_1 = 0.0078
+    # alpha_2 = 0.0000
     # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText19")
     # amplitude = all_mi[dataset][break_point+6]
     # x = np.linspace(1, len(data), len(data))
@@ -256,7 +257,7 @@ with plt.style.context(('seaborn')):
     # p2 = plt.loglog(x, fit_sample, label="Broken Power-Law for WikiText19")
     # amplitude = all_mi[dataset][break_point-1]
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # f.delta = 0.35
+    # f.delta = 0.43
     # fit_sample = f(x)
     # p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText19")
 
@@ -266,17 +267,17 @@ with plt.style.context(('seaborn')):
     # break_point = 4
     # dataset = 9
     # data = all_mi[dataset]
-    # alpha_1 = 0.77
-    # alpha_2 = 0.021
+    # alpha_1 = 0.012
+    # alpha_2 = 0.012
     # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText19 Text8")
     # amplitude = all_mi[dataset][break_point+6]
     # x = np.linspace(1, len(data), len(data))
     # f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
     # fit_sample = f(x)
-    # p2 = plt.loglog(x, fit_sample, label="Broken Power-Law for WikiText19 Text8")
+    # # p2 = plt.loglog(x, fit_sample, label="Broken Power-Law for WikiText19 Text8")
     # amplitude = all_mi[dataset][break_point-1]
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # f.delta = 0.35
+    # f.delta = 0.21
     # fit_sample = f(x)
     # p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText19 Text8")
 
@@ -303,11 +304,11 @@ with plt.style.context(('seaborn')):
     ###################################################################################################################
     # Wiki103 Raw
     ###################################################################################################################
-    # break_point = 4
+    # break_point = 5
     # dataset = 11
     # data = all_mi[dataset]
-    # alpha_1 = 0.77
-    # alpha_2 = 0.021
+    # alpha_1 = 0.019
+    # alpha_2 = 0.019
     # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText103 Raw")
     # amplitude = all_mi[dataset][break_point+6]
     # x = np.linspace(1, len(data), len(data))
@@ -316,7 +317,7 @@ with plt.style.context(('seaborn')):
     # p2 = plt.loglog(x, fit_sample, label="Broken Power-Law for WikiText103 Raw")
     # amplitude = all_mi[dataset][break_point-1]
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # f.delta = 0.35
+    # f.delta = 0.32
     # fit_sample = f(x)
     # p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText103 Raw")
 
@@ -345,9 +346,9 @@ with plt.style.context(('seaborn')):
     ###################################################################################################################
     # break_point = 4
     # dataset = 13
-    # data = all_mi[dataset]
-    # alpha_1 = 0.421
-    # alpha_2 = 0.00281
+    # data = all_mi[dataset][22:2000]
+    # alpha_1 = 0.0023
+    # alpha_2 = 0.0023
     # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText2 PTB")
     # amplitude = all_mi[dataset][break_point+16]
     # x = np.linspace(1, len(data), len(data))
@@ -356,29 +357,29 @@ with plt.style.context(('seaborn')):
     # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 PTB")
     # amplitude = all_mi[dataset][break_point-1]
     # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # f.delta = 0.346
+    # f.delta = 0.336
     # fit_sample = f(x)
     # p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 PTB")
 
     ###################################################################################################################
     # Wiki Sample #2
     ###################################################################################################################
-    # break_point = 4
-    # dataset = 14
-    # data = all_mi[dataset]
-    # alpha_1 = 0.421
-    # alpha_2 = 0.00281
-    # p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText2 PTB")
-    # amplitude = all_mi[dataset][break_point+16]
-    # x = np.linspace(1, len(data), len(data))
-    # f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # fit_sample = f(x)
+    break_point = 2000
+    dataset = 14
+    data = all_mi[dataset]
+    alpha_1 = 0.002305
+    alpha_2 = 0.002305
+    p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText2 PTB")
+    amplitude = all_mi[dataset][break_point+16]
+    x = np.linspace(1, len(data), len(data))
+    f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    fit_sample = f(x)
     # p2 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 PTB")
-    # amplitude = all_mi[dataset][break_point-1]
-    # f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # f.delta = 0.346
-    # fit_sample = f(x)
-    # p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 PTB")
+    amplitude = all_mi[dataset][break_point-1]
+    f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+    f.delta = 0.333
+    fit_sample = f(x)
+    p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText2 PTB")
 
     ###################################################################################################################
     # Wiki PTB Size #1
@@ -543,15 +544,14 @@ with plt.style.context(('seaborn')):
     print("length :", len(data))
 
     ##########################################################################################################################
-    ax = plt.axes()
-    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, prop={'size': 6})
-    plt.tick_params(labelsize='large', width=3)
+    plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
     ax.set_xlim(1.0, 10000.0)
-    ax.set_ylim(0.5665692652625367, 3.5)
+    # ax.set_ylim(0.5665692652625367, 3.5)
     ax.set_xlabel('Distance between words, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
+    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, prop={'size': 15})
     # plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()

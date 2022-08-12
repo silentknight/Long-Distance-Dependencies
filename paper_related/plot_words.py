@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned", \
-            "wiki19","wiki19_Text8","wiki103","wiki103_raw","wiki103_cleaned","wiki_sample_1","wiki_sample_2", \
-            "wiki_PTB_size_1","wiki_PTB_size_2","wiki_PTB_vocab_1","wiki_PTB_vocab_2","10kGNAD"]
+            "wiki19","wiki19_text8","wiki103","wiki103_raw","wiki103_cleaned","wiki_sample_1","wiki_sample_2", \
+            "wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD"]
 
 all_mi = []
 all_hx = []
@@ -51,45 +51,45 @@ for filename in filenames:
     all_hxy.append(Hxy.tolist())
 
 with plt.style.context(('seaborn')):
+    ax = plt.axes()
 
-    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], color='red', linestyle='solid', label="PTB")
+    # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="Wiki2 (Raw)")
+    # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="Wiki2")
+    # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="Wiki2 (Cleaned)")
 
-    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], color='fuchsia', linestyle='solid', label="Text8")
-    # plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], color='indigo', linestyle='solid', label="Text8 (w/ Rare)")
-    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], color='pink', linestyle='solid', label="Text8 (Subset)")
-    # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], color='purple', linestyle='solid', label="Text8 (w/ Rare Subset)")
+    # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="Wiki19")
 
-    plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], color='blue', linestyle='solid', label="Wiki2")
-    # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], color='darkblue', linestyle='solid', label="Wiki2 (Raw)")
-    # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], color='cyan', linestyle='solid', label="Wiki2 (Cleaned)")
+    # plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], label="Wiki103 (Raw)")
+    # plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="Wiki103")
+    # plt.loglog(np.arange(1,len(all_mi[12])+1), all_mi[12], label="Wiki103 (Cleaned)")
 
-    # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], color='brown', linestyle='solid', label="Wiki19")
-    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], color='khaki', linestyle='solid', label="Wiki19 (Text8)")
+    # plt.loglog(np.arange(1,len(all_mi[13])+1), all_mi[13], label="Wiki Sample 1")
+    # plt.loglog(np.arange(1,len(all_mi[14])+1), all_mi[14], label="Wiki Sample 2")
+    plt.loglog(np.arange(1,len(all_mi[15])+1), all_mi[15], label="Wiki PTB like Size 1")
+    plt.loglog(np.arange(1,len(all_mi[16])+1), all_mi[16], label="Wiki PTB like Size 2")
+    plt.loglog(np.arange(1,len(all_mi[17])+1), all_mi[17], label="Wiki PTB like Vocabulary 1")
+    plt.loglog(np.arange(1,len(all_mi[18])+1), all_mi[18], label="Wiki PTB like Vocabulary 2")
 
-    plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], color='yellowgreen', linestyle='solid', label="Wiki103")
-    # plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], color='darkgreen', linestyle='solid', label="Wiki103 (Raw)")
-    # plt.loglog(np.arange(1,len(all_mi[12])+1), all_mi[12], color='lightgreen', linestyle='solid', label="Wiki103 (Cleaned)")
+    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="PTB")
 
-    # plt.loglog(np.arange(1,len(all_mi[13])+1), all_mi[13], color='coral', linestyle='solid', label="Wiki Sample 1")
-    # plt.loglog(np.arange(1,len(all_mi[14])+1), all_mi[14], color='orange', linestyle='solid', label="Wiki Sample 2")
-    # plt.loglog(np.arange(1,len(all_mi[15])+1), all_mi[15], color='green', linestyle='solid', label="Wiki PTB Size 1")
-    # plt.loglog(np.arange(1,len(all_mi[16])+1), all_mi[16], color='lime', linestyle='solid', label="Wiki PTB Size 2")
-    # plt.loglog(np.arange(1,len(all_mi[17])+1), all_mi[17], color='black', linestyle='solid', label="Wiki PTB Vocabulary 1")
-    # plt.loglog(np.arange(1,len(all_mi[18])+1), all_mi[18], color='grey', linestyle='solid', label="Wiki PTB Vocabulary 2")
+    # plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="Text8")
+    # plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="Text8 (w/ Rare)")
+    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="Text8 (Small)")
+    # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="Text8 (w/ Rare Small)")
+    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="Wiki19 (Text8)")
 
-    plt.loglog(np.arange(1,len(all_mi[19])+1), all_mi[19], color='yellow', linestyle='solid', label="German Text")
+    # plt.loglog(np.arange(1,len(all_mi[19])+1), all_mi[19], label="German Text")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
-    ax = plt.axes()
     ax.set_xlim(1, len(all_mi[0]))
     ax.set_ylim(0.56, 3.2)
     print(ax.get_xlim())
     print(ax.get_ylim())
     ax.set_xlabel('Distance between words, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=2, numpoints=1, prop={'size': 12})
-    plt.savefig('lm_words', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=3, numpoints=1, prop={'size': 12})
+    plt.savefig('lm_words_wiki2_ptb', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
