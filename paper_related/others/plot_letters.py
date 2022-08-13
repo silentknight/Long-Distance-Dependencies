@@ -49,18 +49,17 @@ for filename in filenames:
     all_hxy.append(Hxy.tolist())
 
 with plt.style.context(('seaborn')):
-
-    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], "y-", label="Enwik8")
-    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], "r-", label="PTB")
-    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], 'm-', label="Text8")
-    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], "b-", label="Wiki2")
-    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], "g-", label="Wiki103")
+    ax = plt.axes()
+    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="PTB")
+    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="Text8")
+    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="Wiki2")
+    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="Enwik8")
+    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="Wiki103")
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
-    ax = plt.axes()
     ax.set_xlim(1, len(all_mi[0]))
     ax.set_xlabel('Distance between characters, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
