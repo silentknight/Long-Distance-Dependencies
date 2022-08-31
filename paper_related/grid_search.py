@@ -8,7 +8,7 @@ import sys
 filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned","wiki19","wiki19_text8","wiki103","wiki103_raw","wiki103_cleaned",
              "wiki_sample_1","wiki_sample_2","wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD"]
 
-filename = filenames[14]
+filename = filenames[15]
 f = open(filename+"_words_10000_grassberger_logx_mi.dat", "r")
 lines = f.readlines()
 f.close()
@@ -40,28 +40,38 @@ if temp[0] == "data:":
 else:
     print("Not a valid file")
 
+print(filename)
 
-alpha_1_min = 0.37
-alpha_1_max = 0.39
+alpha_1_min = 0.34
+alpha_1_max = 0.34
+alpha_1_inter = 1
 
-alpha_2_min = 0.00229
-alpha_2_max = 0.00231
+alpha_2_min = 0.002890
+alpha_2_max = 0.002890
+alpha_2_inter = 1
 
-delta_min = 0.33
-delta_max = 0.35
+delta_min = 0.199
+delta_max = 0.199
+delta_inter = 1
 
-data = mi[0:1000]
-x = np.linspace(1, len(data), len(data))
+end_min = 1000
+end_max = 3000
+
 break_point = 4
-amplitude = mi[break_point-1]
 
-for delta in np.linspace(delta_min,delta_max,21):
-    for alpha_1 in np.linspace(alpha_1_min,alpha_1_max,21):
-        for alpha_2 in np.linspace(alpha_2_min,alpha_2_max,21):
-            f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-            f.delta = delta
-            fit_sample = f(x)
-            [D, p_value] = stats.ks_2samp(data, fit_sample)
+for end in range(end_min,end_max):
+    print("Computing for data range 0->%d" % end)
+    data = mi[0:end]
+    x = np.linspace(1, len(data), len(data))
+    amplitude = mi[break_point-1]
 
-            if p_value > 1e-6:
-                print("\rdelta: %f, alpha1: %f, alpha2: %f, P Value: %f" % (delta,alpha_1,alpha_2,p_value))
+    for delta in np.linspace(delta_min,delta_max,delta_inter):
+        for alpha_1 in np.linspace(alpha_1_min,alpha_1_max,alpha_1_inter):
+            for alpha_2 in np.linspace(alpha_2_min,alpha_2_max,alpha_2_inter):
+                f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+                f.delta = delta
+                fit_sample = f(x)
+                [D, p_value] = stats.ks_2samp(data, fit_sample)
+
+                if p_value > 1e-2:
+                    print("\rdelta: %f, alpha1: %f, alpha2: %f, P Value: %f" % (delta,alpha_1,alpha_2,p_value))
