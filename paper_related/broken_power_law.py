@@ -496,18 +496,18 @@ with plt.style.context(('seaborn')):
 
 	###########################################################################################################################
 
-	# [D, p_value] = stats.ks_2samp(data,fit_sample)
+	[D, p_value] = stats.ks_2samp(data,fit_sample)
 
-	# print("Dataset :", filename)
-	# print("D_inf :", break_point)
-	# print("c1 :",data[0])
-	# print("alpha 1 :", alpha_1)
-	# print("amplitude :", mi[break_point-1])
-	# print("alpha 2 :", alpha_2)
-	# print("delta :", f.delta)
-	# print("D :", D)
-	# print("p-value :", p_value)
-	# print("length :", len(data))
+	print("Dataset :", filename)
+	print("D_inf :", break_point)
+	print("c1 :",data[0])
+	print("alpha 1 :", alpha_1)
+	print("amplitude :", mi[break_point-1])
+	print("alpha 2 :", alpha_2)
+	print("delta :", f.delta)
+	print("D :", D)
+	print("p-value :", p_value)
+	print("length :", len(data))
 
 	###########################################################################################################################
 
@@ -523,22 +523,21 @@ with plt.style.context(('seaborn')):
 	for i in range(break_point,end_point):
 		ldds += mi[i]
 
-	print("Dataset :", filename)
 	print("Break Point 1:", break_point)
 	print("Break Point 2:", end_point)
 	print("SDDs", sdds)
 	print("LDDs", ldds)
-	print("SDDs/LDDs: %f, LDDs/SDDs: %f\n" % (sdds/ldds, ldds/sdds))
+	print("SDDs/LDDs: %f, LDDs/SDDs: %.2f\n" % (sdds/ldds, ldds/sdds))
 
 	###########################################################################################################################
 
-	# plt.tick_params(labelsize='large', width=5)
-	# plt.grid(True)
-	# plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
-	# plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
-	# ax.set_xlim(1.0, 10000.0)
-	# ax.set_xlabel('Distance between words, d', fontsize=15)
-	# ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-	# lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, prop={'size': 15})
-	# # plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
-	# plt.show()
+	plt.tick_params(labelsize='large', width=5)
+	plt.grid(True)
+	plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
+	plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
+	ax.set_xlim(1.0, 10000.0)
+	ax.set_xlabel('Distance between words, d', fontsize=15)
+	ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
+	lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, prop={'size': 15})
+	# plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
+	plt.show()
