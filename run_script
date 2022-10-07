@@ -145,4 +145,4 @@
 # python run_all.py --data dataset/wiki/wikitext-2P/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki_PTB_vocab_1_words_10000_grassberger_logx
 # python run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki_sample_2_words_10000_grassberger_logx
 
-python run_all.py --data dataset/paper_dataset/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki_sample_4_words_10000_grassberger_logx
+python run_all.py --data dataset/paper_dataset/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 0 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki_sample_3_words_10000_grassberger_logx
