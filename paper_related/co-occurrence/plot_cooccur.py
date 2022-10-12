@@ -4,9 +4,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["1","6","8"]
+filenames = ["1","6","8","10","11"]
 
-f = open("word_pair_dependence_"+filenames[0], "r")
+f = open("word_pair_dependence_"+filenames[4], "r")
 lines = f.readlines()
 f.close()
 
@@ -100,5 +100,5 @@ with plt.style.context(('seaborn')):
 	print(fig.get_figwidth())
 	print(fig.get_figheight())
 
-	plt.savefig('pmi_plots_ptb')
+	plt.savefig('pmi_plots_wiki_samp_4')
 	plt.show()

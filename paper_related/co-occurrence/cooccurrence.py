@@ -37,7 +37,10 @@ def dataset_pick(i):
 		6: '/mnt/data/pmi_data/wiki2_words_standard_logx',
 		7: None,
 		8: '/mnt/data/pmi_data/wiki103_words_standard_logx',
-		9: None
+		9: None,
+		10: '/mnt/data/pmi_data/wiki_sample_3_words_standard_logx',
+		11: '/mnt/data/pmi_data/wiki_sample_4_words_standard_logx',
+		12: None
 	}
 	return switcher.get(i,"Invalid path")
 
@@ -182,6 +185,22 @@ try:
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
 			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=15.8))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>15.8)]))
+			fm.write("\n")
+		elif args.dataset == 10:
+			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.4))]))
+			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=11.9))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
+			fm.write("\n")
+		elif args.dataset == 11:
+			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.4))]))
+			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=11.9))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		else:
 			print("Dataset not available")

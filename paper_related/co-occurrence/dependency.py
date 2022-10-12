@@ -36,6 +36,8 @@ def dataset_pick(i):
 		7: None,
 		8: '/mnt/data/pmi_data/wiki103_words_standard_logx',
 		9: None
+		10: '/mnt/data/pmi_data/wiki_sample_3_words_standard_logx',
+		11: '/mnt/data/pmi_data/wiki_sample_4_words_standard_logx',
 	}
 	return switcher.get(i,"Invalid path")
 
