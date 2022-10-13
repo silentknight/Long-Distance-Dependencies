@@ -6,9 +6,9 @@ from scipy import stats
 import sys
 
 filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned","wiki19","wiki19_text8","wiki103","wiki103_raw","wiki103_cleaned",
-             "wiki_sample_1","wiki_sample_2","wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD"]
+             "wiki_sample_1","wiki_sample_2","wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD","wiki19_cleaned","wiki_sample_3","wiki_sample_4"]
 
-filename = filenames[15]
+filename = filenames[22]
 f = open(filename+"_words_10000_grassberger_logx_mi.dat", "r")
 lines = f.readlines()
 f.close()
@@ -42,20 +42,20 @@ else:
 
 print(filename)
 
-alpha_1_min = 0.34
-alpha_1_max = 0.34
+alpha_1_min = 0.368
+alpha_1_max = 0.368
 alpha_1_inter = 1
 
-alpha_2_min = 0.002890
-alpha_2_max = 0.002890
+alpha_2_min = 0.00203
+alpha_2_max = 0.00203
 alpha_2_inter = 1
 
-delta_min = 0.199
-delta_max = 0.199
+delta_min = 0.31436
+delta_max = 0.31436
 delta_inter = 1
 
-end_min = 1000
-end_max = 3000
+end_min = 700
+end_max = 4000
 
 break_point = 4
 
@@ -73,5 +73,5 @@ for end in range(end_min,end_max):
                 fit_sample = f(x)
                 [D, p_value] = stats.ks_2samp(data, fit_sample)
 
-                if p_value > 1e-2:
+                if p_value > 1e-5:
                     print("\rdelta: %f, alpha1: %f, alpha2: %f, P Value: %f" % (delta,alpha_1,alpha_2,p_value))

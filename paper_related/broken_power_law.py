@@ -13,7 +13,7 @@ parser.add_argument('--end_point', type=int,
                     help='End Point calculation')
 args = parser.parse_args()
 
-filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned","wiki19","wiki19_text8","wiki103","wiki103_raw","wiki103_cleaned","wiki_sample_1","wiki_sample_2","wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD"]
+filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned","wiki19","wiki19_text8","wiki103","wiki103_raw","wiki103_cleaned","wiki_sample_1","wiki_sample_2","wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD","wiki19_cleaned","wiki_sample_3","wiki_sample_4"]
 
 dataset = args.filename_ID
 filename = filenames[dataset]
@@ -494,6 +494,48 @@ with plt.style.context(('seaborn')):
 		fit_sample = f(x)
 		p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText19 (C)")
 
+	elif dataset == 21:
+		###################################################################################################################
+		# WikiText Sample 3
+		###################################################################################################################
+		break_point = 4
+		data = mi
+		alpha_1 = 0.352
+		alpha_2 = 0.002495
+		end_point = 1142
+		p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText Sample 3")
+		x = np.linspace(1, len(data), len(data))
+		# amplitude = mi[break_point+6]
+		# f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+		# fit_sample = f(x)
+		# p2 = plt.loglog(x, fit_sample, label="Broken Power-Law for WikiText19 (C)")
+		amplitude = mi[break_point-1]
+		f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+		f.delta = 0.3415
+		fit_sample = f(x)
+		p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText Sample 3")
+
+	elif dataset == 22:
+		###################################################################################################################
+		# WikiText Sample 4
+		###################################################################################################################
+		break_point = 4
+		data = mi
+		alpha_1 = 0.368
+		alpha_2 = 0.00203
+		end_point = 1314
+		p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText Sample 4")
+		x = np.linspace(1, len(data), len(data))
+		# amplitude = mi[break_point+6]
+		# f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+		# fit_sample = f(x)
+		# p2 = plt.loglog(x, fit_sample, label="Broken Power-Law for WikiText19 (C)")
+		amplitude = mi[break_point-1]
+		f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+		f.delta = 0.31436
+		fit_sample = f(x)
+		p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText Sample 4")
+
 	###########################################################################################################################
 
 	[D, p_value] = stats.ks_2samp(data,fit_sample)
@@ -511,23 +553,23 @@ with plt.style.context(('seaborn')):
 
 	###########################################################################################################################
 
-	sdds = 0
-	ldds = 0
+	# sdds = 0
+	# ldds = 0
 
-	if args.end_point is not None:
-		end_point = args.end_point
+	# if args.end_point is not None:
+	# 	end_point = args.end_point
 
-	for i in range(break_point):
-		sdds += mi[i]
+	# for i in range(break_point):
+	# 	sdds += mi[i]
 
-	for i in range(break_point,end_point):
-		ldds += mi[i]
+	# for i in range(break_point,end_point):
+	# 	ldds += mi[i]
 
-	print("Break Point 1:", break_point)
-	print("Break Point 2:", end_point)
-	print("SDDs", sdds)
-	print("LDDs", ldds)
-	print("SDDs/LDDs: %f, LDDs/SDDs: %.2f\n" % (sdds/ldds, ldds/sdds))
+	# print("Break Point 1:", break_point)
+	# print("Break Point 2:", end_point)
+	# print("SDDs", sdds)
+	# print("LDDs", ldds)
+	# print("SDDs/LDDs: %f, LDDs/SDDs: %.2f\n" % (sdds/ldds, ldds/sdds))
 
 	###########################################################################################################################
 
