@@ -35,9 +35,10 @@ def dataset_pick(i):
 		6: '/mnt/data/pmi_data/wiki2_words_standard_logx',
 		7: None,
 		8: '/mnt/data/pmi_data/wiki103_words_standard_logx',
-		9: None
+		9: None,
 		10: '/mnt/data/pmi_data/wiki_sample_3_words_standard_logx',
 		11: '/mnt/data/pmi_data/wiki_sample_4_words_standard_logx',
+		12: None
 	}
 	return switcher.get(i,"Invalid path")
 
@@ -61,7 +62,7 @@ try:
 		print("Words you supplied were found:\n"+args.word1+": "+str(wordID_1)+" and "+args.word2+": "+str(wordID_2))
 	elif args.word2 == None:
 		wordID_1 = int(symbols[args.word1])
-		print("Word you supplied is: "+args.word1+". Hence computing distribution across all other words.")
+		print("Word you supplied is: "+args.word1+": "+str(wordID_1)+". Hence computing distribution across all other words.")
 	else:
 		print("Words you supplied were not present in the dataset. Hence Exiting !!")
 		sys.exit()
@@ -96,25 +97,22 @@ except ValueError:
 ####################################################################################################
 print("Pulling file list from the folder")
 
-try:
-	d_num = []
-	ext = ""
-	files = sorted(os.listdir(path+"/pmi"))
-	for file in files:
-		d_num.append(int(file.split('.')[0]))
-		ext = file.split('.')[1]
+d_num = []
+ext = ""
+files = sorted(os.listdir(path+"/pmi"))
+for file in files:
+	d_num.append(int(file.split('.')[0]))
+	ext = file.split('.')[1]
 
-	d_num = sorted(d_num)
-	files = []
-	for file in d_num:
-		if args.end == "end":
-			if file >= start:
-				files.append(str(file)+'.'+ext)
-		else:
-			if file >= start and file <= end:
-				files.append(str(file)+'.'+ext)
-except:
-	print(path+" does not exist")
+d_num = sorted(d_num)
+files = []
+for file in d_num:
+	if args.end == "end":
+		if file >= start:
+			files.append(str(file)+'.'+ext)
+	else:
+		if file >= start and file <= end:
+			files.append(str(file)+'.'+ext)
 
 print("Pull data from numpy file")
 
@@ -124,51 +122,50 @@ Ni_XY_single = np.empty((0,1))
 pmi_row = []
 Ni_XY_row = []
 
-try:
-	for file in files:
-		pmi_data = np.load(path+"/np/"+file, mmap_mode='r', allow_pickle=True)
-		Xi = pmi_data['arr_0']
-		Yi = pmi_data['arr_1']
-		Ni_X = pmi_data['arr_2']
-		Ni_Y = pmi_data['arr_3']
-		Ni_XY = scipy.sparse.load_npz(path+"/Ni_XY/"+file)
-		pmi = scipy.sparse.load_npz(path+"/pmi/"+file)
+for file in files:
+	pmi_data = np.load(path+"/np/"+file, mmap_mode='r', allow_pickle=True)
+	Xi = pmi_data['arr_0']
+	Yi = pmi_data['arr_1']
+	Ni_X = pmi_data['arr_2']
+	Ni_Y = pmi_data['arr_3']
+	Ni_XY = scipy.sparse.load_npz(path+"/Ni_XY/"+file)
+	pmi = scipy.sparse.load_npz(path+"/pmi/"+file)
 
-		if args.word2 == None:
-			if pmi_row == []:
-				pmi_row = pmi[np.where(Xi==wordID_1)[0][0],:].toarray()
-				Ni_XY_row = Ni_XY[np.where(Xi==wordID_1)[0][0],:].toarray()
-			else:
-				pmi_row = np.append(pmi_row, pmi[np.where(Xi==wordID_1)[0][0],:].toarray(), axis=0)
-				Ni_XY_row = np.append(Ni_XY_row, Ni_XY[np.where(Xi==wordID_1)[0][0],:].toarray(), axis=0)
+	if args.word2 == None:
+		if pmi_row == []:
+			pmi_row = pmi[np.where(Xi==wordID_1)[0][0],:].toarray()
+			Ni_XY_row = Ni_XY[np.where(Xi==wordID_1)[0][0],:].toarray()
 		else:
-			pmi_single = np.append(pmi_single, pmi[np.where(Xi==wordID_1)[0][0],np.where(Yi==wordID_2)[0][0]])
-			Ni_XY_single = np.append(Ni_XY_single, Ni_XY[np.where(Xi==wordID_1)[0][0],np.where(Yi==wordID_2)[0][0]])
+			pmi_row = np.append(pmi_row, pmi[np.where(Xi==wordID_1)[0][0],:].toarray(), axis=0)
+			Ni_XY_row = np.append(Ni_XY_row, Ni_XY[np.where(Xi==wordID_1)[0][0],:].toarray(), axis=0)
+	else:
+		pmi_single = np.append(pmi_single, pmi[np.where(Xi==wordID_1)[0][0],np.where(Yi==wordID_2)[0][0]])
+		Ni_XY_single = np.append(Ni_XY_single, Ni_XY[np.where(Xi==wordID_1)[0][0],np.where(Yi==wordID_2)[0][0]])
 
-		sys.stdout.write("\rProcessed -> d: %d" % (d))
-		sys.stdout.flush()
-		d += 1
-
-except (KeyboardInterrupt, ValueError) as e:
-	print(e)
-	print("Processing halted. Printing upto d: "+str(d-1))
+	sys.stdout.write("\rProcessed -> d: %d" % (d))
+	sys.stdout.flush()
+	d += 1
 
 if args.word2 == None:
 	print("\nJust one word selected...")
+	#np.set_printoptions(threshold=sys.maxsize, formatter={'float': lambda x: "{0:0.3f}".format(x)})
+	#print(np.nonzero(pmi_row[0]))
 	fig = plt.figure()
-	ax = fig.add_subplot(211)
+	ax = plt.axes()
+#	ax = fig.add_subplot(211)
 	plt.imshow(np.transpose(pmi_row))
 	ax.set_aspect('auto')
 	ax.xaxis.set_major_locator(MaxNLocator(integer=True))
 	ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 	plt.colorbar(orientation='vertical')
-	ax = fig.add_subplot(212)
-	plt.imshow(np.transpose(Ni_XY_row))
-	ax.set_aspect('auto')
-	ax.xaxis.set_major_locator(MaxNLocator(integer=True))
-	ax.yaxis.set_major_locator(MaxNLocator(integer=True))
-	plt.colorbar(orientation='vertical')
+#	ax = fig.add_subplot(212)
+#	plt.imshow(np.transpose(Ni_XY_row))
+#	ax.set_aspect('auto')
+#	ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+#	ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+#	plt.colorbar(orientation='vertical')
 	print("Maximum frequency: %d" % (np.max(Ni_XY_row)))
+	plt.savefig("pmi_word_"+args.word1+"_"+str(args.dataset))
 	plt.show()
 else:
 	print("Two words selected...")
