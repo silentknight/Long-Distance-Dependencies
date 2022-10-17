@@ -1,14 +1,12 @@
+
+
 #!/usr/bin/env python
 
 # System libs
-import matplotlib.pyplot as plt
-from matplotlib.ticker import MaxNLocator
-from matplotlib.colors import LogNorm
 import numpy as np
 import argparse
 import sys
 import os
-import re
 import ast
 import scipy.sparse
 
@@ -16,7 +14,7 @@ parser = argparse.ArgumentParser(description='Get Contextual Dependencies')
 parser.add_argument('--dataset', type=int, help='Dataset number as listed in LDD paper', required=True)
 parser.add_argument('--start', type=int, default=1, help='Value of D (Dependency distance) from start for plotting. Default is 1')
 parser.add_argument('--end', type=str, default='end', help='Value of D (Dependency distance) till end for plotting. Default is \'end\' (all the way will the end).')
-parser.add_argument('--word1', type=str, help='Word you want to find the distribution of')
+parser.add_argument('--word', type=str, help='Word you want to find the distribution of', required=True)
 args = parser.parse_args()
 
 ####################################################################################################
@@ -47,23 +45,19 @@ print(path)
 ####################################################################################################
 symbols = {}
 try:
-	word1 = -1
-
 	f = open(path+"/0.symbols.dat", 'r')
 	data = f.read()
 	symbols = ast.literal_eval(data)
-
 	f.close()
 except:
 	print(path+" does not exist. Please check the path. Do not add / at the end of the path.")
 	sys.exit()
 
 try:
-	wordID_1 = int(symbols[args.word1])
-	print("Word you supplied is: "+args.word1+". Hence computing distribution across all other words.")
+	wordID = int(symbols[args.word])
+	print("Word you supplied is: "+args.word+": "+str(wordID)+". Hence computing distribution across all other words.")
 except:
-	print("Word is not supplied or supplied word is not present in the dataset.")
-	sys.exit()
+	print("Either word is not supplied or it is not present in the dataset.")
 
 ####################################################################################################
 # Get the start and end of "d"                                                                     #
@@ -113,21 +107,25 @@ except:
 
 print("Pull data from numpy file")
 
+fm = open("marginal_dependence_"+str(args.word)+"_"+str(args.dataset),"w")
 d = start
-pmi_single = np.empty((0,1))
-Ni_XY_single = np.empty((0,1))
-pmi_row = []
-Ni_XY_row = []
-
-fm = open("word_pair_dependence_"+args.word1+"_"+str(args.dataset),"w")
-
 try:
 	for file in files:
 		pmi_temp = scipy.sparse.load_npz(path+"/pmi/"+file)
 		[pmi_rows, pmi_cols, pmi] = scipy.sparse.find(pmi_temp)
+		temp1 = np.where(pmi_rows==wordID)[0]
+		temp2 = np.where(pmi_cols==wordID)[0]
+		index = np.concatenate((temp1,temp2))
+#		print(pmi[index])
+#		print(pmi_rows[index])
+#		print(pmi_cols[index])
+		pmi = pmi[index]
+		total = max(np.max(pmi_rows),np.max(pmi_cols))*2-1-index.shape[0]
 
 		Ni_XY_temp = scipy.sparse.load_npz(path+"/Ni_XY/"+file)
 		[Ni_XY_rows, Ni_XY_cols, Ni_XY] = scipy.sparse.find(Ni_XY_temp)
+		Ni_XY = Ni_XY[index]
+		#print(Ni_XY[index])
 
 		pmi_data = np.load(path+"/np/"+file, mmap_mode='r', allow_pickle=True)
 		Xi = pmi_data['arr_0']
@@ -135,12 +133,10 @@ try:
 		Ni_X = pmi_data['arr_2'].tolist().toarray()[0]
 		Ni_Y = pmi_data['arr_3'].tolist().toarray()[0]
 
-
-
 		if args.dataset == 1:
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.1)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.1))]))
-			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+			fm.write("%d," % total)
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=2.5))]))
 			fm.write("%d," % np.size(pmi[np.where((pmi>2.5)&(pmi<=9.4))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>9.4)]))
@@ -148,7 +144,7 @@ try:
 		elif args.dataset == 6:
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.4))]))
-			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+			fm.write("%d," % total)
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
 			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=11.9))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
@@ -156,7 +152,7 @@ try:
 		elif args.dataset == 8:
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.6)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.6))]))
-			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+			fm.write("%d," % total)
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
 			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=15.8))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>15.8)]))
@@ -164,7 +160,7 @@ try:
 		elif args.dataset == 10:
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.4))]))
-			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+			fm.write("%d," % total)
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
 			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=11.9))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
@@ -172,7 +168,7 @@ try:
 		elif args.dataset == 11:
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.4))]))
-			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+			fm.write("%d," % total)
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
 			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=11.9))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
@@ -181,8 +177,7 @@ try:
 			print("Dataset not available")
 			exit()
 
-		sys.stdout.write("\rProcessed -> d: %d" % d)
-		sys.stdout.flush()
+		print("Processed -> d: %d" % d)
 
 		if end == "end":
 			pass

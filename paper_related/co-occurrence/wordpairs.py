@@ -37,7 +37,10 @@ def dataset_pick(i):
 		6: '/mnt/data/pmi_data/wiki2_words_standard_logx',
 		7: None,
 		8: '/mnt/data/pmi_data/wiki103_words_standard_logx',
-		9: None
+		9: None,
+		10: '/mnt/data/pmi_data/wiki_sample_3_words_standard_logx',
+		11: '/mnt/data/pmi_data/wiki_sample_4_words_standard_logx',
+		12: None
 	}
 	return switcher.get(i,"Invalid path")
 
@@ -137,10 +140,10 @@ try:
 
 		if args.pmi_l != None and args.pmi_u != None:
 			index = np.where((pmi>=args.pmi_l)&(pmi<=args.pmi_u))
-		elif args.pmi_u != None:
-			index = np.where(pmi>=args.pmi_u)
-		elif args.pmi_l != None:
-			index = np.where(pmi<=args.pmi_l)
+		elif args.pmi_l == None:
+			index = np.where(pmi<=args.pmi_u)
+		elif args.pmi_u == None:
+			index = np.where(pmi>=args.pmi_l)
 		else:
 			print("No PMI thresholds provided")
 			exit()
@@ -154,8 +157,8 @@ try:
 				if pmi_cols[i] == wordID:
 					found_word2 = word
 
-			if(Ni_X[pmi_rows[i]]>5 and Ni_Y[pmi_cols[i]]>5 and Ni_XY[i]>1):
-				print("%s ($%d$) & %s ($%d$) & $%d$ & $%3.5f$" %(found_word1, Ni_X[pmi_rows[i]], found_word2, Ni_Y[pmi_cols[i]], Ni_XY[i], pmi[i]))
+			if(Ni_X[pmi_rows[i]]>5 and Ni_Y[pmi_cols[i]]>5 and Ni_XY[i]>1 and (found_word1==args.word1 or found_word2==args.word1)):
+				print("%s (%d) & %s (%d) & %d & %3.5f" %(found_word1, Ni_X[pmi_rows[i]], found_word2, Ni_Y[pmi_cols[i]], Ni_XY[i], pmi[i]))
 
 		print("Processed -> d: %d" % d)
 
