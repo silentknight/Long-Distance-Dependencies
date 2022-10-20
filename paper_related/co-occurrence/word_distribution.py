@@ -116,9 +116,9 @@ try:
 		temp1 = np.where(pmi_rows==wordID)[0]
 		temp2 = np.where(pmi_cols==wordID)[0]
 		index = np.concatenate((temp1,temp2))
-#		print(pmi[index])
-#		print(pmi_rows[index])
-#		print(pmi_cols[index])
+		print(pmi[index])
+		print(pmi_rows[index])
+		print(pmi_cols[index])
 		pmi = pmi[index]
 		total = max(np.max(pmi_rows),np.max(pmi_cols))*2-1-index.shape[0]
 
