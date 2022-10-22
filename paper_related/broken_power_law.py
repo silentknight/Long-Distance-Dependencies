@@ -12,6 +12,7 @@ parser.add_argument('--end_point', type=int, help='End Point calculation')
 parser.add_argument('--standard_bpl', action='store_true', help='Plot standard broken power-law')
 parser.add_argument('--compute_LSMR', action='store_true', help='Compute Long Short Memory Ratio')
 parser.add_argument('--fit_data', action='store_true', help='Fit the Broken Power-Law to data')
+parser.add_argument('--save_plot', action='store_true', help='Save the Broken Power-Law fit plot')
 args = parser.parse_args()
 
 filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned","wiki19","wiki19_text8","wiki103","wiki103_raw","wiki103_cleaned","wiki_sample_1","wiki_sample_2","wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD","wiki19_cleaned","wiki_sample_3","wiki_sample_4"]
@@ -584,7 +585,8 @@ with plt.style.context(('seaborn')):
 		ax.set_xlabel('Distance between words, d', fontsize=15)
 		ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
 		lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, prop={'size': 15})
-		plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
+		if args.save_plot:
+			plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
 		plt.show()
 
 	###########################################################################################################################
