@@ -16,13 +16,12 @@ args = parser.parse_args()
 
 filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned","wiki19","wiki19_text8","wiki103","wiki103_raw","wiki103_cleaned","wiki_sample_1","wiki_sample_2","wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD","wiki19_cleaned","wiki_sample_3","wiki_sample_4"]
 
-print("Filenames-> 0: penn_tree, 1: text8, 2: text8_wor, 3: text8_subset, 4: text8_subset_wor, 5: wiki2, 6: wiki2_raw, 7: wiki2_cleaned, 8: wiki19, 9: wiki19_text8, 10: wiki103, 11: wiki103_raw, 12: wiki103_cleaned, 13: wiki_sample_1, 14: wiki_sample_2, 15: wiki_ptb_size_1, 16: wiki_ptb_size_2, 17: wiki_ptb_vocab_1, 18: wiki_ptb_vocab_2, 19: 10kGNAD, 20: wiki19_cleaned, 21: wiki_sample_3, 22: wiki_sample_4")
-
 dataset = args.filename_ID
 filename = filenames[dataset]
-filename += "_words_10000"
+filename += "_words_10000_grassberger_logx_mi.dat"
+print(filename)
 
-f = open(filename+"_grassberger_logx_mi.dat", "r")
+f = open(filename, "r")
 lines = f.readlines()
 f.close()
 
