@@ -42,7 +42,13 @@ dataset/hutter-text/text8
 dataset/mobility/.DS_STORE
 dataset/mobility/taxi_log_2008_by_id
 dataset/billion_words
-
+dataset/paper_dataset/ModifiedWiki
+dataset/paper_dataset/PTB
+dataset/paper_dataset/Text8/
+dataset/paper_dataset/wikitext-103/
+dataset/paper_dataset/wikitext-19L/
+dataset/paper_dataset/wikitext-2/
+dataset/paper_dataset/wikitext-m/
 dataset/m-wikitext-2
 dataset/POS/dl4mt/
 dataset/POS/wikitext-2/
