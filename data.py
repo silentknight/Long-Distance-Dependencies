@@ -155,7 +155,7 @@ class Corpus(object):
 			self.valid = self.tokenize_file(os.path.join(path, 'valid-pos'))
 			self.test = self.tokenize_file(os.path.join(path, 'test-pos'))
 		elif path == "dataset/paper_dataset/":
-			dataset = self.tokenize_file(os.path.join(path, 'text8-small'))
+			dataset = self.tokenize_file(os.path.join(path, 'wikitext-19L-wo-r-2'))
 		elif path == "dataset/m-wikitext-2/":
 			dataset = self.tokenize_file(os.path.join(path, 'train'))
 
