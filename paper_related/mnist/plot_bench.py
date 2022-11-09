@@ -43,7 +43,9 @@ for filename in filenames:
 
 # red dashes, blue squares and green triangles
 with plt.style.context(('seaborn')):
-    #plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label='Standard MNIST')
+    ax = plt.axes()
+
+    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label='Standard MNIST')
     plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label='Permuted MNIST 1')
     plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label='Permuted MNIST 2')
 
@@ -51,13 +53,13 @@ with plt.style.context(('seaborn')):
     plt.grid(True)
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
-    ax = plt.axes()
+
     ax.set_xlim(1, 1000)
-    ax.set_ylim(0.0000048, 0.6)
+    # ax.set_ylim(0.0000048, 0.6)
     print(ax.get_xlim())
     print(ax.get_ylim())
     ax.set_xlabel('Distance between pixels, d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=1, numpoints=1, prop={'size':12})
-    plt.savefig('mnist_permuted', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('mnist', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
