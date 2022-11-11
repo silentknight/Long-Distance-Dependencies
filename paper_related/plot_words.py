@@ -8,7 +8,8 @@ from matplotlib.text import OffsetFrom
 
 filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned", \
             "wiki19","wiki19_text8","wiki103","wiki103_raw","wiki103_cleaned","wiki_sample_1","wiki_sample_2", \
-            "wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD","wiki_sample_3","wiki_sample_4","wiki19_text8_wor","text8_wor_5"]
+            "wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD","wiki_sample_3", \
+            "wiki_sample_4","wiki19_text8_wor","text8_subset_wor_4","text8_wor_5"]
 
 all_mi = []
 all_hx = []
@@ -59,20 +60,22 @@ with plt.style.context(('seaborn')):
     # plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="PTB")
 
     plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="Text8")
+    plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="Wiki19 (Text8-like)")
+
     plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="Text8 (w/o Rare)")
-    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="Text8 (Small)")
-    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="Text8 (Small w/o Rare)")
-    plt.loglog(np.arange(1,len(all_mi[23])+1), all_mi[23], label="Text8 (w/o Rare 5)")
+    plt.loglog(np.arange(1,len(all_mi[22])+1), all_mi[22], label="Wiki19 (Text8-like w/o Rare)")
+
+    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="Text8 (Small)")
+    # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="Text8 (w/o Rare Small)")
+    # plt.loglog(np.arange(1,len(all_mi[23])+1), all_mi[23], label="Text8 (w/o Rare (4) Small)")
 
     # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="Wiki2")
     # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="Wiki2 (Raw)")
     # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="Wiki2 (Cleaned)")
 
-    # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="Wiki19")
-    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="Wiki19 (Text8-like)")
-    # plt.loglog(np.arange(1,len(all_mi[22])+1), all_mi[22], label="Wiki19 (Text8-like w/o Rare)")
+    plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="Wiki19")
 
-    # plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="Wiki103")
+    # plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], "b-", label="Wiki103")
     # plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], label="Wiki103 (Raw)")
     # plt.loglog(np.arange(1,len(all_mi[12])+1), all_mi[12], label="Wiki103 (Cleaned)")
 
@@ -120,5 +123,5 @@ with plt.style.context(('seaborn')):
     # ax.annotate('0.020500', xy=(3,all_mi[21][3]), size=10)
 
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=3, numpoints=1, prop={'size': 12})
-    plt.savefig('lm_words_subset_1', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('lm_words_factors', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
