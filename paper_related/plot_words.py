@@ -63,14 +63,13 @@ with plt.style.context(('seaborn')):
     plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="Text8 (Small)")
     plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="Text8 (Small w/o Rare)")
 
-
     plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="Wiki2")
     plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="Wiki2 (Raw)")
     plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="Wiki2 (Cleaned)")
 
     plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="Wiki19")
     plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="Wiki19 (Text8-like)")
-    plt.loglog(np.arange(1,len(all_mi[22])+1), all_mi[22], label="Wiki19 (Text8-like w/o rare)")
+    plt.loglog(np.arange(1,len(all_mi[22])+1), all_mi[22], label="Wiki19 (Text8-like w/o Rare)")
 
     plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="Wiki103")
     plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], label="Wiki103 (Raw)")

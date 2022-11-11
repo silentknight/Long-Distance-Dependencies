@@ -38,16 +38,17 @@ def main():
 		else:
 			end = len(counts)
 
-		plt.bar(words[0:end], counts[0:end], 0.4)
+		# plt.bar(words[0:end], counts[0:end], 0.4)
+		plt.loglog(counts)
 
 		plt.tick_params(labelsize='large', width=5)
 		plt.xlabel('Characters', fontsize=15)
 		plt.ylabel('Frequency', fontsize=15)
-		current_values = plt.gca().get_yticks()
-		plt.gca().set_yticklabels(['{:.0f}'.format(x) for x in current_values])
-		if args.index:
-			plt.xticks(rotation=90)
-			ax.set_xticks([args.index])
+		# current_values = plt.gca().get_yticks()
+		# plt.gca().set_yticklabels(['{:.0f}'.format(x) for x in current_values])
+		# if args.index:
+		# 	plt.xticks(rotation=90)
+		# 	ax.set_xticks([args.index])
 
 		temp = args.filename.split('.')[0].split('_')
 		last =len(temp)-2
