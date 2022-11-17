@@ -125,7 +125,6 @@ try:
 		Ni_XY_temp = scipy.sparse.load_npz(path+"/Ni_XY/"+file)
 		[Ni_XY_rows, Ni_XY_cols, Ni_XY] = scipy.sparse.find(Ni_XY_temp)
 		Ni_XY = Ni_XY[index]
-		#print(Ni_XY[index])
 
 		pmi_data = np.load(path+"/np/"+file, mmap_mode='r', allow_pickle=True)
 		Xi = pmi_data['arr_0']
