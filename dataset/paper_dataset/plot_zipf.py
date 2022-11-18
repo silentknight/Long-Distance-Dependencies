@@ -18,6 +18,13 @@ def main():
 	words = []
 	counts = []
 
+	temp = args.filename.split('.')[0].split('_')
+	last =len(temp)-2
+	plot_filename = ""
+	for i in range(last-1):
+		plot_filename += temp[i]+'_'
+	plot_filename += temp[last-1]
+
 	f = open(args.filename,'r')
 	lines = f.readlines()
 	f.close()
@@ -30,35 +37,37 @@ def main():
 	print("Max x-axis:", len(counts))
 	print("Max y-axis:", max(counts))
 
-	with plt.style.context(('seaborn')):
-		ax = plt.axes()
+	area = sum(counts)
 
-		if args.end:
-			end = args.end
-		else:
-			end = len(counts)
+	threshold = 100
 
-		# plt.bar(words[0:end], counts[0:end], 0.4)
-		plt.loglog(counts)
+	head = sum(counts[0:threshold])
+	tail = sum(counts[threshold:])
 
-		plt.tick_params(labelsize='large', width=5)
-		plt.xlabel('Characters', fontsize=15)
-		plt.ylabel('Frequency', fontsize=15)
-		# current_values = plt.gca().get_yticks()
-		# plt.gca().set_yticklabels(['{:.0f}'.format(x) for x in current_values])
-		# if args.index:
-		# 	plt.xticks(rotation=90)
-		# 	ax.set_xticks([args.index])
+	print(area, head, head/area*100, tail, tail/area*100)
 
-		temp = args.filename.split('.')[0].split('_')
-		last =len(temp)-2
-		filename = ""
-		for i in range(last-1):
-			filename += temp[i]+'_'
-		filename += temp[last-1]
+	# with plt.style.context(('seaborn')):
+	# 	# ax = plt.axes()
 
-		plt.savefig('zipf_'+filename, bbox_inches='tight')
-		plt.show()
+	# 	if args.end:
+	# 		end = args.end
+	# 	else:
+	# 		end = len(counts)
+
+	# 	# plt.bar(words[0:end], counts[0:end], 0.4)
+	# 	plt.loglog(counts)
+
+	# 	plt.tick_params(labelsize='large', width=5)
+	# 	plt.xlabel('Characters', fontsize=15)
+	# 	plt.ylabel('Frequency', fontsize=15)
+	# 	# current_values = plt.gca().get_yticks()
+	# 	# plt.gca().set_yticklabels(['{:.0f}'.format(x) for x in current_values])
+	# 	# if args.index:
+	# 	# 	plt.xticks(rotation=90)
+	# 	# 	ax.set_xticks([args.index])
+
+	# 	plt.savefig('zipf_'+plot_filename, bbox_inches='tight')
+	# 	plt.show()
 
 if __name__ == '__main__':
 	main()
