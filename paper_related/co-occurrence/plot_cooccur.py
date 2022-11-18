@@ -4,9 +4,10 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["1","6","8","10","11"]
+filenames = ["1","2","4","5","6","9","14","15","17","18","20"]
 
-f = open("marginal_dependence_<unk>_"+filenames[4], "r")
+# f = open("marginal_dependence_<unk>_"+filenames[1], "r")
+f = open("word_pair_dependence_"+filenames[9], "r")
 lines = f.readlines()
 f.close()
 
@@ -100,5 +101,5 @@ with plt.style.context(('seaborn')):
 	print(fig.get_figwidth())
 	print(fig.get_figheight())
 
-	plt.savefig('pmi_plots_wiki_sample_4_unk')
+	plt.savefig('pmi_plots_wiki19L')
 	plt.show()

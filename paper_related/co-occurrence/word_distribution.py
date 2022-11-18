@@ -25,15 +25,23 @@ def dataset_pick(i):
 		1: '/mnt/data/pmi_data/penn_tree_words_standard_logx',
 		2: '/mnt/data/pmi_data/text8_words_standard_logx',
 		3: None,
-		4: None,
-		5: None,
+		4: '/mnt/data/pmi_data/text8_subset_standard_logx',
+		5: '/mnt/data/pmi_data/text8_subset_wor_standard_logx',
 		6: '/mnt/data/pmi_data/wiki2_words_standard_logx',
 		7: None,
-		8: '/mnt/data/pmi_data/wiki103_words_standard_logx',
-		9: None,
-		10: '/mnt/data/pmi_data/wiki_sample_3_words_standard_logx',
-		11: '/mnt/data/pmi_data/wiki_sample_4_words_standard_logx',
-		12: None
+		8: None,
+		9: '/mnt/data/pmi_data/wiki103_words_standard_logx',
+		10: None,
+		11: None,
+		12: None,
+		13: None,
+		14: '/mnt/data/pmi_data/wiki_sample_3_words_standard_logx',
+		15: '/mnt/data/pmi_data/wiki_sample_4_words_standard_logx',
+		16: None,
+		17: '/mnt/data/pmi_data/wiki19_standard_logx',
+		18: '/mnt/data/pmi_data/wiki19L_standard_logx',
+		19: None,
+		20: '/mnt/data/pmi_data/text8_subset_wor_4_standard_logx'
 	}
 	return switcher.get(i,"Invalid path")
 
@@ -148,7 +156,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=11.9))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
-		elif args.dataset == 8:
+		elif args.dataset == 9:
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.6)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.6))]))
 			fm.write("%d," % total)
@@ -156,7 +164,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=15.8))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>15.8)]))
 			fm.write("\n")
-		elif args.dataset == 10:
+		elif args.dataset == 14:
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.4))]))
 			fm.write("%d," % total)
@@ -164,7 +172,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=11.9))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
-		elif args.dataset == 11:
+		elif args.dataset == 15:
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.4))]))
 			fm.write("%d," % total)
