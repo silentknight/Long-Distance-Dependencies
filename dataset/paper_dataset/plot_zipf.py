@@ -3,29 +3,18 @@
 import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
-import argparse
 
-parser = argparse.ArgumentParser(description='Plot Zipf distribution')
-parser.add_argument('--filename', type=str, required=True,
-					help='Filename to analyze')
-parser.add_argument('--index', type=int,
-					help='Index of <UNK> token')
-parser.add_argument('--end', type=int,
-					help='Length of string')
-args = parser.parse_args()
+filenames = ['wiki2', 'wiki_sample_1', 'wiki_sample_2', 'wiki_sample_3', 'wiki_sample_4']
 
-def main():
+all_words = []
+all_counts = []
+max_len = 0
+
+for filename in filenames:
 	words = []
 	counts = []
 
-	temp = args.filename.split('.')[0].split('_')
-	last =len(temp)-2
-	plot_filename = ""
-	for i in range(last-1):
-		plot_filename += temp[i]+'_'
-	plot_filename += temp[last-1]
-
-	f = open(args.filename,'r')
+	f = open(filename+'_unique_sorted.log','r')
 	lines = f.readlines()
 	f.close()
 
@@ -34,40 +23,28 @@ def main():
 		words.append(word)
 		counts.append(int(count))
 
-	print("Max x-axis:", len(counts))
-	print("Max y-axis:", max(counts))
+	if len(counts)>max_len:
+		max_len = len(counts)
 
-	area = sum(counts)
+	all_words.append(words)
+	all_counts.append(counts)
 
-	threshold = 100
+with plt.style.context(('seaborn')):
+	ax = plt.axes()
 
-	head = sum(counts[0:threshold])
-	tail = sum(counts[threshold:])
+	plt.loglog(np.arange(1,len(all_counts[1])+1), all_counts[1], label="WikiText Sample 1")
+	plt.loglog(np.arange(1,len(all_counts[2])+1), all_counts[2], label="WikiText Sample 2")
+	plt.loglog(np.arange(1,len(all_counts[3])+1), all_counts[3], label="WikiText Sample 3")
+	plt.loglog(np.arange(1,len(all_counts[4])+1), all_counts[4], label="WikiText Sample 4")
+	plt.loglog(np.arange(1,len(all_counts[0])+1), all_counts[0], label="WikiText2")
 
-	print(area, head, head/area*100, tail, tail/area*100)
-
-	# with plt.style.context(('seaborn')):
-	# 	# ax = plt.axes()
-
-	# 	if args.end:
-	# 		end = args.end
-	# 	else:
-	# 		end = len(counts)
-
-	# 	# plt.bar(words[0:end], counts[0:end], 0.4)
-	# 	plt.loglog(counts)
-
-	# 	plt.tick_params(labelsize='large', width=5)
-	# 	plt.xlabel('Characters', fontsize=15)
-	# 	plt.ylabel('Frequency', fontsize=15)
-	# 	# current_values = plt.gca().get_yticks()
-	# 	# plt.gca().set_yticklabels(['{:.0f}'.format(x) for x in current_values])
-	# 	# if args.index:
-	# 	# 	plt.xticks(rotation=90)
-	# 	# 	ax.set_xticks([args.index])
-
-	# 	plt.savefig('zipf_'+plot_filename, bbox_inches='tight')
-	# 	plt.show()
-
-if __name__ == '__main__':
-	main()
+	plt.tick_params(labelsize='large', width=5)
+	plt.grid(True)
+	plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
+	plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
+	ax.set_xlim(1, max_len+1)
+	plt.xlabel('Characters', fontsize=15)
+	plt.ylabel('Frequency', fontsize=15)
+	lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=2, numpoints=1, prop={'size': 12})
+	plt.savefig('zipf_plots', bbox_extra_artists=(lgd,), bbox_inches='tight')
+	plt.show()
