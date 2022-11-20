@@ -3,7 +3,7 @@
 import numpy as np
 
 def main():
-	filename = 'text8-small-wo-r-4'
+	filename = 'wikitext103'
 	data = np.array(open(filename,'r').read().split())
 	# data = np.array(list(open(filename,'r').read()))
 	[unique_words, unique_index, counts] = np.unique(data, return_index=True, return_counts=True)
