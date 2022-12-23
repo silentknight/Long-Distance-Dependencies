@@ -188,12 +188,12 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		elif args.dataset == 2:
-			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
-			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.4))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi<-1.6)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.6))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
-			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=11.9))]))
-			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=15.8))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi>15.8)]))
 			fm.write("\n")
 		elif args.dataset == 4:
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
