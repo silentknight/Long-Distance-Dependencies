@@ -6,7 +6,7 @@ import numpy as np
 
 filenames = ["1","2","4","5","6","9","14","15","17","18","20"]
 
-# f = open("marginal_dependence_<unk>_"+filenames[1], "r")
+# f = open("marginal_dependence_<unk>_"+filenames[7], "r")
 f = open("word_pair_dependence_"+filenames[9], "r")
 lines = f.readlines()
 f.close()
@@ -93,7 +93,7 @@ with plt.style.context(('seaborn')):
 	plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
 	ax6.set_xlim(1, len(mp))
 	ax6.set_xlabel('Distance between words, d', fontsize=12)
-	lgd6 = ax6.legend(loc='lower right', shadow=True, fancybox=True, ncol=3, numpoints=1, prop={'size': 12})
+	lgd6 = ax6.legend(loc='upper right', shadow=True, fancybox=True, ncol=3, numpoints=1, prop={'size': 12})
 
 	fig.text(0.06, 0.5, 'Number of Word Pairs in Sequence', fontsize=12, ha='center', va='center', rotation='vertical')
 	fig.set_figwidth(12)
@@ -101,5 +101,5 @@ with plt.style.context(('seaborn')):
 	print(fig.get_figwidth())
 	print(fig.get_figheight())
 
-	plt.savefig('pmi_plots_wiki19L')
+	plt.savefig('pmi_plots_wiki_sample_4_unk')
 	plt.show()
