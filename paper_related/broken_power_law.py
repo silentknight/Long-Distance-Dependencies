@@ -10,12 +10,12 @@ parser = argparse.ArgumentParser(description='PyTorch Transformer Language Model
 parser.add_argument('--filename_ID', type=int, required=True, help='ID of the filename to analyze')
 parser.add_argument('--end_point', type=int, help='End Point calculation')
 parser.add_argument('--standard_bpl', action='store_true', help='Plot standard broken power-law')
-parser.add_argument('--compute_LSMR', action='store_true', help='Compute Long Short Memory Ratio')
-parser.add_argument('--fit_data', action='store_true', help='Fit the Broken Power-Law to data')
 parser.add_argument('--save_plot', action='store_true', help='Save the Broken Power-Law fit plot')
 args = parser.parse_args()
 
-filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned","wiki19","wiki19_text8","wiki103","wiki103_raw","wiki103_cleaned","wiki_sample_1","wiki_sample_2","wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD","wiki19_cleaned","wiki_sample_3","wiki_sample_4","wiki19_text8_wor"]
+filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned","wiki19","wiki19_text8","wiki103","wiki103_raw",
+			"wiki103_cleaned","wiki_sample_1","wiki_sample_2","wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD","wiki19_cleaned",
+			"wiki_sample_3","wiki_sample_4","wiki19_text8_wor"]
 
 dataset = args.filename_ID
 filename = filenames[dataset]
@@ -566,7 +566,7 @@ with plt.style.context(('seaborn')):
 		###################################################################################################################
 		# WikiText19 Text8 (w/o rare)
 		###################################################################################################################
-		break_point = 1715
+		break_point = 4
 		data = mi
 		alpha_1 = 0.0135
 		alpha_2 = 0.0135
@@ -586,48 +586,26 @@ with plt.style.context(('seaborn')):
 
 	###########################################################################################################################
 
-	if args.fit_data:
-		[D, p_value] = stats.ks_2samp(data,fit_sample)
+	[D, p_value] = stats.ks_2samp(data,fit_sample)
 
-		print("Dataset :", filename)
-		print("D_inf :", break_point)
-		print("c1 :",data[0])
-		print("alpha 1 :", alpha_1)
-		print("amplitude :", mi[break_point-1])
-		print("alpha 2 :", alpha_2)
-		print("delta :", f.delta)
-		print("D :", D)
-		print("p-value :", p_value)
-		print("length :", len(data))
-		plt.tick_params(labelsize='large', width=5)
-		plt.grid(True)
-		plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
-		plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
-		ax.set_xlim(1.0, 10000.0)
-		ax.set_xlabel('Distance between words, d', fontsize=15)
-		ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
-		lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, prop={'size': 15})
-		if args.save_plot:
-			plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
-		plt.show()
-
-	###########################################################################################################################
-
-	if args.compute_LSMR:
-		sdds = 0
-		ldds = 0
-
-		if args.end_point is not None:
-			end_point = args.end_point
-
-		for i in range(break_point):
-			sdds += mi[i]
-
-		for i in range(break_point,end_point):
-			ldds += mi[i]
-
-		print("Break Point 1:", break_point)
-		print("Break Point 2:", end_point)
-		print("SDDs", sdds)
-		print("LDDs", ldds)
-		print("SDDs/LDDs: %f, LDDs/SDDs: %.2f\n" % (sdds/ldds, ldds/sdds))
+	print("Dataset :", filename)
+	print("D_inf :", break_point)
+	print("c1 :",data[0])
+	print("alpha 1 :", alpha_1)
+	print("amplitude :", mi[break_point-1])
+	print("alpha 2 :", alpha_2)
+	print("delta :", f.delta)
+	print("D :", D)
+	print("p-value :", p_value)
+	print("length :", len(data))
+	plt.tick_params(labelsize='large', width=5)
+	plt.grid(True)
+	plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
+	plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
+	ax.set_xlim(1.0, 10000.0)
+	ax.set_xlabel('Distance between words, d', fontsize=15)
+	ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
+	lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, prop={'size': 15})
+	if args.save_plot:
+		plt.savefig('fit', bbox_extra_artists=(lgd,), bbox_inches='tight')
+	plt.show()

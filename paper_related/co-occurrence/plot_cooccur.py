@@ -7,11 +7,11 @@ import numpy as np
 filenames = ["1","2","4","5","6","9","14","15","17","18","20"]
 
 # f = open("marginal_dependence_<unk>_"+filenames[7], "r")
-f = open("word_pair_dependence_"+filenames[9], "r")
+f = open("word_pair_dependence_"+filenames[1], "r")
 lines = f.readlines()
 f.close()
 
-print("word_pair_dependence_"+filenames[9])
+print("word_pair_dependence_"+filenames[1])
 
 start = 0
 end = 0
