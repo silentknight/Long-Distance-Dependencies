@@ -48,7 +48,8 @@ def dataset_pick(i):
 		17: '/mnt/data/pmi_data/wiki19_standard_logx',
 		18: '/mnt/data/pmi_data/wiki19L_standard_logx',
 		19: None,
-		20: '/mnt/data/pmi_data/text8_subset_wor_4_standard_logx'
+		20: '/mnt/data/pmi_data/text8_subset_wor_4_standard_logx',
+		21: '/mnt/data/pmi_data/penn_tree_words_standard_logx'
 	}
 	return switcher.get(i,"Invalid path")
 
@@ -234,6 +235,25 @@ try:
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
 			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=15.8))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>15.8)]))
+			fm.write("\n")
+
+		elif args.dataset == 21:
+			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
+			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
+			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=1))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>1)&(pmi<=2))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>2)&(pmi<=3))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=4))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>4)&(pmi<=5))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>5)&(pmi<=6))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>6)&(pmi<=7))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>7)&(pmi<=8))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>8)&(pmi<=9))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>9)&(pmi<=10))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>10)&(pmi<=11))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>11)&(pmi<=12))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi>12)]))
 			fm.write("\n")
 		else:
 			print("Dataset not available")

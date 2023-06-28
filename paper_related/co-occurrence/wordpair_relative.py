@@ -156,20 +156,13 @@ try:
 			print("No PMI thresholds provided")
 			exit()
 
+		sum_val = 0
+		index_val = 0
 		for i in index[0]:
-			found_word1 = ""
-			found_word2 = ""
-			for word, wordID in symbols.items():
-				if pmi_rows[i] == wordID:
-					found_word1 = word
-				if pmi_cols[i] == wordID:
-					found_word2 = word
+			sum_val += (Ni_XY[i]/np.maximum(Ni_X[pmi_rows[i]],Ni_Y[pmi_cols[i]])*100)
+			index_val +=1
 
-			if(Ni_XY[i]>10):
-			#if(Ni_X[pmi_rows[i]]>2 and Ni_Y[pmi_cols[i]]>2 and Ni_XY[i]>1 and (found_word1==args.word1 or found_word2==args.word1)):
-				print("%s ($%d$) & %s ($%d$) & $%d$ & $%3.5f$" %(found_word1, Ni_X[pmi_rows[i]], found_word2, Ni_Y[pmi_cols[i]], Ni_XY[i], pmi[i]))
-
-		print("Processed -> d: %d" % d)
+		print("Processed -> d: %d, %f" % (d, sum_val/index_val))
 
 		if end == "end":
 			pass
