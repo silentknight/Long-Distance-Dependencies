@@ -139,19 +139,19 @@ try:
 		Ni_Y = pmi_data['arr_3'].tolist().toarray()[0]
 
 		if args.dataset == 1:
-			fm.write("%d," % np.size(pmi[np.where(pmi<-1.1)]))
-			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.1))]))
-			fm.write("%d," % total)
-			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=2.5))]))
-			fm.write("%d," % np.size(pmi[np.where((pmi>2.5)&(pmi<=9.4))]))
-			fm.write("%d," % np.size(pmi[np.where(pmi>9.4)]))
-			fm.write("\n")
-		elif args.dataset == 6:
-			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
-			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.4))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % total)
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
-			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=11.9))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=9.9))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi>9.9)]))
+			fm.write("\n")
+		elif args.dataset == 6:
+			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
+			fm.write("%d," % total)
+			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3.2))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>3.2)&(pmi<=11.9))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		elif args.dataset == 9:
@@ -163,19 +163,19 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>15.8)]))
 			fm.write("\n")
 		elif args.dataset == 14:
-			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
-			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.4))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % total)
-			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
-			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=11.9))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3.2))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>3.2)&(pmi<=11.9))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		elif args.dataset == 15:
-			fm.write("%d," % np.size(pmi[np.where(pmi<-1.4)]))
-			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.4))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % total)
-			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
-			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=11.9))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3.2))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>3.2)&(pmi<=11.9))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		else:
