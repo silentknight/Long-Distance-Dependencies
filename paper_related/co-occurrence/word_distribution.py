@@ -31,8 +31,8 @@ def dataset_pick(i):
 		9: '/mnt/data/pmi_data/wiki103_words_standard_logx',
 		10: None,
 		11: None,
-		12: None,
-		13: None,
+		12: '/mnt/data/pmi_data/wiki_sample_1_words_standard_logx',
+		13: '/mnt/data/pmi_data/wiki_sample_2_words_standard_logx',
 		14: '/mnt/data/pmi_data/wiki_sample_3_words_standard_logx',
 		15: '/mnt/data/pmi_data/wiki_sample_4_words_standard_logx',
 		16: None,
@@ -161,6 +161,22 @@ try:
 			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3))]))
 			fm.write("%d," % np.size(pmi[np.where((pmi>3)&(pmi<=15.8))]))
 			fm.write("%d," % np.size(pmi[np.where(pmi>15.8)]))
+			fm.write("\n")
+		elif args.dataset == 12:
+			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
+			fm.write("%d," % total)
+			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3.2))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>3.2)&(pmi<=11.9))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
+			fm.write("\n")
+		elif args.dataset == 13:
+			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
+			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
+			fm.write("%d," % total)
+			fm.write("%d," % np.size(pmi[np.where((pmi>0)&(pmi<=3.2))]))
+			fm.write("%d," % np.size(pmi[np.where((pmi>3.2)&(pmi<=11.9))]))
+			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		elif args.dataset == 14:
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
