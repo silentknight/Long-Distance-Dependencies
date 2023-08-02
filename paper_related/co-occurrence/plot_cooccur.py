@@ -4,14 +4,14 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["1","2","4","5","6","9","14","15","17","18","20"]
+filenames = ["1","2","4","5","6","9","12","13","14","15","17","18","20"]
 
-# f = open("marginal_dependence_<unk>_"+filenames[7], "r")
-f = open("word_pair_dependence_"+filenames[4], "r")
+f = open("marginal_dependence_<unk>_"+filenames[6], "r")
+# f = open("word_pair_dependence_"+filenames[6], "r")
 lines = f.readlines()
 f.close()
 
-print("word_pair_dependence_"+filenames[4])
+print("word_pair_dependence_"+filenames[6])
 
 start = 0
 end = 0
@@ -45,6 +45,7 @@ with plt.style.context(('seaborn')):
 	fig = plt.figure()
 	ax1 = plt.subplot(231)
 	plt.semilogx(np.arange(1,len(sn)+1), sn, "r-", label="Strong Negative")
+	# plt.plot(np.arange(1,len(sn)+1), sn, "r-", label="Strong Negative")
 	plt.grid(True)
 	plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
 	plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
@@ -54,6 +55,7 @@ with plt.style.context(('seaborn')):
 
 	ax2 = plt.subplot(232)
 	plt.semilogx(np.arange(1,len(wn)+1), wn, 'm-', label="Weak Negative")
+	# plt.plot(np.arange(1,len(wn)+1), wn, 'm-', label="Weak Negative")
 	plt.grid(True)
 	plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
 	plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
@@ -63,6 +65,7 @@ with plt.style.context(('seaborn')):
 
 	ax3 = plt.subplot(233)
 	plt.semilogx(np.arange(1,len(ind)+1), ind, 'c-', label="Independent")
+	# plt.plot(np.arange(1,len(ind)+1), ind, 'c-', label="Independent")
 	plt.grid(True)
 	plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
 	plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
@@ -72,6 +75,7 @@ with plt.style.context(('seaborn')):
 
 	ax4 = plt.subplot(234, sharex=ax1)
 	plt.semilogx(np.arange(1,len(sp)+1), sp, "k-", label="Strong Positive")
+	# plt.plot(np.arange(1,len(sp)+1), sp, "k-", label="Strong Positive")
 	plt.grid(True)
 	plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
 	plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
@@ -81,6 +85,7 @@ with plt.style.context(('seaborn')):
 
 	ax5 = plt.subplot(235, sharex=ax2)
 	plt.semilogx(np.arange(1,len(wp)+1), wp, 'b-', label="Weak Positive")
+	# plt.plot(np.arange(1,len(wp)+1), wp, 'b-', label="Weak Positive")
 	plt.grid(True)
 	plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
 	plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
@@ -90,6 +95,7 @@ with plt.style.context(('seaborn')):
 
 	ax6 = plt.subplot(236, sharex=ax3)
 	plt.semilogx(np.arange(1,len(mp)+1), mp, 'g-', label="Moderate Positive")
+	# plt.plot(np.arange(1,len(mp)+1), mp, 'g-', label="Moderate Positive")
 	plt.grid(True)
 	plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
 	plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
@@ -103,5 +109,5 @@ with plt.style.context(('seaborn')):
 	print(fig.get_figwidth())
 	print(fig.get_figheight())
 
-	plt.savefig('pmi_plots_wiki2')
+	plt.savefig('pmi_word_<unk>_12')
 	plt.show()
