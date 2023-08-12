@@ -5,13 +5,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 filenames = ["1","2","4","5","6","9","12","13","14","15","17","18","20"]
+# indexes = [ 0,  1,  2,  3,  4,  5,  6,   7,   8,   9,   10,  11,  12]
 
-f = open("marginal_dependence_<unk>_"+filenames[6], "r")
-# f = open("word_pair_dependence_"+filenames[6], "r")
+# f = open("marginal_dependence_<unk>_"+filenames[2], "r")
+f = open("word_pair_dependence_"+filenames[12], "r")
 lines = f.readlines()
 f.close()
 
-print("word_pair_dependence_"+filenames[6])
+print("word_pair_dependence_"+filenames[12])
 
 start = 0
 end = 0
@@ -109,5 +110,5 @@ with plt.style.context(('seaborn')):
 	print(fig.get_figwidth())
 	print(fig.get_figheight())
 
-	plt.savefig('pmi_word_<unk>_12')
+	plt.savefig('pmi_plots_text8_subset_wor_4')
 	plt.show()
