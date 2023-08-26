@@ -15,7 +15,7 @@ args = parser.parse_args()
 
 filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned","wiki19","wiki19_text8","wiki103","wiki103_raw",
 			"wiki103_cleaned","wiki_sample_1","wiki_sample_2","wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD","wiki19_cleaned",
-			"wiki_sample_3","wiki_sample_4","wiki19_text8_wor"]
+			"wiki_sample_3","wiki_sample_4","wiki19_text8_wor","text8_subset_wor_4"]
 
 dataset = args.filename_ID
 filename = filenames[dataset]
@@ -568,7 +568,7 @@ with plt.style.context(('seaborn')):
 		###################################################################################################################
 		break_point = 4
 		data = mi
-		alpha_1 = 0.0135
+		alpha_1 = 0.59
 		alpha_2 = 0.0135
 		end_point = 1715
 		p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText19 Text8 (w/o Rare)")
@@ -583,6 +583,28 @@ with plt.style.context(('seaborn')):
 		f.delta = 0.2494
 		fit_sample = f(x)
 		p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText19 Text8 (w/o Rare)")
+
+	elif dataset == 24:
+		###################################################################################################################
+		# Text8 (w/o rare (4) small)
+		###################################################################################################################
+		break_point = 4
+		data = mi[0:1000]
+		alpha_1 = 0.39
+		alpha_2 = 0.009
+		end_point = 1000
+		p1 = plt.loglog(np.arange(1,len(data)+1), data, label="Text8 (w/o Rare (4) Small)")
+		x = np.linspace(1, len(data), len(data))
+		if args.standard_bpl:
+			amplitude = mi[break_point+6]
+			f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+			fit_sample = f(x)
+			p2 = plt.loglog(x, fit_sample, label="Broken Power-Law for Text8 (w/o Rare (4) Small)")
+		amplitude = mi[break_point-1]
+		f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
+		f.delta = 0.245
+		fit_sample = f(x)
+		p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for Text8 (w/o Rare (4) Small)")
 
 	###########################################################################################################################
 
