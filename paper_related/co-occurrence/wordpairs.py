@@ -165,7 +165,7 @@ try:
 				if pmi_cols[i] == wordID:
 					found_word2 = word
 
-			if(Ni_XY[i]>10):
+			if(Ni_XY[i]>2):
 			#if(Ni_X[pmi_rows[i]]>2 and Ni_Y[pmi_cols[i]]>2 and Ni_XY[i]>1 and (found_word1==args.word1 or found_word2==args.word1)):
 				print("%s ($%d$) & %s ($%d$) & $%d$ & $%3.5f$" %(found_word1, Ni_X[pmi_rows[i]], found_word2, Ni_Y[pmi_cols[i]], Ni_XY[i], pmi[i]))
 
