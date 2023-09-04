@@ -144,10 +144,10 @@
 
 # python run_all.py --data dataset/wiki/wikitext-2P/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki_PTB_vocab_1_words_10000_grassberger_logx
 # python run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki_sample_2_words_10000_grassberger_logx
-# python run_all.py --data dataset/wiki/wikitext-2-samples/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki_sample_4_check_words_10000_grassberger_logx
+python run_all.py --data dataset/wiki/wikitext-2-samples/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/wiki_sample_4_new_words_10000_grassberger_logx
 
 # python run_all.py --data dataset/paper_dataset/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 1 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/text8_wor_4_words_10000_grassberger_logx
 
 # python run_all.py --data dataset/paper_dataset/ --overlap 1 --threads 10 --compute pmi --pmi_method standard --log_type 0 --clear 0 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath text8-subset_1000_words_standard_logx
 # python run_all.py --data dataset/wiki/wikitext-19/ --overlap 1 --threads 10 --compute pmi --pmi_method standard --log_type 0 --clear 0 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath wiki19_standard_logx
-python run_all.py --data dataset/wiki/wikitext-2-samples/ --overlap 1 --threads 1 --compute pmi --mi_method standard --log_type 0 --clear 0 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath wiki_sample_2_words_standard_logx
+# python run_all.py --data dataset/wiki/wikitext-2-samples/ --overlap 1 --threads 1 --compute pmi --mi_method standard --log_type 0 --clear 0 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath wiki_sample_2_words_standard_logx
