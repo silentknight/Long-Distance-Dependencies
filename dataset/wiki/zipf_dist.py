@@ -1,10 +1,10 @@
 import re
 from operator import itemgetter
 
-dir = "wikitext-103/"
+dir = "wikitext-2/"
 
 frequency = {}
-open_file = open(dir+'trainR', 'r')
+open_file = open(dir+'train', 'r')
 file_to_string = open_file.read()
 open_file = open(dir+'test', 'r')
 file_to_string += open_file.read()
