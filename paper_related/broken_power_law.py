@@ -524,9 +524,9 @@ with plt.style.context(('seaborn')):
 		###################################################################################################################
 		break_point = 4
 		data = mi
-		alpha_1 = 0.352
-		alpha_2 = 0.002495
-		end_point = 1142
+		alpha_1 = 0.375
+		alpha_2 = 0.002475
+		end_point = 1032
 		p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText Sample 3")
 		x = np.linspace(1, len(data), len(data))
 		if args.standard_bpl:
@@ -536,7 +536,7 @@ with plt.style.context(('seaborn')):
 			p2 = plt.loglog(x, fit_sample, label="Broken Power-Law for WikiText Sample 3")
 		amplitude = mi[break_point-1]
 		f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-		f.delta = 0.3415
+		f.delta = 0.351
 		fit_sample = f(x)
 		p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText Sample 3")
 
@@ -546,8 +546,8 @@ with plt.style.context(('seaborn')):
 		###################################################################################################################
 		break_point = 4
 		data = mi
-		alpha_1 = 0.368
-		alpha_2 = 0.00203
+		alpha_1 = 0.405
+		alpha_2 = 0.002392
 		end_point = 1314
 		p1 = plt.loglog(np.arange(1,len(data)+1), data, label="WikiText Sample 4")
 		x = np.linspace(1, len(data), len(data))
@@ -558,7 +558,7 @@ with plt.style.context(('seaborn')):
 			p2 = plt.loglog(x, fit_sample, label="Broken Power-Law for WikiText Sample 4")
 		amplitude = mi[break_point-1]
 		f = models.SmoothlyBrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-		f.delta = 0.31436
+		f.delta = 0.329
 		fit_sample = f(x)
 		p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law for WikiText Sample 4")
 

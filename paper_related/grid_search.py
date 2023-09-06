@@ -8,7 +8,7 @@ import sys
 filenames = ["penn_tree","text8","text8_wor","text8_subset","text8_subset_wor","wiki2","wiki2_raw","wiki2_cleaned","wiki19","wiki19_text8","wiki103","wiki103_raw","wiki103_cleaned",
              "wiki_sample_1","wiki_sample_2","wiki_ptb_size_1","wiki_ptb_size_2","wiki_ptb_vocab_1","wiki_ptb_vocab_2","10kGNAD","wiki19_cleaned","wiki_sample_3","wiki_sample_4","wiki19_text8_wor"]
 
-filename = filenames[23]
+filename = filenames[21]
 f = open(filename+"_words_10000_grassberger_logx_mi.dat", "r")
 lines = f.readlines()
 f.close()
@@ -42,19 +42,19 @@ else:
 
 print(filename)
 
-alpha_1_min = 0.59
-alpha_1_max = 0.59
+alpha_1_min = 0.375
+alpha_1_max = 0.375
 alpha_1_inter = 1
 
-alpha_2_min = 0.0135
-alpha_2_max = 0.0135
+alpha_2_min = 0.002475
+alpha_2_max = 0.002475
 alpha_2_inter = 1
 
-delta_min = 0.2494
-delta_max = 0.2494
+delta_min = 0.351
+delta_max = 0.351
 delta_inter = 1
 
-end_min = 700
+end_min = 1
 end_max = 4000
 
 break_point = 4
