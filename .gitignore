@@ -64,6 +64,7 @@ dataset/cifar-10/batches.meta
 dataset/cifar-10/test_batch
 dataset/NEW/
 dataset/time_series/
+dataset/text8
 examine/
 __pycache__
 *.pyc
