@@ -161,6 +161,24 @@ class Corpus(object):
 			self.valid = self.tokenize_file(os.path.join(path, 'valid_4'))
 			self.test = self.tokenize_file(os.path.join(path, 'test_4'))
 
+		elif path == "dataset/text8/text8_small/":
+			print("Text8 Small dataset")
+			self.test = self.tokenize_file(os.path.join(path, 'test.txt'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid.txt'))
+			self.train = self.tokenize_file(os.path.join(path, 'train.txt'))
+
+		elif path == "dataset/text8/text8_small_wo_r_2/":
+			print("Text8 Small w/o Rare 2 dataset")
+			self.test = self.tokenize_file(os.path.join(path, 'test.txt'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid.txt'))
+			self.train = self.tokenize_file(os.path.join(path, 'train.txt'))
+
+		elif path == "dataset/text8/text8_small_wo_r_4/":
+			print("Text8 Small w/o Rare 4 dataset")
+			self.test = self.tokenize_file(os.path.join(path, 'test.txt'))
+			self.valid = self.tokenize_file(os.path.join(path, 'valid.txt'))
+			self.train = self.tokenize_file(os.path.join(path, 'train.txt'))
+
 		elif path == "dataset/paper_dataset/":
 			dataset = self.tokenize_file(os.path.join(path, 'trash/text8-small-wo-r-4'))
 
