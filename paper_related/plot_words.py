@@ -57,39 +57,38 @@ with plt.style.context(('seaborn')):
     # plt.figure(figsize=(20, 14), dpi=100)
     ax = plt.axes()
 
-    plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], 'b-', label="Wiki2")
-    # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="Wiki2 (Raw)")
-    # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="Wiki2 (Cleaned)")
+    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="PTB")
 
-    # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="Wiki19")
-    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="Wiki19 (Text8-like)")
+    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="Text8")
+    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="Text8 (w/o Rare)")
+    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="Text8 (Small)")
+    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="Text8 (w/o Rare Small)")
 
-    # plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="Wiki103")
-    # plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], label="Wiki103 (Raw)")
-    # plt.loglog(np.arange(1,len(all_mi[12])+1), all_mi[12], label="Wiki103 (Cleaned)")
+    plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="Wiki2")
+    plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="Wiki2 (Raw)")
+    plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="Wiki2 (Cleaned)")
 
-    # plt.loglog(np.arange(1,len(all_mi[13])+1), all_mi[13], label="Wiki (PTB Size)")
-    # plt.loglog(np.arange(1,len(all_mi[14])+1), all_mi[14], label="Wiki (PTB Size 2)")
-    # plt.loglog(np.arange(1,len(all_mi[15])+1), all_mi[15], label="Wiki (PTB Vocabulary)")
-    # plt.loglog(np.arange(1,len(all_mi[16])+1), all_mi[16], label="Wiki (PTB Vocabulary 2)")
+    plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="Wiki19")
+    plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="Wiki19 (Text8-like)")
 
-    # plt.loglog(np.arange(1,len(all_mi[17])+1), all_mi[17], label="German Text")
+    plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="Wiki103")
+    plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], label="Wiki103 (Raw)")
+    plt.loglog(np.arange(1,len(all_mi[12])+1), all_mi[12], label="Wiki103 (Cleaned)")
 
-    plt.loglog(np.arange(1,len(all_mi[18])+1), all_mi[18], 'g-', label="Wiki Sample 1")
-    plt.loglog(np.arange(1,len(all_mi[19])+1), all_mi[19], color="tab:orange", label="Wiki Sample 2")
-    plt.loglog(np.arange(1,len(all_mi[20])+1), all_mi[20], 'c-', label="Wiki Sample 3")
-    plt.loglog(np.arange(1,len(all_mi[21])+1), all_mi[21], color="tab:brown", label="Wiki Sample 4")
+    plt.loglog(np.arange(1,len(all_mi[13])+1), all_mi[13], label="Wiki (PTB Size)")
+    plt.loglog(np.arange(1,len(all_mi[14])+1), all_mi[14], label="Wiki (PTB Size 2)")
+    plt.loglog(np.arange(1,len(all_mi[15])+1), all_mi[15], label="Wiki (PTB Vocabulary)")
+    plt.loglog(np.arange(1,len(all_mi[16])+1), all_mi[16], label="Wiki (PTB Vocabulary 2)")
 
-    # plt.loglog(np.arange(1,len(all_mi[22])+1), all_mi[22], label="Wiki19 (Text8-like w/o Rare)")
+    plt.loglog(np.arange(1,len(all_mi[17])+1), all_mi[17], label="German Text")
 
-    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], 'r-', label="PTB")
+    plt.loglog(np.arange(1,len(all_mi[18])+1), all_mi[18], label="Wiki Sample 1")
+    plt.loglog(np.arange(1,len(all_mi[19])+1), all_mi[19], label="Wiki Sample 2")
+    plt.loglog(np.arange(1,len(all_mi[20])+1), all_mi[20], label="Wiki Sample 3")
+    plt.loglog(np.arange(1,len(all_mi[21])+1), all_mi[21], label="Wiki Sample 4")
 
-    # plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="Text8")
-    # plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="Text8 (w/o Rare)")
-    plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], 'm-', label="Text8 (Small)")
-    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], 'y-', label="Text8 (w/o Rare Small)")
-
-    plt.loglog(np.arange(1,len(all_mi[23])+1), all_mi[23], 'k-', label="Text8 (w/o Rare (4) Small)")
+    plt.loglog(np.arange(1,len(all_mi[22])+1), all_mi[22], label="Wiki19 (Text8-like w/o Rare)")
+    plt.loglog(np.arange(1,len(all_mi[23])+1), all_mi[23], label="Text8 (w/o Rare (4) Small)")
 
 
     plt.tick_params(labelsize='large', width=5)
@@ -124,5 +123,5 @@ with plt.style.context(('seaborn')):
     # ax.annotate('0.020500', xy=(3,all_mi[21][3]), size=10)
 
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, ncol=2, numpoints=1, prop={'size': 12})
-    plt.savefig('lm_words_analyze', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    plt.savefig('lm_words', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
