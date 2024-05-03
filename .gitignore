@@ -76,3 +76,4 @@ build
 pmi_data/
 *.csv
 *.out
+*full_grassberger_logx_mi.dat
