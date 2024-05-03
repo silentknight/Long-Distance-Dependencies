@@ -13,8 +13,8 @@ args = parser.parse_args()
 files = np.array([(0, 'penn_tree', 622, 4, 2.122), (1, 'text8', 1208, 4, 2.353), (2, 'text8_wor', 1150, 4, 2.188), (3, 'text8_subset', 1470, 4, 2.730), (4, 'text8_subset_wor', 1070, 4, 2.380), \
 		(5, 'wiki2', 2203, 4, 2.399), (6, 'wiki2_raw', 2158, 4, 2.736), (7, 'wiki2_cleaned', 1330, 4, 2.435), (8, 'wiki103', 2989, 4, 2.186), (9, 'wiki103_raw', 3020, 4, 2.237), (10, 'wiki103_cleaned', 3067, 4, 2.157), \
 		(11, 'wiki_sample_1', 1100, 4, 2.456), (12, 'wiki_sample_2', 1159, 4, 2.461), (13, 'wiki_sample_3', 1032, 4, 2.621), (14, 'wiki_sample_4', 1314, 4, 2.398), (15, '10kGNAD', 470, 5, 3.067), \
-		(16, 'wiki19', 2436, 4, 2.357), (17, 'wiki19_text8', 2170, 4, 2.217), (18, 'wiki19_text8_wor', 1715, 4, 2.125)],
-		dtype=[('id', np.int32), ('filename', (np.str_, 20)), ('d_doc', np.int32), ('thr', np.int32), ('c1', np.float32)])
+		(16, 'wiki19', 2436, 4, 2.357), (17, 'wiki19_text8', 2170, 4, 2.217), (18, 'wiki19_text8_wor', 1715, 4, 2.125), (19, 'text8_subset_new', 1470, 4, 2.730), (20, 'text8_subset_wor_2_new', 1070, 4, 2.380)],
+		dtype=[('id', np.int32), ('filename', (np.str_, 30)), ('d_doc', np.int32), ('thr', np.int32), ('c1', np.float32)])
 
 for file in files:
 	filename = file['filename']
