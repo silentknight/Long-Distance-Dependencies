@@ -35,10 +35,11 @@ if args.end:
 else:
 	end = len(lines)
 
-mi = np.zeros([0,1])
-Hx = np.zeros([0,1])
-Hy = np.zeros([0,1])
-Hxy = np.zeros([0,1])
+mi = np.zeros([len(lines)-1])
+Hx = np.zeros([len(lines)-1])
+Hy = np.zeros([len(lines)-1])
+Hxy = np.zeros([len(lines)-1])
+
 temp = lines[0].split()
 index = 0
 
@@ -47,13 +48,9 @@ if temp[0] == "data:":
 		temp = line.strip().split(":")
 		if temp[0] == "d":
 			temp1 = temp[2].split(",")				
-			mi = np.append(mi,np.zeros(1))
 			mi[int(temp[1])-1] = float(temp1[0])
-			Hx = np.append(Hx,np.zeros(1))
 			Hx[int(temp[1])-1] = float(temp1[1])
-			Hy = np.append(Hy,np.zeros(1))
 			Hy[int(temp[1])-1] = float(temp1[2])
-			Hxy = np.append(Hxy,np.zeros(1))
 			Hxy[int(temp[1])-1] = float(temp1[3])
 			d = int(temp[1])+1
 		index+=1
