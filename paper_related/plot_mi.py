@@ -4,7 +4,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["penn_tree_words_10000_grassberger_logx_mi.dat","penn_tree_words_10000_standard_logx_mi.dat"]
+filenames = ["penn_tree_words_100000_grassberger_logx_mi.dat","penn_tree_words_10000_grassberger_logx_mi.dat"]
+# filenames = ["penn_tree_words_10000_grassberger_logx_mi.dat","penn_tree_words_10000_standard_logx_mi.dat"]
 # filenames = ["wiki2_words_10000_grassberger_logx_mi.dat","wiki2_words_10000_standard_logx_mi.dat"]
 
 all_mi = []
@@ -50,15 +51,15 @@ for filename in filenames:
     all_hxy.append(Hxy.tolist())
 
 with plt.style.context(('seaborn')):
+    ax = plt.axes()
 
-    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="Using Grassbergers Equation")
-    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="Using Shannon's Equation")
+    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="Upto d=100,000")
+    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="Upto d=10,000")
 
     plt.tick_params(labelsize='large', width=10)
     plt.grid(True)
     plt.grid(which='major', linestyle='-.', linewidth='0.5', color='grey')
     plt.grid(which='minor', linestyle=':', linewidth='0.2', color='grey')
-    ax = plt.axes()
     ax.set_xlim(1, len(all_mi[0]))
     ax.set_ylim(0.9, 2.7)
     print(ax.get_xlim())
@@ -66,5 +67,5 @@ with plt.style.context(('seaborn')):
     ax.set_xlabel('Distance between words (lag), d', fontsize=20)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=20)
     lgd = ax.legend(loc='upper right', shadow=True, fancybox=True, numpoints=1, prop={'size': 18})
-    plt.savefig('mi_intro_ptb', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    # plt.savefig('mi_intro_ptb', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()

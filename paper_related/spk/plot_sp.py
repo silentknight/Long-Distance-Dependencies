@@ -4,11 +4,10 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
-filenames = ["sp2_20","sp2_100","sp2_200","sp2_500","sp2_100_comp","sp4_100_comp","sp16_100_comp","sp2_20_comp","sp2_20_v26","sp8_20_comp","sp8_20_v26","sp2_20_small","sp2_100_small","sp2_20_f1",
-             "sp2_100_f1","sp2_20_new_f1","sp2_20_new_f2","sp2_v26_100","sp4_v26_100","sp6_v26_100","sp8_v26_100","sp10_v26_100","sp2_5000","sp2_10000","penn_tree_letters_15000_grassberger_logx",
-             "wiki2_letters_15000_grassberger_logx","text8_letters_15000_grassberger_logx","enwik8_letters_15000_grassberger_logx"]
-
-# filenames = ["sp2_v4_20","sp4_v4_20","sp8_v4_20","sp2_v26_20","sp4_v26_20","sp2_v61_20","sp2_v4_200","sp4_v4_200","sp8_v4_200","sp2_v26_200","sp4_v26_200","sp2_v61_200"]
+filenames = ["penn_tree_letters_15000_grassberger_logx","wiki2_letters_15000_grassberger_logx","text8_letters_15000_grassberger_logx","enwik8_letters_15000_grassberger_logx","sp2_20","sp2_100","sp2_200",
+             "sp2_500","sp2_5000","sp2_10000","sp2_v4_20","sp4_v4_20","sp8_v4_20","sp2_v26_20","sp4_v26_20","sp2_v61_20","sp2_v4_200","sp4_v4_200","sp8_v4_200","sp2_v26_200","sp4_v26_200","sp2_v61_200",]
+#              "sp2_100_comp","sp4_100_comp","sp16_100_comp","sp2_20_comp","sp2_20_v26","sp8_20_comp","sp8_20_v26","sp2_20_small","sp2_100_small","sp2_20_f1",
+#              "sp2_100_f1","sp2_20_new_f1","sp2_20_new_f2","sp2_v26_100","sp4_v26_100","sp6_v26_100","sp8_v26_100","sp10_v26_100"]
 
 all_mi = []
 
@@ -50,17 +49,34 @@ for filename in filenames:
 with plt.style.context(('seaborn')):
     ax = plt.axes()
 
-    # plt.loglog(np.arange(1,len(all_mi[24])+1), all_mi[24], color='black', label="PTB Characters")
-    # plt.loglog(np.arange(1,len(all_mi[25])+1), all_mi[25], color='slategrey', label="WikiText2 Characters")
-    # plt.loglog(np.arange(1,len(all_mi[26])+1), all_mi[26], color='brown', label="Text8 Characters")
-    # plt.loglog(np.arange(1,len(all_mi[27])+1), all_mi[27], color='gold', label="Enwik8 Characters")
-    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2, L=20, V=4, FS={ab,bc}")
-    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP2, L=100, V=4, FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP2, L=200, V=4, FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="SP2, L=500, V=4, FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[22])+1), all_mi[22], label="SP2, L=5000, V=4, FS={ab,bc}")
-    # plt.loglog(np.arange(1,len(all_mi[23])+1), all_mi[23], label="SP2, L=10000, V=4, FS={ab,bc}")
+    plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="PTB Characters")
+    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="WikiText2 Characters")
+    plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="Text8 Characters")
+    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="Enwik8 Characters")
 
+    plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP2, L=20, V=4, FS={ab,bc}")
+    plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="SP2, L=100, V=4, FS={ab,bc}")
+    plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="SP2, L=200, V=4, FS={ab,bc}")
+    plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP2, L=500, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="SP2, L=5000, V=4, FS={ab,bc}")
+    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="SP2, L=10000, V=4, FS={ab,bc}")
+
+    # plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="SP2, L=20, V=4, FS={ab,bc,cd,dc}")
+    # plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], label="SP4, L=20, V=4, FS={abba,bccb,cddc,adda}")
+    # plt.loglog(np.arange(1,len(all_mi[12])+1), all_mi[12], label="SP8, L=20, V=4, FS={abbaabba,bccbbccb,cddccddc,addaadda}")
+    # plt.loglog(np.arange(1,len(all_mi[13])+1), all_mi[13], label="SP2, L=20, V=26, FS={ab,bc,cd,de,ef,fg}")
+    # plt.loglog(np.arange(1,len(all_mi[14])+1), all_mi[14], label="SP4, L=20, V=26, FS={abba,deed,ghhg,accf,hiih,ijji,lmml,noon,stts,vwwv}")
+    # plt.loglog(np.arange(1,len(all_mi[15])+1), all_mi[15], label="SP2, L=20, V=61, FS={ab,bc,cd,de,ef,fg,AB,GH,Aa,Cd,A1,M2,K4,W5,Q6,A7}")
+
+    # plt.loglog(np.arange(1,len(all_mi[16])+1), all_mi[16], label="SP2, L=200, V=4, FS={ab,bc,cd,dc}")
+    # plt.loglog(np.arange(1,len(all_mi[17])+1), all_mi[17], label="SP4, L=200, V=4, FS={abba,bccb,cddc,adda}")
+    # plt.loglog(np.arange(1,len(all_mi[18])+1), all_mi[18], label="SP8, L=200, V=4, FS={abbaabba,bccbbccb,cddccddc,addaadda}")
+    # plt.loglog(np.arange(1,len(all_mi[19])+1), all_mi[19], label="SP2, L=200, V=26, FS={ab,bc,cd,de,ef,fg}")
+    # plt.loglog(np.arange(1,len(all_mi[20])+1), all_mi[20], label="SP4, L=200, V=26, FS={abba,deed,ghhg,accf,hiih,ijji,lmml,noon,stts,vwwv}")
+    # plt.loglog(np.arange(1,len(all_mi[21])+1), all_mi[21], label="SP2, L=200, V=61, FS={ab,bc,cd,de,ef,fg,AB,GH,Aa,Cd,A1,M2,K4,W5,Q6,A7}")
+
+
+#####################
     # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP2, L=100, V=4, FS={ab,bc}")
     # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="SP4, L=100, V=4, FS={abba,bccb}")
     # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="SP16, L=100, V=4, FS={abbaabbaabbaabba,bccbbccbbccbbccb}")
@@ -91,19 +107,12 @@ with plt.style.context(('seaborn')):
 
     # plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="Constant Mutual Information")
 
-    # plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="SP2, V=4, L=20")
-    # plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="SP4, V=4, L=20")
-    # plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="SP8, V=4, L=20")
-    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="SP2, V=26, L=20")
-    # plt.loglog(np.arange(1,len(all_mi[4])+1), all_mi[4], label="SP4, V=26, L=20")
-    # plt.loglog(np.arange(1,len(all_mi[5])+1), all_mi[5], label="SP2, V=61, L=20")
+    # plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="sp2_20")
+    # plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="sp2_v4_20")
 
-    # plt.loglog(np.arange(1,len(all_mi[6])+1), all_mi[6], label="SP2, V=4, L=200")
-    # plt.loglog(np.arange(1,len(all_mi[7])+1), all_mi[7], label="SP4, V=4, L=200")
-    # plt.loglog(np.arange(1,len(all_mi[8])+1), all_mi[8], label="SP8, V=4, L=200")
-    # plt.loglog(np.arange(1,len(all_mi[9])+1), all_mi[9], label="SP2, V=26, L=200")
-    # plt.loglog(np.arange(1,len(all_mi[10])+1), all_mi[10], label="SP4, V=26, L=200")
-    # plt.loglog(np.arange(1,len(all_mi[11])+1), all_mi[11], label="SP2, V=61, L=200")
+    # plt.loglog(np.arange(1,len(all_mi[2])+1), all_mi[2], label="sp2_200")
+    # plt.loglog(np.arange(1,len(all_mi[3])+1), all_mi[3], label="sp2_v4_200")
+
 
     plt.tick_params(labelsize='large', width=5)
     plt.grid(True)
@@ -115,5 +124,5 @@ with plt.style.context(('seaborn')):
     ax.set_xlabel('Distance between symbols (Lag), d', fontsize=15)
     ax.set_ylabel('Mutual Information, I(d)', fontsize=15)
     lgd = ax.legend(loc='lower left', shadow=True, fancybox=True, numpoints=3, prop={'size': 10})
-    plt.savefig('hyper_sp', bbox_extra_artists=(lgd,), bbox_inches='tight')
+    # plt.savefig('hyper_sp', bbox_extra_artists=(lgd,), bbox_inches='tight')
     plt.show()
