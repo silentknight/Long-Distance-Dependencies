@@ -20,14 +20,14 @@ cpdef getJointRV(dataArray, unsigned long[:] lineLengthList, int totalLength, in
 		nLines = 1
 
 	for i in range(nLines):
-		steps = lineLengthList[i]/d
-		# last = steps*d
-		if steps > 1:
-			array.extend(X,dataArray[index:index+lineLengthList[i]-d])
-			array.extend(Y,dataArray[index+d:index+lineLengthList[i]])
-			# array.extend(X,dataArray[index:index+last-d])
-			# array.extend(Y,dataArray[index+d:index+last])
-			index+=lineLengthList[i]
+		#steps = lineLengthList[i]/d
+		## last = steps*d
+		#if steps > 1:
+		array.extend(X,dataArray[index:index+lineLengthList[i]-d])
+		array.extend(Y,dataArray[index+d:index+lineLengthList[i]])
+		# array.extend(X,dataArray[index:index+last-d])
+		# array.extend(Y,dataArray[index+d:index+last])
+		index+=lineLengthList[i]
 
 	if len(X) == 0 or len(Y) == 0:
 		return 0,0,0
