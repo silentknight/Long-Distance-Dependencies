@@ -16,10 +16,8 @@ all_hx = []
 all_hy = []
 all_hxy = []
 
-
-
 for filename in filenames:
-    print("\nProcessing: ", filename)
+    print("Processing: ", filename)
 
     f = open(filename, "r")
     lines = f.readlines()
@@ -49,6 +47,7 @@ for filename in filenames:
                 sys.stdout.write("\rProcessed -> d: %d" % (d))
                 sys.stdout.flush()
             index+=1
+        print("")
     else:
         print("Not a valid file")
 
@@ -61,7 +60,7 @@ with plt.style.context(('seaborn')):
     ax = plt.axes()
 
     plt.loglog(np.arange(1,len(all_mi[0])+1), all_mi[0], label="PTB Full Length")
-    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="Wiki2 Full Length")
+    plt.loglog(np.arange(1,len(all_mi[1])+1), all_mi[1], label="WikiText2 Full Length")
 
     # break_point = 4
     # data = all_mi[0]
@@ -69,7 +68,7 @@ with plt.style.context(('seaborn')):
     # alpha_2 = 0.01
     # end_point = 622
 
-    # p1 = plt.plot(np.arange(1,len(data)+1), data, "r-", label="PTB")
+    # p1 = plt.loglog(np.arange(1,len(data)+1), data, "r-", label="PTB")
     # x = np.linspace(0, len(data), len(data))
     
     # amplitude = mi[break_point-1]
@@ -78,32 +77,28 @@ with plt.style.context(('seaborn')):
     # fit_sample = f(x)
     # p3 = plt.loglog(x, fit_sample, label="Smoothly Broken Power-Law fit for PTB")
 
-    # break_point = 622
-    # data = all_mi[0]
-    # alpha_1 = 0.01
-    # alpha_2 = -0.0008
-    # end_point = 100000
-
-    # amplitude = mi[break_point+1]
-    # f = models.BrokenPowerLaw1D(amplitude=amplitude, x_break=break_point, alpha_1=alpha_1, alpha_2=alpha_2)
-    # fit_sample = f(x)
-    # p2 = plt.plot(x, fit_sample, label="Broken Power-Law fit for PTB")
-
-
     # data = all_mi[0][622:]
 
-    # num_values = 10
-    # interval = len(data) // (num_values - 1)
-    # for i in range(0,len(data),interval):
-    #     print(i, np.average(data[i:i+100]))
+    # x_inter = []
+    # y_inter = []
 
-    # x = np.arange(1, len(data)+1)
+    # num_values = 500
+    # interval = len(data)//(num_values-1)
+    # for i in range(0,len(data),interval):
+    #     x_inter.append(i+1)
+    #     y_inter.append(np.average(data[i:i+100]))
+
+    # print(x_inter)
+    # print(y_inter)
+
+    # x = np.arange(0, len(data))
 
     # plt.plot(x,data)
+    # plt.plot(x_inter,y_inter)
 
-    # # y = 1.0188068606979217 - (-2.927925e-7/-0.000001556964)*(1 - np.exp(+0.00000166*x))
-    # y = 1.020439 - (-3.016335e-7/-0.000001490813)*(1 - np.exp(+0.000001490813*x))
-    # plt.plot(x,y)
+    # y = 1.020153 - (-3.092507e-7/-0.000001395937)*(1 - np.exp(+0.000001395937*x))
+
+    # plt.loglog(x,y)
 
     # [D, p_value] = stats.ks_2samp(data,y)
     # print("D :", D)
