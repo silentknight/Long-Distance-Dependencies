@@ -149,6 +149,7 @@ try:
 		Ni_Y = pmi_data['arr_3'].tolist().toarray()[0]
 
 		if args.dataset == 1:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -157,6 +158,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>9.9)]))
 			fm.write("\n")
 		elif args.dataset == 6:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -165,6 +167,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		elif args.dataset == 9:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.6)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.6))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -173,6 +176,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>15.8)]))
 			fm.write("\n")
 		elif args.dataset == 12:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -181,6 +185,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		elif args.dataset == 13:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -189,6 +194,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		elif args.dataset == 14:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -197,6 +203,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		elif args.dataset == 15:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -205,6 +212,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		elif args.dataset == 2:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.6)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.6))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -213,6 +221,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>15.8)]))
 			fm.write("\n")
 		elif args.dataset == 4:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -221,6 +230,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		elif args.dataset == 5:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -229,6 +239,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		elif args.dataset == 20:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -237,6 +248,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>11.9)]))
 			fm.write("\n")
 		elif args.dataset == 17:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.6)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.6))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -245,6 +257,7 @@ try:
 			fm.write("%d," % np.size(pmi[np.where(pmi>15.8)]))
 			fm.write("\n")
 		elif args.dataset == 18:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.6)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.6))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))
@@ -254,6 +267,7 @@ try:
 			fm.write("\n")
 
 		elif args.dataset == 21:
+			fm.write("%s," % file.split(".")[0])
 			fm.write("%d," % np.size(pmi[np.where(pmi<-1.3)]))
 			fm.write("%d," % np.size(pmi[np.where((pmi<0)&(pmi>=-1.3))]))
 			fm.write("%d," % (pmi_temp.shape[0]*pmi_temp.shape[1]-pmi_temp.nnz))

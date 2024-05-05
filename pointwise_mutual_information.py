@@ -112,9 +112,8 @@ class PointwiseMutualInformation(object):
 					sp.save_npz(self.directory+"/Ni_XY/"+str(d), thread[i].Ni_XY)
 					sp.save_npz(self.directory+"/pmi/"+str(d), thread[i].pmi)
 
-					print(d)
-
 				d += self.no_of_threads
+				#d += self.no_of_threads+(100-self.no_of_threads)  # Skip by 100 to avoid data storage issue
 
 		except KeyboardInterrupt:
 			print("Processed upto: "+str(d))
