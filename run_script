@@ -160,4 +160,6 @@
 # python -u run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 12 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 2551000 --plot 0 --datafilepath mi_data/wiki2_words_full_grassberger_logx
 
 # python -u run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 0 --words 1 --cutoff 1085000 --top_dir /mnt/data/ --datafilepath penn_tree_words_standard_logx
-python -u run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 0 --words 1 --cutoff 2551000 --top_dir /mnt/data/ --datafilepath wiki2_words_standard_logx
+# python -u run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 0 --words 1 --cutoff 2551000 --top_dir /mnt/data/ --datafilepath wiki2_words_standard_logx
+
+python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 0 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath wiki103_words_standard_logx
