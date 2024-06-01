@@ -185,7 +185,7 @@ class Corpus(object):
 		elif path == "dataset/m-wikitext-2/":
 			dataset = self.tokenize_file(os.path.join(path, 'train'))
 
-		elif path == "dataset/hutter-text/text8":
+		elif path == "dataset/text8/text8":
 			print("text8")
 			self.text = self.tokenize_file(path)
 		elif path == "dataset/hutter-text/enwik8":

@@ -152,8 +152,8 @@
 # python run_all.py --data dataset/wiki/wikitext-19/ --overlap 1 --threads 10 --compute pmi --pmi_method standard --log_type 0 --clear 0 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath wiki19_standard_logx
 # python run_all.py --data dataset/wiki/wikitext-2-samples/ --overlap 1 --threads 1 --compute pmi --mi_method standard --log_type 0 --clear 0 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath wiki_sample_4_words_standard_logx
 
-python run_all.py --data dataset/text8/text8_small/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 2553608 --plot 0 --datafilepath mi_data/text8_subset_words_full_grassberger_logx
-python run_all.py --data dataset/text8/text8_small_wo_r_2/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 2553608 --plot 0 --datafilepath mi_data/text8_subset_wor_2_words_full_grassberger_logx
+# python run_all.py --data dataset/text8/text8_small/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 2553608 --plot 0 --datafilepath mi_data/text8_subset_words_full_grassberger_logx
+# python run_all.py --data dataset/text8/text8_small_wo_r_2/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 2553608 --plot 0 --datafilepath mi_data/text8_subset_wor_2_words_full_grassberger_logx
 # python run_all.py --data dataset/text8/text8_small_wo_r_4/ --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 10000 --plot 0 --datafilepath mi_data/text8_subset_wor_4_new_words_10000_grassberger_logx
 
 # python -u run_all.py --data dataset/dl4mt/ --overlap 1 --threads 12 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 1085000 --plot 0 --datafilepath mi_data/penn_tree_words_full_grassberger_logx
@@ -162,8 +162,10 @@ python run_all.py --data dataset/text8/text8_small_wo_r_2/ --overlap 1 --threads
 # python -u run_all.py --data dataset/dl4mt/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 0 --words 1 --cutoff 1085000 --top_dir /mnt/data/ --datafilepath penn_tree_words_standard_logx
 # python -u run_all.py --data dataset/wiki/wikitext-2/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 0 --words 1 --cutoff 2551000 --top_dir /mnt/data/ --datafilepath wiki2_words_standard_logx
 
-# python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 0 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath wiki103_words_standard_logx
-# python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 103690236 --plot 0 --datafilepath mi_data/wiki103_words_grassberger_logx
+python run_all.py --data dataset/text8/text8 --overlap 1 --threads 10 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 17005208 --plot 0 --datafilepath mi_data/text8_words_full_grassberger_logx
 
-python -u run_all.py --data dataset/wiki/wikitext-2-samples/ --overlap 1 --threads 12 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 3000278 --plot 0 --datafilepath mi_data/wiki_sample_3_words_full_grassberger_logx
+# python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute pmi --pmi_method standard --log_type 0 --clear 0 --words 1 --cutoff 1000 --top_dir /mnt/data/ --datafilepath wiki103_words_standard_logx
+# python run_all.py --data dataset/wiki/wikitext-103/ --overlap 1 --threads 1 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 103690236 --plot 0 --datafilepath mi_data/wiki103_words_full_grassberger_logx
+
+# python -u run_all.py --data dataset/wiki/wikitext-2-samples/ --overlap 1 --threads 12 --compute mi --mi_method grassberger --log_type 0 --clear 0 --words 1 --cutoff 3000278 --plot 0 --datafilepath mi_data/wiki_sample_3_words_full_grassberger_logx
 # python -u run_all.py --data dataset/wiki/wikitext-2-samples/ --overlap 1 --threads 1 --compute pmi --mi_method standard --log_type 0 --clear 0 --words 1 --cutoff 3000278 --top_dir /mnt/data/ --datafilepath wiki_sample_3_words_standard_logx

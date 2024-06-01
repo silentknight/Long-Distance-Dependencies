@@ -77,8 +77,8 @@ class PointwiseMutualInformation(object):
 			for file in files:
 				d_num.append(int(file.split('.')[0]))
 
-			#d = sorted(d_num)[len(d_num)-1]+1
-			d = sorted(d_num)[len(d_num)-1]
+			d = sorted(d_num)[len(d_num)-1]+1
+			#d = sorted(d_num)[len(d_num)-1]
 		except:
 			print(self.directory+" does not exist. Hence cannot load the contents.")
 
@@ -113,8 +113,8 @@ class PointwiseMutualInformation(object):
 					sp.save_npz(self.directory+"/Ni_XY/"+str(d), thread[i].Ni_XY)
 					sp.save_npz(self.directory+"/pmi/"+str(d), thread[i].pmi)
 
-				#d += self.no_of_threads
-				d += self.no_of_threads+(100-self.no_of_threads)  # Skip by 1000 to avoid data storage issue
+				d += self.no_of_threads
+				#d += self.no_of_threads+(100000-self.no_of_threads)  # Skip by 1000 to avoid data storage issue
 
 		except KeyboardInterrupt:
 			print("Processed upto: "+str(d))
