@@ -57,8 +57,8 @@ for file in files:
 	ldds = 0
 	threshold = file['thr']
 	c1 = file['c1']
-	sdds = np.sum(mi[0:threshold])
-	ldds = np.sum(mi[threshold:end_point])
+	sdds = np.log(np.sum(mi[0:threshold]))
+	ldds = np.log(np.sum(mi[threshold:end_point]))
 
 	print('-----------------------------------------------------------')
 	print('Dataset:', filename)
@@ -66,7 +66,5 @@ for file in files:
 	print('Break Point 2:', end_point)
 	print('SDDs', sdds)
 	print('LDDs', ldds)
-	print('SDDs/LDDs:', sdds/ldds)
 	print('LDDs/SDDs:', ldds/sdds)
-	print('LDDs/SDDs*c1:', ldds/sdds*c1)
 	print('-----------------------------------------------------------\n')
